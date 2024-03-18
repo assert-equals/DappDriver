@@ -1,0 +1,69 @@
+{
+  "name": "@assert-equals/dappdriver",
+  "version": "0.0.1",
+  "description": "DappDriver is a testing tool to automate dApps",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/src/index.js",
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./metamask": {
+      "require": "./dist/src/metamask/index.js",
+      "import": "./dist/src/metamask/index.js",
+      "types": "./dist/src/metamask/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "bin": {
+    "extension": "./dist/src/bin/metamask-extension.js"
+  },
+  "keywords": [
+    "automation",
+    "browser",
+    "dapp",
+    "e2e",
+    "ethereum",
+    "extension",
+    "metamask",
+    "selenium",
+    "testing",
+    "webdriver"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts --fix"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": {
+    "name": "Assert Equals Ltd"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.5.12",
+    "axios": "^1.6.8",
+    "semver": "^7.6.0"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.5",
+    "@types/selenium-webdriver": "^4.1.22",
+    "@types/semver": "^7.5.8",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "ganache": "^7.9.2",
+    "playwright-core": "^1.42.1",
+    "prettier": "^3.2.5",
+    "selenium-webdriver": "^4.18.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}
