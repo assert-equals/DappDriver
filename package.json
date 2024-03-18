@@ -38,7 +38,9 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "lint": "eslint src/**/*.ts --fix"
+    "lint": "eslint src/**/*.ts --fix",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "engines": {
     "node": ">=20"
@@ -53,6 +55,8 @@
     "semver": "^7.6.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.0",
+    "@commitlint/config-conventional": "^19.1.0",
     "@types/adm-zip": "^0.5.5",
     "@types/selenium-webdriver": "^4.1.22",
     "@types/semver": "^7.5.8",
@@ -60,6 +64,7 @@
     "@typescript-eslint/parser": "^7.2.0",
     "eslint": "^8.57.0",
     "ganache": "^7.9.2",
+    "husky": "^9.0.11",
     "playwright-core": "^1.42.1",
     "prettier": "^3.2.5",
     "selenium-webdriver": "^4.18.1",
