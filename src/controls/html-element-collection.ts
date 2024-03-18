@@ -4,14 +4,31 @@ import { PlaywrightHTMLElementCollection } from '../playwright/html-element-coll
 import { WebDriverHTMLElementCollection } from '../webdriver/html-element-collection';
 import { HTMLElement } from './html-element';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
-
+/**
+ *
+ *
+ * @export
+ * @class HTMLElementCollection
+ * @implements {IHTMLElementCollection}
+ */
 export class HTMLElementCollection implements IHTMLElementCollection {
   private cssLocator: string;
-
+  /**
+   * Creates an instance of HTMLElementCollection.
+   * @param {string} cssLocator
+   * @memberof HTMLElementCollection
+   */
   constructor(cssLocator: string) {
     this.cssLocator = cssLocator;
   }
-
+  /**
+   *
+   *
+   * @param {keyof IHTMLElementCollection} methodName
+   * @param {Array<any>} [args=[]]
+   * @return {*}  {Promise<any>}
+   * @memberof HTMLElementCollection
+   */
   async callIfMethodExists(methodName: keyof IHTMLElementCollection, args: Array<any> = []): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightHTMLElementCollection(this.cssLocator);
@@ -21,7 +38,12 @@ export class HTMLElementCollection implements IHTMLElementCollection {
       return await (d[methodName] as Function)(...args);
     }
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<Array<HTMLElement>>}
+   * @memberof HTMLElementCollection
+   */
   async elements(): Promise<Array<HTMLElement>> {
     return await this.callIfMethodExists('elements');
   }

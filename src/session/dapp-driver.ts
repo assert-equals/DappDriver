@@ -6,7 +6,12 @@ import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup
 import { PageObject } from '../page';
 import { Browser, Driver, Frame, Framework, Page, WalletOptions } from '../types';
 import { METAMASK, PLAYWRIGHT, WEBDRIVER } from '../constants';
-
+/**
+ *
+ *
+ * @export
+ * @class DappDriver
+ */
 export class DappDriver {
   private static instance: DappDriver | null = null;
   private domain: string;
@@ -16,7 +21,13 @@ export class DappDriver {
   private page: Page;
   private frame: Frame;
   private framework: Framework;
-
+  /**
+   * Creates an instance of DappDriver.
+   * @param {string} domain
+   * @param {Framework} framework
+   * @param {Driver} driver
+   * @memberof DappDriver
+   */
   constructor(domain: string, framework: Framework, driver: Driver) {
     this.domain = domain;
     this.framework = framework;
@@ -138,7 +149,15 @@ export class DappDriver {
     const newPage: TPage = await this.getPage(tPage);
     return newPage;
   }
-
+  /**
+   *
+   *
+   * @private
+   * @static
+   * @param {string} url
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
   private static async open(url: string): Promise<void> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const page: Page = DappDriver.Instance.Page;
@@ -147,14 +166,28 @@ export class DappDriver {
       await (DappDriver.Instance.Driver as WebDriver).get(url);
     }
   }
-
+  /**
+   *
+   *
+   * @static
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof DappDriver
+   */
   static async getPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     const newPage: TPage = new page();
     await newPage.waitForTitle();
     await newPage.waitForURL();
     return newPage;
   }
-
+  /**
+   *
+   *
+   * @static
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
   static async dispose(): Promise<void> {
     if (DappDriver.Instance === null) {
       return;
@@ -166,7 +199,13 @@ export class DappDriver {
     }
     DappDriver.instance = null;
   }
-
+  /**
+   *
+   *
+   * @static
+   * @return {*}  {Promise<string>}
+   * @memberof DappDriver
+   */
   static async takeScreenshot(): Promise<string> {
     let screenShot: string;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
