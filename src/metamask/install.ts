@@ -9,10 +9,6 @@ import { Asset } from '../types';
 const initCwd = process.env.INIT_CWD;
 const cwd = process.cwd();
 
-(async function () {
-  await installMetaMaskWallet();
-})();
-
 function compareVersion(version: string): void {
   const satisfy = semver.satisfies(version, RECOMMENDED_VERSIONS);
   if (!satisfy) {
