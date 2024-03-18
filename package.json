@@ -17,11 +17,10 @@
     }
   },
   "files": [
-    "dist",
-    "bin"
+    "dist"
   ],
   "bin": {
-    "extension": "./dist/src/bin/metamask-extension.js"
+    "dappdriver": "./dist/src/bin/metamask-extension.js"
   },
   "keywords": [
     "automation",
@@ -62,6 +61,7 @@
     "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "commander": "^12.0.0",
     "eslint": "^8.57.0",
     "ganache": "^7.9.2",
     "husky": "^9.0.11",
