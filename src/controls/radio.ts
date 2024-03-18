@@ -5,12 +5,31 @@ import { PlaywrightRadio } from '../playwright/radio';
 import { WebDriverRadio } from '../webdriver/radio';
 import { HTMLElement } from './html-element';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
-
+/**
+ *
+ *
+ * @export
+ * @class Radio
+ * @extends {HTMLElement}
+ * @implements {IRadio}
+ */
 export class Radio extends HTMLElement implements IRadio {
+  /**
+   * Creates an instance of Radio.
+   * @param {string} cssLocator
+   * @memberof Radio
+   */
   constructor(cssLocator: string) {
     super(cssLocator);
   }
-
+  /**
+   *
+   *
+   * @param {(keyof IHTMLElement | keyof IRadio)} methodName
+   * @param {Array<any>} [args=[]]
+   * @return {*}  {Promise<any>}
+   * @memberof Radio
+   */
   async callIfMethodExists(methodName: keyof IHTMLElement | keyof IRadio, args: Array<any> = []): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightRadio(this.cssLocator);
@@ -20,11 +39,21 @@ export class Radio extends HTMLElement implements IRadio {
       return await (d[methodName] as Function)(...args);
     }
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<boolean>}
+   * @memberof Radio
+   */
   async isSelected(): Promise<boolean> {
     return await this.callIfMethodExists('isSelected');
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof Radio
+   */
   async select(): Promise<void> {
     return this.callIfMethodExists('select');
   }

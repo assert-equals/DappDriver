@@ -5,12 +5,31 @@ import { PlaywrightCheckBox } from '../playwright/check-box';
 import { WebDriverCheckBox } from '../webdriver/check-box';
 import { HTMLElement } from './html-element';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
-
+/**
+ *
+ *
+ * @export
+ * @class CheckBox
+ * @extends {HTMLElement}
+ * @implements {ICheckBox}
+ */
 export class CheckBox extends HTMLElement implements ICheckBox {
+  /**
+   * Creates an instance of CheckBox.
+   * @param {string} cssLocator
+   * @memberof CheckBox
+   */
   constructor(cssLocator: string) {
     super(cssLocator);
   }
-
+  /**
+   *
+   *
+   * @param {(keyof IHTMLElement | keyof ICheckBox)} methodName
+   * @param {Array<any>} [args=[]]
+   * @return {*}  {Promise<any>}
+   * @memberof CheckBox
+   */
   async callIfMethodExists(methodName: keyof IHTMLElement | keyof ICheckBox, args: Array<any> = []): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightCheckBox(this.cssLocator);
@@ -20,11 +39,22 @@ export class CheckBox extends HTMLElement implements ICheckBox {
       return await (d[methodName] as Function)(...args);
     }
   }
-
+  /**
+   *
+   * Checks or unchecks a check box
+   * @param {boolean} value
+   * @return {*}  {Promise<void>}
+   * @memberof CheckBox
+   */
   async setValue(value: boolean): Promise<void> {
     return this.callIfMethodExists('setValue', [value]);
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<boolean>}
+   * @memberof CheckBox
+   */
   async isSelected(): Promise<boolean> {
     return await this.callIfMethodExists('isSelected');
   }

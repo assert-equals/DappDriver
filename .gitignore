@@ -2,3 +2,4 @@ node_modules
 metamask-*
 .DS_Store
 dist
+docs

@@ -1,5 +1,10 @@
 import ganache, { Server, ServerOptions } from 'ganache';
-
+/**
+ *
+ *
+ * @export
+ * @class Node
+ */
 export class Node {
   private server: Server<any>;
   private defaultOptions: ServerOptions = {
@@ -15,13 +20,22 @@ export class Node {
       quiet: true,
     },
   };
-
+  /**
+   *
+   *
+   * @param {ServerOptions} [customOptions={}]
+   * @memberof Node
+   */
   async start(customOptions: ServerOptions = {}) {
     const options: ServerOptions = { ...this.defaultOptions, ...customOptions };
     this.server = ganache.server(options);
     await this.server.listen(8545);
   }
-
+  /**
+   *
+   *
+   * @memberof Node
+   */
   async stop() {
     await this.server.close();
   }
