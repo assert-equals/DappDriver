@@ -41,7 +41,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to clear the value of this element
    * @return {*}  {Promise<void>}
    * @memberof InputText
    */
@@ -50,7 +50,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to focus in this element
    * @return {*}  {Promise<void>}
    * @memberof InputText
    */
@@ -59,7 +59,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to query for the value attribute of the element
    * @return {*}  {Promise<string>}
    * @memberof InputText
    */
@@ -68,7 +68,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to query for the value attribute of the element
    * @return {*}  {Promise<string>}
    * @memberof InputText
    */
@@ -77,7 +77,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to type a sequence in the element
    * @param {string} keys
    * @return {*}  {Promise<void>}
    * @memberof InputText
@@ -87,7 +87,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to type a sequence in the element
    * @param {string} keys
    * @return {*}  {Promise<void>}
    * @memberof InputText
@@ -97,7 +97,7 @@ export class InputText extends HTMLElement implements IInputText {
   }
   /**
    *
-   *
+   * Schedules a command to type a sequence in the element
    * @param {string} keys
    * @return {*}  {Promise<void>}
    * @memberof InputText

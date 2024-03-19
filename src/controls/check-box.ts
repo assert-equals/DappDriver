@@ -41,7 +41,7 @@ export class CheckBox extends HTMLElement implements ICheckBox {
   }
   /**
    *
-   * Checks or unchecks a check box
+   * Schedules a command to check or uncheck this element
    * @param {boolean} value
    * @return {*}  {Promise<void>}
    * @memberof CheckBox
@@ -51,7 +51,7 @@ export class CheckBox extends HTMLElement implements ICheckBox {
   }
   /**
    *
-   *
+   * Schedules a command to query whether this element is currently checked
    * @return {*}  {Promise<boolean>}
    * @memberof CheckBox
    */

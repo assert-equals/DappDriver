@@ -86,6 +86,19 @@ export class DappDriver {
     this.frame = value;
   }
 
+  /**
+   *
+   * Creates a new DappDriver session based on this current configuration
+   * @static
+   * @template TPage
+   * @param {string} domain
+   * @param {Framework} framework
+   * @param {Browser} browser
+   * @param {new () => TPage} tPage
+   * @param {WalletOptions} options
+   * @return {*}  {Promise<TPage>}
+   * @memberof DappDriver
+   */
   static async create(domain: string, framework: Framework, browser: Browser): Promise<void>;
   static async create(domain: string, framework: Framework, browser: Browser, options: WalletOptions): Promise<void>;
   static async create<TPage extends PageObject>(
@@ -151,7 +164,7 @@ export class DappDriver {
   }
   /**
    *
-   *
+   * Schedules a command to navigate to a new URL
    * @private
    * @static
    * @param {string} url
@@ -183,7 +196,7 @@ export class DappDriver {
   }
   /**
    *
-   *
+   * Schedules a command to quit the current session
    * @static
    * @return {*}  {Promise<void>}
    * @memberof DappDriver
@@ -201,7 +214,7 @@ export class DappDriver {
   }
   /**
    *
-   *
+   * Schedule a command to take a screenshot
    * @static
    * @return {*}  {Promise<string>}
    * @memberof DappDriver

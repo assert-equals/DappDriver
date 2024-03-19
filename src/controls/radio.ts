@@ -41,7 +41,7 @@ export class Radio extends HTMLElement implements IRadio {
   }
   /**
    *
-   *
+   * Schedules a command to query whether this element is currently selected
    * @return {*}  {Promise<boolean>}
    * @memberof Radio
    */
@@ -50,7 +50,7 @@ export class Radio extends HTMLElement implements IRadio {
   }
   /**
    *
-   *
+   * Schedules a command to select this element
    * @return {*}  {Promise<void>}
    * @memberof Radio
    */

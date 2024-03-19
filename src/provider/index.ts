@@ -10,7 +10,7 @@ export class Provider {
   private page: PageObject = new PageObject();
   /**
    *
-   *
+   * Schedules a command to execute a JSON-RPC request in the context of the currently selected frame or window
    * @param {JsonRpcRequest} jsonRpcRequest
    * @return {*}  {Promise<any>}
    * @memberof Provider
@@ -21,7 +21,7 @@ export class Provider {
   }
   /**
    *
-   *
+   * Schedules a command to execute a JSON-RPC request in the context of the currently selected frame or window and switch the focus of all future commands to another window
    * @template TPage
    * @param {JsonRpcRequest} jsonRpcRequest
    * @param {new () => TPage} page

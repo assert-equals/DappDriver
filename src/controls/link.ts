@@ -41,7 +41,7 @@ export class Link extends HTMLElement implements ILink {
   }
   /**
    *
-   *
+   * Schedules a command to query for the href attribute of the element
    * @return {*}  {Promise<string>}
    * @memberof Link
    */

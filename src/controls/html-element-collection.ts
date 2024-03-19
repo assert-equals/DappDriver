@@ -40,7 +40,7 @@ export class HTMLElementCollection implements IHTMLElementCollection {
   }
   /**
    *
-   *
+   * Schedules a command to retrieve the elements
    * @return {*}  {Promise<Array<HTMLElement>>}
    * @memberof HTMLElementCollection
    */
