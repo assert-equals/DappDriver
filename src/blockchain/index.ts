@@ -22,7 +22,7 @@ export class Node {
   };
   /**
    *
-   *
+   * Starts the HTTP server listening for connections
    * @param {ServerOptions} [customOptions={}]
    * @memberof Node
    */
@@ -33,7 +33,7 @@ export class Node {
   }
   /**
    *
-   *
+   * Stops the server from accepting new connections and closes all connections connected to this server which are not sending a request or waiting for a response
    * @memberof Node
    */
   async stop() {

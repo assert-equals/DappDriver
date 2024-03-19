@@ -46,7 +46,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to click on this element
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement
    */
@@ -55,7 +55,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to click on this element and wait for the given amount of time
    * @param {number} [duration=1000]
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement
@@ -65,7 +65,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to click on this element and switch the focus of all future commands to another window
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}
@@ -76,7 +76,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to click on this element and redirect to a new page
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}
@@ -87,7 +87,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to click on this element and switch the focus of all future commands to the main window
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}
@@ -98,7 +98,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to query for the value of the given attribute of the element
    * @param {string} attribute
    * @return {*}  {(Promise<string | null>)}
    * @memberof HTMLElement
@@ -108,7 +108,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to query for the value of the given css property of the element
    * @param {string} property
    * @return {*}  {(Promise<string | null>)}
    * @memberof HTMLElement
@@ -118,7 +118,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to query for the visible innerText of the element
    * @return {*}  {Promise<string>}
    * @memberof HTMLElement
    */
@@ -127,7 +127,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to hover over this element
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement
    */
@@ -136,7 +136,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to query whether this element is currently displayed
    * @return {*}  {Promise<boolean>}
    * @memberof HTMLElement
    */
@@ -145,7 +145,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to query whether the element is enabled
    * @return {*}  {Promise<boolean>}
    * @memberof HTMLElement
    */
@@ -154,7 +154,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to query whether the element is visible
    * @return {*}  {Promise<boolean>}
    * @memberof HTMLElement
    */
@@ -163,7 +163,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   *
+   * Schedules a command to type a sequence in the element
    * @param {string} keys
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement

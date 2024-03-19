@@ -41,7 +41,7 @@ export class DropDown extends HTMLElement implements IDropDown {
   }
   /**
    *
-   *
+   * Schedules a command to retrieve the selected option in this element
    * @return {*}  {Promise<string>}
    * @memberof DropDown
    */
@@ -50,7 +50,7 @@ export class DropDown extends HTMLElement implements IDropDown {
   }
   /**
    *
-   *
+   * Schedules a command to select an option in this element
    * @param {number} index
    * @return {*}  {Promise<void>}
    * @memberof DropDown
@@ -60,7 +60,7 @@ export class DropDown extends HTMLElement implements IDropDown {
   }
   /**
    *
-   *
+   * Schedules a command to select an option in this element
    * @param {string} text
    * @return {*}  {Promise<void>}
    * @memberof DropDown
@@ -70,7 +70,7 @@ export class DropDown extends HTMLElement implements IDropDown {
   }
   /**
    *
-   *
+   * Schedules a command to select an option in this element
    * @param {string} value
    * @return {*}  {Promise<void>}
    * @memberof DropDown

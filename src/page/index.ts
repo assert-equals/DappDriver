@@ -92,7 +92,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to navigate to the previous URL
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -101,7 +101,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to navigate to the previous page
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
@@ -112,7 +112,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to close the current window
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -121,7 +121,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to close the current window and switch the focus of all future commands to the main window
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
@@ -132,7 +132,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to open a new window
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -141,7 +141,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to execute JavaScript in the context of the currently selected frame or window
    * @param {string} script
    * @return {*}  {Promise<any>}
    * @memberof PageObject
@@ -151,7 +151,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to another window
    * @template TPage
    * @param {string} script
    * @param {new () => TPage} page
@@ -166,7 +166,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to retrieve the current list of available window handles
    * @return {*}  {Promise<Array<any>>}
    * @memberof PageObject
    */
@@ -175,7 +175,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to retrieve the URL of the current page
    * @return {*}  {Promise<string>}
    * @memberof PageObject
    */
@@ -184,7 +184,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to retrieve the current page title
    * @return {*}  {Promise<string>}
    * @memberof PageObject
    */
@@ -193,7 +193,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to retrieve the current window handle
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
@@ -202,7 +202,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to maximize the window
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -211,7 +211,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to navigate to a new URL
    * @param {string} url
    * @return {*}  {Promise<void>}
    * @memberof PageObject
@@ -222,7 +222,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to navigate to a new page
    * @template TPage
    * @param {string} url
    * @param {new () => TPage} page
@@ -235,7 +235,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to navigate to a new page in a new window
    * @template TPage
    * @param {string} url
    * @param {new () => TPage} page
@@ -248,7 +248,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to switch the focus of all future commands to another window
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -257,7 +257,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to refresh the current page
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -266,7 +266,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to refresh the current page
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
@@ -277,7 +277,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to resize the window
    * @param {number} width
    * @param {number} height
    * @return {*}  {Promise<void>}
@@ -288,7 +288,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to switch focus of all future commands to the topmost frame on the page
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -297,7 +297,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to switch the focus of all future commands to another frame on the page
    * @param {string} cssLocator
    * @return {*}  {Promise<void>}
    * @memberof PageObject
@@ -307,7 +307,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to switch the focus of all future commands to the main window
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
@@ -316,7 +316,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to switch the focus of all future commands to a given window
    * @param {string} nameOrHandle
    * @return {*}  {Promise<any>}
    * @memberof PageObject
@@ -326,7 +326,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to wait for an element to appear
    * @param {string} cssLocator
    * @return {*}  {Promise<void>}
    * @memberof PageObject
@@ -336,7 +336,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to wait for a function to return a truthy value
    * @param {Function} func
    * @param {string} errMsg
    * @param {number} [timeout=10_000]
@@ -361,7 +361,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to wait for the required title to be returned
    * @param {RegExp} [title]
    * @return {*}  {Promise<void>}
    * @memberof PageObject
@@ -372,7 +372,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to wait for the current page to navigate to the given URL
    * @param {RegExp} [url]
    * @return {*}  {Promise<void>}
    * @memberof PageObject
@@ -383,7 +383,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   *
+   * Schedules a command to wait for the required count of windows
    * @param {number} total
    * @return {*}  {Promise<Array<string>>}
    * @memberof PageObject
