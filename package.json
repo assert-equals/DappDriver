@@ -20,7 +20,7 @@
     "dist"
   ],
   "bin": {
-    "dappdriver": "./dist/src/bin/metamask-extension.js"
+    "dappdriver": "dist/src/bin/metamask-extension.js"
   },
   "keywords": [
     "automation",
@@ -45,9 +45,7 @@
   "engines": {
     "node": ">=20"
   },
-  "author": {
-    "name": "Assert Equals Ltd"
-  },
+  "author": "Assert Equals Ltd",
   "license": "MIT",
   "dependencies": {
     "adm-zip": "^0.5.12",
@@ -72,5 +70,13 @@
     "ts-node": "^10.9.2",
     "typedoc": "^0.25.12",
     "typescript": "^5.4.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/assert-equals/DappDriver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/assert-equals/DappDriver/issues"
+  },
+  "homepage": "https://github.com/assert-equals/DappDriver#readme"
 }
