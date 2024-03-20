@@ -1,7 +1,7 @@
 import { Builder, WebDriver } from 'selenium-webdriver';
 import { Options as ChromeOptions } from 'selenium-webdriver/chrome';
 import { Browser, WalletOptions } from '../types';
-import { CHROME, METAMASK } from '../constants';
+import { CHROME, DEFAULT_BINARY_PATH, METAMASK } from '../constants';
 
 export class WebDriverFactory {
   build(browser: Browser, walletOptions: WalletOptions): Promise<WebDriver> {
@@ -17,7 +17,7 @@ export class WebDriverFactory {
     const chromeOptions: ChromeOptions = new ChromeOptions();
     const args: Array<string> = [];
     if (walletOptions.wallet === METAMASK) {
-      const extensionPath: string = walletOptions.path;
+      const extensionPath: string = walletOptions.path || `${process.cwd()}/${DEFAULT_BINARY_PATH}`;
       args.push(`load-extension=${extensionPath}`);
     }
     chromeOptions.addArguments(...args);

@@ -20,7 +20,7 @@ type JsonRpcRequest = {
 
 type WalletOptions = {
   wallet: Wallet;
-  path: string;
+  path?: string;
   seed: string;
 };
 
