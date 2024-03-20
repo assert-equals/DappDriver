@@ -25,12 +25,16 @@ export class InputText extends HTMLElement implements IInputText {
   /**
    *
    *
+   * @protected
    * @param {(keyof IHTMLElement | keyof IInputText)} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof InputText
    */
-  async callIfMethodExists(methodName: keyof IHTMLElement | keyof IInputText, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(
+    methodName: keyof IHTMLElement | keyof IInputText,
+    args: Array<any> = [],
+  ): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightInputText(this.cssLocator);
       return await (d[methodName] as Function)(...args);

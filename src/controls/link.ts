@@ -25,12 +25,16 @@ export class Link extends HTMLElement implements ILink {
   /**
    *
    *
+   * @protected
    * @param {(keyof IHTMLElement | keyof ILink)} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof Link
    */
-  async callIfMethodExists(methodName: keyof IHTMLElement | keyof ILink, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(
+    methodName: keyof IHTMLElement | keyof ILink,
+    args: Array<any> = [],
+  ): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightLink(this.cssLocator);
       return await (d[methodName] as Function)(...args);

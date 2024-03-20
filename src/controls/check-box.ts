@@ -25,12 +25,16 @@ export class CheckBox extends HTMLElement implements ICheckBox {
   /**
    *
    *
+   * @protected
    * @param {(keyof IHTMLElement | keyof ICheckBox)} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof CheckBox
    */
-  async callIfMethodExists(methodName: keyof IHTMLElement | keyof ICheckBox, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(
+    methodName: keyof IHTMLElement | keyof ICheckBox,
+    args: Array<any> = [],
+  ): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightCheckBox(this.cssLocator);
       return await (d[methodName] as Function)(...args);
