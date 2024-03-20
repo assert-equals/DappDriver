@@ -130,7 +130,11 @@ export class DappDriver {
     }
     let driver: Driver;
     if (options.wallet === METAMASK) {
-      await enableMetaMaskAutomation(options.path);
+      try {
+        await enableMetaMaskAutomation(options.path);
+      } catch (error) {
+        throw new Error('Error enabling automation in MetaMask: ' + error);
+      }
     }
     if (framework === PLAYWRIGHT) {
       driver = (await new PlaywrightFactory().build(browser, options)) as BrowserContext;
@@ -152,7 +156,6 @@ export class DappDriver {
       try {
         await setupMetaMaskWallet(options.seed);
       } catch (error) {
-        console.log(error);
         await this.dispose();
         throw new Error('Error setting up wallet: ' + error);
       }

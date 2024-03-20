@@ -1,6 +1,6 @@
 import playwright, { BrowserContext } from 'playwright-core';
 import { Browser, WalletOptions } from '../types';
-import { CHROME, METAMASK } from '../constants';
+import { CHROME, DEFAULT_BINARY_PATH, METAMASK } from '../constants';
 
 export class PlaywrightFactory {
   async build(browser: Browser, walletOptions: WalletOptions): Promise<BrowserContext> {
@@ -20,7 +20,7 @@ export class PlaywrightFactory {
       viewport: null,
     };
     if (walletOptions.wallet === METAMASK) {
-      const extensionPath: string = walletOptions.path;
+      const extensionPath: string = walletOptions.path || `${process.cwd()}/${DEFAULT_BINARY_PATH}`;
       options['args'].push(`--disable-extensions-except=${extensionPath}`);
       options['args'].push(`--load-extension=${extensionPath}`);
     }
