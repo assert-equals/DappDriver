@@ -25,12 +25,16 @@ export class DropDown extends HTMLElement implements IDropDown {
   /**
    *
    *
+   * @protected
    * @param {(keyof IHTMLElement | keyof IDropDown)} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof DropDown
    */
-  async callIfMethodExists(methodName: keyof IHTMLElement | keyof IDropDown, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(
+    methodName: keyof IHTMLElement | keyof IDropDown,
+    args: Array<any> = [],
+  ): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightDropDown(this.cssLocator);
       return await (d[methodName] as Function)(...args);

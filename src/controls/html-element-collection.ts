@@ -24,12 +24,13 @@ export class HTMLElementCollection implements IHTMLElementCollection {
   /**
    *
    *
+   * @protected
    * @param {keyof IHTMLElementCollection} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof HTMLElementCollection
    */
-  async callIfMethodExists(methodName: keyof IHTMLElementCollection, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(methodName: keyof IHTMLElementCollection, args: Array<any> = []): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightHTMLElementCollection(this.cssLocator);
       return await (d[methodName] as Function)(...args);

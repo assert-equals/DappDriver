@@ -25,12 +25,16 @@ export class Radio extends HTMLElement implements IRadio {
   /**
    *
    *
+   * @protected
    * @param {(keyof IHTMLElement | keyof IRadio)} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof Radio
    */
-  async callIfMethodExists(methodName: keyof IHTMLElement | keyof IRadio, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(
+    methodName: keyof IHTMLElement | keyof IRadio,
+    args: Array<any> = [],
+  ): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightRadio(this.cssLocator);
       return await (d[methodName] as Function)(...args);

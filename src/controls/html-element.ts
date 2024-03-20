@@ -30,12 +30,13 @@ export class HTMLElement implements IHTMLElement {
   /**
    *
    *
+   * @protected
    * @param {keyof IHTMLElement} methodName
    * @param {Array<any>} [args=[]]
    * @return {*}  {Promise<any>}
    * @memberof HTMLElement
    */
-  async callIfMethodExists(methodName: keyof IHTMLElement, args: Array<any> = []): Promise<any> {
+  protected async callIfMethodExists(methodName: keyof IHTMLElement, args: Array<any> = []): Promise<any> {
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       const d = new PlaywrightHTMLElement(this.cssLocator, this.timeout, this.element);
       return await (d[methodName] as Function)(...args);
