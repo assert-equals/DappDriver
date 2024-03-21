@@ -58,7 +58,7 @@ import { Connect } from '@assert-equals/dappdriver/metamask';
 import { expect } from 'chai';
 import { Dapp } from '../page/dapp';
 
-describe('E2E Test Dapp', function () {
+describe('E2E Test Dapp', () => {
   let dapp: Dapp;
   const walletOptions: WalletOptions = {
     wallet: METAMASK,
