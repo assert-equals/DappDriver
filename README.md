@@ -98,13 +98,7 @@ npm test
 
 ## Documentation
 
-The API documentation is available here:
-
-```shell
-cd node_modules/@assert-equals/dappdriver
-npm run docs
-open docs/index.html
-```
+Read our [API documentation](https://assert-equals.github.io/DappDriver/).
 
 ## Support
 
