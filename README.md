@@ -98,7 +98,7 @@ npm test
 
 ## Documentation
 
-Read our API documentation.
+Read our [API documentation](https://assert-equals.github.io/DappDriver/).
 
 ## Support
 
