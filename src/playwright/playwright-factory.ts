@@ -20,7 +20,7 @@ export class PlaywrightFactory {
       viewport: null,
     };
     if (walletOptions.wallet === METAMASK) {
-      const extensionPath: string = walletOptions.path || `${process.cwd()}/${DEFAULT_BINARY_PATH}`;
+      const extensionPath: string = walletOptions.path || DEFAULT_BINARY_PATH;
       options['args'].push(`--disable-extensions-except=${extensionPath}`);
       options['args'].push(`--load-extension=${extensionPath}`);
     }

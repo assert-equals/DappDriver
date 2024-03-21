@@ -17,7 +17,7 @@ export class WebDriverFactory {
     const chromeOptions: ChromeOptions = new ChromeOptions();
     const args: Array<string> = [];
     if (walletOptions.wallet === METAMASK) {
-      const extensionPath: string = walletOptions.path || `${process.cwd()}/${DEFAULT_BINARY_PATH}`;
+      const extensionPath: string = walletOptions.path || DEFAULT_BINARY_PATH;
       args.push(`load-extension=${extensionPath}`);
     }
     chromeOptions.addArguments(...args);

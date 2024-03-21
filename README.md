@@ -24,7 +24,7 @@ npm install @assert-equals/dappdriver
 First, install MetaMask:
 
 ```shell
-npx dappdriver --wallet metamask
+npx dappdriver
 ```
 
 Then, write your page object in `test/page/dapp.ts`:
@@ -65,7 +65,7 @@ describe('E2E Test Dapp', function () {
     seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent',
   };
 
-  beforeEach(async function () {
+  beforeEach(async () => {
     dapp = await DappDriver.create<Dapp>(
       'https://metamask.github.io/test-dapp/',
       WEBDRIVER,
@@ -75,11 +75,11 @@ describe('E2E Test Dapp', function () {
     );
   });
 
-  afterEach(async function () {
+  afterEach(async () => {
     await DappDriver.dispose();
   });
 
-  it('should connect Account One to the dapp', async function () {
+  it('should connect Account One to the dapp', async () => {
     const connectPage: Connect = await dapp.connect();
     await connectPage.next();
     dapp = await connectPage.nextAndSwitchToMainWindow<Dapp>(Dapp);
