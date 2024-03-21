@@ -1,6 +1,6 @@
 {
   "name": "@assert-equals/dappdriver",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "DappDriver is a testing tool to automate dApps",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
