@@ -2,23 +2,29 @@
 
 import { Command } from 'commander';
 import { installMetaMaskWallet } from '../metamask/install';
-import { PACKAGE_VERSION } from '../constants';
+import { PACKAGE_VERSION, METAMASK, DEFAULT_VERSION, DEFAULT_CHANNEL, NODE_MODULE_DIR } from '../constants';
+import { Wallet } from '../types';
 
-const program = new Command();
+const initCwd: string = process.env.INIT_CWD;
+const cwd: string = process.cwd();
+const downloadDir: string = `${initCwd || cwd}/${NODE_MODULE_DIR}`;
+
+const program: Command = new Command();
 program
   .version(PACKAGE_VERSION)
   .description('install wallet browser extensions')
-  .option('-w, --wallet <value>', 'wallet to install for tests')
-  .option('-r, --release <value>', 'release version to download')
-  .option('-c, --channel <value>', 'name of the release channel')
-  .option('-d, --directory <value>', 'path to the download directory');
+  .option('-W, --wallet <value>', 'wallet to install for tests', METAMASK)
+  .option('-R, --release <value>', 'release version to download', DEFAULT_VERSION)
+  .option('-C, --channel <value>', 'name of the release channel', DEFAULT_CHANNEL)
+  .option('-D, --directory <value>', 'path to the download directory', downloadDir);
 
 program.parse(process.argv);
-const { wallet, release, channel, directory } = program.opts();
+const { wallet, release, channel, directory }: { wallet: Wallet; release: string; channel: string; directory: string } =
+  program.opts();
 
-(async function () {
+(async () => {
   switch (wallet) {
-    case 'metamask':
+    case METAMASK:
       await installMetaMaskWallet(release, channel, directory);
       break;
     default:

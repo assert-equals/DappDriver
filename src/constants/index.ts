@@ -7,7 +7,7 @@ const DEFAULT_CHANNEL: string = 'metamask-chrome';
 const DEFAULT_VERSION: string = '11.10.1';
 const RECOMMENDED_VERSIONS: string = '>=11.10.0 <11.13.0';
 const NODE_MODULE_DIR: string = `node_modules/${PACKAGE_NAME}`;
-const DEFAULT_BINARY_PATH: string = `${NODE_MODULE_DIR}/${DEFAULT_CHANNEL}-${DEFAULT_VERSION}`;
+const DEFAULT_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_CHANNEL}-${DEFAULT_VERSION}`;
 const METAMASK: Wallet = 'metamask';
 const PLAYWRIGHT: Framework = 'playwright';
 const WEBDRIVER: Framework = 'webdriver';

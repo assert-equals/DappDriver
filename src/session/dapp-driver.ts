@@ -5,7 +5,7 @@ import { WebDriver } from 'selenium-webdriver';
 import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
 import { PageObject } from '../page';
 import { Browser, Driver, Frame, Framework, Page, WalletOptions } from '../types';
-import { METAMASK, PLAYWRIGHT, WEBDRIVER } from '../constants';
+import { DEFAULT_BINARY_PATH, METAMASK, PLAYWRIGHT, WEBDRIVER } from '../constants';
 /**
  *
  *
@@ -131,7 +131,7 @@ export class DappDriver {
     let driver: Driver;
     if (options.wallet === METAMASK) {
       try {
-        await enableMetaMaskAutomation(options.path);
+        await enableMetaMaskAutomation(options.path || DEFAULT_BINARY_PATH);
       } catch (error) {
         throw new Error('Error enabling automation in MetaMask: ' + error);
       }

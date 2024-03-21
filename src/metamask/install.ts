@@ -3,11 +3,8 @@ import path from 'path';
 import axios from 'axios';
 import AdmZip from 'adm-zip';
 import semver from 'semver';
-import { DEFAULT_CHANNEL, DEFAULT_VERSION, NODE_MODULE_DIR, PACKAGE_NAME, RECOMMENDED_VERSIONS } from '../constants';
+import { PACKAGE_NAME, RECOMMENDED_VERSIONS } from '../constants';
 import { Asset } from '../types';
-
-const initCwd = process.env.INIT_CWD;
-const cwd = process.cwd();
 
 function compareVersion(version: string): void {
   const satisfy = semver.satisfies(version, RECOMMENDED_VERSIONS);
@@ -65,11 +62,7 @@ function findDownloadURL(channel: string, release: any): Asset {
   return asset;
 }
 
-export async function installMetaMaskWallet(
-  version: string = DEFAULT_VERSION,
-  channel: string = DEFAULT_CHANNEL,
-  directory: string = `${initCwd || cwd}/${NODE_MODULE_DIR}`,
-): Promise<void> {
+export async function installMetaMaskWallet(version: string, channel: string, directory: string): Promise<void> {
   try {
     compareVersion(version);
     const release: any = await fetchGithubRelease(version);
