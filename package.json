@@ -1,6 +1,6 @@
 {
   "name": "@assert-equals/dappdriver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DappDriver is a testing tool to automate dApps",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -50,7 +50,12 @@
   "dependencies": {
     "adm-zip": "^0.5.12",
     "axios": "^1.6.8",
-    "semver": "^7.6.0"
+    "commander": "^12.0.0",
+    "ganache": "^7.9.2",
+    "playwright-core": "^1.42.1",
+    "selenium-webdriver": "^4.18.1",
+    "semver": "^7.6.0",
+    "typedoc": "^0.25.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.0",
@@ -60,15 +65,10 @@
     "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
-    "commander": "^12.0.0",
     "eslint": "^8.57.0",
-    "ganache": "^7.9.2",
     "husky": "^9.0.11",
-    "playwright-core": "^1.42.1",
     "prettier": "^3.2.5",
-    "selenium-webdriver": "^4.18.1",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.25.12",
     "typescript": "^5.4.2"
   },
   "repository": {
