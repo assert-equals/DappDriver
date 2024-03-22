@@ -16,7 +16,7 @@ Read on to get started locally in a couple of minutes.
 DappDriver is [available on npm](https://www.npmjs.com/package/@assert-equals/dappdriver):
 
 ```shell
-npm install @assert-equals/dappdriver
+yarn add @assert-equals/dappdriver
 ```
 
 ## Get Started
@@ -93,7 +93,7 @@ describe('E2E Test Dapp', () => {
 Finally, run your tests:
 
 ```shell
-npm test
+yarn test
 ```
 
 ## Documentation
