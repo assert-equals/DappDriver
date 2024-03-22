@@ -1,0 +1,61 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: '[Bug]: '
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        Example steps (replace with your own):
+        1. Clone my repo at https://github.com/<myuser>/example
+        2. npm install
+        3. npm run test
+        4. You should see the error come up
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: I expect to see X or Y
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: |
+        A clear and concise description of the unexpected behavior.
+        Please include any relevant output here, especially any error messages.
+      placeholder: A bug happened!
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: DappDriver Version
+      description: |
+        The version of DappDriver you are using.
+        Is it the [latest](https://github.com/assert-equals/DappDriver/releases)? Test and see if the bug has already been fixed.
+      placeholder: ex. 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What host operating system are you using to run DappDriver?
+      placeholder: ex. macOS Sonoma, Windows 11, etc.
+    validations:
+      required: true
+  - type: input
+    id: browser-versions
+    attributes:
+      label: What are the browser(s) and version(s) where you see this issue?
+      description: What browser and versions are you using?
+      placeholder: ex. Chrome 123, Firefox 124, etc.
+    validations:
+      required: true
