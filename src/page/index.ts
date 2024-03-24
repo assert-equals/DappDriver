@@ -74,11 +74,22 @@ export class PageObject implements IPageObject {
    *
    *
    * @private
+   * @param {string} str
+   * @return {*}  {string}
+   * @memberof PageObject
+   */
+  private escapeSpecialChars(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  /**
+   *
+   *
+   * @private
    * @return {*}  {RegExp}
    * @memberof PageObject
    */
   private getTitleRegex(): RegExp {
-    return this.title instanceof RegExp ? this.title : new RegExp(this.title, 'iu');
+    return this.title instanceof RegExp ? this.title : new RegExp(this.escapeSpecialChars(this.title), 'iu');
   }
   /**
    *
@@ -88,7 +99,7 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   private getURLRegex(): RegExp {
-    return this.url instanceof RegExp ? this.url : new RegExp(this.url, 'iu');
+    return this.url instanceof RegExp ? this.url : new RegExp(this.escapeSpecialChars(this.url), 'iu');
   }
   /**
    *
