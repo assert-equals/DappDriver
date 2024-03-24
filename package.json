@@ -38,7 +38,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "predocs": "rimraf docs",
-    "docs": "typedoc --gitRevision main --out docs/ src/",
+    "docs": "typedoc --gitRevision main --out docs/ src/ src/metamask",
     "lint": "eslint src/**/*.ts --fix",
     "format": "prettier --write .",
     "prepare": "husky"
