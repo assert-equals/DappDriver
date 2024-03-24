@@ -12,11 +12,11 @@ export class CreatePassword extends PageObject {
     super('/home.html#onboarding/create-password', 'MetaMask');
   }
 
-  confirmPassword(password: string = 'password'): Promise<void> {
+  confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
     return this.confirmPasswordInput().type(password);
   }
 
-  enterPassword(password: string = 'password'): Promise<void> {
+  enterPassword(password: string = 'P@ssword01!'): Promise<void> {
     return this.newPasswordInput().type(password);
   }
 
