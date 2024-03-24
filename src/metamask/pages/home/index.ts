@@ -2,7 +2,13 @@ import { HTMLElement } from '../../../controls/html-element';
 import { HTMLElementCollection } from '../../../controls/html-element-collection';
 import { PageObject } from '../../../page';
 import { DappDriver } from '../../../session/dapp-driver';
-
+/**
+ *
+ *
+ * @export
+ * @class Home
+ * @extends {PageObject}
+ */
 export class Home extends PageObject {
   public static expandViewUrl: () => string = () => DappDriver.Instance.Extension + '/home.html';
   private whatsNewCloseButton: () => HTMLElement = () => new HTMLElement('[data-testid="popover-close"]', 1000);
@@ -20,15 +26,29 @@ export class Home extends PageObject {
       '.transaction-list__completed-transactions [data-testid="transaction-list-item-secondary-currency"]',
     );
   private lastActivityListItem: () => HTMLElement = () => new HTMLElement('.whats-new-popup__last-notification');
-
+  /**
+   * Creates an instance of Home.
+   * @memberof Home
+   */
   constructor() {
     super('/home.html', 'MetaMask');
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof Home
+   */
   clickActivityTab(): Promise<void> {
     return this.activityTab().click();
   }
-
+  /**
+   *
+   *
+   * @param {number} items
+   * @return {*}  {Promise<void>}
+   * @memberof Home
+   */
   waitForActivity(items: number): Promise<void> {
     return this.waitForFunction(
       async () => {
@@ -39,18 +59,33 @@ export class Home extends PageObject {
       20_000,
     );
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof Home
+   */
   waitForWhatsNew(): Promise<void> {
     return this.waitForFunction(async () => {
       const whatsNewShown = await this.whatsNewCloseButton().isDisplayed();
       return whatsNewShown === true;
     }, `Waiting for whats new to be displayed`);
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof Home
+   */
   closePopover(): Promise<void> {
     return this.whatsNewCloseButton().click();
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof Home
+   */
   async closeWhatsNewPopover(): Promise<void> {
     await this.waitForWhatsNew();
     const scrollIsDisplayed = await this.whatsNewScrollButton().isDisplayed();
@@ -60,19 +95,39 @@ export class Home extends PageObject {
     }
     await this.closePopover();
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<string>}
+   * @memberof Home
+   */
   async getMostRecentActivityItemAction(): Promise<string> {
     return await (await this.activityListItemsAction().elements())[0].getText();
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<string>}
+   * @memberof Home
+   */
   async getMostRecentActivityItemPrimaryCurrency(): Promise<string> {
     return await (await this.activityListItemsPrimaryCurrency().elements())[0].getText();
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<string>}
+   * @memberof Home
+   */
   async getMostRecentActivityItemSecondaryCurrency(): Promise<string> {
     return await (await this.activityListItemsSecondaryCurrency().elements())[0].getText();
   }
-
+  /**
+   *
+   *
+   * @return {*}  {Promise<string>}
+   * @memberof Home
+   */
   getBalance(): Promise<string> {
     return this.balanceLabel().getText();
   }
