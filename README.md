@@ -7,7 +7,9 @@
 
 [DappDriver](https://github.com/assert-equals/dappdriver) is a web testing framework designed for testing decentralized applications (dApps).
 
-It's all about being flexible and user-friendly, DappDriver seamlessly integrates both Playwright and WebDriver. It also loads the MetaMask wallet into the browser session, empowering you to efficiently confirm blockchain transactions.
+It's all about being flexible and user-friendly, DappDriver seamlessly integrates both [Playwright](https://playwright.dev/) and [Selenium WebDriver](https://www.selenium.dev/).
+
+DappDriver loads [MetaMask](https://metamask.io/) or [Zerion](https://zerion.io/) into the browser session, empowering you to efficiently confirm blockchain transactions.
 
 Read on to get started locally in a couple of minutes.
 
@@ -24,7 +26,10 @@ yarn add @assert-equals/dappdriver
 First, install MetaMask:
 
 ```shell
-npx dappdriver
+npx dappdriver -W metamask
+
+# Or, to install Zerion:
+npx dappdriver -W zerion
 ```
 
 Then, write your page object in `test/page/dapp.ts`:
@@ -79,7 +84,7 @@ describe('E2E Test Dapp', () => {
     await DappDriver.dispose();
   });
 
-  it('should connect Account One to the dapp', async () => {
+  it('connects Account One to the dapp', async () => {
     const connectPage: Connect = await dapp.connect();
     await connectPage.next();
     dapp = await connectPage.nextAndSwitchToMainWindow<Dapp>(Dapp);
