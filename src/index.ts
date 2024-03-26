@@ -2,6 +2,6 @@ export { DappDriver } from './session/dapp-driver';
 export { Node } from './blockchain';
 export { Provider } from './provider';
 export { CheckBox, DropDown, HTMLElement, HTMLElementCollection, InputText, Link, Radio } from './controls';
-export { METAMASK, PLAYWRIGHT, WEBDRIVER, CHROME } from './constants';
+export { METAMASK, ZERION, PLAYWRIGHT, WEBDRIVER, CHROME } from './constants';
 export { PageObject } from './page';
 export * from './types';
