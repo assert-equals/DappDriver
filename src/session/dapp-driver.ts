@@ -6,6 +6,7 @@ import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup
 import { PageObject } from '../page';
 import { Browser, Driver, Frame, Framework, Page, WalletOptions } from '../types';
 import { DEFAULT_METAMASK_BINARY_PATH, METAMASK, PLAYWRIGHT, WEBDRIVER, ZERION } from '../constants';
+import { setupZerionWallet } from '../zerion/setup';
 /**
  *
  *
@@ -156,6 +157,7 @@ export class DappDriver {
       if (options.wallet === METAMASK) {
         await setupMetaMaskWallet(options.seed);
       } else if (options.wallet === ZERION) {
+        await setupZerionWallet(options.seed);
       }
     } catch (error) {
       await this.dispose();

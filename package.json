@@ -14,6 +14,11 @@
       "require": "./dist/src/metamask/index.js",
       "import": "./dist/src/metamask/index.js",
       "types": "./dist/src/metamask/index.d.ts"
+    },
+    "./zerion": {
+      "require": "./dist/src/zerion/index.js",
+      "import": "./dist/src/zerion/index.js",
+      "types": "./dist/src/zerion/index.d.ts"
     }
   },
   "files": [
