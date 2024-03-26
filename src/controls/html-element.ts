@@ -69,10 +69,10 @@ export class HTMLElement implements IHTMLElement {
    * Schedules a command to click on this element and switch the focus of all future commands to another window
    * @template TPage
    * @param {new () => TPage} page
-   * @return {*}
+   * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  async clickAndOpensInNewWindow<TPage extends PageObject>(page: new () => TPage) {
+  async clickAndOpensInNewWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
   }
   /**
@@ -80,10 +80,10 @@ export class HTMLElement implements IHTMLElement {
    * Schedules a command to click on this element and redirect to a new page
    * @template TPage
    * @param {new () => TPage} page
-   * @return {*}
+   * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  async clickAndRedirectsTo<TPage extends PageObject>(page: new () => TPage) {
+  async clickAndRedirectsTo<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndRedirectsTo', [page]);
   }
   /**
@@ -91,10 +91,10 @@ export class HTMLElement implements IHTMLElement {
    * Schedules a command to click on this element and switch the focus of all future commands to the main window
    * @template TPage
    * @param {new () => TPage} page
-   * @return {*}
+   * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  async clickAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage) {
+  async clickAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
   }
   /**
