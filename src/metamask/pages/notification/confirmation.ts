@@ -31,10 +31,10 @@ export class Confirmation extends PageObject {
    *
    * @template TPage
    * @param {new () => TPage} page
-   * @return {*}
+   * @return {*}  {Promise<TPage>}
    * @memberof Confirmation
    */
-  submitAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage) {
+  submitAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**

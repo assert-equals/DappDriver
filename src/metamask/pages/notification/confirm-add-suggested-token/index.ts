@@ -22,10 +22,10 @@ export class ConfirmAddSuggestedToken extends PageObject {
    *
    * @template TPage
    * @param {new () => TPage} page
-   * @return {*}
+   * @return {*}  {Promise<TPage>}
    * @memberof ConfirmAddSuggestedToken
    */
-  nextAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage) {
+  nextAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**

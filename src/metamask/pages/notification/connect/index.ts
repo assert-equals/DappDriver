@@ -22,10 +22,10 @@ export class Connect extends PageObject {
    *
    * @template TPage
    * @param {new () => TPage} page
-   * @return {*}
+   * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  nextAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage) {
+  nextAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
