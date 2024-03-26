@@ -1,27 +1,42 @@
 import pkg from '../../package.json';
 import { Browser, Framework, Wallet } from '../types';
+import { Range } from 'semver';
 
 const PACKAGE_NAME: string = pkg.name;
 const PACKAGE_VERSION: string = pkg.version;
-const DEFAULT_CHANNEL: string = 'metamask-chrome';
-const DEFAULT_VERSION: string = '11.10.1';
-const RECOMMENDED_VERSIONS: string = '>=11.10.0 <11.13.0';
+const DEFAULT_METAMASK_CHANNEL: string = 'metamask-chrome';
+const DEFAULT_METAMASK_VERSION: string = '11.10.1';
+const DEFAULT_ZERION_CHANNEL: string = 'zerion-wallet-extension';
+const DEFAULT_ZERION_VERSION: string = '1.3.1';
+const RECOMMENDED_METAMASK_VERSIONS: Range = new Range('>=11.10.0 <11.13.0');
+const RECOMMENDED_ZERION_VERSIONS: Range = new Range('>=1.3.0 <1.4.0');
+const METAMASK_RELEASES: string = 'https://api.github.com/repos/metamask/metamask-extension/releases';
+const ZERION_RELEASES: string = 'https://api.github.com/repos/zeriontech/zerion-wallet-extension/releases';
 const NODE_MODULE_DIR: string = `node_modules/${PACKAGE_NAME}`;
-const DEFAULT_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_CHANNEL}-${DEFAULT_VERSION}`;
+const DEFAULT_METAMASK_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_METAMASK_CHANNEL}-${DEFAULT_METAMASK_VERSION}`;
+const DEFAULT_ZERION_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_ZERION_CHANNEL}-v${DEFAULT_ZERION_VERSION}`;
 const METAMASK: Wallet = 'metamask';
+const ZERION: Wallet = 'zerion';
 const PLAYWRIGHT: Framework = 'playwright';
 const WEBDRIVER: Framework = 'webdriver';
 const CHROME: Browser = 'chrome';
 
 export {
-  DEFAULT_BINARY_PATH,
-  DEFAULT_CHANNEL,
-  DEFAULT_VERSION,
+  DEFAULT_METAMASK_BINARY_PATH,
+  DEFAULT_ZERION_BINARY_PATH,
+  DEFAULT_METAMASK_CHANNEL,
+  DEFAULT_METAMASK_VERSION,
+  DEFAULT_ZERION_CHANNEL,
+  DEFAULT_ZERION_VERSION,
+  METAMASK_RELEASES,
+  ZERION_RELEASES,
   NODE_MODULE_DIR,
   PACKAGE_NAME,
   PACKAGE_VERSION,
-  RECOMMENDED_VERSIONS,
+  RECOMMENDED_METAMASK_VERSIONS,
+  RECOMMENDED_ZERION_VERSIONS,
   METAMASK,
+  ZERION,
   PLAYWRIGHT,
   WEBDRIVER,
   CHROME,

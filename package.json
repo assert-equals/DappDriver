@@ -20,7 +20,7 @@
     "dist"
   ],
   "bin": {
-    "dappdriver": "dist/src/bin/metamask-extension.js"
+    "dappdriver": "dist/src/bin/browser-extension.js"
   },
   "keywords": [
     "automation",

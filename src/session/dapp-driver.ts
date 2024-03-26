@@ -5,7 +5,7 @@ import { WebDriver } from 'selenium-webdriver';
 import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
 import { PageObject } from '../page';
 import { Browser, Driver, Frame, Framework, Page, WalletOptions } from '../types';
-import { DEFAULT_BINARY_PATH, METAMASK, PLAYWRIGHT, WEBDRIVER } from '../constants';
+import { DEFAULT_METAMASK_BINARY_PATH, METAMASK, PLAYWRIGHT, WEBDRIVER, ZERION } from '../constants';
 /**
  *
  *
@@ -131,7 +131,7 @@ export class DappDriver {
     let driver: Driver;
     if (options.wallet === METAMASK) {
       try {
-        await enableMetaMaskAutomation(options.path || DEFAULT_BINARY_PATH);
+        await enableMetaMaskAutomation(options.path || DEFAULT_METAMASK_BINARY_PATH);
       } catch (error) {
         throw new Error('Error enabling automation in MetaMask: ' + error);
       }
@@ -152,13 +152,14 @@ export class DappDriver {
       page = (driver as BrowserContext).pages()[0];
       DappDriver.Instance.Page = page;
     }
-    if (options.wallet === METAMASK) {
-      try {
+    try {
+      if (options.wallet === METAMASK) {
         await setupMetaMaskWallet(options.seed);
-      } catch (error) {
-        await this.dispose();
-        throw new Error('Error setting up wallet: ' + error);
+      } else if (options.wallet === ZERION) {
       }
+    } catch (error) {
+      await this.dispose();
+      throw new Error('Error setting up wallet: ' + error);
     }
     await this.open(domain);
     if (tPage === null) return;

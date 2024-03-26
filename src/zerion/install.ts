@@ -1,9 +1,9 @@
 import {
-  DEFAULT_METAMASK_CHANNEL,
-  DEFAULT_METAMASK_VERSION,
-  METAMASK,
-  METAMASK_RELEASES,
-  RECOMMENDED_METAMASK_VERSIONS,
+  DEFAULT_ZERION_CHANNEL,
+  DEFAULT_ZERION_VERSION,
+  ZERION,
+  ZERION_RELEASES,
+  RECOMMENDED_ZERION_VERSIONS,
 } from '../constants';
 import { Asset } from '../types';
 import {
@@ -13,20 +13,22 @@ import {
   extractZipContents,
   fetchGithubRelease,
   findDownloadURL,
+  moveFiles,
 } from '../wallet/install';
 
-export async function metamask(
-  version: string = DEFAULT_METAMASK_VERSION,
-  channel: string = DEFAULT_METAMASK_CHANNEL,
+export async function zerion(
+  version: string = DEFAULT_ZERION_VERSION,
+  channel: string = DEFAULT_ZERION_CHANNEL,
   directory: string,
 ): Promise<void> {
   try {
-    compareVersion(METAMASK, version, RECOMMENDED_METAMASK_VERSIONS);
-    const release: any = await fetchGithubRelease(METAMASK, version, METAMASK_RELEASES);
+    compareVersion(ZERION, version, RECOMMENDED_ZERION_VERSIONS);
+    const release: any = await fetchGithubRelease(ZERION, version, ZERION_RELEASES);
     const asset: Asset = findDownloadURL(channel, release, version);
     createDirectory(directory);
     const fileName: string = await downloadZipFile(asset, directory);
-    extractZipContents(fileName);
+    const destDir = extractZipContents(fileName);
+    moveFiles(destDir);
   } catch (error: any) {
     console.error('[ERROR]:', error.message);
   }
