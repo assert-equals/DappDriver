@@ -1,5 +1,5 @@
 import {
-  DEFAULT_METAMASK_CHANNEL,
+  DEFAULT_METAMASK_ASSET,
   DEFAULT_METAMASK_VERSION,
   METAMASK,
   METAMASK_RELEASES,
@@ -15,15 +15,11 @@ import {
   findDownloadURL,
 } from '../wallet/install';
 
-export async function metamask(
-  version: string = DEFAULT_METAMASK_VERSION,
-  channel: string = DEFAULT_METAMASK_CHANNEL,
-  directory: string,
-): Promise<void> {
+export async function metamask(version: string = DEFAULT_METAMASK_VERSION, directory: string): Promise<void> {
   try {
     compareVersion(METAMASK, version, RECOMMENDED_METAMASK_VERSIONS);
     const release: any = await fetchGithubRelease(METAMASK, version, METAMASK_RELEASES);
-    const asset: Asset = findDownloadURL(channel, release, version);
+    const asset: Asset = findDownloadURL(DEFAULT_METAMASK_ASSET, release, version);
     createDirectory(directory);
     const fileName: string = await downloadZipFile(asset, directory);
     extractZipContents(fileName);

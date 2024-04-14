@@ -6,7 +6,7 @@ type Frame = FrameLocator | null;
 type Driver = WebDriver | BrowserContext;
 type Framework = 'playwright' | 'webdriver';
 type Browser = 'chrome';
-type Wallet = 'metamask' | 'zerion';
+type Wallet = 'metamask' | 'metamask-flask' | 'zerion';
 
 type Asset = {
   browser_download_url: string;

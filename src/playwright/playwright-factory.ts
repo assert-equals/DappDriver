@@ -1,6 +1,14 @@
 import playwright, { BrowserContext } from 'playwright-core';
 import { Browser, WalletOptions } from '../types';
-import { CHROME, DEFAULT_METAMASK_BINARY_PATH, DEFAULT_ZERION_BINARY_PATH, METAMASK, ZERION } from '../constants';
+import {
+  CHROME,
+  DEFAULT_METAMASK_BINARY_PATH,
+  DEFAULT_METAMASK_FLASK_BINARY_PATH,
+  DEFAULT_ZERION_BINARY_PATH,
+  METAMASK,
+  METAMASK_FLASK,
+  ZERION,
+} from '../constants';
 
 export class PlaywrightFactory {
   async build(browser: Browser, walletOptions: WalletOptions): Promise<BrowserContext> {
@@ -23,6 +31,8 @@ export class PlaywrightFactory {
       let extensionPath: string = walletOptions.path;
       if (walletOptions.wallet === METAMASK) {
         extensionPath = extensionPath || DEFAULT_METAMASK_BINARY_PATH;
+      } else if (walletOptions.wallet === METAMASK_FLASK) {
+        extensionPath = extensionPath || DEFAULT_METAMASK_FLASK_BINARY_PATH;
       } else if (walletOptions.wallet === ZERION) {
         extensionPath = extensionPath || DEFAULT_ZERION_BINARY_PATH;
       }

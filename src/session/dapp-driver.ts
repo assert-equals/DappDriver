@@ -5,8 +5,17 @@ import { WebDriver } from 'selenium-webdriver';
 import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
 import { PageObject } from '../page';
 import { Browser, Driver, Frame, Framework, Page, WalletOptions } from '../types';
-import { DEFAULT_METAMASK_BINARY_PATH, METAMASK, PLAYWRIGHT, WEBDRIVER, ZERION } from '../constants';
+import {
+  DEFAULT_METAMASK_BINARY_PATH,
+  DEFAULT_METAMASK_FLASK_BINARY_PATH,
+  METAMASK,
+  METAMASK_FLASK,
+  PLAYWRIGHT,
+  WEBDRIVER,
+  ZERION,
+} from '../constants';
 import { setupZerionWallet } from '../zerion/setup';
+import { setupMetaMaskFlaskWallet } from '../flask/setup';
 /**
  *
  *
@@ -130,9 +139,15 @@ export class DappDriver {
       options = arg4 as WalletOptions;
     }
     let driver: Driver;
-    if (options.wallet === METAMASK) {
+    if (options.wallet !== ZERION) {
       try {
-        await enableMetaMaskAutomation(options.path || DEFAULT_METAMASK_BINARY_PATH);
+        let metamaskPath: string;
+        if (options.wallet === METAMASK) {
+          metamaskPath = options.path || DEFAULT_METAMASK_BINARY_PATH;
+        } else if (options.wallet === METAMASK_FLASK) {
+          metamaskPath = options.path || DEFAULT_METAMASK_FLASK_BINARY_PATH;
+        }
+        await enableMetaMaskAutomation(metamaskPath);
       } catch (error) {
         throw new Error('Error enabling automation in MetaMask: ' + error);
       }
@@ -156,6 +171,8 @@ export class DappDriver {
     try {
       if (options.wallet === METAMASK) {
         await setupMetaMaskWallet(options.seed);
+      } else if (options.wallet === METAMASK_FLASK) {
+        await setupMetaMaskFlaskWallet(options.seed);
       } else if (options.wallet === ZERION) {
         await setupZerionWallet(options.seed);
       }

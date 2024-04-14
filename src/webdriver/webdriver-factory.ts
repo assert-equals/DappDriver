@@ -1,7 +1,15 @@
 import { Builder, WebDriver } from 'selenium-webdriver';
 import { Options as ChromeOptions } from 'selenium-webdriver/chrome';
 import { Browser, WalletOptions } from '../types';
-import { CHROME, DEFAULT_METAMASK_BINARY_PATH, DEFAULT_ZERION_BINARY_PATH, METAMASK, ZERION } from '../constants';
+import {
+  CHROME,
+  DEFAULT_METAMASK_BINARY_PATH,
+  DEFAULT_METAMASK_FLASK_BINARY_PATH,
+  DEFAULT_ZERION_BINARY_PATH,
+  METAMASK,
+  METAMASK_FLASK,
+  ZERION,
+} from '../constants';
 
 export class WebDriverFactory {
   build(browser: Browser, walletOptions: WalletOptions): Promise<WebDriver> {
@@ -20,6 +28,8 @@ export class WebDriverFactory {
       let extensionPath: string = walletOptions.path;
       if (walletOptions.wallet === METAMASK) {
         extensionPath = extensionPath || DEFAULT_METAMASK_BINARY_PATH;
+      } else if (walletOptions.wallet === METAMASK_FLASK) {
+        extensionPath = extensionPath || DEFAULT_METAMASK_FLASK_BINARY_PATH;
       } else if (walletOptions.wallet === ZERION) {
         extensionPath = extensionPath || DEFAULT_ZERION_BINARY_PATH;
       }

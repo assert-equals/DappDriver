@@ -26,10 +26,10 @@ yarn add @assert-equals/dappdriver
 First, install MetaMask:
 
 ```shell
-npx dappdriver -W metamask
+npx dappdriver -w metamask
 
 # Or, to install Zerion:
-npx dappdriver -W zerion
+npx dappdriver -w zerion
 ```
 
 Then, write your page object in `test/page/dapp.ts`:
