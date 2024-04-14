@@ -15,6 +15,11 @@
       "import": "./dist/src/metamask/index.js",
       "types": "./dist/src/metamask/index.d.ts"
     },
+    "./metamask-flask": {
+      "require": "./dist/src/flask/index.js",
+      "import": "./dist/src/flask/index.js",
+      "types": "./dist/src/flask/index.d.ts"
+    },
     "./zerion": {
       "require": "./dist/src/zerion/index.js",
       "import": "./dist/src/zerion/index.js",
@@ -45,7 +50,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "predocs": "rimraf docs",
-    "docs": "typedoc --gitRevision main --out docs/ src/ src/metamask src/zerion",
+    "docs": "typedoc --gitRevision main --out docs/ src/ src/flask src/metamask src/zerion",
     "lint": "eslint src/**/*.ts --fix",
     "format": "prettier --write .",
     "prepare": "husky"

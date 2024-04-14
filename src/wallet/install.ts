@@ -10,7 +10,7 @@ export function compareVersion(wallet: Wallet, version: string, recommendedVersi
   const satisfy = semver.satisfies(version, recommendedVersions);
   if (!satisfy) {
     throw new Error(
-      `This version (${version}) of ${wallet} is not supported. Please try version(s): ${recommendedVersions}`,
+      `This version (${version}) of ${wallet} is not supported. Please try version(s): ${recommendedVersions}.`,
     );
   }
 }
@@ -47,21 +47,21 @@ export async function fetchGithubRelease(wallet: Wallet, version: string, releas
   return release;
 }
 
-export function findDownloadURL(channel: string, release: any, version: string): Asset {
-  let asset: Asset;
-  switch (channel) {
+export function findDownloadURL(assetName: string, release: any, version: string): Asset {
+  switch (assetName) {
     case 'metamask-chrome':
-      asset = release.assets.find((item: any) => item.name === `${channel}-${version}.zip`);
+      assetName = `${assetName}-${version}.zip`;
       break;
     case 'metamask-flask-chrome':
-      asset = release.assets.find((item: any) => item.name === `${channel}-${version}-flask.0.zip`);
+      assetName = `${assetName}-${version}-flask.0.zip`;
       break;
     case 'zerion-wallet-extension':
-      asset = release.assets.find((item: any) => item.name === `${channel}-v${version}.zip`);
+      assetName = `${assetName}-v${version}.zip`;
       break;
     default:
-      throw Error('Could not find the specified release channel.');
+      throw Error(`Could not find the specified release asset (${assetName}).`);
   }
+  const asset: Asset = release.assets.find((item: any) => item.name === assetName);
   return asset;
 }
 
