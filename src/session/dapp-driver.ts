@@ -139,7 +139,7 @@ export class DappDriver {
       options = arg4 as WalletOptions;
     }
     let driver: Driver;
-    if (options.wallet !== ZERION) {
+    if (options.wallet === METAMASK || options.wallet === METAMASK_FLASK) {
       try {
         let metamaskPath: string;
         if (options.wallet === METAMASK) {
