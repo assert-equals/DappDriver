@@ -25,6 +25,8 @@ const ZERION: Wallet = 'zerion';
 const PLAYWRIGHT: Framework = 'playwright';
 const WEBDRIVER: Framework = 'webdriver';
 const CHROME: Browser = 'chrome';
+const PROXY_PORT: number = 8000;
+const HTTPS_PROXY_HOST: string = `127.0.0.1:${PROXY_PORT}`;
 
 export {
   DEFAULT_METAMASK_BINARY_PATH,
@@ -50,4 +52,6 @@ export {
   PLAYWRIGHT,
   WEBDRIVER,
   CHROME,
+  PROXY_PORT,
+  HTTPS_PROXY_HOST,
 };
