@@ -24,4 +24,9 @@ type WalletOptions = {
   seed: string;
 };
 
-export { Asset, Browser, Driver, Frame, Framework, JsonRpcRequest, Page, Wallet, WalletOptions };
+type BrowserOptions = {
+  proxy?: boolean;
+  extension?: WalletOptions;
+};
+
+export { Asset, Browser, BrowserOptions, Driver, Frame, Framework, JsonRpcRequest, Page, Wallet, WalletOptions };

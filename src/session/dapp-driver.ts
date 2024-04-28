@@ -4,7 +4,7 @@ import { WebDriverFactory } from '../webdriver/webdriver-factory';
 import { WebDriver } from 'selenium-webdriver';
 import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
 import { PageObject } from '../page';
-import { Browser, Driver, Frame, Framework, Page, WalletOptions } from '../types';
+import { Browser, BrowserOptions, Driver, Frame, Framework, Page } from '../types';
 import {
   DEFAULT_METAMASK_BINARY_PATH,
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
@@ -105,12 +105,12 @@ export class DappDriver {
    * @param {Framework} framework
    * @param {Browser} browser
    * @param {new () => TPage} tPage
-   * @param {WalletOptions} options
+   * @param {BrowserOptions} options
    * @return {*}  {Promise<TPage>}
    * @memberof DappDriver
    */
   static async create(domain: string, framework: Framework, browser: Browser): Promise<void>;
-  static async create(domain: string, framework: Framework, browser: Browser, options: WalletOptions): Promise<void>;
+  static async create(domain: string, framework: Framework, browser: Browser, options: BrowserOptions): Promise<void>;
   static async create<TPage extends PageObject>(
     domain: string,
     framework: Framework,
@@ -122,30 +122,32 @@ export class DappDriver {
     framework: Framework,
     browser: Browser,
     tPage: new () => TPage,
-    options: WalletOptions,
+    options: BrowserOptions,
   ): Promise<TPage>;
   static async create<TPage extends PageObject>(
     domain: string,
     framework: Framework,
     browser: Browser,
     arg4?: any,
-    options?: WalletOptions,
+    options?: BrowserOptions,
   ): Promise<any> {
     let tPage: new () => TPage = null;
-    options = options || { wallet: null, path: null, seed: null };
+    options = options || { proxy: false, extension: { wallet: null, path: null, seed: null } };
+    options.proxy = options.proxy ?? false;
+    options.extension = options.extension ?? { wallet: null, path: null, seed: null };
     if (typeof arg4 === 'function') {
       tPage = arg4 as new () => TPage;
     } else if (typeof arg4 === 'object') {
-      options = arg4 as WalletOptions;
+      options = arg4 as BrowserOptions;
     }
     let driver: Driver;
-    if (options.wallet === METAMASK || options.wallet === METAMASK_FLASK) {
+    if (options.extension.wallet === METAMASK || options.extension.wallet === METAMASK_FLASK) {
       try {
         let metamaskPath: string;
-        if (options.wallet === METAMASK) {
-          metamaskPath = options.path || DEFAULT_METAMASK_BINARY_PATH;
-        } else if (options.wallet === METAMASK_FLASK) {
-          metamaskPath = options.path || DEFAULT_METAMASK_FLASK_BINARY_PATH;
+        if (options.extension.wallet === METAMASK) {
+          metamaskPath = options.extension.path || DEFAULT_METAMASK_BINARY_PATH;
+        } else if (options.extension.wallet === METAMASK_FLASK) {
+          metamaskPath = options.extension.path || DEFAULT_METAMASK_FLASK_BINARY_PATH;
         }
         await enableMetaMaskAutomation(metamaskPath);
       } catch (error) {
@@ -169,12 +171,12 @@ export class DappDriver {
       DappDriver.Instance.Page = page;
     }
     try {
-      if (options.wallet === METAMASK) {
-        await setupMetaMaskWallet(options.seed);
-      } else if (options.wallet === METAMASK_FLASK) {
-        await setupMetaMaskFlaskWallet(options.seed);
-      } else if (options.wallet === ZERION) {
-        await setupZerionWallet(options.seed);
+      if (options.extension.wallet === METAMASK) {
+        await setupMetaMaskWallet(options.extension.seed);
+      } else if (options.extension.wallet === METAMASK_FLASK) {
+        await setupMetaMaskFlaskWallet(options.extension.seed);
+      } else if (options.extension.wallet === ZERION) {
+        await setupZerionWallet(options.extension.seed);
       }
     } catch (error) {
       await this.dispose();

@@ -1,39 +1,46 @@
 import playwright, { BrowserContext } from 'playwright-core';
-import { Browser, WalletOptions } from '../types';
+import { Browser, BrowserOptions } from '../types';
 import {
   CHROME,
   DEFAULT_METAMASK_BINARY_PATH,
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
   DEFAULT_ZERION_BINARY_PATH,
+  HTTPS_PROXY_HOST,
   METAMASK,
   METAMASK_FLASK,
   ZERION,
 } from '../constants';
 
 export class PlaywrightFactory {
-  async build(browser: Browser, walletOptions: WalletOptions): Promise<BrowserContext> {
+  async build(browser: Browser, options: BrowserOptions): Promise<BrowserContext> {
     switch (browser.toLowerCase()) {
       case CHROME:
-        return this.buildChrome(walletOptions);
+        return this.buildChrome(options);
       default:
         throw new Error('Unsupported browser: ' + browser);
     }
   }
 
-  private async buildChrome(walletOptions: WalletOptions): Promise<BrowserContext> {
+  private async buildChrome(options: BrowserOptions): Promise<BrowserContext> {
     const chromeOptions: object = {
       headless: false,
       channel: 'chrome',
       args: [],
       viewport: null,
     };
-    if (walletOptions.wallet !== null) {
-      let extensionPath: string = walletOptions.path;
-      if (walletOptions.wallet === METAMASK) {
+    if (options.proxy) {
+      chromeOptions['ignoreHTTPSErrors'] = true;
+      chromeOptions['proxy'] = {
+        server: HTTPS_PROXY_HOST,
+      };
+    }
+    if (options.extension.wallet !== null) {
+      let extensionPath: string = options.extension.path;
+      if (options.extension.wallet === METAMASK) {
         extensionPath = extensionPath || DEFAULT_METAMASK_BINARY_PATH;
-      } else if (walletOptions.wallet === METAMASK_FLASK) {
+      } else if (options.extension.wallet === METAMASK_FLASK) {
         extensionPath = extensionPath || DEFAULT_METAMASK_FLASK_BINARY_PATH;
-      } else if (walletOptions.wallet === ZERION) {
+      } else if (options.extension.wallet === ZERION) {
         extensionPath = extensionPath || DEFAULT_ZERION_BINARY_PATH;
       }
       chromeOptions['args'].push(`--disable-extensions-except=${extensionPath}`);
