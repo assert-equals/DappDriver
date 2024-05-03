@@ -58,16 +58,18 @@ export class Dapp extends PageObject {
 Next, write your test in `test/spec/dapp.spec.ts`:
 
 ```ts
-import { CHROME, DappDriver, METAMASK, WEBDRIVER, WalletOptions } from '@assert-equals/dappdriver';
+import { CHROME, DappDriver, METAMASK, WEBDRIVER, BrowserOptions } from '@assert-equals/dappdriver';
 import { Connect } from '@assert-equals/dappdriver/metamask';
 import { expect } from 'chai';
 import { Dapp } from '../page/dapp';
 
 describe('E2E Test Dapp', () => {
   let dapp: Dapp;
-  const walletOptions: WalletOptions = {
-    wallet: METAMASK,
-    seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent',
+  const browserOptions: BrowserOptions = {
+    extension: {
+      wallet: METAMASK,
+      seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent',
+    },
   };
 
   beforeEach(async () => {
@@ -76,7 +78,7 @@ describe('E2E Test Dapp', () => {
       WEBDRIVER,
       CHROME,
       Dapp,
-      walletOptions,
+      browserOptions,
     );
   });
 
