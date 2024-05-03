@@ -151,7 +151,9 @@ export class DappDriver {
         }
         await enableMetaMaskAutomation(metamaskPath);
       } catch (error) {
-        throw new Error('Error enabling automation in MetaMask: ' + error);
+        throw new Error(
+          'Could not enable automation in MetaMask, try running `npx dappdriver metamask` to install MetaMask.',
+        );
       }
     }
     if (framework === PLAYWRIGHT) {
