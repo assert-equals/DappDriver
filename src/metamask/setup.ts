@@ -22,7 +22,6 @@ export async function setupMetaMaskWallet(seed: string): Promise<void> {
   const pinExtensionPage = await completionPage.completeOnboarding();
   await pinExtensionPage.next();
   const homePage: Home = await pinExtensionPage.done();
-  await homePage.closeWhatsNewPopover();
   const extensionString: string = await homePage.getCurrentUrl();
   const extensionURL: URL = new URL(extensionString);
   DappDriver.Instance.Extension = `${extensionURL.protocol}//${extensionURL.host}`;
@@ -30,7 +29,7 @@ export async function setupMetaMaskWallet(seed: string): Promise<void> {
 }
 
 export async function enableMetaMaskAutomation(metaMaskPath: string): Promise<void> {
-  const runtimeLavaMoatPath = path.resolve(metaMaskPath, 'runtime-lavamoat.js');
+  const runtimeLavaMoatPath = path.resolve(metaMaskPath, 'scripts', 'runtime-lavamoat.js');
   const file = readFileSync(runtimeLavaMoatPath, 'utf8');
   const updatedRuntimeLavaMoatData = file.replace(
     `"scuttleGlobalThis":{"enabled":true`,
