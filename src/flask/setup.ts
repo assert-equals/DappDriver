@@ -21,7 +21,6 @@ export async function setupMetaMaskFlaskWallet(seed: string): Promise<void> {
   const pinExtensionPage = await completionPage.completeOnboarding();
   await pinExtensionPage.next();
   const homePage: Home = await pinExtensionPage.done();
-  await homePage.closeWhatsNewPopover();
   const extensionString: string = await homePage.getCurrentUrl();
   const extensionURL: URL = new URL(extensionString);
   DappDriver.Instance.Extension = `${extensionURL.protocol}//${extensionURL.host}`;
