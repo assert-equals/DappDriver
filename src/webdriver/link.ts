@@ -1,5 +1,5 @@
 import { WebDriverHTMLElement } from './html-element';
-import { ILink } from '../interface/link';
+import { ILink } from '../interface/controls/link';
 
 export class WebDriverLink extends WebDriverHTMLElement implements ILink {
   constructor(cssLocator: string) {

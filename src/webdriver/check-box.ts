@@ -1,5 +1,5 @@
 import { WebDriverHTMLElement } from './html-element';
-import { ICheckBox } from '../interface/check-box';
+import { ICheckBox } from '../interface/controls/check-box';
 
 export class WebDriverCheckBox extends WebDriverHTMLElement implements ICheckBox {
   constructor(cssLocator: string) {

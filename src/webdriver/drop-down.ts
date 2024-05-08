@@ -1,5 +1,5 @@
 import { WebDriverHTMLElement } from './html-element';
-import { IDropDown } from '../interface/drop-down';
+import { IDropDown } from '../interface/controls/drop-down';
 import { Select } from 'selenium-webdriver/lib/select';
 
 export class WebDriverDropDown extends WebDriverHTMLElement implements IDropDown {

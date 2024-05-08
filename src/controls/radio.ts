@@ -1,6 +1,6 @@
 import { DappDriver } from '../session/dapp-driver';
-import { IHTMLElement } from '../interface/html-element';
-import { IRadio } from '../interface/radio';
+import { IHTMLElement } from '../interface/controls/html-element';
+import { IRadio } from '../interface/controls/radio';
 import { PlaywrightRadio } from '../playwright/radio';
 import { WebDriverRadio } from '../webdriver/radio';
 import { HTMLElement } from './html-element';

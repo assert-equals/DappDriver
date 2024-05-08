@@ -1,6 +1,6 @@
 import { DappDriver } from '../session/dapp-driver';
-import { IDropDown } from '../interface/drop-down';
-import { IHTMLElement } from '../interface/html-element';
+import { IDropDown } from '../interface/controls/drop-down';
+import { IHTMLElement } from '../interface/controls/html-element';
 import { PlaywrightDropDown } from '../playwright/drop-down';
 import { WebDriverDropDown } from '../webdriver/drop-down';
 import { HTMLElement } from './html-element';

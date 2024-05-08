@@ -1,4 +1,4 @@
-import { IDropDown } from '../interface/drop-down';
+import { IDropDown } from '../interface/controls/drop-down';
 import { PlaywrightHTMLElement } from './html-element';
 
 export class PlaywrightDropDown extends PlaywrightHTMLElement implements IDropDown {

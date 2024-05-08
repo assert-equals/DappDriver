@@ -1,4 +1,4 @@
-import { IInputText } from '../interface/input-text';
+import { IInputText } from '../interface/controls/input-text';
 import { PlaywrightHTMLElement } from './html-element';
 
 export class PlaywrightInputText extends PlaywrightHTMLElement implements IInputText {

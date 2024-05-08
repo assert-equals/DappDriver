@@ -1,4 +1,4 @@
-import { IRadio } from '../interface/radio';
+import { IRadio } from '../interface/controls/radio';
 import { PlaywrightHTMLElement } from './html-element';
 
 export class PlaywrightRadio extends PlaywrightHTMLElement implements IRadio {

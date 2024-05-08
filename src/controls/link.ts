@@ -1,6 +1,6 @@
 import { DappDriver } from '../session/dapp-driver';
-import { IHTMLElement } from '../interface/html-element';
-import { ILink } from '../interface/link';
+import { IHTMLElement } from '../interface/controls/html-element';
+import { ILink } from '../interface/controls/link';
 import { PlaywrightLink } from '../playwright/link';
 import { WebDriverLink } from '../webdriver/link';
 import { HTMLElement } from './html-element';

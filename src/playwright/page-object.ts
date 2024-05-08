@@ -1,6 +1,6 @@
 import { BrowserContext } from 'playwright-core';
 import { DappDriver } from '../session/dapp-driver';
-import { IPageObject } from '../interface/page-object';
+import { IPageObject } from '../interface/page/page-object';
 import { PageObject } from '../page';
 import { Frame, Page } from '../types';
 

@@ -1,5 +1,5 @@
 import { WebDriverHTMLElement } from './html-element';
-import { IInputText } from '../interface/input-text';
+import { IInputText } from '../interface/controls/input-text';
 import { Key } from 'selenium-webdriver';
 
 export class WebDriverInputText extends WebDriverHTMLElement implements IInputText {
