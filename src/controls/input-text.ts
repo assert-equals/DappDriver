@@ -1,6 +1,6 @@
 import { DappDriver } from '../session/dapp-driver';
-import { IHTMLElement } from '../interface/html-element';
-import { IInputText } from '../interface/input-text';
+import { IHTMLElement } from '../interface/controls/html-element';
+import { IInputText } from '../interface/controls/input-text';
 import { PlaywrightInputText } from '../playwright/input-text';
 import { WebDriverInputText } from '../webdriver/input-text';
 import { HTMLElement } from './html-element';

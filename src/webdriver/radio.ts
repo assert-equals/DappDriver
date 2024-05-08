@@ -1,5 +1,5 @@
 import { WebDriverHTMLElement } from './html-element';
-import { IRadio } from '../interface/radio';
+import { IRadio } from '../interface/controls/radio';
 
 export class WebDriverRadio extends WebDriverHTMLElement implements IRadio {
   constructor(cssLocator: string) {

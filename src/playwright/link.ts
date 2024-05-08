@@ -1,4 +1,4 @@
-import { ILink } from '../interface/link';
+import { ILink } from '../interface/controls/link';
 import { PlaywrightHTMLElement } from './html-element';
 
 export class PlaywrightLink extends PlaywrightHTMLElement implements ILink {

@@ -1,4 +1,4 @@
-import { IHTMLElement } from '../interface/html-element';
+import { IHTMLElement } from '../interface/controls/html-element';
 import { DappDriver } from '../session/dapp-driver';
 import { PlaywrightHTMLElement } from '../playwright/html-element';
 import { WebDriverHTMLElement } from '../webdriver/html-element';

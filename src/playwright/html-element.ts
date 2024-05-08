@@ -1,6 +1,6 @@
 import { Locator } from 'playwright-core';
 import { DappDriver } from '../session/dapp-driver';
-import { IHTMLElement } from '../interface/html-element';
+import { IHTMLElement } from '../interface/controls/html-element';
 import { PageObject } from '../page';
 import { Frame, Page } from '../types';
 

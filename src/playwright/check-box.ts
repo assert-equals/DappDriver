@@ -1,4 +1,4 @@
-import { ICheckBox } from '../interface/check-box';
+import { ICheckBox } from '../interface/controls/check-box';
 import { PlaywrightHTMLElement } from './html-element';
 
 export class PlaywrightCheckBox extends PlaywrightHTMLElement implements ICheckBox {

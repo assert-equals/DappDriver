@@ -1,4 +1,4 @@
-import { PageObject } from '../page';
+import { PageObject } from '../../page';
 
 export interface IPageObject {
   back(): Promise<void>;

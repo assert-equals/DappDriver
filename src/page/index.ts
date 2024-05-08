@@ -1,6 +1,6 @@
 import { PlaywrightPageObject } from '../playwright/page-object';
 import { WebDriverPageObject } from '../webdriver/page-object';
-import { IPageObject } from '../interface/page-object';
+import { IPageObject } from '../interface/page/page-object';
 import { DappDriver } from '../session/dapp-driver';
 import { Page } from '../types';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';

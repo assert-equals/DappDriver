@@ -1,5 +1,5 @@
 import { WebDriver, WebElement, WebElementPromise, error, until } from 'selenium-webdriver';
-import { IHTMLElement } from '../interface/html-element';
+import { IHTMLElement } from '../interface/controls/html-element';
 import { DappDriver } from '../session/dapp-driver';
 import { PageObject } from '../page';
 
