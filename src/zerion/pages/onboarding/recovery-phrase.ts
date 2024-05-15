@@ -1,5 +1,4 @@
-import { InputText } from '../../../controls/input-text';
-import { HTMLElement } from '../../../controls/html-element';
+import { HTMLElement, InputText } from '../../../controls';
 import { PageObject } from '../../../page';
 import { SelectWallets } from './select-wallets';
 /**

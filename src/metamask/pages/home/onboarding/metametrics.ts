@@ -1,6 +1,5 @@
 import { HTMLElement } from '../../../../controls/html-element';
 import { PageObject } from '../../../../page';
-import { ImportWithRecoveryPhrase } from './import-with-recory-phrase';
 /**
  *
  *
@@ -21,19 +20,23 @@ export class Metametrics extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Metametrics
    */
-  iAgree(): Promise<void> {
-    return this.iAgreeButton().click();
+  iAgree<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.iAgreeButton().clickAndRedirectsTo<TPage>(page);
   }
   /**
    *
    *
-   * @return {*}  {Promise<ImportWithRecoveryPhrase>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Metametrics
    */
-  noThanks(): Promise<ImportWithRecoveryPhrase> {
-    return this.noThanksButton().clickAndRedirectsTo<ImportWithRecoveryPhrase>(ImportWithRecoveryPhrase);
+  noThanks<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.noThanksButton().clickAndRedirectsTo<TPage>(page);
   }
 }

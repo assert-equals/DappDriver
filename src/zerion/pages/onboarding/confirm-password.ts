@@ -1,7 +1,5 @@
-import { InputText } from '../../../controls/input-text';
-import { HTMLElement } from '../../../controls/html-element';
+import { HTMLElement, InputText } from '../../../controls';
 import { PageObject } from '../../../page';
-import { Success } from './success';
 /**
  *
  *
@@ -17,7 +15,7 @@ export class ConfirmPassword extends PageObject {
    * @memberof ConfirmPassword
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/import/mnemonic?view=password&step=confirm', 'Zerion');
+    super(new RegExp(/html\?templateType=tab&context=onboarding#\/onboarding\/.*view=password&step=confirm/), 'Zerion');
   }
   /**
    *
@@ -32,10 +30,12 @@ export class ConfirmPassword extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<Success>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof ConfirmPassword
    */
-  setPassword(): Promise<Success> {
-    return this.setPasswordButton().clickAndRedirectsTo<Success>(Success);
+  setPassword<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.setPasswordButton().clickAndRedirectsTo<TPage>(page);
   }
 }
