@@ -32,11 +32,11 @@ export class Welcome extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @return {*}  {Promise<Metametrics>}
    * @memberof Welcome
    */
-  createANewWallet(): Promise<void> {
-    return this.createANewWalletButton().click();
+  createANewWallet(): Promise<Metametrics> {
+    return this.createANewWalletButton().clickAndRedirectsTo<Metametrics>(Metametrics);
   }
   /**
    *

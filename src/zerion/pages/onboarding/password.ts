@@ -1,5 +1,4 @@
-import { InputText } from '../../../controls/input-text';
-import { HTMLElement } from '../../../controls/html-element';
+import { HTMLElement, InputText } from '../../../controls';
 import { PageObject } from '../../../page';
 import { ConfirmPassword } from './confirm-password';
 /**
@@ -17,7 +16,7 @@ export class Password extends PageObject {
    * @memberof Password
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/import/mnemonic?view=password', 'Zerion');
+    super(new RegExp(/html\?templateType=tab&context=onboarding#\/onboarding\/.*password/), 'Zerion');
   }
   /**
    *

@@ -1,7 +1,10 @@
 import { DappDriver } from '../session/dapp-driver';
-import { Home } from '../metamask/pages/home';
 import { PageObject } from '../page';
-import { ExperimentalArea } from './pages/home/onboarding/experimental-area';
+import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase } from '../metamask';
+import { ExperimentalArea } from '.';
+
+let createPasswordPage: CreatePassword;
+let completionPage: Completion;
 
 export async function setupMetaMaskFlaskWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
@@ -10,14 +13,34 @@ export async function setupMetaMaskFlaskWallet(seed: string): Promise<void> {
   const experimentalArea = new ExperimentalArea();
   const welcomePage = await experimentalArea.iAccept();
   await welcomePage.agreeTermsOfUse();
-  const metametricsPage = await welcomePage.importAnExistingWallet();
-  const importWithRecoveryPhrasePage = await metametricsPage.noThanks();
-  await importWithRecoveryPhrasePage.enterSRP(seed);
-  const createPasswordPage = await importWithRecoveryPhrasePage.confirmSecretRecoveryPhrase();
-  await createPasswordPage.enterPassword();
-  await createPasswordPage.confirmPassword();
-  await createPasswordPage.agreePasswordTerms();
-  const completionPage = await createPasswordPage.importWallet();
+  if (seed) {
+    const metametricsPage = await welcomePage.importAnExistingWallet();
+    const importWithRecoveryPhrasePage =
+      await metametricsPage.noThanks<ImportWithRecoveryPhrase>(ImportWithRecoveryPhrase);
+    await importWithRecoveryPhrasePage.enterSRP(seed);
+    const createPasswordPage = await importWithRecoveryPhrasePage.confirmSecretRecoveryPhrase();
+    await createPasswordPage.enterPassword();
+    await createPasswordPage.confirmPassword();
+    await createPasswordPage.agreePasswordTerms();
+    completionPage = await createPasswordPage.importWallet();
+  } else {
+    const metametricsPage = await welcomePage.createANewWallet();
+    createPasswordPage = await metametricsPage.noThanks<CreatePassword>(CreatePassword);
+    await createPasswordPage.enterPassword();
+    await createPasswordPage.confirmPassword();
+    await createPasswordPage.agreePasswordTerms();
+    const secureYourWalletPage = await createPasswordPage.createWallet();
+    const reviewRecoveryPage = await secureYourWalletPage.secureMyWallet();
+    await reviewRecoveryPage.revealSecretRecoveryPhrase();
+    const recoveryPhrase = await reviewRecoveryPage.getSRP();
+    const words = recoveryPhrase.split(/\s*(?:[0-9)]+|\n|\.|^$|$)\s*/u);
+    const finalWords = words.filter((str) => str !== '');
+    const confirmRecoveryPhrase = await reviewRecoveryPage.next();
+    await confirmRecoveryPhrase.enterWord(2, finalWords[2]);
+    await confirmRecoveryPhrase.enterWord(3, finalWords[3]);
+    await confirmRecoveryPhrase.enterWord(7, finalWords[7]);
+    completionPage = await confirmRecoveryPhrase.confirm();
+  }
   const pinExtensionPage = await completionPage.completeOnboarding();
   await pinExtensionPage.next();
   const homePage: Home = await pinExtensionPage.done();

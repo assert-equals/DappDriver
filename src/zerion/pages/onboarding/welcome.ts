@@ -1,6 +1,6 @@
+import { ImportWallet, Password } from '../..';
 import { HTMLElement } from '../../../controls/html-element';
 import { PageObject } from '../../../page';
-import { ImportWallet } from './import-wallet';
 /**
  *
  *
@@ -9,6 +9,7 @@ import { ImportWallet } from './import-wallet';
  * @extends {PageObject}
  */
 export class Welcome extends PageObject {
+  private createNewWalletButton: () => HTMLElement = () => new HTMLElement('a[href="#/onboarding/create"]');
   private importExistingWalletButton: () => HTMLElement = () => new HTMLElement('a[href="#/onboarding/import"]');
   /**
    * Creates an instance of Welcome.
@@ -16,6 +17,15 @@ export class Welcome extends PageObject {
    */
   constructor() {
     super('html?templateType=tab&context=onboarding#/onboarding', 'Zerion');
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<Password>}
+   * @memberof Welcome
+   */
+  createNewWallet(): Promise<Password> {
+    return this.createNewWalletButton().clickAndRedirectsTo<Password>(Password);
   }
   /**
    *
