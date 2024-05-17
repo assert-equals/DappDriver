@@ -1134,10 +1134,10 @@ destroy@1.2.0:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.2.0.tgz#4803735509ad8be552934c67df614f94e66fa015"
   integrity sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==
 
-destroyable-server@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/destroyable-server/-/destroyable-server-1.0.1.tgz#36b3a8eff27183e798f6bd0c4bb3ff5ec23b1758"
-  integrity sha512-i3ZQbobNLw6EhSqgs0vFYqajDDWs0dm8JORWpQK+uRXBDxAAtGdmzTyqBkQNyr4hT6jMck3J7F2Qq6H50aJMyg==
+destroyable-server@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/destroyable-server/-/destroyable-server-1.0.2.tgz#5257867b2207b4ae45b1d23f816ee83e078290db"
+  integrity sha512-Ln7ZKRq+7kr/3e4FCI8+jAjRbqbdaET8/ZBoUVvn+sDSAD7zDZA5mykkPRcrjBcaGy+LOM4ntMlIp1NMj1kMxw==
   dependencies:
     "@types/node" "*"
 
@@ -2321,10 +2321,10 @@ mkdirp@^0.5.6:
   dependencies:
     minimist "^1.2.6"
 
-mockttp@^3.10.2:
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/mockttp/-/mockttp-3.10.2.tgz#c4226f20d9c2528549863137515b2c3d4c8f0c3d"
-  integrity sha512-0tBe/r5VN1LaybYDNGR0Vgl1WSdAzgNDyH/lQ34MY6fzmTStGB3r9K5l+4YtFENVBfopsW77GRl1D81CuXwyvw==
+mockttp@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/mockttp/-/mockttp-3.11.0.tgz#599e0e6d28d289a0eb28d73b9ad4ea5927571c3b"
+  integrity sha512-zR5GjGAiOEYcZURmNipugCTR9Y4e9vnK0yeVz0se6M/lTfx05b5d2gXzuduquqJt/yWTRVOBMNuuS0026yfudw==
   dependencies:
     "@graphql-tools/schema" "^8.5.0"
     "@graphql-tools/utils" "^8.8.0"
@@ -2342,7 +2342,7 @@ mockttp@^3.10.2:
     cors "^2.8.4"
     cors-gate "^1.1.3"
     cross-fetch "^3.1.5"
-    destroyable-server "^1.0.0"
+    destroyable-server "^1.0.2"
     express "^4.14.0"
     graphql "^14.0.2 || ^15.5"
     graphql-http "^1.22.0"
