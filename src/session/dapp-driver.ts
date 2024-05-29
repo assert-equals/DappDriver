@@ -11,6 +11,7 @@ import {
   METAMASK,
   METAMASK_FLASK,
   PLAYWRIGHT,
+  RAINBOW,
   WEBDRIVER,
   ZERION,
 } from '../constants';
@@ -179,6 +180,8 @@ export class DappDriver {
         await setupMetaMaskFlaskWallet(options.extension.seed);
       } else if (options.extension.wallet === ZERION) {
         await setupZerionWallet(options.extension.seed);
+      } else if (options.extension.wallet === RAINBOW) {
+        //
       }
     } catch (error) {
       await this.dispose();

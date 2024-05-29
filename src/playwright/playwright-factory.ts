@@ -4,10 +4,12 @@ import {
   CHROME,
   DEFAULT_METAMASK_BINARY_PATH,
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
+  DEFAULT_RAINBOW_BINARY_PATH,
   DEFAULT_ZERION_BINARY_PATH,
   HTTPS_PROXY_HOST,
   METAMASK,
   METAMASK_FLASK,
+  RAINBOW,
   ZERION,
 } from '../constants';
 
@@ -42,6 +44,8 @@ export class PlaywrightFactory {
         extensionPath = extensionPath || DEFAULT_METAMASK_FLASK_BINARY_PATH;
       } else if (options.extension.wallet === ZERION) {
         extensionPath = extensionPath || DEFAULT_ZERION_BINARY_PATH;
+      } else if (options.extension.wallet === RAINBOW) {
+        extensionPath = extensionPath || DEFAULT_RAINBOW_BINARY_PATH;
       }
       chromeOptions['args'].push(`--disable-extensions-except=${extensionPath}`);
       chromeOptions['args'].push(`--load-extension=${extensionPath}`);
