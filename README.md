@@ -9,7 +9,7 @@
 
 It's all about being flexible and user-friendly, DappDriver seamlessly integrates both [Playwright](https://playwright.dev/) and [Selenium WebDriver](https://www.selenium.dev/).
 
-DappDriver loads [MetaMask](https://metamask.io/) or [Zerion](https://zerion.io/) into the browser session, empowering you to efficiently confirm blockchain transactions.
+DappDriver loads [MetaMask](https://metamask.io/), [Rainbow](https://rainbow.me/) or [Zerion](https://zerion.io/) into the browser session, empowering you to efficiently confirm blockchain transactions.
 
 Read on to get started locally in a couple of minutes.
 
@@ -23,13 +23,10 @@ yarn add @assert-equals/dappdriver
 
 ## Get Started
 
-First, install MetaMask:
+First, install MetaMask, Rainbow or Zerion:
 
 ```shell
 npx dappdriver -w metamask
-
-# Or, to install Zerion:
-npx dappdriver -w zerion
 ```
 
 Then, write your page object in `test/page/dapp.ts`:
