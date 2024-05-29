@@ -4,7 +4,14 @@ import axios from 'axios';
 import AdmZip from 'adm-zip';
 import semver, { Range } from 'semver';
 import { PACKAGE_NAME } from '../constants';
-import { Asset, Wallet } from '../types';
+import { Artifact, Asset, Wallet } from '../types';
+
+export function checkEnvVariable(variable: string): void {
+  const envVariable = process.env[variable];
+  if (!envVariable) {
+    throw new Error(`The environment variable ${variable} is not set.`);
+  }
+}
 
 export function compareVersion(wallet: Wallet, version: string, recommendedVersions: Range): void {
   const satisfy = semver.satisfies(version, recommendedVersions);
@@ -21,9 +28,24 @@ export function createDirectory(directory: string): void {
   }
 }
 
-export async function downloadZipFile(asset: Asset, directory: string): Promise<string> {
-  const zipFileName = path.join(directory, asset.name);
+export async function downloadAssetZipFile(asset: Asset, directory: string): Promise<string> {
+  const file = asset.name.endsWith('.zip') ? asset.name : `${asset.name}.zip`;
+  const zipFileName = path.join(directory, file);
   const zipFile = await axios.get(asset.browser_download_url, {
+    responseType: 'arraybuffer',
+  });
+  fs.writeFileSync(zipFileName, zipFile.data);
+  return zipFileName;
+}
+
+export async function downloadArtifactZipFile(artifact: Artifact, directory: string): Promise<string> {
+  const file = artifact.name.endsWith('.zip') ? artifact.name : `${artifact.name}.zip`;
+  const zipFileName = path.join(directory, file);
+  const zipFile = await axios.get(artifact.archive_download_url, {
+    headers: {
+      Authorization: `token ${process.env.GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+    },
     responseType: 'arraybuffer',
   });
   fs.writeFileSync(zipFileName, zipFile.data);
@@ -37,7 +59,19 @@ export function extractZipContents(from: string): string {
   return to;
 }
 
-export async function fetchGithubRelease(wallet: Wallet, version: string, releasesUrl: string): Promise<any> {
+export async function fetchGithubArtifact(version: string, run: any, githubApiUrl: string): Promise<Artifact> {
+  const artifactName = `rainbowbx-chrome-v${version}`;
+  const artifactsResponse = await axios.get(`${githubApiUrl}/actions/runs/${run.id}/artifacts`);
+  const artifacts = artifactsResponse.data.artifacts;
+  const artifact: Artifact = artifacts.find((item: any) => item.name === artifactName);
+  if (!artifact) {
+    throw new Error(`Artifact with name ${artifactName} not found.`);
+  }
+  return artifact;
+}
+
+export async function fetchGithubRelease(wallet: Wallet, version: string, githubApiUrl: string): Promise<any> {
+  const releasesUrl = `${githubApiUrl}/releases`;
   const response = await axios.get(releasesUrl);
   const releases = response.data;
   const release = releases.find((item: any) => item.tag_name === `v${version}`);
@@ -47,20 +81,33 @@ export async function fetchGithubRelease(wallet: Wallet, version: string, releas
   return release;
 }
 
-export function findDownloadURL(assetName: string, release: any, version: string): Asset {
-  switch (assetName) {
-    case 'metamask-chrome':
-      assetName = `${assetName}-${version}.zip`;
-      break;
-    case 'metamask-flask-chrome':
-      assetName = `${assetName}-${version}-flask.0.zip`;
-      break;
-    case 'zerion-wallet-extension':
-      assetName = `${assetName}-v${version}.zip`;
-      break;
-    default:
-      throw Error(`Could not find the specified release asset (${assetName}).`);
+export async function fetchGithubRun(
+  version: string,
+  workflowName: string,
+  workflow: any,
+  githubApiUrl: string,
+): Promise<any> {
+  const runBranch = `rc-v${version}`;
+  const runsResponse = await axios.get(`${githubApiUrl}/actions/workflows/${workflow.id}/runs`);
+  const runs = runsResponse.data.workflow_runs;
+  const run = runs.find((item: any) => item.head_branch === runBranch);
+  if (!run) {
+    throw new Error(`No runs found for workflow ${workflowName} with branch ${runBranch}.`);
   }
+  return run;
+}
+
+export async function fetchGithubWorkflow(workflowName: string, githubApiUrl: string): Promise<any> {
+  const workflowsResponse = await axios.get(`${githubApiUrl}/actions/workflows`);
+  const workflows = workflowsResponse.data.workflows;
+  const workflow = workflows.find((item: any) => item.name === workflowName);
+  if (!workflow) {
+    throw new Error(`Workflow with name ${workflowName} not found.`);
+  }
+  return workflow;
+}
+
+export function findGithubAsset(assetName: string, release: any): Asset {
   const asset: Asset = release.assets.find((item: any) => item.name === assetName);
   return asset;
 }

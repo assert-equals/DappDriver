@@ -6,7 +6,12 @@ type Frame = FrameLocator | null;
 type Driver = WebDriver | BrowserContext;
 type Framework = 'playwright' | 'webdriver';
 type Browser = 'chrome';
-type Wallet = 'metamask' | 'metamask-flask' | 'zerion';
+type Wallet = 'metamask' | 'metamask-flask' | 'rainbow' | 'zerion';
+
+type Artifact = {
+  archive_download_url: string;
+  name: string;
+};
 
 type Asset = {
   browser_download_url: string;
@@ -29,4 +34,16 @@ type BrowserOptions = {
   extension?: WalletOptions;
 };
 
-export { Asset, Browser, BrowserOptions, Driver, Frame, Framework, JsonRpcRequest, Page, Wallet, WalletOptions };
+export {
+  Artifact,
+  Asset,
+  Browser,
+  BrowserOptions,
+  Driver,
+  Frame,
+  Framework,
+  JsonRpcRequest,
+  Page,
+  Wallet,
+  WalletOptions,
+};

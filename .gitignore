@@ -1,5 +1,6 @@
 node_modules
 metamask-*
+rainbowbx-*
 zerion-*
 .DS_Store
 dist
