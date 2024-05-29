@@ -1,0 +1,29 @@
+import { HTMLElement } from '../../../controls';
+import { PageObject } from '../../../page';
+import { Import } from '../..';
+/**
+ *
+ *
+ * @export
+ * @class ImportOrConnect
+ * @extends {PageObject}
+ */
+export class ImportOrConnect extends PageObject {
+  private importWithASRPOrPKButton: () => HTMLElement = () => new HTMLElement('[data-testid="import-wallet-option"]');
+  /**
+   * Creates an instance of ImportOrConnect.
+   * @memberof ImportOrConnect
+   */
+  constructor() {
+    super('/popup.html#/import-or-connect', 'Rainbow Wallet');
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<Import>}
+   * @memberof ImportOrConnect
+   */
+  importWithASecretRecoveryPhraseOrPrivateKey(): Promise<Import> {
+    return this.importWithASRPOrPKButton().clickAndRedirectsTo<Import>(Import);
+  }
+}

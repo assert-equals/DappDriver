@@ -17,6 +17,7 @@ import {
 } from '../constants';
 import { setupZerionWallet } from '../zerion/setup';
 import { setupMetaMaskFlaskWallet } from '../flask/setup';
+import { setupRainbowWallet } from '../rainbow/setup';
 /**
  *
  *
@@ -181,7 +182,7 @@ export class DappDriver {
       } else if (options.extension.wallet === ZERION) {
         await setupZerionWallet(options.extension.seed);
       } else if (options.extension.wallet === RAINBOW) {
-        //
+        await setupRainbowWallet(options.extension.seed);
       }
     } catch (error) {
       await this.dispose();
