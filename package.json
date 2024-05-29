@@ -1,6 +1,6 @@
 {
   "name": "@assert-equals/dappdriver",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "DappDriver is a testing tool to automate dApps",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -19,6 +19,11 @@
       "require": "./dist/src/flask/index.js",
       "import": "./dist/src/flask/index.js",
       "types": "./dist/src/flask/index.d.ts"
+    },
+    "./rainbow": {
+      "require": "./dist/src/rainbow/index.js",
+      "import": "./dist/src/rainbow/index.js",
+      "types": "./dist/src/rainbow/index.d.ts"
     },
     "./zerion": {
       "require": "./dist/src/zerion/index.js",
@@ -41,6 +46,7 @@
     "extension",
     "metamask",
     "playwright",
+    "rainbow",
     "selenium",
     "testing",
     "webdriver",
@@ -50,7 +56,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "predocs": "rimraf docs",
-    "docs": "typedoc --gitRevision main --out docs/ src/ src/flask src/metamask src/zerion",
+    "docs": "typedoc --gitRevision main --out docs/ src/ src/flask src/metamask src/zerion src/rainbow",
     "lint": "eslint src/**/*.ts --fix",
     "format": "prettier --write .",
     "prepare": "husky"
