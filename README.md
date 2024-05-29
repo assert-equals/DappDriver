@@ -107,3 +107,5 @@ Read our [API documentation](https://assert-equals.github.io/DappDriver/).
 ## Support
 
 Join our [community](https://github.com/assert-equals/DappDriver/discussions) and elevate your decentralized testing experience.
+
+If you like DappDriver, [give us a star on GitHub!](https://github.com/assert-equals/DappDriver) ⭐
