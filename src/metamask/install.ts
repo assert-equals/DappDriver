@@ -5,6 +5,7 @@ import {
   METAMASK_GITHUB_API,
   RECOMMENDED_METAMASK_VERSIONS,
 } from '../constants';
+import { logError, logSuccess } from '../log';
 import { Asset } from '../types';
 import {
   compareVersion,
@@ -24,7 +25,8 @@ export async function metamask(version: string = DEFAULT_METAMASK_VERSION, direc
     createDirectory(directory);
     const fileName: string = await downloadAssetZipFile(asset, directory);
     extractZipContents(fileName);
+    logSuccess('Installed MetaMask.');
   } catch (error: any) {
-    console.error('[ERROR]:', error.message);
+    logError(error.message);
   }
 }

@@ -7,6 +7,7 @@ import { metamask } from '../metamask/install';
 import { zerion } from '../zerion/install';
 import { metamaskFlask } from '../flask/install';
 import { rainbow } from '../rainbow/install';
+import { logError } from '../log';
 
 const initCwd: string = process.env.INIT_CWD;
 const cwd: string = process.cwd();
@@ -38,6 +39,6 @@ const { wallet, release, directory }: { wallet: Wallet; release: string; directo
       await zerion(release, directory);
       break;
     default:
-      console.error(`[ERROR]: Could not find the specified wallet (${wallet}).`);
+      logError(`Could not find the specified wallet (${wallet}).`);
   }
 })();

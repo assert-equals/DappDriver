@@ -2,6 +2,7 @@ import { WebDriver, WebElement, WebElementPromise, error, until } from 'selenium
 import { IHTMLElement } from '../interface/controls/html-element';
 import { DappDriver } from '../session/dapp-driver';
 import { PageObject } from '../page';
+import { logWarning } from '../log';
 
 export class WebDriverHTMLElement implements IHTMLElement {
   private cssLocator: string;
@@ -42,7 +43,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
       await this.hardClick();
     } catch (err) {
       if (err instanceof error.StaleElementReferenceError) {
-        console.log(err.name + ': ' + this.cssLocator);
+        logWarning(err.name + ': ' + this.cssLocator);
         await this.hardClick();
       }
     }
