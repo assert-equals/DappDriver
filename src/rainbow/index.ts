@@ -1,3 +1,4 @@
+import { ApproveRequest } from './pages/approve-request';
 import { CreatePassword } from './pages/onboarding/create-password';
 import { ImportOrConnect } from './pages/onboarding/import-or-connect';
 import { ImportSeed } from './pages/onboarding/import-seed';
@@ -10,6 +11,7 @@ import { SeedVerify } from './pages/onboarding/seed-verify';
 import { Welcome } from './pages/onboarding/welcome';
 
 export {
+  ApproveRequest,
   CreatePassword,
   ImportOrConnect,
   ImportSeed,
