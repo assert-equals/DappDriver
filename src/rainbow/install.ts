@@ -1,4 +1,5 @@
 import { DEFAULT_RAINBOW_VERSION, RAINBOW, RAINBOW_GITHUB_API, RECOMMENDED_RAINBOW_VERSIONS } from '../constants';
+import { logError, logSuccess } from '../log';
 import { Artifact } from '../types';
 import {
   checkEnvVariable,
@@ -24,7 +25,8 @@ export async function rainbow(version: string = DEFAULT_RAINBOW_VERSION, directo
     createDirectory(directory);
     const fileName: string = await downloadArtifactZipFile(artifact, directory);
     extractZipContents(fileName);
+    logSuccess('Installed Rainbow.');
   } catch (error: any) {
-    console.error('[ERROR]:', error.message);
+    logError(error.message);
   }
 }

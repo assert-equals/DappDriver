@@ -5,6 +5,7 @@ import {
   ZERION_GITHUB_API,
   RECOMMENDED_ZERION_VERSIONS,
 } from '../constants';
+import { logSuccess, logError } from '../log';
 import { Asset } from '../types';
 import {
   compareVersion,
@@ -26,7 +27,8 @@ export async function zerion(version: string = DEFAULT_ZERION_VERSION, directory
     const fileName: string = await downloadAssetZipFile(asset, directory);
     const destDir = extractZipContents(fileName);
     moveFiles(destDir);
+    logSuccess('Installed Zerion.');
   } catch (error: any) {
-    console.error('[ERROR]:', error.message);
+    logError(error.message);
   }
 }

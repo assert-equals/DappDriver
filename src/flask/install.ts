@@ -5,6 +5,7 @@ import {
   METAMASK_GITHUB_API,
   RECOMMENDED_METAMASK_FLASK_VERSIONS,
 } from '../constants';
+import { logError, logSuccess } from '../log';
 import { Asset } from '../types';
 import {
   compareVersion,
@@ -27,7 +28,8 @@ export async function metamaskFlask(
     createDirectory(directory);
     const fileName: string = await downloadAssetZipFile(asset, directory);
     extractZipContents(fileName);
+    logSuccess('Installed MetaMask Flask.');
   } catch (error: any) {
-    console.error('[ERROR]:', error.message);
+    logError(error.message);
   }
 }
