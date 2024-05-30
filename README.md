@@ -23,11 +23,23 @@ yarn add @assert-equals/dappdriver
 
 ## Get Started
 
+**Download a Wallet**
+
 First, install MetaMask, Rainbow or Zerion:
 
 ```shell
 npx dappdriver -w metamask
 ```
+
+Installing Rainbow:
+
+DappDriver requires a personal access token to call Github’s API over HTTPS to download Rainbow from GitHub's artifact repository. You can configure the token through the `GITHUB_TOKEN` environment variable:
+
+```shell
+GITHUB_TOKEN=token npx dappdriver -w rainbow
+```
+
+**Add a Page Object**
 
 Then, write your page object in `test/page/dapp.ts`:
 
@@ -51,6 +63,8 @@ export class Dapp extends PageObject {
   }
 }
 ```
+
+**Write Your First Test**
 
 Next, write your test in `test/spec/dapp.spec.ts`:
 
@@ -93,6 +107,8 @@ describe('E2E Test Dapp', () => {
   });
 });
 ```
+
+**Run the Test**
 
 Finally, run your tests:
 
