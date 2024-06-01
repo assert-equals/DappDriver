@@ -25,7 +25,7 @@ program.parse(process.argv);
 const { wallet, release, directory }: { wallet: Wallet; release: string; directory: string } = program.opts();
 
 (async () => {
-  switch (wallet) {
+  switch (wallet.toLowerCase()) {
     case METAMASK:
       await metamask(release, directory);
       break;
