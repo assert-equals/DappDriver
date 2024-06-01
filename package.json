@@ -56,7 +56,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "predocs": "rimraf docs",
-    "docs": "typedoc --gitRevision main --out docs/ src/ src/flask src/metamask src/zerion src/rainbow",
+    "docs": "typedoc --options typedoc.json",
     "lint": "eslint src/**/*.ts --fix",
     "format": "prettier --write .",
     "prepare": "husky"
