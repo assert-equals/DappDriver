@@ -1,0 +1,12 @@
+{
+  "entryPoints": ["src/", "src/flask", "src/metamask", "src/rainbow", "src/zerion"],
+  "gitRevision": "main",
+  "hideGenerator": true,
+  "out": "docs/",
+  "visibilityFilters": {
+    "protected": false,
+    "private": false,
+    "inherited": false,
+    "external": false
+  }
+}
