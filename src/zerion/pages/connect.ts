@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { IConnect } from '../../interface/wallet/connect';
 import { PageObject } from '../../page';
 /**
  *
@@ -6,8 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class Connect
  * @extends {PageObject}
+ * @implements {IConnect}
  */
-export class Connect extends PageObject {
+export class Connect extends PageObject implements IConnect {
   private connectButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Connect")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
   /**
@@ -20,20 +22,13 @@ export class Connect extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  cancel(): Promise<void> {
-    return this.cancelButton().click();
-  }
-  /**
-   *
-   *
-   * @return {*}  {Promise<void>}
-   * @memberof Connect
-   */
-  connect(): Promise<void> {
-    return this.connectButton().click();
+  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.connectButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
    *
@@ -43,7 +38,7 @@ export class Connect extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  connectAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
-    return this.connectButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }
