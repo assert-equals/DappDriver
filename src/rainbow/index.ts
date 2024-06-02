@@ -1,5 +1,6 @@
 import { AddNetwork } from './pages/add-network';
 import { ApproveRequest } from './pages/approve-request';
+import { ConfirmTransaction } from './pages/confirm-transaction';
 import { Connect } from './pages/connect';
 import { CreatePassword } from './pages/onboarding/create-password';
 import { ImportOrConnect } from './pages/onboarding/import-or-connect';
@@ -15,6 +16,7 @@ import { Welcome } from './pages/onboarding/welcome';
 export {
   AddNetwork,
   ApproveRequest,
+  ConfirmTransaction,
   Connect,
   CreatePassword,
   ImportOrConnect,
