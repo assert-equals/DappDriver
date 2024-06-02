@@ -14,8 +14,10 @@ import { SignatureRequest } from './pages/notification/confirm-transaction/signa
 import { Confirmation } from './pages/notification/confirmation';
 import { Connect } from './pages/notification/connect';
 import { ConfirmAddSuggestedToken } from './pages/notification/confirm-add-suggested-token';
+import { AddNetwork } from './pages/notification/add-network';
 
 export {
+  AddNetwork,
   Home,
   Completion,
   ConfirmRecoveryPhrase,
