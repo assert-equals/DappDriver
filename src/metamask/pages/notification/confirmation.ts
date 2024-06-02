@@ -8,8 +8,8 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class Confirmation extends PageObject {
-  private submitButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirmation-submit-button"]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirmation-cancel-button"]');
+  protected submitButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirmation-submit-button"]');
+  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirmation-cancel-button"]');
   /**
    * Creates an instance of Confirmation.
    * @memberof Confirmation
@@ -20,11 +20,13 @@ export class Confirmation extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Confirmation
    */
-  submit(): Promise<void> {
-    return this.submitButton().click();
+  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
    *
@@ -34,16 +36,7 @@ export class Confirmation extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof Confirmation
    */
-  submitAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
-    return this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
-  }
-  /**
-   *
-   *
-   * @return {*}  {Promise<void>}
-   * @memberof Confirmation
-   */
-  cancel(): Promise<void> {
-    return this.cancelButton().click();
+  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

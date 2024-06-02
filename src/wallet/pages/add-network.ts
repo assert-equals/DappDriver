@@ -1,30 +1,30 @@
 import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { DappDriver } from '../../session/dapp-driver';
-import { Connect as MetaMaskConnect } from '../../metamask';
-import { Connect as RainbowConnect } from '../../rainbow';
-import { Connect as ZerionConnect } from '../../zerion';
-import { IConnect } from '../../interface/wallet/connect';
+import { AddNetwork as MetaMaskAddNetwork } from '../../metamask';
+import { AddNetwork as RainbowAddNetwork } from '../../rainbow';
+import { AddNetwork as ZerionAddNetwork } from '../../zerion';
+import { IAddNetwork } from '../../interface/wallet/add-network';
 import { PageObject } from '../../page';
 /**
  *
  *
  * @export
- * @class Connect
- * @implements {IConnect}
+ * @class AddNetwork
+ * @implements {IAddNetwork}
  */
-export class Connect implements IConnect {
-  private async callIfMethodExists(methodName: keyof IConnect, args: Array<any> = []): Promise<any> {
-    let connect: MetaMaskConnect | RainbowConnect | ZerionConnect;
+export class AddNetwork implements IAddNetwork {
+  private async callIfMethodExists(methodName: keyof IAddNetwork, args: Array<any> = []): Promise<any> {
+    let connect: MetaMaskAddNetwork | RainbowAddNetwork | ZerionAddNetwork;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        connect = new MetaMaskConnect();
+        connect = new MetaMaskAddNetwork();
         break;
       case RAINBOW:
-        connect = new RainbowConnect();
+        connect = new RainbowAddNetwork();
         break;
       case ZERION:
-        connect = new ZerionConnect();
+        connect = new ZerionAddNetwork();
         break;
     }
     return await (connect[methodName] as Function)(...args);
@@ -35,7 +35,7 @@ export class Connect implements IConnect {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Connect
+   * @memberof AddNetwork
    */
   accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
@@ -46,7 +46,7 @@ export class Connect implements IConnect {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Connect
+   * @memberof AddNetwork
    */
   reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);

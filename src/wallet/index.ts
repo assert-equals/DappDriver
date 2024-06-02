@@ -1,3 +1,4 @@
+import { AddNetwork } from './pages/add-network';
 import { Connect } from './pages/connect';
 
-export { Connect };
+export { AddNetwork, Connect };

@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { IAddNetwork } from '../../interface/wallet/add-network';
 import { PageObject } from '../../page';
 /**
  *
@@ -6,8 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class AddNetwork
  * @extends {PageObject}
+ * @implements {IAddNetwork}
  */
-export class AddNetwork extends PageObject {
+export class AddNetwork extends PageObject implements IAddNetwork {
   private addButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Add")]');
   private closeButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Close")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
@@ -21,20 +23,14 @@ export class AddNetwork extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  cancel(): Promise<void> {
-    return this.cancelButton().click();
-  }
-  /**
-   *
-   *
-   * @return {*}  {Promise<void>}
-   * @memberof AddNetwork
-   */
-  add(): Promise<void> {
-    return this.addButton().click();
+  async accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    await this.addButton().click();
+    return this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
    *
@@ -44,7 +40,7 @@ export class AddNetwork extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  closeAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
-    return this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }
