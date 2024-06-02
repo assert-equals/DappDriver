@@ -31,13 +31,13 @@ export class HTMLElementCollection implements IHTMLElementCollection {
    * @memberof HTMLElementCollection
    */
   protected async callIfMethodExists(methodName: keyof IHTMLElementCollection, args: Array<any> = []): Promise<any> {
+    let htmlElementCollection: PlaywrightHTMLElementCollection | WebDriverHTMLElementCollection;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightHTMLElementCollection(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      htmlElementCollection = new PlaywrightHTMLElementCollection(this.cssLocator);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverHTMLElementCollection(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      htmlElementCollection = new WebDriverHTMLElementCollection(this.cssLocator);
     }
+    return await (htmlElementCollection[methodName] as Function)(...args);
   }
   /**
    *

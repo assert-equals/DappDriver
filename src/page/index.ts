@@ -46,13 +46,13 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   private async callIfMethodExists(methodName: keyof IPageObject, args: Array<any> = []): Promise<any> {
+    let pageObject: PlaywrightPageObject | WebDriverPageObject;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const playwrightPageObject = new PlaywrightPageObject(this.page);
-      return await (playwrightPageObject[methodName] as Function)(...args);
+      pageObject = new PlaywrightPageObject(this.page);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const webDriverPageObject = new WebDriverPageObject();
-      return await (webDriverPageObject[methodName] as Function)(...args);
+      pageObject = new WebDriverPageObject();
     }
+    return await (pageObject[methodName] as Function)(...args);
   }
   /**
    *

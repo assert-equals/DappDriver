@@ -35,13 +35,13 @@ export class Link extends HTMLElement implements ILink {
     methodName: keyof IHTMLElement | keyof ILink,
     args: Array<any> = [],
   ): Promise<any> {
+    let link: PlaywrightLink | WebDriverLink;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightLink(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      link = new PlaywrightLink(this.cssLocator);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverLink(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      link = new WebDriverLink(this.cssLocator);
     }
+    return await (link[methodName] as Function)(...args);
   }
   /**
    *

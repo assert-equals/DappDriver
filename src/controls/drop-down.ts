@@ -35,13 +35,13 @@ export class DropDown extends HTMLElement implements IDropDown {
     methodName: keyof IHTMLElement | keyof IDropDown,
     args: Array<any> = [],
   ): Promise<any> {
+    let dropdown: PlaywrightDropDown | WebDriverDropDown;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightDropDown(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      dropdown = new PlaywrightDropDown(this.cssLocator);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverDropDown(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      dropdown = new WebDriverDropDown(this.cssLocator);
     }
+    return await (dropdown[methodName] as Function)(...args);
   }
   /**
    *

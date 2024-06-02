@@ -35,13 +35,13 @@ export class InputText extends HTMLElement implements IInputText {
     methodName: keyof IHTMLElement | keyof IInputText,
     args: Array<any> = [],
   ): Promise<any> {
+    let inputText: PlaywrightInputText | WebDriverInputText;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightInputText(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      inputText = new PlaywrightInputText(this.cssLocator);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverInputText(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      inputText = new WebDriverInputText(this.cssLocator);
     }
+    return await (inputText[methodName] as Function)(...args);
   }
   /**
    *
