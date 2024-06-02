@@ -35,13 +35,13 @@ export class CheckBox extends HTMLElement implements ICheckBox {
     methodName: keyof IHTMLElement | keyof ICheckBox,
     args: Array<any> = [],
   ): Promise<any> {
+    let checkbox: PlaywrightCheckBox | WebDriverCheckBox;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightCheckBox(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      checkbox = new PlaywrightCheckBox(this.cssLocator);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverCheckBox(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      checkbox = new WebDriverCheckBox(this.cssLocator);
     }
+    return await (checkbox[methodName] as Function)(...args);
   }
   /**
    *

@@ -37,13 +37,13 @@ export class HTMLElement implements IHTMLElement {
    * @memberof HTMLElement
    */
   protected async callIfMethodExists(methodName: keyof IHTMLElement, args: Array<any> = []): Promise<any> {
+    let htmlElement: PlaywrightHTMLElement | WebDriverHTMLElement;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightHTMLElement(this.cssLocator, this.timeout, this.element);
-      return await (d[methodName] as Function)(...args);
+      htmlElement = new PlaywrightHTMLElement(this.cssLocator, this.timeout, this.element);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverHTMLElement(this.cssLocator, this.timeout, this.element);
-      return await (d[methodName] as Function)(...args);
+      htmlElement = new WebDriverHTMLElement(this.cssLocator, this.timeout, this.element);
     }
+    return await (htmlElement[methodName] as Function)(...args);
   }
   /**
    *

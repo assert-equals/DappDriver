@@ -35,13 +35,13 @@ export class Radio extends HTMLElement implements IRadio {
     methodName: keyof IHTMLElement | keyof IRadio,
     args: Array<any> = [],
   ): Promise<any> {
+    let radio: PlaywrightRadio | WebDriverRadio;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const d = new PlaywrightRadio(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      radio = new PlaywrightRadio(this.cssLocator);
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      const d = new WebDriverRadio(this.cssLocator);
-      return await (d[methodName] as Function)(...args);
+      radio = new WebDriverRadio(this.cssLocator);
     }
+    return await (radio[methodName] as Function)(...args);
   }
   /**
    *
