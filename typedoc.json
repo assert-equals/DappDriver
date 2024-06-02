@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src/", "src/flask", "src/metamask", "src/rainbow", "src/zerion"],
+  "entryPoints": ["src/", "src/flask", "src/metamask", "src/rainbow", "src/wallet", "src/zerion"],
   "gitRevision": "main",
   "hideGenerator": true,
   "out": "docs/",

@@ -25,6 +25,11 @@
       "import": "./dist/src/rainbow/index.js",
       "types": "./dist/src/rainbow/index.d.ts"
     },
+    "./wallet": {
+      "require": "./dist/src/wallet/index.js",
+      "import": "./dist/src/wallet/index.js",
+      "types": "./dist/src/wallet/index.d.ts"
+    },
     "./zerion": {
       "require": "./dist/src/zerion/index.js",
       "import": "./dist/src/zerion/index.js",

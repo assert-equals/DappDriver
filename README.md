@@ -45,7 +45,7 @@ Then, write your page object in `test/page/dapp.ts`:
 
 ```ts
 import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
-import { Connect } from '@assert-equals/dappdriver/metamask';
+import { Connect } from '@assert-equals/dappdriver/wallet';
 
 export class Dapp extends PageObject {
   private accountsLabel: () => HTMLElement = () => new HTMLElement('#accounts');
@@ -70,7 +70,7 @@ Next, write your test in `test/spec/dapp.spec.ts`:
 
 ```ts
 import { CHROME, DappDriver, METAMASK, WEBDRIVER, BrowserOptions } from '@assert-equals/dappdriver';
-import { Connect } from '@assert-equals/dappdriver/metamask';
+import { Connect } from '@assert-equals/dappdriver/wallet';
 import { expect } from 'chai';
 import { Dapp } from '../page/dapp';
 
@@ -98,9 +98,8 @@ describe('E2E Test Dapp', () => {
   });
 
   it('connects Account One to the dapp', async () => {
-    const connectPage: Connect = await dapp.connect();
-    await connectPage.next();
-    dapp = await connectPage.nextAndSwitchToMainWindow<Dapp>(Dapp);
+    const connectPopup: Connect = await dapp.connect();
+    dapp = await connectPopup.accept<Dapp>(Dapp);
     const actualAccount: string = await dapp.getAccounts();
     const expectedAccount: string = '0xe18035bf8712672935fdb4e5e431b1a0183d2dfc';
     expect(actualAccount).to.be.equal(expectedAccount);
