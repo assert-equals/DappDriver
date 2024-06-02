@@ -4,7 +4,7 @@ import { WebDriverFactory } from '../webdriver/webdriver-factory';
 import { WebDriver } from 'selenium-webdriver';
 import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
 import { PageObject } from '../page';
-import { Browser, BrowserOptions, Driver, Frame, Framework, Page } from '../types';
+import { Browser, BrowserOptions, Driver, Frame, Framework, Page, Wallet } from '../types';
 import {
   DEFAULT_METAMASK_BINARY_PATH,
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
@@ -33,6 +33,7 @@ export class DappDriver {
   private page: Page;
   private frame: Frame;
   private framework: Framework;
+  private wallet: Wallet;
   /**
    * Creates an instance of DappDriver.
    * @param {string} domain
@@ -96,6 +97,14 @@ export class DappDriver {
 
   set Frame(value: Frame) {
     this.frame = value;
+  }
+
+  get Wallet(): Wallet {
+    return this.wallet;
+  }
+
+  set Wallet(value: Wallet) {
+    this.wallet = value;
   }
 
   /**
@@ -175,14 +184,23 @@ export class DappDriver {
       DappDriver.Instance.Page = page;
     }
     try {
-      if (options.extension.wallet === METAMASK) {
-        await setupMetaMaskWallet(options.extension.seed);
-      } else if (options.extension.wallet === METAMASK_FLASK) {
-        await setupMetaMaskFlaskWallet(options.extension.seed);
-      } else if (options.extension.wallet === ZERION) {
-        await setupZerionWallet(options.extension.seed);
-      } else if (options.extension.wallet === RAINBOW) {
-        await setupRainbowWallet(options.extension.seed);
+      switch (options.extension.wallet) {
+        case METAMASK:
+          DappDriver.Instance.Wallet = METAMASK;
+          await setupMetaMaskWallet(options.extension.seed);
+          break;
+        case METAMASK_FLASK:
+          DappDriver.Instance.Wallet = METAMASK_FLASK;
+          await setupMetaMaskFlaskWallet(options.extension.seed);
+          break;
+        case ZERION:
+          DappDriver.Instance.Wallet = ZERION;
+          await setupZerionWallet(options.extension.seed);
+          break;
+        case RAINBOW:
+          DappDriver.Instance.Wallet = RAINBOW;
+          await setupRainbowWallet(options.extension.seed);
+          break;
       }
     } catch (error) {
       await this.dispose();
