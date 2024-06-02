@@ -4,7 +4,6 @@ import { SignMessage as MetaMaskSignMessage } from '../../metamask';
 import { SignMessage as RainbowSignMessage } from '../../rainbow';
 import { SignMessage as ZerionSignMessage } from '../../zerion';
 import { ISignMessage } from '../../interface/wallet/sign-message';
-import { PageObject } from '../../page';
 /**
  *
  *
@@ -37,7 +36,7 @@ export class SignMessage implements ISignMessage {
    * @return {*}  {Promise<TPage>}
    * @memberof SignMessage
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
   }
   /**
@@ -48,7 +47,7 @@ export class SignMessage implements ISignMessage {
    * @return {*}  {Promise<TPage>}
    * @memberof SignMessage
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);
   }
 }

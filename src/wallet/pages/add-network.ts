@@ -4,7 +4,6 @@ import { AddNetwork as MetaMaskAddNetwork } from '../../metamask';
 import { AddNetwork as RainbowAddNetwork } from '../../rainbow';
 import { AddNetwork as ZerionAddNetwork } from '../../zerion';
 import { IAddNetwork } from '../../interface/wallet/add-network';
-import { PageObject } from '../../page';
 /**
  *
  *
@@ -37,7 +36,7 @@ export class AddNetwork implements IAddNetwork {
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
   }
   /**
@@ -48,7 +47,7 @@ export class AddNetwork implements IAddNetwork {
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);
   }
 }

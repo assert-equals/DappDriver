@@ -27,7 +27,7 @@ export class SignMessage extends PageObject implements ISignMessage {
    * @return {*}  {Promise<TPage>}
    * @memberof SignMessage
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
@@ -38,7 +38,7 @@ export class SignMessage extends PageObject implements ISignMessage {
    * @return {*}  {Promise<TPage>}
    * @memberof SignMessage
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

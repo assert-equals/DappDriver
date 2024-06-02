@@ -27,7 +27,7 @@ export class Connect extends PageObject implements IConnect {
    * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  async accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page: new () => TPage): Promise<TPage> {
     await this.nextButton().click();
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
@@ -39,7 +39,7 @@ export class Connect extends PageObject implements IConnect {
    * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

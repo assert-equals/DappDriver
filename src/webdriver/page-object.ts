@@ -1,7 +1,6 @@
 import { WebDriver, until } from 'selenium-webdriver';
 import { DappDriver } from '../session/dapp-driver';
 import { IPageObject } from '../interface/page/page-object';
-import { PageObject } from '../page';
 
 export class WebDriverPageObject implements IPageObject {
   private driver: WebDriver;
@@ -14,7 +13,7 @@ export class WebDriverPageObject implements IPageObject {
     await this.driver.navigate().back();
   }
 
-  async backToPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async backToPage<TPage>(page: new () => TPage): Promise<TPage> {
     await this.back();
     return DappDriver.getPage(page);
   }
@@ -23,7 +22,7 @@ export class WebDriverPageObject implements IPageObject {
     await this.driver.close();
   }
 
-  async closeAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.close();
     await this.switchToMainWindow();
     return DappDriver.getPage(page);
@@ -39,10 +38,7 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.executeScript(script);
   }
 
-  async executeScriptAndOpensInNewWindow<TPage extends PageObject>(
-    script: string,
-    page: new () => TPage,
-  ): Promise<TPage> {
+  async executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage> {
     this.driver.executeScript(script);
     await this.opensInNewWindow();
     return DappDriver.getPage(page);
@@ -72,12 +68,12 @@ export class WebDriverPageObject implements IPageObject {
     await this.driver.navigate().to(url);
   }
 
-  async navigateToPage<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.navigateTo(url);
     return DappDriver.getPage(page);
   }
 
-  async navigateToPageInNewWindow<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.createNewWindow();
     return this.navigateToPage<TPage>(url, page);
   }
@@ -91,7 +87,7 @@ export class WebDriverPageObject implements IPageObject {
     await this.driver.navigate().refresh();
   }
 
-  async refreshPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async refreshPage<TPage>(page: new () => TPage): Promise<TPage> {
     await this.refresh();
     return DappDriver.getPage(page);
   }

@@ -38,18 +38,18 @@ export class PlaywrightHTMLElement implements IHTMLElement {
     await this.page.waitForTimeout(duration);
   }
 
-  async clickAndOpensInNewWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.click();
     await new PageObject().opensInNewWindow();
     return DappDriver.getPage(page);
   }
 
-  async clickAndRedirectsTo<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async clickAndRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
     await this.click();
     return DappDriver.getPage(page);
   }
 
-  async clickAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.click();
     await new PageObject().switchToMainWindow();
     return DappDriver.getPage(page);

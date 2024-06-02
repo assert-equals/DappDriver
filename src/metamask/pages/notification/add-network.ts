@@ -1,5 +1,4 @@
 import { IAddNetwork } from '../../../interface/wallet/add-network';
-import { PageObject } from '../../../page';
 import { Confirmation } from './confirmation';
 /**
  *
@@ -25,7 +24,7 @@ export class AddNetwork extends Confirmation implements IAddNetwork {
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  async accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page: new () => TPage): Promise<TPage> {
     await this.submitButton().click();
     return this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
   }

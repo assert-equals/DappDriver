@@ -29,7 +29,7 @@ export class ConfirmTransaction extends PageObject implements IConfirmTransactio
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
@@ -40,7 +40,7 @@ export class ConfirmTransaction extends PageObject implements IConfirmTransactio
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

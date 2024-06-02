@@ -1,7 +1,6 @@
 import { ConfirmTransaction } from '.';
 import { HTMLElement } from '../../../../controls/html-element';
 import { ISignatureRequest } from '../../../../interface/wallet/signature-request';
-import { PageObject } from '../../../../page';
 /**
  *
  *
@@ -28,7 +27,7 @@ export class SignatureRequest extends ConfirmTransaction implements ISignatureRe
    * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  async accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page: new () => TPage): Promise<TPage> {
     await this.scrollButton().clickAndWait();
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }

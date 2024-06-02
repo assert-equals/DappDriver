@@ -4,7 +4,6 @@ import { ConfirmTransaction as MetaMaskConfirmTransaction } from '../../metamask
 import { ConfirmTransaction as RainbowConfirmTransaction } from '../../rainbow';
 import { SendTransaction as ZerionConfirmTransaction } from '../../zerion';
 import { IConfirmTransaction } from '../../interface/wallet/confirm-transaction';
-import { PageObject } from '../../page';
 /**
  *
  *
@@ -37,7 +36,7 @@ export class ConfirmTransaction implements IConfirmTransaction {
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
   }
   /**
@@ -48,7 +47,7 @@ export class ConfirmTransaction implements IConfirmTransaction {
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);
   }
 }

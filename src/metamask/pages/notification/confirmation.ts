@@ -25,7 +25,7 @@ export class Confirmation extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof Confirmation
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
@@ -36,7 +36,7 @@ export class Confirmation extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof Confirmation
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

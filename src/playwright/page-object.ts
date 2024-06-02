@@ -24,7 +24,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.page.goBack();
   }
 
-  async backToPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async backToPage<TPage>(page: new () => TPage): Promise<TPage> {
     await this.back();
     return DappDriver.getPage(page);
   }
@@ -33,7 +33,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.page.close();
   }
 
-  async closeAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.close();
     await this.switchToMainWindow();
     return DappDriver.getPage(page);
@@ -48,10 +48,7 @@ export class PlaywrightPageObject implements IPageObject {
     return this.page.evaluate(script);
   }
 
-  async executeScriptAndOpensInNewWindow<TPage extends PageObject>(
-    script: string,
-    page: new () => TPage,
-  ): Promise<TPage> {
+  async executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage> {
     this.page.evaluate(script);
     await this.opensInNewWindow();
     return DappDriver.getPage(page);
@@ -82,12 +79,12 @@ export class PlaywrightPageObject implements IPageObject {
     await this.page.goto(url);
   }
 
-  async navigateToPage<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.navigateTo(url);
     return DappDriver.getPage(page);
   }
 
-  async navigateToPageInNewWindow<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.createNewWindow();
     return this.navigateToPage<TPage>(url, page);
   }
@@ -101,7 +98,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.page.reload();
   }
 
-  async refreshPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async refreshPage<TPage>(page: new () => TPage): Promise<TPage> {
     await this.refresh();
     return DappDriver.getPage(page);
   }
