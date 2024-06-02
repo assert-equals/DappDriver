@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../../../controls/html-element';
+import { IConfirmTransaction } from '../../../../interface/wallet/confirm-transaction';
 import { PageObject } from '../../../../page';
 /**
  *
@@ -6,8 +7,9 @@ import { PageObject } from '../../../../page';
  * @export
  * @class ConfirmTransaction
  * @extends {PageObject}
+ * @implements {IConfirmTransaction}
  */
-export class ConfirmTransaction extends PageObject {
+export class ConfirmTransaction extends PageObject implements IConfirmTransaction {
   protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
   protected cencelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
   /**
@@ -27,25 +29,18 @@ export class ConfirmTransaction extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  nextAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  next(): Promise<void> {
-    return this.nextButton().click();
-  }
-  /**
-   *
-   *
-   * @return {*}  {Promise<void>}
-   * @memberof ConfirmTransaction
-   */
-  cancel(): Promise<void> {
-    return this.cencelButton().click();
+  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

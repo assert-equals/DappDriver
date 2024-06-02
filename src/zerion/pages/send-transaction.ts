@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { IConfirmTransaction } from '../../interface/wallet/confirm-transaction';
 import { PageObject } from '../../page';
 /**
  *
@@ -6,8 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class SendTransaction
  * @extends {PageObject}
+ * @implements {IConfirmTransaction}
  */
-export class SendTransaction extends PageObject {
+export class SendTransaction extends PageObject implements IConfirmTransaction {
   private confirmButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Confirm")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
   /**
@@ -20,11 +22,13 @@ export class SendTransaction extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof SendTransaction
    */
-  cancel(): Promise<void> {
-    return this.cancelButton().click();
+  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.confirmButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
    *
@@ -34,7 +38,7 @@ export class SendTransaction extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof SendTransaction
    */
-  confirmAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
-    return this.confirmButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }
