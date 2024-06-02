@@ -62,7 +62,7 @@
     "build": "tsc",
     "predocs": "rimraf docs",
     "docs": "typedoc --options typedoc.json",
-    "lint": "eslint src/**/*.ts --fix",
+    "lint": "eslint './src/**/*.ts' --fix",
     "format": "prettier --write .",
     "prepare": "husky"
   },

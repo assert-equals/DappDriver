@@ -25,7 +25,7 @@ export class ApproveRequest extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof ApproveRequest
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.acceptButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
@@ -36,7 +36,7 @@ export class ApproveRequest extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof ApproveRequest
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.rejectButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

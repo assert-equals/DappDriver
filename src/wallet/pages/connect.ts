@@ -4,7 +4,6 @@ import { Connect as MetaMaskConnect } from '../../metamask';
 import { Connect as RainbowConnect } from '../../rainbow';
 import { Connect as ZerionConnect } from '../../zerion';
 import { IConnect } from '../../interface/wallet/connect';
-import { PageObject } from '../../page';
 /**
  *
  *
@@ -37,7 +36,7 @@ export class Connect implements IConnect {
    * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
   }
   /**
@@ -48,7 +47,7 @@ export class Connect implements IConnect {
    * @return {*}  {Promise<TPage>}
    * @memberof Connect
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);
   }
 }

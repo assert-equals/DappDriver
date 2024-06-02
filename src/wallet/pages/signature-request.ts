@@ -4,7 +4,6 @@ import { SignatureRequest as MetaMaskSignatureRequest } from '../../metamask';
 import { SignatureRequest as RainbowSignatureRequest } from '../../rainbow';
 import { SignatureRequest as ZerionSignatureRequest } from '../../zerion';
 import { ISignatureRequest } from '../../interface/wallet/signature-request';
-import { PageObject } from '../../page';
 /**
  *
  *
@@ -37,7 +36,7 @@ export class SignatureRequest implements ISignatureRequest {
    * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  accept<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
   }
   /**
@@ -48,7 +47,7 @@ export class SignatureRequest implements ISignatureRequest {
    * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);
   }
 }

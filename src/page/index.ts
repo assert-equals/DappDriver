@@ -118,7 +118,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async backToPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async backToPage<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('backToPage', [page]);
   }
   /**
@@ -138,7 +138,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async closeAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('closeAndSwitchToMainWindow', [page]);
   }
   /**
@@ -169,10 +169,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async executeScriptAndOpensInNewWindow<TPage extends PageObject>(
-    script: string,
-    page: new () => TPage,
-  ): Promise<TPage> {
+  async executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('executeScriptAndOpensInNewWindow', [script, page]);
   }
   /**
@@ -240,7 +237,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async navigateToPage<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     url = this.getFullURL(url);
     return this.callIfMethodExists('navigateToPage', [url, page]);
   }
@@ -253,7 +250,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async navigateToPageInNewWindow<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     url = this.getFullURL(url);
     return this.callIfMethodExists('navigateToPageInNewWindow', [url, page]);
   }
@@ -283,7 +280,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async refreshPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async refreshPage<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('refreshPage', [page]);
   }
   /**

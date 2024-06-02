@@ -1,24 +1,22 @@
-import { PageObject } from '../../page';
-
 export interface IPageObject {
   back(): Promise<void>;
-  backToPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage>;
+  backToPage<TPage>(page: new () => TPage): Promise<TPage>;
   close(): Promise<void>;
-  closeAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage>;
+  closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
   createNewWindow(): Promise<void>;
   executeScript(script: string): Promise<any>;
-  executeScriptAndOpensInNewWindow<TPage extends PageObject>(script: string, page: new () => TPage): Promise<TPage>;
+  executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage>;
   getAllWindowHandles(): Promise<Array<any>>;
   getCurrentUrl(): Promise<string>;
   getTitle(): Promise<string>;
   getWindowHandle(): Promise<any>;
   maximize(): Promise<void>;
   navigateTo(url: string): Promise<void>;
-  navigateToPage<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage>;
-  navigateToPageInNewWindow<TPage extends PageObject>(url: string, page: new () => TPage): Promise<TPage>;
+  navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage>;
+  navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   opensInNewWindow(): Promise<void>;
   refresh(): Promise<void>;
-  refreshPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage>;
+  refreshPage<TPage>(page: new () => TPage): Promise<TPage>;
   setSize(width: number, height: number): Promise<void>;
   switchBack(): Promise<void>;
   switchToFrame(cssLocator: string): Promise<void>;

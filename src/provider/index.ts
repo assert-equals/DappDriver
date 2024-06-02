@@ -28,10 +28,7 @@ export class Provider {
    * @return {*}  {Promise<TPage>}
    * @memberof Provider
    */
-  requestOpensInNewWindow<TPage extends PageObject>(
-    jsonRpcRequest: JsonRpcRequest,
-    page: new () => TPage,
-  ): Promise<TPage> {
+  requestOpensInNewWindow<TPage>(jsonRpcRequest: JsonRpcRequest, page: new () => TPage): Promise<TPage> {
     const request = JSON.stringify(jsonRpcRequest);
     return this.page.executeScriptAndOpensInNewWindow<TPage>(`window.ethereum.request(${request})`, page);
   }

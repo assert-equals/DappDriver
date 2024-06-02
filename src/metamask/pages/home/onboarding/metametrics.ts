@@ -25,7 +25,7 @@ export class Metametrics extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof Metametrics
    */
-  iAgree<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  iAgree<TPage>(page: new () => TPage): Promise<TPage> {
     return this.iAgreeButton().clickAndRedirectsTo<TPage>(page);
   }
   /**
@@ -36,7 +36,7 @@ export class Metametrics extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof Metametrics
    */
-  noThanks<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  noThanks<TPage>(page: new () => TPage): Promise<TPage> {
     return this.noThanksButton().clickAndRedirectsTo<TPage>(page);
   }
 }

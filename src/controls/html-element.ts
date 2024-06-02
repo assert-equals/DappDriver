@@ -2,7 +2,6 @@ import { IHTMLElement } from '../interface/controls/html-element';
 import { DappDriver } from '../session/dapp-driver';
 import { PlaywrightHTMLElement } from '../playwright/html-element';
 import { WebDriverHTMLElement } from '../webdriver/html-element';
-import { PageObject } from '../page';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 /**
  *
@@ -72,7 +71,7 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  async clickAndOpensInNewWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
   }
   /**
@@ -83,7 +82,7 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  async clickAndRedirectsTo<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async clickAndRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndRedirectsTo', [page]);
   }
   /**
@@ -94,7 +93,7 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  async clickAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
   }
   /**

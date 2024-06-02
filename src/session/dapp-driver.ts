@@ -122,20 +122,20 @@ export class DappDriver {
    */
   static async create(domain: string, framework: Framework, browser: Browser): Promise<void>;
   static async create(domain: string, framework: Framework, browser: Browser, options: BrowserOptions): Promise<void>;
-  static async create<TPage extends PageObject>(
+  static async create<TPage>(
     domain: string,
     framework: Framework,
     browser: Browser,
     tPage: new () => TPage,
   ): Promise<TPage>;
-  static async create<TPage extends PageObject>(
+  static async create<TPage>(
     domain: string,
     framework: Framework,
     browser: Browser,
     tPage: new () => TPage,
     options: BrowserOptions,
   ): Promise<TPage>;
-  static async create<TPage extends PageObject>(
+  static async create<TPage>(
     domain: string,
     framework: Framework,
     browser: Browser,
@@ -237,10 +237,12 @@ export class DappDriver {
    * @return {*}  {Promise<TPage>}
    * @memberof DappDriver
    */
-  static async getPage<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  static async getPage<TPage>(page: new () => TPage): Promise<TPage> {
     const newPage: TPage = new page();
-    await newPage.waitForTitle();
-    await newPage.waitForURL();
+    if (newPage instanceof PageObject) {
+      await newPage.waitForTitle();
+      await newPage.waitForURL();
+    }
     return newPage;
   }
   /**

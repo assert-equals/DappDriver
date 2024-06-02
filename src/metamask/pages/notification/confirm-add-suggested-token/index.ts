@@ -25,7 +25,7 @@ export class ConfirmAddSuggestedToken extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmAddSuggestedToken
    */
-  nextAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  nextAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**

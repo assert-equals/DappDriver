@@ -28,7 +28,7 @@ export class SignatureRequest extends PageObject implements ISignatureRequest {
    * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  async accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page: new () => TPage): Promise<TPage> {
     await this.scrollButton().click();
     return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
   }
@@ -40,7 +40,7 @@ export class SignatureRequest extends PageObject implements ISignatureRequest {
    * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }

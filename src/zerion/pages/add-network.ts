@@ -28,7 +28,7 @@ export class AddNetwork extends PageObject implements IAddNetwork {
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  async accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page: new () => TPage): Promise<TPage> {
     await this.addButton().click();
     return this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
   }
@@ -40,7 +40,7 @@ export class AddNetwork extends PageObject implements IAddNetwork {
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork
    */
-  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+  reject<TPage>(page: new () => TPage): Promise<TPage> {
     return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }
