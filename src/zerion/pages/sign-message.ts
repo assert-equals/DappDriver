@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { ISignMessage } from '../../interface/wallet/sign-message';
 import { PageObject } from '../../page';
 /**
  *
@@ -6,8 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class SignMessage
  * @extends {PageObject}
+ * @implements {ISignMessage}
  */
-export class SignMessage extends PageObject {
+export class SignMessage extends PageObject implements ISignMessage {
   private signButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Sign")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
   /**
@@ -20,11 +22,13 @@ export class SignMessage extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof SignMessage
    */
-  cancel(): Promise<void> {
-    return this.cancelButton().click();
+  accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
   }
   /**
    *
@@ -34,7 +38,7 @@ export class SignMessage extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof SignMessage
    */
-  signAndSwitchToMainWindow<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
-    return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
+    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
   }
 }
