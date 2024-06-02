@@ -1,30 +1,30 @@
 import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { DappDriver } from '../../session/dapp-driver';
-import { ConfirmTransaction as MetaMaskConfirmTransaction } from '../../metamask';
-import { ConfirmTransaction as RainbowConfirmTransaction } from '../../rainbow';
-import { SendTransaction as ZerionConfirmTransaction } from '../../zerion';
-import { IConfirmTransaction } from '../../interface/wallet/confirm-transaction';
+import { SignMessage as MetaMaskSignMessage } from '../../metamask';
+import { SignMessage as RainbowSignMessage } from '../../rainbow';
+import { SignMessage as ZerionSignMessage } from '../../zerion';
+import { ISignMessage } from '../../interface/wallet/sign-message';
 import { PageObject } from '../../page';
 /**
  *
  *
  * @export
- * @class ConfirmTransaction
- * @implements {IConfirmTransaction}
+ * @class SignMessage
+ * @implements {ISignMessage}
  */
-export class ConfirmTransaction implements IConfirmTransaction {
-  private async callIfMethodExists(methodName: keyof IConfirmTransaction, args: Array<any> = []): Promise<any> {
-    let connect: MetaMaskConfirmTransaction | RainbowConfirmTransaction | ZerionConfirmTransaction;
+export class SignMessage implements ISignMessage {
+  private async callIfMethodExists(methodName: keyof ISignMessage, args: Array<any> = []): Promise<any> {
+    let connect: MetaMaskSignMessage | RainbowSignMessage | ZerionSignMessage;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        connect = new MetaMaskConfirmTransaction();
+        connect = new MetaMaskSignMessage();
         break;
       case RAINBOW:
-        connect = new RainbowConfirmTransaction();
+        connect = new RainbowSignMessage();
         break;
       case ZERION:
-        connect = new ZerionConfirmTransaction();
+        connect = new ZerionSignMessage();
         break;
     }
     return await (connect[methodName] as Function)(...args);
@@ -35,7 +35,7 @@ export class ConfirmTransaction implements IConfirmTransaction {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof ConfirmTransaction
+   * @memberof SignMessage
    */
   accept<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('accept', [page]);
@@ -46,7 +46,7 @@ export class ConfirmTransaction implements IConfirmTransaction {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof ConfirmTransaction
+   * @memberof SignMessage
    */
   reject<TPage extends PageObject>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('reject', [page]);

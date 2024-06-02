@@ -11,6 +11,8 @@ import { Ready } from './pages/onboarding/ready';
 import { RevealSeed } from './pages/onboarding/reveal-seed';
 import { SeedBackup } from './pages/onboarding/seed-backup';
 import { SeedVerify } from './pages/onboarding/seed-verify';
+import { SignMessage } from './pages/sign-message';
+import { SignatureRequest } from './pages/signature-request';
 import { Welcome } from './pages/onboarding/welcome';
 
 export {
@@ -27,5 +29,7 @@ export {
   RevealSeed,
   SeedBackup,
   SeedVerify,
+  SignMessage,
+  SignatureRequest,
   Welcome,
 };
