@@ -46,6 +46,15 @@ export class AddNetwork implements IConfirmation {
   /**
    *
    *
+   * @return {*}  {Promise<any[]>}
+   * @memberof AddNetwork
+   */
+  getAllWindowHandles(): Promise<any[]> {
+    return this.callIfMethodExists('getAllWindowHandles');
+  }
+  /**
+   *
+   *
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {(Promise<void | TPage>)}
@@ -57,5 +66,24 @@ export class AddNetwork implements IConfirmation {
     } else {
       return this.callIfMethodExists('reject');
     }
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof AddNetwork
+   */
+  switchToMainWindow(): Promise<void> {
+    return this.callIfMethodExists('switchToMainWindow');
+  }
+  /**
+   *
+   *
+   * @param {*} nameOrHandle
+   * @return {*}  {Promise<void>}
+   * @memberof AddNetwork
+   */
+  switchToWindow(nameOrHandle: any): Promise<void> {
+    return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
   }
 }

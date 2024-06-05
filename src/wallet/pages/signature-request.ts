@@ -46,6 +46,15 @@ export class SignatureRequest implements IConfirmation {
   /**
    *
    *
+   * @return {*}  {Promise<any[]>}
+   * @memberof SignatureRequest
+   */
+  getAllWindowHandles(): Promise<any[]> {
+    return this.callIfMethodExists('getAllWindowHandles');
+  }
+  /**
+   *
+   *
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {(Promise<void | TPage>)}
@@ -57,5 +66,24 @@ export class SignatureRequest implements IConfirmation {
     } else {
       return this.callIfMethodExists('reject');
     }
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof SignatureRequest
+   */
+  switchToMainWindow(): Promise<void> {
+    return this.callIfMethodExists('switchToMainWindow');
+  }
+  /**
+   *
+   *
+   * @param {*} nameOrHandle
+   * @return {*}  {Promise<void>}
+   * @memberof SignatureRequest
+   */
+  switchToWindow(nameOrHandle: any): Promise<void> {
+    return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
   }
 }
