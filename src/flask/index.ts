@@ -1,3 +1,1 @@
-import { ExperimentalArea } from './pages/home/onboarding/experimental-area';
-
-export { ExperimentalArea };
+export { ExperimentalArea } from './pages/home/onboarding/experimental-area';
