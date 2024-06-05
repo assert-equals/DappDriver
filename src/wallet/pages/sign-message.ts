@@ -3,16 +3,16 @@ import { DappDriver } from '../../session/dapp-driver';
 import { SignMessage as MetaMaskSignMessage } from '../../metamask';
 import { SignMessage as RainbowSignMessage } from '../../rainbow';
 import { SignMessage as ZerionSignMessage } from '../../zerion';
-import { ISignMessage } from '../../interface/wallet/sign-message';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 /**
  *
  *
  * @export
  * @class SignMessage
- * @implements {ISignMessage}
+ * @implements {IConfirmation}
  */
-export class SignMessage implements ISignMessage {
-  private async callIfMethodExists(methodName: keyof ISignMessage, args: Array<any> = []): Promise<any> {
+export class SignMessage implements IConfirmation {
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
     let connect: MetaMaskSignMessage | RainbowSignMessage | ZerionSignMessage;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
@@ -32,22 +32,30 @@ export class SignMessage implements ISignMessage {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignMessage
    */
-  accept<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('accept', [page]);
+  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.callIfMethodExists('accept', [page]);
+    } else {
+      return this.callIfMethodExists('accept');
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignMessage
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('reject', [page]);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.callIfMethodExists('reject', [page]);
+    } else {
+      return this.callIfMethodExists('reject');
+    }
   }
 }

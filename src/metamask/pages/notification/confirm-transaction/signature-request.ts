@@ -1,15 +1,15 @@
 import { ConfirmTransaction } from '.';
 import { HTMLElement } from '../../../../controls/html-element';
-import { ISignatureRequest } from '../../../../interface/wallet/signature-request';
+import { IConfirmation } from '../../../../interface/wallet/confirmation';
 /**
  *
  *
  * @export
  * @class SignatureRequest
  * @extends {ConfirmTransaction}
- * @implements {ISignatureRequest}
+ * @implements {IConfirmation}
  */
-export class SignatureRequest extends ConfirmTransaction implements ISignatureRequest {
+export class SignatureRequest extends ConfirmTransaction implements IConfirmation {
   private scrollButton: () => HTMLElement = () =>
     new HTMLElement('[data-testid="signature-request-scroll-button"]', 3000);
   /**
@@ -23,12 +23,16 @@ export class SignatureRequest extends ConfirmTransaction implements ISignatureRe
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignatureRequest
    */
-  async accept<TPage>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
     await this.scrollButton().clickAndWait();
-    return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+    if (page) {
+      return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.nextButton().click();
+    }
   }
 }

@@ -3,16 +3,16 @@ import { DappDriver } from '../../session/dapp-driver';
 import { ConfirmTransaction as MetaMaskConfirmTransaction } from '../../metamask';
 import { ConfirmTransaction as RainbowConfirmTransaction } from '../../rainbow';
 import { SendTransaction as ZerionConfirmTransaction } from '../../zerion';
-import { IConfirmTransaction } from '../../interface/wallet/confirm-transaction';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 /**
  *
  *
  * @export
  * @class ConfirmTransaction
- * @implements {IConfirmTransaction}
+ * @implements {IConfirmation}
  */
-export class ConfirmTransaction implements IConfirmTransaction {
-  private async callIfMethodExists(methodName: keyof IConfirmTransaction, args: Array<any> = []): Promise<any> {
+export class ConfirmTransaction implements IConfirmation {
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
     let connect: MetaMaskConfirmTransaction | RainbowConfirmTransaction | ZerionConfirmTransaction;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
@@ -32,22 +32,30 @@ export class ConfirmTransaction implements IConfirmTransaction {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof ConfirmTransaction
    */
-  accept<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('accept', [page]);
+  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.callIfMethodExists('accept', [page]);
+    } else {
+      return this.callIfMethodExists('accept');
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof ConfirmTransaction
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('reject', [page]);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.callIfMethodExists('reject', [page]);
+    } else {
+      return this.callIfMethodExists('reject');
+    }
   }
 }

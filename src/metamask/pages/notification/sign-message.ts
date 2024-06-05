@@ -1,14 +1,14 @@
 import { ConfirmTransaction } from './confirm-transaction';
-import { ISignMessage } from '../../../interface/wallet/sign-message';
+import { IConfirmation } from '../../../interface/wallet/confirmation';
 /**
  *
  *
  * @export
  * @class SignMessage
  * @extends {ConfirmTransaction}
- * @implements {ISignMessage}
+ * @implements {IConfirmation}
  */
-export class SignMessage extends ConfirmTransaction implements ISignMessage {
+export class SignMessage extends ConfirmTransaction implements IConfirmation {
   /**
    * Creates an instance of SignMessage.
    * @memberof SignMessage

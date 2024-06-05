@@ -1,5 +1,5 @@
 import { HTMLElement } from '../../../../controls/html-element';
-import { IConfirmTransaction } from '../../../../interface/wallet/confirm-transaction';
+import { IConfirmation } from '../../../../interface/wallet/confirmation';
 import { PageObject } from '../../../../page';
 /**
  *
@@ -7,11 +7,11 @@ import { PageObject } from '../../../../page';
  * @export
  * @class ConfirmTransaction
  * @extends {PageObject}
- * @implements {IConfirmTransaction}
+ * @implements {IConfirmation}
  */
-export class ConfirmTransaction extends PageObject implements IConfirmTransaction {
+export class ConfirmTransaction extends PageObject implements IConfirmation {
   protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
-  protected cencelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
+  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
   /**
    * Creates an instance of ConfirmTransaction.
    * @param {(string | RegExp)} [url='#confirm-transaction']
@@ -25,22 +25,30 @@ export class ConfirmTransaction extends PageObject implements IConfirmTransactio
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof ConfirmTransaction
    */
-  accept<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.nextButton().click();
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof ConfirmTransaction
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.cancelButton().click();
+    }
   }
 }

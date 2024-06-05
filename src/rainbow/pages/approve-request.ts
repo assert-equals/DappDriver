@@ -21,22 +21,30 @@ export class ApproveRequest extends PageObject {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof ApproveRequest
    */
-  accept<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.acceptButton().clickAndSwitchToMainWindow<TPage>(page);
+  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.acceptButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.acceptButton().click();
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof ApproveRequest
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.rejectButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.rejectButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.rejectButton().click();
+    }
   }
 }
