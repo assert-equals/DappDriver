@@ -1,6 +1,6 @@
 {
   "name": "@assert-equals/dappdriver",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "DappDriver is a testing tool to automate dApps",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -86,6 +86,7 @@
     "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
     "@types/adm-zip": "^0.5.5",
+    "@types/node": "^20.14.2",
     "@types/selenium-webdriver": "^4.1.22",
     "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -97,6 +98,14 @@
     "typedoc": "^0.25.12",
     "typescript": "^5.4.2"
   },
+  "peerDependencies": {
+    "playwright": "^1.44.1"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/assert-equals/DappDriver.git"
@@ -104,8 +113,5 @@
   "bugs": {
     "url": "https://github.com/assert-equals/DappDriver/issues"
   },
-  "homepage": "https://github.com/assert-equals/DappDriver#readme",
-  "peerDependencies": {
-    "playwright-core": "^1.44.1"
-  }
+  "homepage": "https://github.com/assert-equals/DappDriver#readme"
 }
