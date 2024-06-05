@@ -1,5 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
-import { ISignMessage } from '../../interface/wallet/sign-message';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { PageObject } from '../../page';
 /**
  *
@@ -7,9 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class SignMessage
  * @extends {PageObject}
- * @implements {ISignMessage}
+ * @implements {IConfirmation}
  */
-export class SignMessage extends PageObject implements ISignMessage {
+export class SignMessage extends PageObject implements IConfirmation {
   private signButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Sign")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
   /**
@@ -23,22 +23,30 @@ export class SignMessage extends PageObject implements ISignMessage {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignMessage
    */
-  accept<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
+  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.signButton().click();
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignMessage
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.cancelButton().click();
+    }
   }
 }

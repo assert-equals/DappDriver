@@ -1,4 +1,4 @@
-import { IAddNetwork } from '../../interface/wallet/add-network';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { ApproveRequest } from './approve-request';
 /**
  *
@@ -6,9 +6,9 @@ import { ApproveRequest } from './approve-request';
  * @export
  * @class AddNetwork
  * @extends {ApproveRequest}
- * @implements {IAddNetwork}
+ * @implements {IConfirmation}
  */
-export class AddNetwork extends ApproveRequest implements IAddNetwork {
+export class AddNetwork extends ApproveRequest implements IConfirmation {
   /**
    * Creates an instance of AddNetwork.
    * @memberof AddNetwork

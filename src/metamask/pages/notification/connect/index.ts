@@ -1,5 +1,5 @@
 import { HTMLElement } from '../../../../controls/html-element';
-import { IConnect } from '../../../../interface/wallet/connect';
+import { IConfirmation } from '../../../../interface/wallet/confirmation';
 import { PageObject } from '../../../../page';
 /**
  *
@@ -7,9 +7,9 @@ import { PageObject } from '../../../../page';
  * @export
  * @class Connect
  * @extends {PageObject}
- * @implements {IConnect}
+ * @implements {IConfirmation}
  */
-export class Connect extends PageObject implements IConnect {
+export class Connect extends PageObject implements IConfirmation {
   private nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
   /**
@@ -23,23 +23,31 @@ export class Connect extends PageObject implements IConnect {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof Connect
    */
-  async accept<TPage>(page: new () => TPage): Promise<TPage> {
-    await this.nextButton().click();
-    return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    await this.nextButton().clickAndWait();
+    if (page) {
+      return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.nextButton().click();
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof Connect
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.cancelButton().click();
+    }
   }
 }

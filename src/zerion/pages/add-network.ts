@@ -1,5 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
-import { IAddNetwork } from '../../interface/wallet/add-network';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { PageObject } from '../../page';
 /**
  *
@@ -7,9 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class AddNetwork
  * @extends {PageObject}
- * @implements {IAddNetwork}
+ * @implements {IConfirmation}
  */
-export class AddNetwork extends PageObject implements IAddNetwork {
+export class AddNetwork extends PageObject implements IConfirmation {
   private addButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Add")]');
   private closeButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Close")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
@@ -24,23 +24,31 @@ export class AddNetwork extends PageObject implements IAddNetwork {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof AddNetwork
    */
-  async accept<TPage>(page: new () => TPage): Promise<TPage> {
+  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
     await this.addButton().click();
-    return this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
+    if (page) {
+      return this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.closeButton().click();
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof AddNetwork
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.cancelButton().click();
+    }
   }
 }

@@ -12,7 +12,6 @@ import { Approve } from './pages/notification/confirm-transaction/approve';
 import { ConfirmTransaction } from './pages/notification/confirm-transaction';
 import { SignatureRequest } from './pages/notification/confirm-transaction/signature-request';
 import { SignMessage } from './pages/notification/sign-message';
-import { Confirmation } from './pages/notification/confirmation';
 import { Connect } from './pages/notification/connect';
 import { ConfirmAddSuggestedToken } from './pages/notification/confirm-add-suggested-token';
 import { AddNetwork } from './pages/notification/add-network';
@@ -33,7 +32,6 @@ export {
   ConfirmTransaction,
   SignatureRequest,
   SignMessage,
-  Confirmation,
   Connect,
   ConfirmAddSuggestedToken,
 };

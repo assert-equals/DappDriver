@@ -1,5 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
-import { ISignatureRequest } from '../../interface/wallet/signature-request';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { PageObject } from '../../page';
 /**
  *
@@ -7,9 +7,9 @@ import { PageObject } from '../../page';
  * @export
  * @class SignatureRequest
  * @extends {PageObject}
- * @implements {ISignatureRequest}
+ * @implements {IConfirmation}
  */
-export class SignatureRequest extends PageObject implements ISignatureRequest {
+export class SignatureRequest extends PageObject implements IConfirmation {
   private scrollButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Scroll")]');
   private signButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Sign")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
@@ -24,23 +24,31 @@ export class SignatureRequest extends PageObject implements ISignatureRequest {
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignatureRequest
    */
-  async accept<TPage>(page: new () => TPage): Promise<TPage> {
-    await this.scrollButton().click();
-    return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
+  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    await this.scrollButton().clickAndWait();
+    if (page) {
+      return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.signButton().click();
+    }
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {(Promise<void | TPage>)}
    * @memberof SignatureRequest
    */
-  reject<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+    if (page) {
+      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+    } else {
+      return this.cancelButton().click();
+    }
   }
 }

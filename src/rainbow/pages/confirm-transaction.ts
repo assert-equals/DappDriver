@@ -1,4 +1,4 @@
-import { IConfirmTransaction } from '../../interface/wallet/confirm-transaction';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { ApproveRequest } from './approve-request';
 /**
  *
@@ -6,9 +6,9 @@ import { ApproveRequest } from './approve-request';
  * @export
  * @class ConfirmTransaction
  * @extends {ApproveRequest}
- * @implements {IConfirmTransaction}
+ * @implements {IConfirmation}
  */
-export class ConfirmTransaction extends ApproveRequest implements IConfirmTransaction {
+export class ConfirmTransaction extends ApproveRequest implements IConfirmation {
   /**
    * Creates an instance of ConfirmTransaction.
    * @memberof ConfirmTransaction
