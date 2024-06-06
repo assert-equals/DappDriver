@@ -24,10 +24,10 @@ export class SignatureRequest extends ConfirmTransaction implements IConfirmatio
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignatureRequest
    */
-  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     await this.scrollButton().clickAndWait();
     if (page) {
       return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);

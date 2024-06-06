@@ -25,10 +25,10 @@ export class AddNetwork extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof AddNetwork
    */
-  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     await this.addButton().click();
     if (page) {
       return this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
@@ -41,10 +41,10 @@ export class AddNetwork extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof AddNetwork
    */
-  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {

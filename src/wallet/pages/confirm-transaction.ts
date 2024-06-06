@@ -33,10 +33,10 @@ export class ConfirmTransaction implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof ConfirmTransaction
    */
-  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('accept', [page]);
     } else {
@@ -57,10 +57,10 @@ export class ConfirmTransaction implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof ConfirmTransaction
    */
-  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('reject', [page]);
     } else {

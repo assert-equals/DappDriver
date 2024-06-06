@@ -26,10 +26,10 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof ConfirmTransaction
    */
-  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
@@ -41,10 +41,10 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof ConfirmTransaction
    */
-  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {

@@ -24,10 +24,10 @@ export class SignMessage extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignMessage
    */
-  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
@@ -39,10 +39,10 @@ export class SignMessage extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignMessage
    */
-  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {

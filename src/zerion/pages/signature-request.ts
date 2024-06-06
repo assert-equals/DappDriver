@@ -25,10 +25,10 @@ export class SignatureRequest extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignatureRequest
    */
-  async accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     await this.scrollButton().clickAndWait();
     if (page) {
       return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
@@ -41,10 +41,10 @@ export class SignatureRequest extends PageObject implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignatureRequest
    */
-  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
