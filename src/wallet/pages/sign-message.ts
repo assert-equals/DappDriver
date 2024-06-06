@@ -33,10 +33,10 @@ export class SignMessage implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignMessage
    */
-  accept<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('accept', [page]);
     } else {
@@ -57,10 +57,10 @@ export class SignMessage implements IConfirmation {
    *
    * @template TPage
    * @param {new () => TPage} [page]
-   * @return {*}  {(Promise<void | TPage>)}
+   * @return {*}  {Promise<any>}
    * @memberof SignMessage
    */
-  reject<TPage>(page?: new () => TPage): Promise<void | TPage> {
+  reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('reject', [page]);
     } else {
