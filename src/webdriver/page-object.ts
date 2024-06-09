@@ -105,13 +105,19 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.switchTo().frame(frameElement);
   }
 
-  async switchToMainWindow(): Promise<void> {
+  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     const handles: Array<string> = await this.waitForWindows(1);
     await this.switchToWindow(handles[0]);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async switchToWindow(nameOrHandle: any): Promise<void> {
-    return await this.driver.switchTo().window(nameOrHandle);
+  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+    await this.driver.switchTo().window(nameOrHandle);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async waitForElement(cssLocator: string): Promise<void> {

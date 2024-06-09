@@ -116,16 +116,24 @@ export class PlaywrightPageObject implements IPageObject {
     DappDriver.Instance.Frame = frame;
   }
 
-  async switchToMainWindow(): Promise<void> {
+  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     const handles: Array<any> = await this.waitForWindows(1);
     await this.switchToWindow(handles[0]);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async switchToWindow(nameOrHandle: Page): Promise<void> {
-    const pages = this.driver.pages();
-    for (const page of pages) {
-      if (page === nameOrHandle) {
-        return this.initialize(nameOrHandle);
+  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+    const handles = this.driver.pages();
+    for (const handle of handles) {
+      if (handle === nameOrHandle) {
+        if (page) {
+          this.initialize(nameOrHandle);
+          return DappDriver.getPage(page);
+        } else {
+          return this.initialize(nameOrHandle);
+        }
       }
     }
     throw new Error('window not found');
