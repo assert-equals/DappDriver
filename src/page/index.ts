@@ -316,21 +316,33 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to switch the focus of all future commands to the main window
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async switchToMainWindow(): Promise<void> {
-    return this.callIfMethodExists('switchToMainWindow');
+  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('switchToMainWindow', [page]);
+    } else {
+      return this.callIfMethodExists('switchToMainWindow');
+    }
   }
   /**
    *
    * Schedules a command to switch the focus of all future commands to a given window
-   * @param {string} nameOrHandle
+   * @template TPage
+   * @param {*} nameOrHandle
+   * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async switchToWindow(nameOrHandle: string): Promise<any> {
-    return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
+  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
+    } else {
+      return this.callIfMethodExists('switchToWindow');
+    }
   }
   /**
    *

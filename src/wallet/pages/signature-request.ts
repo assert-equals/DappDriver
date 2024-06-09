@@ -70,20 +70,32 @@ export class SignatureRequest implements IConfirmation {
   /**
    *
    *
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof SignatureRequest
    */
-  switchToMainWindow(): Promise<void> {
-    return this.callIfMethodExists('switchToMainWindow');
+  switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('switchToMainWindow', [page]);
+    } else {
+      return this.callIfMethodExists('switchToMainWindow');
+    }
   }
   /**
    *
    *
+   * @template TPage
    * @param {*} nameOrHandle
-   * @return {*}  {Promise<void>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof SignatureRequest
    */
-  switchToWindow(nameOrHandle: any): Promise<void> {
-    return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
+  switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
+    } else {
+      return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
+    }
   }
 }
