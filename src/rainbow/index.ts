@@ -1,4 +1,5 @@
 export { AddNetwork } from './pages/add-network';
+export { Approve } from './pages/approve';
 export { ApproveRequest } from './pages/approve-request';
 export { ConfirmTransaction } from './pages/confirm-transaction';
 export { Connect } from './pages/connect';
