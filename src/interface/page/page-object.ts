@@ -29,5 +29,5 @@ export interface IPageObject {
   waitForElement(cssLocator: string): Promise<void>;
   waitForTitle(title: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
-  waitForWindows(total: number): Promise<Array<string>>;
+  waitForWindows(total: number): Promise<Array<any>>;
 }

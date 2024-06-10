@@ -6,7 +6,7 @@ let createPasswordPage: CreatePassword;
 let readyPage: Ready;
 export async function setupRainbowWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const handles: Array<string> = await page.waitForWindows(2);
+  const handles: Array<any> = await page.waitForWindows(2);
   await page.switchToWindow(handles[1]);
   const welcomePage = new Welcome();
   if (seed) {
