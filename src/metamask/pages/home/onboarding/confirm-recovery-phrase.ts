@@ -37,6 +37,6 @@ export class ConfirmRecoveryPhrase extends PageObject {
    * @memberof ConfirmRecoveryPhrase
    */
   confirm(): Promise<Completion> {
-    return this.confirmButton().clickAndRedirectsTo<Completion>(Completion);
+    return this.confirmButton().click<Completion>(Completion);
   }
 }

@@ -38,6 +38,6 @@ export class RecoveryPhrase extends PageObject {
    * @memberof RecoveryPhrase
    */
   confirmSecretRecoveryPhrase(): Promise<SelectWallets> {
-    return this.importWalletButton().clickAndRedirectsTo<SelectWallets>(SelectWallets);
+    return this.importWalletButton().click<SelectWallets>(SelectWallets);
   }
 }

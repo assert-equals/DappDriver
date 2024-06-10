@@ -29,8 +29,11 @@ export class PlaywrightHTMLElement implements IHTMLElement {
     return locator;
   }
 
-  async click(): Promise<void> {
+  async click<TPage>(page?: new () => TPage): Promise<any> {
     await this.webElement.click({ timeout: this.timeout });
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async clickAndWait(duration: number): Promise<void> {
@@ -41,11 +44,6 @@ export class PlaywrightHTMLElement implements IHTMLElement {
   async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.click();
     await new PageObject().opensInNewWindow();
-    return DappDriver.getPage(page);
-  }
-
-  async clickAndRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
-    await this.click();
     return DappDriver.getPage(page);
   }
 

@@ -36,6 +36,6 @@ export class SelectWallets extends PageObject {
    * @memberof SelectWallets
    */
   continue(): Promise<Password> {
-    return this.continueButton().clickAndRedirectsTo<Password>(Password);
+    return this.continueButton().click<Password>(Password);
   }
 }

@@ -24,6 +24,6 @@ export class SecureYourWallet extends PageObject {
    * @memberof SecureYourWallet
    */
   secureMyWallet(): Promise<ReviewRecoveryPhrase> {
-    return this.secureButton().clickAndRedirectsTo<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
+    return this.secureButton().click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
   }
 }

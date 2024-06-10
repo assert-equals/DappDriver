@@ -47,11 +47,17 @@ export class HTMLElement implements IHTMLElement {
   /**
    *
    * Schedules a command to click on this element
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof HTMLElement
    */
-  async click(): Promise<void> {
-    return this.callIfMethodExists('click');
+  async click<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('click', [page]);
+    } else {
+      return this.callIfMethodExists('click');
+    }
   }
   /**
    *
@@ -73,17 +79,6 @@ export class HTMLElement implements IHTMLElement {
    */
   async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
     return this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
-  }
-  /**
-   *
-   * Schedules a command to click on this element and redirect to a new page
-   * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
-   * @memberof HTMLElement
-   */
-  async clickAndRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('clickAndRedirectsTo', [page]);
   }
   /**
    *

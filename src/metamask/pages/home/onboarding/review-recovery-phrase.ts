@@ -44,6 +44,6 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @memberof ReviewRecoveryPhrase
    */
   next(): Promise<ConfirmRecoveryPhrase> {
-    return this.nextButton().clickAndRedirectsTo<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
+    return this.nextButton().click<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
   }
 }

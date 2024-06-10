@@ -38,7 +38,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
     await this.webElement.click();
   }
 
-  async click(): Promise<void> {
+  async click<TPage>(page?: new () => TPage): Promise<any> {
     try {
       await this.hardClick();
     } catch (err) {
@@ -46,6 +46,9 @@ export class WebDriverHTMLElement implements IHTMLElement {
         logWarning(err.name + ': ' + this.cssLocator);
         await this.hardClick();
       }
+    }
+    if (page) {
+      return DappDriver.getPage(page);
     }
   }
 
@@ -57,11 +60,6 @@ export class WebDriverHTMLElement implements IHTMLElement {
   async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.click();
     await new PageObject().opensInNewWindow();
-    return DappDriver.getPage(page);
-  }
-
-  async clickAndRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
-    await this.click();
     return DappDriver.getPage(page);
   }
 

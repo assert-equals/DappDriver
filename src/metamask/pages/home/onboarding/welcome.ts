@@ -36,7 +36,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   createANewWallet(): Promise<Metametrics> {
-    return this.createANewWalletButton().clickAndRedirectsTo<Metametrics>(Metametrics);
+    return this.createANewWalletButton().click<Metametrics>(Metametrics);
   }
   /**
    *
@@ -45,6 +45,6 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   importAnExistingWallet(): Promise<Metametrics> {
-    return this.importAnExistingWalletButton().clickAndRedirectsTo<Metametrics>(Metametrics);
+    return this.importAnExistingWalletButton().click<Metametrics>(Metametrics);
   }
 }

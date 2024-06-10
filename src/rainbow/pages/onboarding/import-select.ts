@@ -24,6 +24,6 @@ export class ImportSelect extends PageObject {
    * @memberof ImportSelect
    */
   importWalletGroup(): Promise<CreatePassword> {
-    return this.addWalletsButton().clickAndRedirectsTo<CreatePassword>(CreatePassword);
+    return this.addWalletsButton().click<CreatePassword>(CreatePassword);
   }
 }

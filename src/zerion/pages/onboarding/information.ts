@@ -43,6 +43,6 @@ export class Information extends PageObject {
    * @memberof Information
    */
   backUpNow(): Promise<BackUp> {
-    return this.backUpNowButton().clickAndRedirectsTo<BackUp>(BackUp);
+    return this.backUpNowButton().click<BackUp>(BackUp);
   }
 }

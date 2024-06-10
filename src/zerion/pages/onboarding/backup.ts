@@ -45,6 +45,6 @@ export class BackUp extends PageObject {
    * @memberof BackUp
    */
   verifyBackup(): Promise<Verify> {
-    return this.verifyBackUpButton().clickAndRedirectsTo<Verify>(Verify);
+    return this.verifyBackUpButton().click<Verify>(Verify);
   }
 }

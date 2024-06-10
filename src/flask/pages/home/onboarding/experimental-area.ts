@@ -24,6 +24,6 @@ export class ExperimentalArea extends PageObject {
    * @memberof ExperimentalArea
    */
   iAccept(): Promise<Welcome> {
-    return this.iAcceptButton().clickAndRedirectsTo<Welcome>(Welcome);
+    return this.iAcceptButton().click<Welcome>(Welcome);
   }
 }

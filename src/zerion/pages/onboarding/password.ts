@@ -35,6 +35,6 @@ export class Password extends PageObject {
    * @memberof Password
    */
   confirmPassword(): Promise<ConfirmPassword> {
-    return this.confirmButton().clickAndRedirectsTo<ConfirmPassword>(ConfirmPassword);
+    return this.confirmButton().click<ConfirmPassword>(ConfirmPassword);
   }
 }

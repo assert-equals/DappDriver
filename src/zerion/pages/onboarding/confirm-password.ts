@@ -36,6 +36,6 @@ export class ConfirmPassword extends PageObject {
    * @memberof ConfirmPassword
    */
   setPassword<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.setPasswordButton().clickAndRedirectsTo<TPage>(page);
+    return this.setPasswordButton().click<TPage>(page);
   }
 }

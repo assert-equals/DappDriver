@@ -25,6 +25,6 @@ export class SeedBackup extends PageObject {
    * @memberof SeedBackup
    */
   revealYourRecoveryPhrase(): Promise<RevealSeed> {
-    return this.revealYourRecoveryPhraseButton().clickAndRedirectsTo<RevealSeed>(RevealSeed);
+    return this.revealYourRecoveryPhraseButton().click<RevealSeed>(RevealSeed);
   }
 }

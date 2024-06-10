@@ -41,6 +41,6 @@ export class RevealSeed extends PageObject {
    * @memberof RevealSeed
    */
   iveSavedTheseWords(): Promise<SeedVerify> {
-    return this.iveSavedTheseWordsButton().clickAndRedirectsTo<SeedVerify>(SeedVerify);
+    return this.iveSavedTheseWordsButton().click<SeedVerify>(SeedVerify);
   }
 }
