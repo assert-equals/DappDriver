@@ -10,8 +10,7 @@ let completionPage: Completion;
 export async function setupMetaMaskWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
   const handles: Array<any> = await page.waitForWindows(2);
-  await page.switchToWindow(handles[1]);
-  const welcomePage = new Welcome();
+  const welcomePage: Welcome = await page.switchToWindow<Welcome>(handles[1], Welcome);
   await welcomePage.agreeTermsOfUse();
   if (seed) {
     const metametricsPage = await welcomePage.importAnExistingWallet();
