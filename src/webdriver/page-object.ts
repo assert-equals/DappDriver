@@ -106,7 +106,7 @@ export class WebDriverPageObject implements IPageObject {
   }
 
   async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    const handles: Array<string> = await this.waitForWindows(1);
+    const handles: Array<string> = await this.getAllWindowHandles();
     await this.switchToWindow(handles[0]);
     if (page) {
       return DappDriver.getPage(page);

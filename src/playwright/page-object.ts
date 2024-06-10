@@ -117,7 +117,7 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    const handles: Array<Page> = await this.waitForWindows(1);
+    const handles: Array<Page> = await this.getAllWindowHandles();
     await this.switchToWindow(handles[0]);
     if (page) {
       return DappDriver.getPage(page);
