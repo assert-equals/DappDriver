@@ -339,9 +339,9 @@ export class PageObject implements IPageObject {
    */
   async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
+      return this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
     } else {
-      return this.callIfMethodExists('switchToWindow');
+      return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
     }
   }
   /**
