@@ -405,10 +405,10 @@ export class PageObject implements IPageObject {
    *
    * Schedules a command to wait for the required count of windows
    * @param {number} total
-   * @return {*}  {Promise<Array<string>>}
+   * @return {*}  {Promise<Array<any>>}
    * @memberof PageObject
    */
-  async waitForWindows(total: number): Promise<Array<string>> {
+  async waitForWindows(total: number): Promise<Array<any>> {
     return this.callIfMethodExists('waitForWindows', [total]);
   }
 }

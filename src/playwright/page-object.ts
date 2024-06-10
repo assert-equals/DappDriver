@@ -54,7 +54,7 @@ export class PlaywrightPageObject implements IPageObject {
     return DappDriver.getPage(page);
   }
 
-  async getAllWindowHandles(): Promise<Array<any>> {
+  async getAllWindowHandles(): Promise<Array<Page>> {
     return await Promise.resolve(this.driver.pages());
   }
 
@@ -90,7 +90,7 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async opensInNewWindow(): Promise<void> {
-    const handles: Array<any> = await this.waitForWindows(2);
+    const handles: Array<Page> = await this.waitForWindows(2);
     await this.switchToWindow(handles[1]);
   }
 
@@ -117,7 +117,7 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    const handles: Array<any> = await this.waitForWindows(1);
+    const handles: Array<Page> = await this.waitForWindows(1);
     await this.switchToWindow(handles[0]);
     if (page) {
       return DappDriver.getPage(page);
@@ -160,11 +160,11 @@ export class PlaywrightPageObject implements IPageObject {
     );
   }
 
-  async waitForWindows(total: number): Promise<Array<any>> {
+  async waitForWindows(total: number): Promise<Array<Page>> {
     const timeout: number = 10_000;
     const delay: number = 100;
     let timeElapsed: number = 0;
-    let windowHandles: Array<any> = [];
+    let windowHandles: Array<Page> = [];
     while (timeElapsed <= timeout) {
       windowHandles = await this.getAllWindowHandles();
       if (windowHandles.length === total) {

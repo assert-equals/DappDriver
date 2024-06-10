@@ -10,7 +10,7 @@ let passwordPage: Password;
 let informationPage: Information;
 export async function setupZerionWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const handles: Array<string> = await page.waitForWindows(2);
+  const handles: Array<any> = await page.waitForWindows(2);
   await page.switchToWindow(handles[1]);
   const welcomePage = new Welcome();
   if (seed) {
