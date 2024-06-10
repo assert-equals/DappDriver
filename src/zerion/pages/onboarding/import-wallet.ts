@@ -25,6 +25,6 @@ export class ImportWallet extends PageObject {
    * @memberof ImportWallet
    */
   importRecoveryPhrase(): Promise<RecoveryPhrase> {
-    return this.importRecoveryPhraseButton().clickAndRedirectsTo<RecoveryPhrase>(RecoveryPhrase);
+    return this.importRecoveryPhraseButton().click<RecoveryPhrase>(RecoveryPhrase);
   }
 }

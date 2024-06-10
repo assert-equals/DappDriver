@@ -34,6 +34,6 @@ export class PinExtension extends PageObject {
    * @memberof PinExtension
    */
   done(): Promise<Home> {
-    return this.doneButton().clickAndRedirectsTo<Home>(Home);
+    return this.doneButton().click<Home>(Home);
   }
 }

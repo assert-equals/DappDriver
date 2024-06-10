@@ -24,6 +24,6 @@ export class Import extends PageObject {
    * @memberof Import
    */
   importFromASecretRecoveryPhrase(): Promise<ImportSeed> {
-    return this.importFromASRPButton().clickAndRedirectsTo<ImportSeed>(ImportSeed);
+    return this.importFromASRPButton().click<ImportSeed>(ImportSeed);
   }
 }

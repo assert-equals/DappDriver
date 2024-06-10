@@ -57,7 +57,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   importWallet(): Promise<Completion> {
-    return this.importButton().clickAndRedirectsTo<Completion>(Completion);
+    return this.importButton().click<Completion>(Completion);
   }
   /**
    *
@@ -66,6 +66,6 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   createWallet(): Promise<SecureYourWallet> {
-    return this.createButton().clickAndRedirectsTo<SecureYourWallet>(SecureYourWallet);
+    return this.createButton().click<SecureYourWallet>(SecureYourWallet);
   }
 }

@@ -25,7 +25,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   createNewWallet(): Promise<Password> {
-    return this.createNewWalletButton().clickAndRedirectsTo<Password>(Password);
+    return this.createNewWalletButton().click<Password>(Password);
   }
   /**
    *
@@ -34,6 +34,6 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   importExistingWallet(): Promise<ImportWallet> {
-    return this.importExistingWalletButton().clickAndRedirectsTo<ImportWallet>(ImportWallet);
+    return this.importExistingWalletButton().click<ImportWallet>(ImportWallet);
   }
 }

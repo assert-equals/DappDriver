@@ -36,6 +36,6 @@ export class Verify extends PageObject {
    * @memberof Verify
    */
   verify(): Promise<Success> {
-    return this.verifyButton().clickAndRedirectsTo<Success>(Success);
+    return this.verifyButton().click<Success>(Success);
   }
 }

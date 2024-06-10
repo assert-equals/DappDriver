@@ -24,6 +24,6 @@ export class Completion extends PageObject {
    * @memberof Completion
    */
   completeOnboarding(): Promise<PinExtension> {
-    return this.completeButton().clickAndRedirectsTo<PinExtension>(PinExtension);
+    return this.completeButton().click<PinExtension>(PinExtension);
   }
 }

@@ -40,6 +40,6 @@ export class ImportSeed extends PageObject {
    * @memberof ImportSeed
    */
   importWalletGroup(): Promise<ImportSelect> {
-    return this.importWalletsButton().clickAndRedirectsTo<ImportSelect>(ImportSelect);
+    return this.importWalletsButton().click<ImportSelect>(ImportSelect);
   }
 }

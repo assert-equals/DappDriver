@@ -46,6 +46,6 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   setPassword(): Promise<Ready> {
-    return this.setPasswordButton().clickAndRedirectsTo<Ready>(Ready);
+    return this.setPasswordButton().click<Ready>(Ready);
   }
 }
