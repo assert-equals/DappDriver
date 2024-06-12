@@ -3,6 +3,7 @@ import { DappDriver } from '../session/dapp-driver';
 import { IPageObject } from '../interface/page/page-object';
 import { PageObject } from '../page';
 import { Frame, Page } from '../types';
+import { IConfirmation } from '../interface/wallet/confirmation';
 
 export class PlaywrightPageObject implements IPageObject {
   private page: Page;
@@ -35,8 +36,7 @@ export class PlaywrightPageObject implements IPageObject {
 
   async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.close();
-    await this.switchToMainWindow();
-    return DappDriver.getPage(page);
+    return this.switchToMainWindow<TPage>(page);
   }
 
   async createNewWindow(): Promise<void> {
@@ -48,10 +48,12 @@ export class PlaywrightPageObject implements IPageObject {
     return this.page.evaluate(script);
   }
 
-  async executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage> {
+  async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
+    script: string,
+    page: new () => TPage,
+  ): Promise<TPage> {
     this.page.evaluate(script);
-    await this.opensInNewWindow();
-    return DappDriver.getPage(page);
+    return this.opensInExtension<TPage>(page);
   }
 
   async getAllWindowHandles(): Promise<Array<Page>> {
@@ -89,9 +91,17 @@ export class PlaywrightPageObject implements IPageObject {
     return this.navigateToPage<TPage>(url, page);
   }
 
-  async opensInNewWindow(): Promise<void> {
+  async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+    const handles: Array<Page> = await this.waitForWindows(2);
+    return this.switchToWindow<TPage>(handles[1], page);
+  }
+
+  async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     const handles: Array<Page> = await this.waitForWindows(2);
     await this.switchToWindow(handles[1]);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async refresh(): Promise<void> {

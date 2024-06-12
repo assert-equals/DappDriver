@@ -1,3 +1,4 @@
+import { IConfirmation } from '../interface/wallet/confirmation';
 import { PageObject } from '../page';
 import { JsonRpcRequest } from '../types';
 /**
@@ -21,15 +22,18 @@ export class Provider {
   }
   /**
    *
-   * Schedules a command to execute a JSON-RPC request in the context of the currently selected frame or window and switch the focus of all future commands to another window
+   * Schedules a command to execute a JSON-RPC request in the context of the currently selected frame or window and switch the focus of all future commands to the extension
    * @template TPage
    * @param {JsonRpcRequest} jsonRpcRequest
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof Provider
    */
-  requestOpensInNewWindow<TPage>(jsonRpcRequest: JsonRpcRequest, page: new () => TPage): Promise<TPage> {
+  requestOpensInExtension<TPage extends IConfirmation>(
+    jsonRpcRequest: JsonRpcRequest,
+    page: new () => TPage,
+  ): Promise<TPage> {
     const request = JSON.stringify(jsonRpcRequest);
-    return this.page.executeScriptAndOpensInNewWindow<TPage>(`window.ethereum.request(${request})`, page);
+    return this.page.executeScriptAndOpensInExtension<TPage>(`window.ethereum.request(${request})`, page);
   }
 }

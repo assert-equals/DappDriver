@@ -3,14 +3,18 @@ import { readFileSync, writeFileSync } from 'fs';
 import { DappDriver } from '../session/dapp-driver';
 import { PageObject } from '../page';
 import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase, Welcome } from '.';
+import { WEBDRIVER } from '../constants';
 
 let createPasswordPage: CreatePassword;
 let completionPage: Completion;
 
 export async function setupMetaMaskWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const handles: Array<any> = await page.waitForWindows(2);
-  const welcomePage: Welcome = await page.switchToWindow<Welcome>(handles[1], Welcome);
+  // Account for the the offscreen document in MetaMask (MV3): 'MetaMask Offscreen Page'
+  const expectedHandles: number = DappDriver.Instance.Framework === WEBDRIVER ? 3 : 2;
+  const extension: number = expectedHandles - 1;
+  const handles: Array<any> = await page.waitForWindows(expectedHandles);
+  const welcomePage: Welcome = await page.switchToWindow<Welcome>(handles[extension], Welcome);
   await welcomePage.agreeTermsOfUse();
   if (seed) {
     const metametricsPage = await welcomePage.importAnExistingWallet();
