@@ -105,22 +105,17 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to navigate to the previous URL
-   * @return {*}  {Promise<void>}
-   * @memberof PageObject
-   */
-  async back(): Promise<void> {
-    return this.callIfMethodExists('back');
-  }
-  /**
-   *
-   * Schedules a command to navigate to the previous page
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async backToPage<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('backToPage', [page]);
+  async back<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('back', [page]);
+    } else {
+      return this.callIfMethodExists('back');
+    }
   }
   /**
    *
@@ -224,26 +219,19 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to navigate to a new URL
-   * @param {string} url
-   * @return {*}  {Promise<void>}
-   * @memberof PageObject
-   */
-  async navigateTo(url: string): Promise<void> {
-    url = this.getFullURL(url);
-    return this.callIfMethodExists('navigateTo', [url]);
-  }
-  /**
-   *
-   * Schedules a command to navigate to a new page
    * @template TPage
    * @param {string} url
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     url = this.getFullURL(url);
-    return this.callIfMethodExists('navigateToPage', [url, page]);
+    if (page) {
+      return this.callIfMethodExists('navigateTo', [url, page]);
+    } else {
+      return this.callIfMethodExists('navigateTo', [url]);
+    }
   }
   /**
    *
@@ -287,22 +275,17 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to refresh the current page
-   * @return {*}  {Promise<void>}
-   * @memberof PageObject
-   */
-  async refresh(): Promise<void> {
-    return this.callIfMethodExists('refresh');
-  }
-  /**
-   *
-   * Schedules a command to refresh the current page
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async refreshPage<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('refreshPage', [page]);
+  async refresh<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('refresh', [page]);
+    } else {
+      return this.callIfMethodExists('refresh');
+    }
   }
   /**
    *
