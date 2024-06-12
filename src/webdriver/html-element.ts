@@ -3,6 +3,7 @@ import { IHTMLElement } from '../interface/controls/html-element';
 import { DappDriver } from '../session/dapp-driver';
 import { PageObject } from '../page';
 import { logWarning } from '../log';
+import { IConfirmation } from '../interface/wallet/confirmation';
 
 export class WebDriverHTMLElement implements IHTMLElement {
   private cssLocator: string;
@@ -57,16 +58,32 @@ export class WebDriverHTMLElement implements IHTMLElement {
     return this.driver.actions({ async: true }).pause(duration).perform();
   }
 
+  async clickAndOpensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+    await this.click();
+    return new PageObject().opensInExtension<TPage>(page);
+  }
+
   async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.click();
-    await new PageObject().opensInNewWindow();
-    return DappDriver.getPage(page);
+    return new PageObject().opensInNewWindow<TPage>(page);
   }
 
   async clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
+    const handle: string = await new PageObject().getWindowHandle();
     await this.click();
-    await new PageObject().switchToMainWindow();
-    return DappDriver.getPage(page);
+    const timeout: number = 10_000;
+    const delay: number = 100;
+    let timeElapsed: number = 0;
+    let windowHandles: Array<string> = [];
+    while (timeElapsed <= timeout) {
+      windowHandles = await new PageObject().getAllWindowHandles();
+      if (!windowHandles.includes(handle)) {
+        return new PageObject().switchToMainWindow<TPage>(page);
+      }
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      timeElapsed += delay;
+    }
+    throw new Error('clickAndSwitchToMainWindow timed out waiting for the current window to close');
   }
 
   async getAttribute(attribute: string): Promise<string | null> {

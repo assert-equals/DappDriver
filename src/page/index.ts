@@ -4,6 +4,7 @@ import { IPageObject } from '../interface/page/page-object';
 import { DappDriver } from '../session/dapp-driver';
 import { Page } from '../types';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+import { IConfirmation } from '../interface/wallet/confirmation';
 /**
  *
  *
@@ -162,15 +163,18 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to another window
+   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to the extension
    * @template TPage
    * @param {string} script
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('executeScriptAndOpensInNewWindow', [script, page]);
+  async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
+    script: string,
+    page: new () => TPage,
+  ): Promise<TPage> {
+    return this.callIfMethodExists('executeScriptAndOpensInExtension', [script, page]);
   }
   /**
    *
@@ -256,12 +260,29 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to switch the focus of all future commands to another window
-   * @return {*}  {Promise<void>}
+   * Schedules a command to switch the focus of all future commands to the extension
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async opensInNewWindow(): Promise<void> {
-    return this.callIfMethodExists('opensInNewWindow');
+  async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+    return this.callIfMethodExists('opensInExtension', [page]);
+  }
+  /**
+   *
+   * Schedules a command to switch the focus of all future commands to another window
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
+   * @memberof PageObject
+   */
+  async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('opensInNewWindow', [page]);
+    } else {
+      return this.callIfMethodExists('opensInNewWindow');
+    }
   }
   /**
    *

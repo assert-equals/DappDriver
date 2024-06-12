@@ -3,6 +3,7 @@ import { DappDriver } from '../session/dapp-driver';
 import { PlaywrightHTMLElement } from '../playwright/html-element';
 import { WebDriverHTMLElement } from '../webdriver/html-element';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+import { IConfirmation } from '../interface/wallet/confirmation';
 /**
  *
  *
@@ -68,6 +69,17 @@ export class HTMLElement implements IHTMLElement {
    */
   async clickAndWait(duration: number = 1000): Promise<void> {
     return this.callIfMethodExists('clickAndWait', [duration]);
+  }
+  /**
+   *
+   * Schedules a command to click on this element and switch the focus of all future commands to the extension
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof HTMLElement
+   */
+  async clickAndOpensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+    return this.callIfMethodExists('clickAndOpensInExtension', [page]);
   }
   /**
    *

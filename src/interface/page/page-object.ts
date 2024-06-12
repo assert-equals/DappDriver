@@ -1,3 +1,5 @@
+import { IConfirmation } from '../wallet/confirmation';
+
 export interface IPageObject {
   back(): Promise<void>;
   backToPage<TPage>(page: new () => TPage): Promise<TPage>;
@@ -5,7 +7,7 @@ export interface IPageObject {
   closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
   createNewWindow(): Promise<void>;
   executeScript(script: string): Promise<any>;
-  executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage>;
+  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page: new () => TPage): Promise<TPage>;
   getAllWindowHandles(): Promise<Array<any>>;
   getCurrentUrl(): Promise<string>;
   getTitle(): Promise<string>;
@@ -14,7 +16,10 @@ export interface IPageObject {
   navigateTo(url: string): Promise<void>;
   navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
+  opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage>;
   opensInNewWindow(): Promise<void>;
+  opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
+  opensInNewWindow<TPage>(page?: new () => TPage): Promise<any>;
   refresh(): Promise<void>;
   refreshPage<TPage>(page: new () => TPage): Promise<TPage>;
   setSize(width: number, height: number): Promise<void>;

@@ -1,6 +1,8 @@
 import { WebDriver, until } from 'selenium-webdriver';
 import { DappDriver } from '../session/dapp-driver';
 import { IPageObject } from '../interface/page/page-object';
+import { IConfirmation } from '../interface/wallet/confirmation';
+import { METAMASK } from '../constants';
 
 export class WebDriverPageObject implements IPageObject {
   private driver: WebDriver;
@@ -24,8 +26,7 @@ export class WebDriverPageObject implements IPageObject {
 
   async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
     await this.close();
-    await this.switchToMainWindow();
-    return DappDriver.getPage(page);
+    return this.switchToMainWindow<TPage>(page);
   }
 
   async createNewWindow(): Promise<void> {
@@ -38,10 +39,12 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.executeScript(script);
   }
 
-  async executeScriptAndOpensInNewWindow<TPage>(script: string, page: new () => TPage): Promise<TPage> {
+  async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
+    script: string,
+    page: new () => TPage,
+  ): Promise<TPage> {
     this.driver.executeScript(script);
-    await this.opensInNewWindow();
-    return DappDriver.getPage(page);
+    return this.opensInExtension<TPage>(page);
   }
 
   async getAllWindowHandles(): Promise<Array<string>> {
@@ -78,9 +81,20 @@ export class WebDriverPageObject implements IPageObject {
     return this.navigateToPage<TPage>(url, page);
   }
 
-  async opensInNewWindow(): Promise<void> {
+  async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+    // Account for the the offscreen document in MetaMask (MV3): 'MetaMask Offscreen Page'
+    const expectedHandles: number = DappDriver.Instance.Wallet === METAMASK ? 3 : 2;
+    const extension: number = expectedHandles - 1;
+    const handles: Array<string> = await this.waitForWindows(expectedHandles);
+    return this.switchToWindow<TPage>(handles[extension], page);
+  }
+
+  async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     const handles: Array<string> = await this.waitForWindows(2);
     await this.switchToWindow(handles[1]);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async refresh(): Promise<void> {

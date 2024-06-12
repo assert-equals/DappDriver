@@ -59,7 +59,7 @@ export class Dapp extends PageObject {
   }
 
   connect(): Promise<Connect> {
-    return this.connectButton().clickAndOpensInNewWindow<Connect>(Connect);
+    return this.connectButton().clickAndOpensInExtension<Connect>(Connect);
   }
 }
 ```
