@@ -21,13 +21,11 @@ export class PlaywrightPageObject implements IPageObject {
     DappDriver.Instance.Page = this.page;
   }
 
-  async back(): Promise<void> {
+  async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.goBack();
-  }
-
-  async backToPage<TPage>(page: new () => TPage): Promise<TPage> {
-    await this.back();
-    return DappDriver.getPage(page);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async close(): Promise<void> {
@@ -77,18 +75,16 @@ export class PlaywrightPageObject implements IPageObject {
     await this.page.setViewportSize({ width, height });
   }
 
-  async navigateTo(url: string): Promise<void> {
+  async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.page.goto(url);
-  }
-
-  async navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage> {
-    await this.navigateTo(url);
-    return DappDriver.getPage(page);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.createNewWindow();
-    return this.navigateToPage<TPage>(url, page);
+    return this.navigateTo<TPage>(url, page);
   }
 
   async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
@@ -104,13 +100,11 @@ export class PlaywrightPageObject implements IPageObject {
     }
   }
 
-  async refresh(): Promise<void> {
+  async refresh<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.reload();
-  }
-
-  async refreshPage<TPage>(page: new () => TPage): Promise<TPage> {
-    await this.refresh();
-    return DappDriver.getPage(page);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async setSize(width: number, height: number): Promise<void> {

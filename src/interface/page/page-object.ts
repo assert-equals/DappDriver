@@ -2,7 +2,8 @@ import { IConfirmation } from '../wallet/confirmation';
 
 export interface IPageObject {
   back(): Promise<void>;
-  backToPage<TPage>(page: new () => TPage): Promise<TPage>;
+  back<TPage>(page: new () => TPage): Promise<TPage>;
+  back<TPage>(page?: new () => TPage): Promise<any>;
   close(): Promise<void>;
   closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
   createNewWindow(): Promise<void>;
@@ -14,14 +15,16 @@ export interface IPageObject {
   getWindowHandle(): Promise<any>;
   maximize(): Promise<void>;
   navigateTo(url: string): Promise<void>;
-  navigateToPage<TPage>(url: string, page: new () => TPage): Promise<TPage>;
+  navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage>;
+  navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage>;
   opensInNewWindow(): Promise<void>;
   opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
   opensInNewWindow<TPage>(page?: new () => TPage): Promise<any>;
   refresh(): Promise<void>;
-  refreshPage<TPage>(page: new () => TPage): Promise<TPage>;
+  refresh<TPage>(page: new () => TPage): Promise<TPage>;
+  refresh<TPage>(page?: new () => TPage): Promise<any>;
   setSize(width: number, height: number): Promise<void>;
   switchBack(): Promise<void>;
   switchToFrame(cssLocator: string): Promise<void>;
