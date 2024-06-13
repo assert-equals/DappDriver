@@ -18,13 +18,19 @@ export class WebDriverPageObject implements IPageObject {
     }
   }
 
-  async close(): Promise<void> {
+  async close<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.close();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
+  async closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     await this.close();
-    return this.switchToMainWindow<TPage>(page);
+    await this.switchToMainWindow();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async createNewWindow(): Promise<void> {
@@ -39,10 +45,13 @@ export class WebDriverPageObject implements IPageObject {
 
   async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
     script: string,
-    page: new () => TPage,
-  ): Promise<TPage> {
+    page?: new () => TPage,
+  ): Promise<any> {
     this.driver.executeScript(script);
-    return this.opensInExtension<TPage>(page);
+    await this.opensInExtension();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async getAllWindowHandles(): Promise<Array<string>> {
@@ -72,17 +81,23 @@ export class WebDriverPageObject implements IPageObject {
     }
   }
 
-  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.createNewWindow();
-    return this.navigateTo<TPage>(url, page);
+    await this.navigateTo(url);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+  async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
     // Account for the the offscreen document in MetaMask (MV3): 'MetaMask Offscreen Page'
     const expectedHandles: number = DappDriver.Instance.Wallet === METAMASK ? 3 : 2;
     const extension: number = expectedHandles - 1;
     const handles: Array<string> = await this.waitForWindows(expectedHandles);
-    return this.switchToWindow<TPage>(handles[extension], page);
+    await this.switchToWindow(handles[extension]);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {

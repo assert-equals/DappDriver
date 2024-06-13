@@ -28,13 +28,19 @@ export class PlaywrightPageObject implements IPageObject {
     }
   }
 
-  async close(): Promise<void> {
+  async close<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.close();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
+  async closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     await this.close();
-    return this.switchToMainWindow<TPage>(page);
+    await this.switchToMainWindow();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async createNewWindow(): Promise<void> {
@@ -48,10 +54,13 @@ export class PlaywrightPageObject implements IPageObject {
 
   async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
     script: string,
-    page: new () => TPage,
-  ): Promise<TPage> {
+    page?: new () => TPage,
+  ): Promise<any> {
     this.page.evaluate(script);
-    return this.opensInExtension<TPage>(page);
+    await this.opensInExtension();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async getAllWindowHandles(): Promise<Array<Page>> {
@@ -82,14 +91,20 @@ export class PlaywrightPageObject implements IPageObject {
     }
   }
 
-  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.createNewWindow();
-    return this.navigateTo<TPage>(url, page);
+    await this.navigateTo(url);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+  async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
     const handles: Array<Page> = await this.waitForWindows(2);
-    return this.switchToWindow<TPage>(handles[1], page);
+    await this.switchToWindow(handles[1]);
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
   async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {

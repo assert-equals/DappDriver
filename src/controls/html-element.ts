@@ -74,34 +74,46 @@ export class HTMLElement implements IHTMLElement {
    *
    * Schedules a command to click on this element and switch the focus of all future commands to the extension
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof HTMLElement
    */
-  async clickAndOpensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('clickAndOpensInExtension', [page]);
+  async clickAndOpensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('clickAndOpensInExtension', [page]);
+    } else {
+      return this.callIfMethodExists('clickAndOpensInExtension');
+    }
   }
   /**
    *
    * Schedules a command to click on this element and switch the focus of all future commands to another window
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof HTMLElement
    */
-  async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
+  async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
+    } else {
+      return this.callIfMethodExists('clickAndOpensInNewWindow');
+    }
   }
   /**
    *
    * Schedules a command to click on this element and switch the focus of all future commands to the main window
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof HTMLElement
    */
-  async clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
+  async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
+    } else {
+      return this.callIfMethodExists('clickAndSwitchToMainWindow');
+    }
   }
   /**
    *
