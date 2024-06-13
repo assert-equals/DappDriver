@@ -33,7 +33,7 @@ export class PlaywrightHTMLElement implements IHTMLElement {
   async click<TPage>(page?: new () => TPage): Promise<any> {
     await this.webElement.click({ timeout: this.timeout });
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -46,7 +46,7 @@ export class PlaywrightHTMLElement implements IHTMLElement {
     await this.click();
     await new PageObject().opensInExtension();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -54,7 +54,7 @@ export class PlaywrightHTMLElement implements IHTMLElement {
     await this.click();
     await new PageObject().opensInNewWindow();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -70,7 +70,7 @@ export class PlaywrightHTMLElement implements IHTMLElement {
       if (!windowHandles.includes(handle)) {
         await new PageObject().switchToMainWindow();
         if (page) {
-          return DappDriver.getPage(page);
+          return DappDriver.getPage<TPage>(page);
         }
         return;
       }
