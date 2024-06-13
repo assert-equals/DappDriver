@@ -58,17 +58,23 @@ export class WebDriverHTMLElement implements IHTMLElement {
     return this.driver.actions({ async: true }).pause(duration).perform();
   }
 
-  async clickAndOpensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
+  async clickAndOpensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
     await this.click();
-    return new PageObject().opensInExtension<TPage>(page);
+    await new PageObject().opensInExtension();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage> {
+  async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     await this.click();
-    return new PageObject().opensInNewWindow<TPage>(page);
+    await new PageObject().opensInNewWindow();
+    if (page) {
+      return DappDriver.getPage(page);
+    }
   }
 
-  async clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
+  async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     const handle: string = await new PageObject().getWindowHandle();
     await this.click();
     const timeout: number = 10_000;
@@ -78,7 +84,11 @@ export class WebDriverHTMLElement implements IHTMLElement {
     while (timeElapsed <= timeout) {
       windowHandles = await new PageObject().getAllWindowHandles();
       if (!windowHandles.includes(handle)) {
-        return new PageObject().switchToMainWindow<TPage>(page);
+        await new PageObject().switchToMainWindow();
+        if (page) {
+          return DappDriver.getPage(page);
+        }
+        return;
       }
       await new Promise((resolve) => setTimeout(resolve, delay));
       timeElapsed += delay;

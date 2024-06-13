@@ -120,22 +120,32 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to close the current window
-   * @return {*}  {Promise<void>}
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async close(): Promise<void> {
-    return this.callIfMethodExists('close');
+  async close<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('close', [page]);
+    } else {
+      return this.callIfMethodExists('close');
+    }
   }
   /**
    *
    * Schedules a command to close the current window and switch the focus of all future commands to the main window
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('closeAndSwitchToMainWindow', [page]);
+  async closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('closeAndSwitchToMainWindow', [page]);
+    } else {
+      return this.callIfMethodExists('closeAndSwitchToMainWindow');
+    }
   }
   /**
    *
@@ -161,15 +171,19 @@ export class PageObject implements IPageObject {
    * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to the extension
    * @template TPage
    * @param {string} script
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
   async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
     script: string,
-    page: new () => TPage,
-  ): Promise<TPage> {
-    return this.callIfMethodExists('executeScriptAndOpensInExtension', [script, page]);
+    page?: new () => TPage,
+  ): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('executeScriptAndOpensInExtension', [script, page]);
+    } else {
+      return this.callIfMethodExists('executeScriptAndOpensInExtension', [script]);
+    }
   }
   /**
    *
@@ -238,24 +252,32 @@ export class PageObject implements IPageObject {
    * Schedules a command to navigate to a new page in a new window
    * @template TPage
    * @param {string} url
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
+  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
     url = this.getFullURL(url);
-    return this.callIfMethodExists('navigateToPageInNewWindow', [url, page]);
+    if (page) {
+      return this.callIfMethodExists('navigateToPageInNewWindow', [url, page]);
+    } else {
+      return this.callIfMethodExists('navigateToPageInNewWindow', [url]);
+    }
   }
   /**
    *
    * Schedules a command to switch the focus of all future commands to the extension
    * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('opensInExtension', [page]);
+  async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return this.callIfMethodExists('opensInExtension', [page]);
+    } else {
+      return this.callIfMethodExists('opensInExtension');
+    }
   }
   /**
    *
