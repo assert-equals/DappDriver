@@ -14,14 +14,14 @@ export class WebDriverPageObject implements IPageObject {
   async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.navigate().back();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
   async close<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.close();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -29,7 +29,7 @@ export class WebDriverPageObject implements IPageObject {
     await this.close();
     await this.switchToMainWindow();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -50,7 +50,7 @@ export class WebDriverPageObject implements IPageObject {
     this.driver.executeScript(script);
     await this.opensInExtension();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -77,7 +77,7 @@ export class WebDriverPageObject implements IPageObject {
   async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.driver.navigate().to(url);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -85,7 +85,7 @@ export class WebDriverPageObject implements IPageObject {
     await this.createNewWindow();
     await this.navigateTo(url);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -96,7 +96,7 @@ export class WebDriverPageObject implements IPageObject {
     const handles: Array<string> = await this.waitForWindows(expectedHandles);
     await this.switchToWindow(handles[extension]);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -104,14 +104,14 @@ export class WebDriverPageObject implements IPageObject {
     const handles: Array<string> = await this.waitForWindows(2);
     await this.switchToWindow(handles[1]);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
   async refresh<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.navigate().refresh();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -132,14 +132,14 @@ export class WebDriverPageObject implements IPageObject {
     const handles: Array<string> = await this.getAllWindowHandles();
     await this.switchToWindow(handles[0]);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
   async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
     await this.driver.switchTo().window(nameOrHandle);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 

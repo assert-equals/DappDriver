@@ -49,7 +49,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
       }
     }
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -62,7 +62,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
     await this.click();
     await new PageObject().opensInExtension();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -70,7 +70,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
     await this.click();
     await new PageObject().opensInNewWindow();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -86,7 +86,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
       if (!windowHandles.includes(handle)) {
         await new PageObject().switchToMainWindow();
         if (page) {
-          return DappDriver.getPage(page);
+          return DappDriver.getPage<TPage>(page);
         }
         return;
       }

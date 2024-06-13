@@ -24,14 +24,14 @@ export class PlaywrightPageObject implements IPageObject {
   async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.goBack();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
   async close<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.close();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -39,7 +39,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.close();
     await this.switchToMainWindow();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -59,7 +59,7 @@ export class PlaywrightPageObject implements IPageObject {
     this.page.evaluate(script);
     await this.opensInExtension();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -87,7 +87,7 @@ export class PlaywrightPageObject implements IPageObject {
   async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.page.goto(url);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -95,7 +95,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.createNewWindow();
     await this.navigateTo(url);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -103,7 +103,7 @@ export class PlaywrightPageObject implements IPageObject {
     const handles: Array<Page> = await this.waitForWindows(2);
     await this.switchToWindow(handles[1]);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -111,14 +111,14 @@ export class PlaywrightPageObject implements IPageObject {
     const handles: Array<Page> = await this.waitForWindows(2);
     await this.switchToWindow(handles[1]);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
   async refresh<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.reload();
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -139,7 +139,7 @@ export class PlaywrightPageObject implements IPageObject {
     const handles: Array<Page> = await this.getAllWindowHandles();
     await this.switchToWindow(handles[0]);
     if (page) {
-      return DappDriver.getPage(page);
+      return DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -149,7 +149,7 @@ export class PlaywrightPageObject implements IPageObject {
       if (handle === nameOrHandle) {
         if (page) {
           this.initialize(nameOrHandle);
-          return DappDriver.getPage(page);
+          return DappDriver.getPage<TPage>(page);
         } else {
           return this.initialize(nameOrHandle);
         }
