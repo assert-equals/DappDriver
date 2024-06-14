@@ -45,6 +45,7 @@ export interface IPageObject {
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
   switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any>;
   waitForElement(cssLocator: string): Promise<void>;
+  waitForExtension(): Promise<any>;
   waitForTitle(title: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
   waitForWindows(total: number): Promise<Array<any>>;
