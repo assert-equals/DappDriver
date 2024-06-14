@@ -30,6 +30,8 @@ export class Approve implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof Approve
    */
+  accept(): Promise<void>;
+  accept<TPage>(page: new () => TPage): Promise<TPage>;
   accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('accept', [page]);
@@ -54,6 +56,8 @@ export class Approve implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof Approve
    */
+  reject(): Promise<void>;
+  reject<TPage>(page: new () => TPage): Promise<TPage>;
   reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('reject', [page]);
@@ -69,6 +73,8 @@ export class Approve implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof Approve
    */
+  switchToMainWindow(): Promise<void>;
+  switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
   switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('switchToMainWindow', [page]);
@@ -85,6 +91,8 @@ export class Approve implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof Approve
    */
+  switchToWindow(nameOrHandle: any): Promise<void>;
+  switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
   switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);

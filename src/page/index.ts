@@ -110,7 +110,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async back<TPage>(page?: new () => TPage): Promise<any> {
+  back(): Promise<void>;
+  back<TPage>(page: new () => TPage): Promise<TPage>;
+  back<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('back', [page]);
     } else {
@@ -125,7 +127,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async close<TPage>(page?: new () => TPage): Promise<any> {
+  close(): Promise<void>;
+  close<TPage>(page: new () => TPage): Promise<TPage>;
+  close<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('close', [page]);
     } else {
@@ -140,7 +144,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+  closeAndSwitchToMainWindow(): Promise<void>;
+  closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
+  closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('closeAndSwitchToMainWindow', [page]);
     } else {
@@ -153,7 +159,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async createNewWindow(): Promise<void> {
+  createNewWindow(): Promise<void> {
     return this.callIfMethodExists('createNewWindow');
   }
   /**
@@ -163,7 +169,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async executeScript(script: string): Promise<any> {
+  executeScript(script: string): Promise<any> {
     return this.callIfMethodExists('executeScript', [script]);
   }
   /**
@@ -175,10 +181,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
-    script: string,
-    page?: new () => TPage,
-  ): Promise<any> {
+  executeScriptAndOpensInExtension(script: string): Promise<void>;
+  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page: new () => TPage): Promise<TPage>;
+  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('executeScriptAndOpensInExtension', [script, page]);
     } else {
@@ -191,7 +196,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<Array<any>>}
    * @memberof PageObject
    */
-  async getAllWindowHandles(): Promise<Array<any>> {
+  getAllWindowHandles(): Promise<Array<any>> {
     return this.callIfMethodExists('getAllWindowHandles');
   }
   /**
@@ -200,7 +205,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<string>}
    * @memberof PageObject
    */
-  async getCurrentUrl(): Promise<string> {
+  getCurrentUrl(): Promise<string> {
     return this.callIfMethodExists('getCurrentUrl');
   }
   /**
@@ -209,7 +214,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<string>}
    * @memberof PageObject
    */
-  async getTitle(): Promise<string> {
+  getTitle(): Promise<string> {
     return this.callIfMethodExists('getTitle');
   }
   /**
@@ -218,7 +223,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async getWindowHandle(): Promise<any> {
+  getWindowHandle(): Promise<any> {
     return this.callIfMethodExists('getWindowHandle');
   }
   /**
@@ -227,7 +232,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async maximize(): Promise<void> {
+  maximize(): Promise<void> {
     return this.callIfMethodExists('maximize');
   }
   /**
@@ -239,7 +244,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  navigateTo(url: string): Promise<void>;
+  navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage>;
+  navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     url = this.getFullURL(url);
     if (page) {
       return this.callIfMethodExists('navigateTo', [url, page]);
@@ -256,7 +263,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  navigateToPageInNewWindow(url: string): Promise<void>;
+  navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
+  navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
     url = this.getFullURL(url);
     if (page) {
       return this.callIfMethodExists('navigateToPageInNewWindow', [url, page]);
@@ -272,7 +281,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
+  opensInExtension(): Promise<void>;
+  opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage>;
+  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('opensInExtension', [page]);
     } else {
@@ -287,7 +298,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
+  opensInNewWindow(): Promise<void>;
+  opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
+  opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('opensInNewWindow', [page]);
     } else {
@@ -302,7 +315,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async refresh<TPage>(page?: new () => TPage): Promise<any> {
+  refresh(): Promise<void>;
+  refresh<TPage>(page: new () => TPage): Promise<TPage>;
+  refresh<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('refresh', [page]);
     } else {
@@ -317,7 +332,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async setSize(width: number, height: number): Promise<void> {
+  setSize(width: number, height: number): Promise<void> {
     return this.callIfMethodExists('setSize', [width, height]);
   }
   /**
@@ -326,7 +341,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async switchBack(): Promise<void> {
+  switchBack(): Promise<void> {
     return this.callIfMethodExists('switchBack');
   }
   /**
@@ -336,7 +351,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async switchToFrame(cssLocator: string): Promise<void> {
+  switchToFrame(cssLocator: string): Promise<void> {
     return this.callIfMethodExists('switchToFrame', [cssLocator]);
   }
   /**
@@ -347,7 +362,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+  switchToMainWindow(): Promise<void>;
+  switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
+  switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('switchToMainWindow', [page]);
     } else {
@@ -363,7 +380,9 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+  switchToWindow(nameOrHandle: any): Promise<void>;
+  switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
+  switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
     if (page) {
       return this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
     } else {
@@ -377,7 +396,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async waitForElement(cssLocator: string): Promise<void> {
+  waitForElement(cssLocator: string): Promise<void> {
     return this.callIfMethodExists('waitForElement', [cssLocator]);
   }
   /**
@@ -386,7 +405,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async waitForExtension(): Promise<any> {
+  waitForExtension(): Promise<any> {
     return this.callIfMethodExists('waitForExtension');
   }
   /**
@@ -421,7 +440,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async waitForTitle(title?: RegExp): Promise<void> {
+  waitForTitle(title?: RegExp): Promise<void> {
     title = title || this.getTitleRegex();
     return this.callIfMethodExists('waitForTitle', [title]);
   }
@@ -432,7 +451,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async waitForURL(url?: RegExp): Promise<void> {
+  waitForURL(url?: RegExp): Promise<void> {
     url = url || this.getURLRegex();
     return this.callIfMethodExists('waitForURL', [url]);
   }
@@ -443,7 +462,7 @@ export class PageObject implements IPageObject {
    * @return {*}  {Promise<Array<any>>}
    * @memberof PageObject
    */
-  async waitForWindows(total: number): Promise<Array<any>> {
+  waitForWindows(total: number): Promise<Array<any>> {
     return this.callIfMethodExists('waitForWindows', [total]);
   }
 }
