@@ -16,7 +16,7 @@ import {
   findGithubAsset,
 } from '../wallet/install';
 
-export async function metamask(version: string = DEFAULT_METAMASK_VERSION, directory: string): Promise<void> {
+export async function metamask(directory: string, version: string = DEFAULT_METAMASK_VERSION): Promise<void> {
   try {
     const assetName = `${DEFAULT_METAMASK_ASSET}-${version}.zip`;
     compareVersion(METAMASK, version, RECOMMENDED_METAMASK_VERSIONS);

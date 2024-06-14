@@ -8,7 +8,13 @@ import { DappDriver } from '../../../session/dapp-driver';
  * @extends {PageObject}
  */
 export class Home extends PageObject {
-  public static expandViewUrl: () => string = () => DappDriver.Instance.Extension + '/home.html';
+  /**
+   *
+   *
+   * @static
+   * @memberof Home
+   */
+  public static readonly expandViewUrl: () => string = () => DappDriver.Instance.Extension + '/home.html';
   /**
    * Creates an instance of Home.
    * @memberof Home
