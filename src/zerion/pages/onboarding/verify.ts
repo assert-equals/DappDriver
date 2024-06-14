@@ -9,7 +9,7 @@ import { Success } from './success';
  * @extends {PageObject}
  */
 export class Verify extends PageObject {
-  private wordInput: (index: Number) => HTMLElement = (index) => new HTMLElement(`#word-${index}`);
+  private wordInput: (index: number) => HTMLElement = (index) => new HTMLElement(`#word-${index}`);
   private verifyButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Verify")]');
   /**
    * Creates an instance of Verify.
@@ -21,12 +21,12 @@ export class Verify extends PageObject {
   /**
    *
    *
-   * @param {Number} index
+   * @param {number} index
    * @param {string} word
    * @return {*}  {Promise<void>}
    * @memberof Verify
    */
-  enterWord(index: Number, word: string): Promise<void> {
+  enterWord(index: number, word: string): Promise<void> {
     return this.wordInput(index).type(word);
   }
   /**

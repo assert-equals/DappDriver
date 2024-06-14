@@ -17,10 +17,8 @@ export class WebDriverCheckBox extends WebDriverHTMLElement implements ICheckBox
       if (!value) {
         await this.click();
       }
-    } else {
-      if (value) {
-        await this.click();
-      }
+    } else if (value) {
+      await this.click();
     }
   }
 }

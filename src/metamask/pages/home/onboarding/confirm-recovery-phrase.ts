@@ -9,7 +9,7 @@ import { Completion } from './completion';
  * @extends {PageObject}
  */
 export class ConfirmRecoveryPhrase extends PageObject {
-  private chipInput: (index: Number) => InputText = (index) =>
+  private chipInput: (index: number) => InputText = (index) =>
     new InputText(`[data-testid="recovery-phrase-input-${index}"]`);
   private confirmButton: () => HTMLElement = () => new HTMLElement('[data-testid="recovery-phrase-confirm"]');
   /**
@@ -22,12 +22,12 @@ export class ConfirmRecoveryPhrase extends PageObject {
   /**
    *
    *
-   * @param {Number} index
+   * @param {number} index
    * @param {string} word
    * @return {*}  {Promise<void>}
    * @memberof ConfirmRecoveryPhrase
    */
-  enterWord(index: Number, word: string): Promise<void> {
+  enterWord(index: number, word: string): Promise<void> {
     return this.chipInput(index).type(word);
   }
   /**

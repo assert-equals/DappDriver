@@ -15,12 +15,10 @@ import {
 
 export class PlaywrightFactory {
   async build(browser: Browser, options: BrowserOptions): Promise<BrowserContext> {
-    switch (browser.toLowerCase()) {
-      case CHROME:
-        return this.buildChrome(options);
-      default:
-        throw new Error('Unsupported browser: ' + browser);
+    if (browser.toLowerCase() === CHROME) {
+      return this.buildChrome(options);
     }
+    throw new Error('Unsupported browser: ' + browser);
   }
 
   private async buildChrome(options: BrowserOptions): Promise<BrowserContext> {

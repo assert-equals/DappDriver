@@ -168,7 +168,7 @@ export class DappDriver {
       }
     }
     if (framework === PLAYWRIGHT) {
-      driver = (await new PlaywrightFactory().build(browser, options)) as BrowserContext;
+      driver = await new PlaywrightFactory().build(browser, options);
     } else if (framework === WEBDRIVER) {
       driver = await new WebDriverFactory().build(browser, options);
     } else {
@@ -273,7 +273,7 @@ export class DappDriver {
   static async takeScreenshot(): Promise<string> {
     let screenShot: string;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      screenShot = (await (DappDriver.Instance.Page as Page).screenshot()).toString('base64');
+      screenShot = (await DappDriver.Instance.Page.screenshot()).toString('base64');
     } else if (DappDriver.Instance.Framework === WEBDRIVER) {
       screenShot = await (DappDriver.Instance.Driver as WebDriver).takeScreenshot();
     }

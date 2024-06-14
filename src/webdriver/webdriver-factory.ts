@@ -16,12 +16,10 @@ import {
 
 export class WebDriverFactory {
   build(browser: Browser, options: BrowserOptions): Promise<WebDriver> {
-    switch (browser.toLowerCase()) {
-      case CHROME:
-        return this.buildChrome(options);
-      default:
-        throw new Error('Unsupported browser: ' + browser);
+    if (browser.toLowerCase() === CHROME) {
+      return this.buildChrome(options);
     }
+    throw new Error('Unsupported browser: ' + browser);
   }
 
   private async buildChrome(options: BrowserOptions): Promise<WebDriver> {

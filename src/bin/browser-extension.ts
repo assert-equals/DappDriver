@@ -27,16 +27,16 @@ const { wallet, release, directory }: { wallet: Wallet; release: string; directo
 (async () => {
   switch (wallet.toLowerCase()) {
     case METAMASK:
-      await metamask(release, directory);
+      await metamask(directory, release);
       break;
     case METAMASK_FLASK:
-      await metamaskFlask(release, directory);
+      await metamaskFlask(directory, release);
       break;
     case RAINBOW:
-      await rainbow(release, directory);
+      await rainbow(directory, release);
       break;
     case ZERION:
-      await zerion(release, directory);
+      await zerion(directory, release);
       break;
     default:
       logError(`Could not find the specified wallet (${wallet}).`);

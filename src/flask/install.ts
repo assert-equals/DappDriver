@@ -17,8 +17,8 @@ import {
 } from '../wallet/install';
 
 export async function metamaskFlask(
-  version: string = DEFAULT_METAMASK_FLASK_VERSION,
   directory: string,
+  version: string = DEFAULT_METAMASK_FLASK_VERSION,
 ): Promise<void> {
   try {
     const assetName = `${DEFAULT_METAMASK_FLASK_ASSET}-${version}-flask.0.zip`;
