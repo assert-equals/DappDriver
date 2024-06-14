@@ -100,8 +100,8 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
-    const handles: Array<Page> = await this.waitForWindows(2);
-    await this.switchToWindow(handles[1]);
+    const extension: Page = await this.waitForExtension();
+    await this.switchToWindow(extension);
     if (page) {
       return DappDriver.getPage<TPage>(page);
     }
@@ -165,16 +165,21 @@ export class PlaywrightPageObject implements IPageObject {
     );
   }
 
+  async waitForExtension(): Promise<Page> {
+    const handles: Array<Page> = await this.waitForWindows(2);
+    return handles[1];
+  }
+
   async waitForTitle(title: RegExp): Promise<void> {
     await this.pageObject.waitForFunction(
-      async () => (await this.getTitle()).match(title) !== null,
+      async () => RegExp(title).exec(await this.getTitle()) !== null,
       `Waiting for title to match ${title}`,
     );
   }
 
   async waitForURL(url: RegExp): Promise<void> {
     await this.pageObject.waitForFunction(
-      async () => (await this.getCurrentUrl()).match(url) !== null,
+      async () => RegExp(url).exec(await this.getCurrentUrl()) !== null,
       `Waiting for url to match ${url}`,
     );
   }

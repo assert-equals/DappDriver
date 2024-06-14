@@ -90,11 +90,8 @@ export class WebDriverPageObject implements IPageObject {
   }
 
   async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
-    // Account for the the offscreen document in MetaMask (MV3): 'MetaMask Offscreen Page'
-    const expectedHandles: number = DappDriver.Instance.Wallet === METAMASK ? 3 : 2;
-    const extension: number = expectedHandles - 1;
-    const handles: Array<string> = await this.waitForWindows(expectedHandles);
-    await this.switchToWindow(handles[extension]);
+    const extension: string = await this.waitForExtension();
+    await this.switchToWindow(extension);
     if (page) {
       return DappDriver.getPage<TPage>(page);
     }
@@ -145,6 +142,14 @@ export class WebDriverPageObject implements IPageObject {
 
   async waitForElement(cssLocator: string): Promise<void> {
     await this.driver.wait(until.elementLocated({ css: cssLocator }), 20000);
+  }
+
+  async waitForExtension(): Promise<string> {
+    // Account for the the offscreen document in MetaMask (MV3): 'MetaMask Offscreen Page'
+    const expectedHandles: number = DappDriver.Instance.Wallet === METAMASK ? 3 : 2;
+    const extension: number = expectedHandles - 1;
+    const handles: Array<string> = await this.waitForWindows(expectedHandles);
+    return handles[extension];
   }
 
   async waitForTitle(title: RegExp): Promise<void> {

@@ -382,6 +382,15 @@ export class PageObject implements IPageObject {
   }
   /**
    *
+   * Schedules a command to wait for the extension window
+   * @return {*}  {Promise<any>}
+   * @memberof PageObject
+   */
+  async waitForExtension(): Promise<any> {
+    return this.callIfMethodExists('waitForExtension');
+  }
+  /**
+   *
    * Schedules a command to wait for a function to return a truthy value
    * @param {Function} func
    * @param {string} errMsg
@@ -413,7 +422,7 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   async waitForTitle(title?: RegExp): Promise<void> {
-    title = title ? title : this.getTitleRegex();
+    title = title || this.getTitleRegex();
     return this.callIfMethodExists('waitForTitle', [title]);
   }
   /**
@@ -424,7 +433,7 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   async waitForURL(url?: RegExp): Promise<void> {
-    url = url ? url : this.getURLRegex();
+    url = url || this.getURLRegex();
     return this.callIfMethodExists('waitForURL', [url]);
   }
   /**
