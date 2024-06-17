@@ -7,20 +7,20 @@ import { IConfirmation } from '../../interface/wallet/confirmation';
 
 export class Approve implements IConfirmation {
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let connect: MetaMaskApprove | RainbowApprove | ZerionApprove;
+    let approve: MetaMaskApprove | RainbowApprove | ZerionApprove;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        connect = new MetaMaskApprove();
+        approve = new MetaMaskApprove();
         break;
       case RAINBOW:
-        connect = new RainbowApprove();
+        approve = new RainbowApprove();
         break;
       case ZERION:
-        connect = new ZerionApprove();
+        approve = new ZerionApprove();
         break;
     }
-    return await (connect[methodName] as Function)(...args);
+    return await (approve[methodName] as Function)(...args);
   }
   /**
    *
