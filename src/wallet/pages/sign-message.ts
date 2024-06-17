@@ -13,20 +13,20 @@ import { IConfirmation } from '../../interface/wallet/confirmation';
  */
 export class SignMessage implements IConfirmation {
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let connect: MetaMaskSignMessage | RainbowSignMessage | ZerionSignMessage;
+    let signMessage: MetaMaskSignMessage | RainbowSignMessage | ZerionSignMessage;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        connect = new MetaMaskSignMessage();
+        signMessage = new MetaMaskSignMessage();
         break;
       case RAINBOW:
-        connect = new RainbowSignMessage();
+        signMessage = new RainbowSignMessage();
         break;
       case ZERION:
-        connect = new ZerionSignMessage();
+        signMessage = new ZerionSignMessage();
         break;
     }
-    return await (connect[methodName] as Function)(...args);
+    return await (signMessage[methodName] as Function)(...args);
   }
   /**
    *

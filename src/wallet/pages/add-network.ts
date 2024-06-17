@@ -13,20 +13,20 @@ import { IConfirmation } from '../../interface/wallet/confirmation';
  */
 export class AddNetwork implements IConfirmation {
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let connect: MetaMaskAddNetwork | RainbowAddNetwork | ZerionAddNetwork;
+    let addNetwork: MetaMaskAddNetwork | RainbowAddNetwork | ZerionAddNetwork;
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        connect = new MetaMaskAddNetwork();
+        addNetwork = new MetaMaskAddNetwork();
         break;
       case RAINBOW:
-        connect = new RainbowAddNetwork();
+        addNetwork = new RainbowAddNetwork();
         break;
       case ZERION:
-        connect = new ZerionAddNetwork();
+        addNetwork = new ZerionAddNetwork();
         break;
     }
-    return await (connect[methodName] as Function)(...args);
+    return await (addNetwork[methodName] as Function)(...args);
   }
   /**
    *
