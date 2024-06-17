@@ -10,7 +10,7 @@ import {
   fetchGithubRelease,
   fetchGithubWorkflow,
   fetchGithubRun,
-  fetchGithubArtifact,
+  fetchGithubArtifact
 } from '../wallet/install';
 
 export async function rainbow(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<void> {

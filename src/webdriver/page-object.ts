@@ -45,7 +45,7 @@ export class WebDriverPageObject implements IPageObject {
 
   async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
     script: string,
-    page?: new () => TPage,
+    page?: new () => TPage
   ): Promise<any> {
     this.driver.executeScript(script);
     await this.opensInExtension();

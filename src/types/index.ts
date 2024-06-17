@@ -45,5 +45,5 @@ export {
   JsonRpcRequest,
   Page,
   Wallet,
-  WalletOptions,
+  WalletOptions
 };

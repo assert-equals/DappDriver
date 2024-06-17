@@ -8,7 +8,7 @@ import {
   PLAYWRIGHT,
   RAINBOW,
   WEBDRIVER,
-  ZERION,
+  ZERION
 } from '../constants';
 import { setupMetaMaskFlaskWallet } from '../flask/setup';
 import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
@@ -127,21 +127,21 @@ export class DappDriver {
     domain: string,
     framework: Framework,
     browser: Browser,
-    tPage: new () => TPage,
+    tPage: new () => TPage
   ): Promise<TPage>;
   static async create<TPage>(
     domain: string,
     framework: Framework,
     browser: Browser,
     tPage: new () => TPage,
-    options: BrowserOptions,
+    options: BrowserOptions
   ): Promise<TPage>;
   static async create<TPage>(
     domain: string,
     framework: Framework,
     browser: Browser,
     arg4?: any,
-    options?: BrowserOptions,
+    options?: BrowserOptions
   ): Promise<any> {
     let tPage: new () => TPage = null;
     options = options || { proxy: false, extension: { wallet: null, path: null, seed: null } };
@@ -212,7 +212,7 @@ export class DappDriver {
         await enableMetaMaskAutomation(metamaskPath);
       } catch (error) {
         throw new Error(
-          'Could not enable automation in MetaMask, try running `npx dappdriver -w metamask` to install MetaMask.',
+          'Could not enable automation in MetaMask, try running `npx dappdriver -w metamask` to install MetaMask.'
         );
       }
     }

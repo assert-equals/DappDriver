@@ -87,7 +87,7 @@ export class PlaywrightHTMLElement implements IHTMLElement {
   async getCssValue(property: string): Promise<string | null> {
     return await this.webElement.evaluate(
       (element, property) => window.getComputedStyle(element).getPropertyValue(property),
-      property,
+      property
     );
   }
 

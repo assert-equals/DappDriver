@@ -17,7 +17,7 @@ export function compareVersion(wallet: Wallet, version: string, recommendedVersi
   const satisfy = semver.satisfies(version, recommendedVersions);
   if (!satisfy) {
     throw new Error(
-      `This version (${version}) of ${wallet} is not supported. Please try version(s): ${recommendedVersions}.`,
+      `This version (${version}) of ${wallet} is not supported. Please try version(s): ${recommendedVersions}.`
     );
   }
 }
@@ -32,7 +32,7 @@ export async function downloadAssetZipFile(asset: Asset, directory: string): Pro
   const file = asset.name.endsWith('.zip') ? asset.name : `${asset.name}.zip`;
   const zipFileName = path.join(directory, file);
   const zipFile = await axios.get(asset.browser_download_url, {
-    responseType: 'arraybuffer',
+    responseType: 'arraybuffer'
   });
   fs.writeFileSync(zipFileName, zipFile.data);
   return zipFileName;
@@ -44,9 +44,9 @@ export async function downloadArtifactZipFile(artifact: Artifact, directory: str
   const zipFile = await axios.get(artifact.archive_download_url, {
     headers: {
       Authorization: `token ${process.env.GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github.v3+json',
+      Accept: 'application/vnd.github.v3+json'
     },
-    responseType: 'arraybuffer',
+    responseType: 'arraybuffer'
   });
   fs.writeFileSync(zipFileName, zipFile.data);
   return zipFileName;
@@ -85,7 +85,7 @@ export async function fetchGithubRun(
   version: string,
   workflowName: string,
   workflow: any,
-  githubApiUrl: string,
+  githubApiUrl: string
 ): Promise<any> {
   const runBranch = `rc-v${version}`;
   const runsResponse = await axios.get(`${githubApiUrl}/actions/workflows/${workflow.id}/runs`);

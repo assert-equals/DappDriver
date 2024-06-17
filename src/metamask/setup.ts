@@ -54,7 +54,7 @@ export async function enableMetaMaskAutomation(metaMaskPath: string): Promise<vo
   const file = readFileSync(runtimeLavaMoatPath, 'utf8');
   const updatedRuntimeLavaMoatData = file.replace(
     `"scuttleGlobalThis":{"enabled":true`,
-    `"scuttleGlobalThis":{"enabled":false`,
+    `"scuttleGlobalThis":{"enabled":false`
   );
   writeFileSync(runtimeLavaMoatPath, updatedRuntimeLavaMoatData);
 }

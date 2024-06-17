@@ -25,7 +25,7 @@ export class WebDriverHTMLElementCollection {
   async elements(): Promise<Array<HTMLElement>> {
     await this.search();
     this.webElements.forEach((element) =>
-      this.htmlElements.push(new HTMLElement(this.cssLocator, this.timeout, element)),
+      this.htmlElements.push(new HTMLElement(this.cssLocator, this.timeout, element))
     );
     return this.htmlElements;
   }

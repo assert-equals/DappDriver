@@ -32,7 +32,7 @@ export class Provider {
    */
   requestOpensInExtension<TPage extends IConfirmation>(
     jsonRpcRequest: JsonRpcRequest,
-    page: new () => TPage,
+    page: new () => TPage
   ): Promise<TPage> {
     const request = JSON.stringify(jsonRpcRequest);
     return this.page.executeScriptAndOpensInExtension<TPage>(`window.ethereum.request(${request})`, page);

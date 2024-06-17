@@ -20,7 +20,7 @@ export class PlaywrightHTMLElementCollection {
 
   async elements(): Promise<Array<HTMLElement>> {
     (await this.webElements.all()).forEach((element) =>
-      this.htmlElements.push(new HTMLElement(this.cssLocator, this.timeout, element)),
+      this.htmlElements.push(new HTMLElement(this.cssLocator, this.timeout, element))
     );
     return this.htmlElements;
   }
