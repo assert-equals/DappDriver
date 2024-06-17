@@ -1,6 +1,6 @@
+import { Range } from 'semver';
 import pkg from '../../package.json';
 import { Browser, Framework, Wallet } from '../types';
-import { Range } from 'semver';
 
 const PACKAGE_NAME: string = pkg.name;
 const PACKAGE_VERSION: string = pkg.version;

@@ -1,9 +1,9 @@
 import { WebDriver, WebElement, WebElementPromise, error, until } from 'selenium-webdriver';
 import { IHTMLElement } from '../interface/controls/html-element';
-import { DappDriver } from '../session/dapp-driver';
-import { PageObject } from '../page';
-import { logWarning } from '../log';
 import { IConfirmation } from '../interface/wallet/confirmation';
+import { logWarning } from '../log';
+import { PageObject } from '../page';
+import { DappDriver } from '../session/dapp-driver';
 
 export class WebDriverHTMLElement implements IHTMLElement {
   private cssLocator: string;

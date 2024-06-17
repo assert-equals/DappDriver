@@ -1,9 +1,9 @@
 import { BrowserContext } from 'playwright-core';
-import { DappDriver } from '../session/dapp-driver';
 import { IPageObject } from '../interface/page/page-object';
-import { PageObject } from '../page';
-import { Frame, Page } from '../types';
 import { IConfirmation } from '../interface/wallet/confirmation';
+import { PageObject } from '../page';
+import { DappDriver } from '../session/dapp-driver';
+import { Frame, Page } from '../types';
 
 export class PlaywrightPageObject implements IPageObject {
   private page: Page;

@@ -1,6 +1,7 @@
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PageObject } from '../page';
 import { JsonRpcRequest } from '../types';
+
 /**
  *
  *

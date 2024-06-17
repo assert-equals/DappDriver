@@ -1,10 +1,11 @@
-import { DappDriver } from '../session/dapp-driver';
+import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { IHTMLElement } from '../interface/controls/html-element';
 import { IRadio } from '../interface/controls/radio';
 import { PlaywrightRadio } from '../playwright/radio';
+import { DappDriver } from '../session/dapp-driver';
 import { WebDriverRadio } from '../webdriver/radio';
 import { HTMLElement } from './html-element';
-import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+
 /**
  *
  *

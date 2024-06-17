@@ -1,7 +1,7 @@
-import { DappDriver } from '../session/dapp-driver';
-import { PageObject } from '../page';
-import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase } from '../metamask';
 import { ExperimentalArea } from '.';
+import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase } from '../metamask';
+import { PageObject } from '../page';
+import { DappDriver } from '../session/dapp-driver';
 
 let createPasswordPage: CreatePassword;
 let completionPage: Completion;

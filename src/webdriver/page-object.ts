@@ -1,8 +1,8 @@
 import { WebDriver, until } from 'selenium-webdriver';
-import { DappDriver } from '../session/dapp-driver';
+import { METAMASK } from '../constants';
 import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
-import { METAMASK } from '../constants';
+import { DappDriver } from '../session/dapp-driver';
 
 export class WebDriverPageObject implements IPageObject {
   private driver: WebDriver;

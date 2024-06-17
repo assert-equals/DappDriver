@@ -1,6 +1,7 @@
+import { ImportSeed } from '../..';
 import { HTMLElement } from '../../../controls';
 import { PageObject } from '../../../page';
-import { ImportSeed } from '../..';
+
 /**
  *
  *

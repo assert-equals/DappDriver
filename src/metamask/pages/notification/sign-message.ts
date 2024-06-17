@@ -1,5 +1,6 @@
-import { ConfirmTransaction } from './confirm-transaction';
 import { IConfirmation } from '../../../interface/wallet/confirmation';
+import { ConfirmTransaction } from './confirm-transaction';
+
 /**
  *
  *

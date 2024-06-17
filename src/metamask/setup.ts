@@ -1,8 +1,8 @@
-import path from 'path';
 import { readFileSync, writeFileSync } from 'fs';
-import { DappDriver } from '../session/dapp-driver';
-import { PageObject } from '../page';
+import path from 'path';
 import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase, Welcome } from '.';
+import { PageObject } from '../page';
+import { DappDriver } from '../session/dapp-driver';
 
 let createPasswordPage: CreatePassword;
 let completionPage: Completion;

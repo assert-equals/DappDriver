@@ -1,9 +1,10 @@
 import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
-import { DappDriver } from '../../session/dapp-driver';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { SignMessage as MetaMaskSignMessage } from '../../metamask';
 import { SignMessage as RainbowSignMessage } from '../../rainbow';
+import { DappDriver } from '../../session/dapp-driver';
 import { SignMessage as ZerionSignMessage } from '../../zerion';
-import { IConfirmation } from '../../interface/wallet/confirmation';
+
 /**
  *
  *

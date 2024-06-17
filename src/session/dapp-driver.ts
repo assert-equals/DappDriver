@@ -18,6 +18,7 @@ import { setupRainbowWallet } from '../rainbow/setup';
 import { Browser, BrowserOptions, Driver, Frame, Framework, Page, Wallet } from '../types';
 import { WebDriverFactory } from '../webdriver/webdriver-factory';
 import { setupZerionWallet } from '../zerion/setup';
+
 /**
  *
  *

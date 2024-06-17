@@ -1,6 +1,7 @@
+import { ImportOrConnect, SeedBackup } from '../..';
 import { HTMLElement } from '../../../controls';
 import { PageObject } from '../../../page';
-import { ImportOrConnect, SeedBackup } from '../..';
+
 /**
  *
  *

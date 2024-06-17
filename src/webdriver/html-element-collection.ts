@@ -1,6 +1,6 @@
 import { WebDriver, WebElement } from 'selenium-webdriver';
-import { DappDriver } from '../session/dapp-driver';
 import { HTMLElement } from '../controls/html-element';
+import { DappDriver } from '../session/dapp-driver';
 
 export class WebDriverHTMLElementCollection {
   private cssLocator: string;

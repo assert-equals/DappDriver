@@ -1,6 +1,7 @@
+import { ImportSelect } from '../..';
 import { HTMLElement, InputText } from '../../../controls';
 import { PageObject } from '../../../page';
-import { ImportSelect } from '../..';
+
 /**
  *
  *

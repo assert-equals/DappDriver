@@ -1,6 +1,7 @@
+import { Home } from '..';
 import { HTMLElement } from '../../../../controls/html-element';
 import { PageObject } from '../../../../page';
-import { Home } from '..';
+
 /**
  *
  *

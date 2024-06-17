@@ -1,10 +1,11 @@
-import { PlaywrightPageObject } from '../playwright/page-object';
-import { WebDriverPageObject } from '../webdriver/page-object';
+import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { IPageObject } from '../interface/page/page-object';
+import { IConfirmation } from '../interface/wallet/confirmation';
+import { PlaywrightPageObject } from '../playwright/page-object';
 import { DappDriver } from '../session/dapp-driver';
 import { Page } from '../types';
-import { PLAYWRIGHT, WEBDRIVER } from '../constants';
-import { IConfirmation } from '../interface/wallet/confirmation';
+import { WebDriverPageObject } from '../webdriver/page-object';
+
 /**
  *
  *

@@ -1,10 +1,11 @@
-import { DappDriver } from '../session/dapp-driver';
+import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { IHTMLElement } from '../interface/controls/html-element';
 import { ILink } from '../interface/controls/link';
 import { PlaywrightLink } from '../playwright/link';
+import { DappDriver } from '../session/dapp-driver';
 import { WebDriverLink } from '../webdriver/link';
 import { HTMLElement } from './html-element';
-import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+
 /**
  *
  *
