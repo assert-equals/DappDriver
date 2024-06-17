@@ -1,10 +1,5 @@
 import { BrowserContext } from 'playwright-core';
-import { PlaywrightFactory } from '../playwright/playwright-factory';
-import { WebDriverFactory } from '../webdriver/webdriver-factory';
 import { WebDriver } from 'selenium-webdriver';
-import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
-import { PageObject } from '../page';
-import { Browser, BrowserOptions, Driver, Frame, Framework, Page, Wallet } from '../types';
 import {
   DEFAULT_METAMASK_BINARY_PATH,
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
@@ -15,9 +10,14 @@ import {
   WEBDRIVER,
   ZERION,
 } from '../constants';
-import { setupZerionWallet } from '../zerion/setup';
 import { setupMetaMaskFlaskWallet } from '../flask/setup';
+import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
+import { PageObject } from '../page';
+import { PlaywrightFactory } from '../playwright/playwright-factory';
 import { setupRainbowWallet } from '../rainbow/setup';
+import { Browser, BrowserOptions, Driver, Frame, Framework, Page, Wallet } from '../types';
+import { WebDriverFactory } from '../webdriver/webdriver-factory';
+import { setupZerionWallet } from '../zerion/setup';
 /**
  *
  *
@@ -151,7 +151,55 @@ export class DappDriver {
     } else if (typeof arg4 === 'object') {
       options = arg4 as BrowserOptions;
     }
+    await DappDriver.enableAutomation(options);
+    const driver: Driver = await DappDriver.build(framework, browser, options);
+    const session = new DappDriver(domain, framework, driver);
+    if (DappDriver.instance === null) {
+      DappDriver.instance = session;
+    }
+    let page: Page = null;
+    if (framework === PLAYWRIGHT) {
+      page = (driver as BrowserContext).pages()[0];
+      DappDriver.Instance.Page = page;
+    }
+    await DappDriver.setupWallet(options);
+    await this.open(domain);
+    if (tPage === null) return;
+    const newPage: TPage = await this.getPage(tPage);
+    return newPage;
+  }
+  /**
+   *
+   *
+   * @private
+   * @static
+   * @param {Framework} framework
+   * @param {Browser} browser
+   * @param {BrowserOptions} options
+   * @return {*}  {Promise<Driver>}
+   * @memberof DappDriver
+   */
+  private static async build(framework: Framework, browser: Browser, options: BrowserOptions): Promise<Driver> {
     let driver: Driver;
+    if (framework === PLAYWRIGHT) {
+      driver = await new PlaywrightFactory().build(browser, options);
+    } else if (framework === WEBDRIVER) {
+      driver = await new WebDriverFactory().build(browser, options);
+    } else {
+      throw new Error('Unsupported framework: ' + framework);
+    }
+    return driver;
+  }
+  /**
+   *
+   *
+   * @private
+   * @static
+   * @param {BrowserOptions} options
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
+  private static async enableAutomation(options: BrowserOptions): Promise<void> {
     if (options.extension.wallet === METAMASK || options.extension.wallet === METAMASK_FLASK) {
       try {
         let metamaskPath: string;
@@ -167,22 +215,34 @@ export class DappDriver {
         );
       }
     }
-    if (framework === PLAYWRIGHT) {
-      driver = await new PlaywrightFactory().build(browser, options);
-    } else if (framework === WEBDRIVER) {
-      driver = await new WebDriverFactory().build(browser, options);
-    } else {
-      throw new Error('Unsupported framework: ' + framework);
+  }
+  /**
+   *
+   * Schedules a command to navigate to a new URL
+   * @private
+   * @static
+   * @param {string} url
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
+  private static async open(url: string): Promise<void> {
+    if (DappDriver.Instance.Framework === PLAYWRIGHT) {
+      const page: Page = DappDriver.Instance.Page;
+      await page.goto(url);
+    } else if (DappDriver.Instance.Framework === WEBDRIVER) {
+      await (DappDriver.Instance.Driver as WebDriver).get(url);
     }
-    const session = new DappDriver(domain, framework, driver);
-    if (DappDriver.instance === null) {
-      DappDriver.instance = session;
-    }
-    let page: Page = null;
-    if (framework === PLAYWRIGHT) {
-      page = (driver as BrowserContext).pages()[0];
-      DappDriver.Instance.Page = page;
-    }
+  }
+  /**
+   *
+   *
+   * @private
+   * @static
+   * @param {BrowserOptions} options
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
+  private static async setupWallet(options: BrowserOptions): Promise<void> {
     try {
       switch (options.extension.wallet) {
         case METAMASK:
@@ -205,27 +265,6 @@ export class DappDriver {
     } catch (error) {
       await this.dispose();
       throw new Error('Error setting up wallet: ' + error);
-    }
-    await this.open(domain);
-    if (tPage === null) return;
-    const newPage: TPage = await this.getPage(tPage);
-    return newPage;
-  }
-  /**
-   *
-   * Schedules a command to navigate to a new URL
-   * @private
-   * @static
-   * @param {string} url
-   * @return {*}  {Promise<void>}
-   * @memberof DappDriver
-   */
-  private static async open(url: string): Promise<void> {
-    if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      const page: Page = DappDriver.Instance.Page;
-      await page.goto(url);
-    } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      await (DappDriver.Instance.Driver as WebDriver).get(url);
     }
   }
   /**
