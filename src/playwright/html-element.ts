@@ -1,9 +1,9 @@
 import { Locator } from 'playwright-core';
-import { DappDriver } from '../session/dapp-driver';
 import { IHTMLElement } from '../interface/controls/html-element';
-import { PageObject } from '../page';
-import { Frame, Page } from '../types';
 import { IConfirmation } from '../interface/wallet/confirmation';
+import { PageObject } from '../page';
+import { DappDriver } from '../session/dapp-driver';
+import { Frame, Page } from '../types';
 
 export class PlaywrightHTMLElement implements IHTMLElement {
   protected page: Page;

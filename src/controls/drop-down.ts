@@ -1,10 +1,11 @@
-import { DappDriver } from '../session/dapp-driver';
+import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { IDropDown } from '../interface/controls/drop-down';
 import { IHTMLElement } from '../interface/controls/html-element';
 import { PlaywrightDropDown } from '../playwright/drop-down';
+import { DappDriver } from '../session/dapp-driver';
 import { WebDriverDropDown } from '../webdriver/drop-down';
 import { HTMLElement } from './html-element';
-import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+
 /**
  *
  *

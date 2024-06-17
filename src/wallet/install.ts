@@ -1,7 +1,7 @@
+import AdmZip from 'adm-zip';
+import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
-import axios from 'axios';
-import AdmZip from 'adm-zip';
 import semver, { Range } from 'semver';
 import { PACKAGE_NAME } from '../constants';
 import { Artifact, Asset, Wallet } from '../types';

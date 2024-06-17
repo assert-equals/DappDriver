@@ -1,5 +1,6 @@
-import { PageObject } from '../../page';
 import { HTMLElement } from '../../controls';
+import { PageObject } from '../../page';
+
 /**
  *
  *

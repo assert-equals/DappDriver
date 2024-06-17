@@ -1,9 +1,9 @@
 import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
-import { DappDriver } from '../../session/dapp-driver';
+import { IConfirmation } from '../../interface/wallet/confirmation';
 import { Approve as MetaMaskApprove } from '../../metamask';
 import { Approve as RainbowApprove } from '../../rainbow';
+import { DappDriver } from '../../session/dapp-driver';
 import { Approve as ZerionApprove } from '../../zerion';
-import { IConfirmation } from '../../interface/wallet/confirmation';
 
 export class Approve implements IConfirmation {
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {

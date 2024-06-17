@@ -1,6 +1,6 @@
-import { WebDriverHTMLElement } from './html-element';
-import { IDropDown } from '../interface/controls/drop-down';
 import { Select } from 'selenium-webdriver/lib/select';
+import { IDropDown } from '../interface/controls/drop-down';
+import { WebDriverHTMLElement } from './html-element';
 
 export class WebDriverDropDown extends WebDriverHTMLElement implements IDropDown {
   constructor(cssLocator: string) {

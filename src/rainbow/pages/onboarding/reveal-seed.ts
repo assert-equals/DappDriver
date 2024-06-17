@@ -1,6 +1,7 @@
+import { SeedVerify } from '../..';
 import { HTMLElement } from '../../../controls';
 import { PageObject } from '../../../page';
-import { SeedVerify } from '../..';
+
 /**
  *
  *

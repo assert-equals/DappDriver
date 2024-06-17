@@ -1,10 +1,11 @@
-import { DappDriver } from '../session/dapp-driver';
+import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { ICheckBox } from '../interface/controls/check-box';
 import { IHTMLElement } from '../interface/controls/html-element';
 import { PlaywrightCheckBox } from '../playwright/check-box';
+import { DappDriver } from '../session/dapp-driver';
 import { WebDriverCheckBox } from '../webdriver/check-box';
 import { HTMLElement } from './html-element';
-import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+
 /**
  *
  *

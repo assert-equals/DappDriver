@@ -1,13 +1,12 @@
 #!/usr/bin/env node
-
 import { Command } from 'commander';
 import { PACKAGE_VERSION, METAMASK, METAMASK_FLASK, NODE_MODULE_DIR, ZERION, RAINBOW } from '../constants';
-import { Wallet } from '../types';
-import { metamask } from '../metamask/install';
-import { zerion } from '../zerion/install';
 import { metamaskFlask } from '../flask/install';
-import { rainbow } from '../rainbow/install';
 import { logError } from '../log';
+import { metamask } from '../metamask/install';
+import { rainbow } from '../rainbow/install';
+import { Wallet } from '../types';
+import { zerion } from '../zerion/install';
 
 const initCwd: string = process.env.INIT_CWD;
 const cwd: string = process.cwd();

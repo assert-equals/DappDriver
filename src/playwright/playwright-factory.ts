@@ -1,5 +1,4 @@
 import playwright, { BrowserContext } from 'playwright-core';
-import { Browser, BrowserOptions } from '../types';
 import {
   CHROME,
   DEFAULT_METAMASK_BINARY_PATH,
@@ -12,6 +11,7 @@ import {
   RAINBOW,
   ZERION,
 } from '../constants';
+import { Browser, BrowserOptions } from '../types';
 
 export class PlaywrightFactory {
   async build(browser: Browser, options: BrowserOptions): Promise<BrowserContext> {

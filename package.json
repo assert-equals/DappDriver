@@ -86,6 +86,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/adm-zip": "^0.5.5",
     "@types/node": "^20.14.2",
     "@types/selenium-webdriver": "^4.1.22",

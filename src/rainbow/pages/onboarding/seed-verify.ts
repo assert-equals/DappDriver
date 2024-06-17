@@ -1,7 +1,8 @@
+import { CreatePassword } from '../..';
 import { DappDriver } from '../../..';
 import { HTMLElement } from '../../../controls';
 import { PageObject } from '../../../page';
-import { CreatePassword } from '../..';
+
 /**
  *
  *

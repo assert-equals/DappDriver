@@ -1,6 +1,5 @@
 import { Builder, WebDriver } from 'selenium-webdriver';
 import { Options as ChromeOptions } from 'selenium-webdriver/chrome';
-import { Browser, BrowserOptions } from '../types';
 import {
   CHROME,
   DEFAULT_METAMASK_BINARY_PATH,
@@ -13,6 +12,7 @@ import {
   RAINBOW,
   ZERION,
 } from '../constants';
+import { Browser, BrowserOptions } from '../types';
 
 export class WebDriverFactory {
   build(browser: Browser, options: BrowserOptions): Promise<WebDriver> {

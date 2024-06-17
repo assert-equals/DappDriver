@@ -1,6 +1,7 @@
+import { RevealSeed } from '../..';
 import { HTMLElement } from '../../../controls';
 import { PageObject } from '../../../page';
-import { RevealSeed } from '../..';
+
 /**
  *
  *

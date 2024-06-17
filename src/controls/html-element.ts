@@ -1,9 +1,10 @@
-import { IHTMLElement } from '../interface/controls/html-element';
-import { DappDriver } from '../session/dapp-driver';
-import { PlaywrightHTMLElement } from '../playwright/html-element';
-import { WebDriverHTMLElement } from '../webdriver/html-element';
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+import { IHTMLElement } from '../interface/controls/html-element';
 import { IConfirmation } from '../interface/wallet/confirmation';
+import { PlaywrightHTMLElement } from '../playwright/html-element';
+import { DappDriver } from '../session/dapp-driver';
+import { WebDriverHTMLElement } from '../webdriver/html-element';
+
 /**
  *
  *

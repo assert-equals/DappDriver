@@ -1,6 +1,6 @@
+import { CreatePassword, Ready, Welcome } from '.';
 import { PageObject } from '../page';
 import { DappDriver } from '../session/dapp-driver';
-import { CreatePassword, Ready, Welcome } from '.';
 
 let createPasswordPage: CreatePassword;
 let readyPage: Ready;

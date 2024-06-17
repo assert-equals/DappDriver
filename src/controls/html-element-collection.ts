@@ -1,9 +1,10 @@
-import { DappDriver } from '../session/dapp-driver';
+import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { IHTMLElementCollection } from '../interface/controls/html-element-collection';
 import { PlaywrightHTMLElementCollection } from '../playwright/html-element-collection';
+import { DappDriver } from '../session/dapp-driver';
 import { WebDriverHTMLElementCollection } from '../webdriver/html-element-collection';
 import { HTMLElement } from './html-element';
-import { PLAYWRIGHT, WEBDRIVER } from '../constants';
+
 /**
  *
  *

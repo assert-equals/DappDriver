@@ -1,6 +1,6 @@
-import { WebDriverHTMLElement } from './html-element';
-import { IInputText } from '../interface/controls/input-text';
 import { Key } from 'selenium-webdriver';
+import { IInputText } from '../interface/controls/input-text';
+import { WebDriverHTMLElement } from './html-element';
 
 export class WebDriverInputText extends WebDriverHTMLElement implements IInputText {
   constructor(cssLocator: string) {
