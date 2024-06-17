@@ -3,7 +3,7 @@ import {
   DEFAULT_METAMASK_FLASK_VERSION,
   METAMASK_FLASK,
   METAMASK_GITHUB_API,
-  RECOMMENDED_METAMASK_FLASK_VERSIONS,
+  RECOMMENDED_METAMASK_FLASK_VERSIONS
 } from '../constants';
 import { logError, logSuccess } from '../log';
 import { Asset } from '../types';
@@ -13,12 +13,12 @@ import {
   downloadAssetZipFile,
   extractZipContents,
   fetchGithubRelease,
-  findGithubAsset,
+  findGithubAsset
 } from '../wallet/install';
 
 export async function metamaskFlask(
   directory: string,
-  version: string = DEFAULT_METAMASK_FLASK_VERSION,
+  version: string = DEFAULT_METAMASK_FLASK_VERSION
 ): Promise<void> {
   try {
     const assetName = `${DEFAULT_METAMASK_FLASK_ASSET}-${version}-flask.0.zip`;

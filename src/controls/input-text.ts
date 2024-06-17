@@ -34,7 +34,7 @@ export class InputText extends HTMLElement implements IInputText {
    */
   protected async callIfMethodExists(
     methodName: keyof IHTMLElement | keyof IInputText,
-    args: Array<any> = [],
+    args: Array<any> = []
   ): Promise<any> {
     let inputText: PlaywrightInputText | WebDriverInputText;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {

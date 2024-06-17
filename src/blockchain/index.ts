@@ -11,15 +11,15 @@ export class Node {
   private defaultOptions: ServerOptions = {
     wallet: {
       mnemonic: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent',
-      defaultBalance: 100,
+      defaultBalance: 100
     },
     chain: {
       hardfork: 'london',
-      networkId: 1337,
+      networkId: 1337
     },
     logging: {
-      quiet: true,
-    },
+      quiet: true
+    }
   };
   /**
    *

@@ -9,7 +9,7 @@ import {
   METAMASK,
   METAMASK_FLASK,
   RAINBOW,
-  ZERION,
+  ZERION
 } from '../constants';
 import { Browser, BrowserOptions } from '../types';
 
@@ -26,12 +26,12 @@ export class PlaywrightFactory {
       headless: false,
       channel: 'chrome',
       args: [],
-      viewport: null,
+      viewport: null
     };
     if (options.proxy) {
       chromeOptions['ignoreHTTPSErrors'] = true;
       chromeOptions['proxy'] = {
-        server: HTTPS_PROXY_HOST,
+        server: HTTPS_PROXY_HOST
       };
     }
     if (options.extension.wallet !== null) {

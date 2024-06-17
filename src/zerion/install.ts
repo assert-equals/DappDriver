@@ -3,7 +3,7 @@ import {
   DEFAULT_ZERION_VERSION,
   ZERION,
   ZERION_GITHUB_API,
-  RECOMMENDED_ZERION_VERSIONS,
+  RECOMMENDED_ZERION_VERSIONS
 } from '../constants';
 import { logSuccess, logError } from '../log';
 import { Asset } from '../types';
@@ -14,7 +14,7 @@ import {
   extractZipContents,
   fetchGithubRelease,
   findGithubAsset,
-  moveFiles,
+  moveFiles
 } from '../wallet/install';
 
 export async function zerion(directory: string, version: string = DEFAULT_ZERION_VERSION): Promise<void> {

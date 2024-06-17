@@ -3,7 +3,7 @@ import {
   DEFAULT_METAMASK_VERSION,
   METAMASK,
   METAMASK_GITHUB_API,
-  RECOMMENDED_METAMASK_VERSIONS,
+  RECOMMENDED_METAMASK_VERSIONS
 } from '../constants';
 import { logError, logSuccess } from '../log';
 import { Asset } from '../types';
@@ -13,7 +13,7 @@ import {
   downloadAssetZipFile,
   extractZipContents,
   fetchGithubRelease,
-  findGithubAsset,
+  findGithubAsset
 } from '../wallet/install';
 
 export async function metamask(directory: string, version: string = DEFAULT_METAMASK_VERSION): Promise<void> {

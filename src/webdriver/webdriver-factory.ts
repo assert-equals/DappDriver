@@ -10,7 +10,7 @@ import {
   METAMASK,
   METAMASK_FLASK,
   RAINBOW,
-  ZERION,
+  ZERION
 } from '../constants';
 import { Browser, BrowserOptions } from '../types';
 

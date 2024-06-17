@@ -34,7 +34,7 @@ export class Radio extends HTMLElement implements IRadio {
    */
   protected async callIfMethodExists(
     methodName: keyof IHTMLElement | keyof IRadio,
-    args: Array<any> = [],
+    args: Array<any> = []
   ): Promise<any> {
     let radio: PlaywrightRadio | WebDriverRadio;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {

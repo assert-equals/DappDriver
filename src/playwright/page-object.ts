@@ -54,7 +54,7 @@ export class PlaywrightPageObject implements IPageObject {
 
   async executeScriptAndOpensInExtension<TPage extends IConfirmation>(
     script: string,
-    page?: new () => TPage,
+    page?: new () => TPage
   ): Promise<any> {
     this.page.evaluate(script);
     await this.opensInExtension();
@@ -161,7 +161,7 @@ export class PlaywrightPageObject implements IPageObject {
   async waitForElement(cssLocator: string): Promise<void> {
     await this.pageObject.waitForFunction(
       async () => (await this.page.locator(cssLocator).count()) > 0,
-      `Waiting for element to be located ${cssLocator}`,
+      `Waiting for element to be located ${cssLocator}`
     );
   }
 
@@ -173,14 +173,14 @@ export class PlaywrightPageObject implements IPageObject {
   async waitForTitle(title: RegExp): Promise<void> {
     await this.pageObject.waitForFunction(
       async () => RegExp(title).exec(await this.getTitle()) !== null,
-      `Waiting for title to match ${title}`,
+      `Waiting for title to match ${title}`
     );
   }
 
   async waitForURL(url: RegExp): Promise<void> {
     await this.pageObject.waitForFunction(
       async () => RegExp(url).exec(await this.getCurrentUrl()) !== null,
-      `Waiting for url to match ${url}`,
+      `Waiting for url to match ${url}`
     );
   }
 

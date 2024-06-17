@@ -34,7 +34,7 @@ export class CheckBox extends HTMLElement implements ICheckBox {
    */
   protected async callIfMethodExists(
     methodName: keyof IHTMLElement | keyof ICheckBox,
-    args: Array<any> = [],
+    args: Array<any> = []
   ): Promise<any> {
     let checkbox: PlaywrightCheckBox | WebDriverCheckBox;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {

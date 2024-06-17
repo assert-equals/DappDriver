@@ -79,8 +79,8 @@ describe('E2E Test Dapp', () => {
   const browserOptions: BrowserOptions = {
     extension: {
       wallet: METAMASK,
-      seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent',
-    },
+      seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent'
+    }
   };
 
   beforeEach(async () => {
@@ -89,7 +89,7 @@ describe('E2E Test Dapp', () => {
       WEBDRIVER,
       CHROME,
       Dapp,
-      browserOptions,
+      browserOptions
     );
   });
 

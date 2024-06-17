@@ -34,7 +34,7 @@ export class Link extends HTMLElement implements ILink {
    */
   protected async callIfMethodExists(
     methodName: keyof IHTMLElement | keyof ILink,
-    args: Array<any> = [],
+    args: Array<any> = []
   ): Promise<any> {
     let link: PlaywrightLink | WebDriverLink;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {

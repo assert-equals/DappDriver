@@ -34,7 +34,7 @@ export class DropDown extends HTMLElement implements IDropDown {
    */
   protected async callIfMethodExists(
     methodName: keyof IHTMLElement | keyof IDropDown,
-    args: Array<any> = [],
+    args: Array<any> = []
   ): Promise<any> {
     let dropdown: PlaywrightDropDown | WebDriverDropDown;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
