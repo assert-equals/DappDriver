@@ -11,6 +11,7 @@ export { Welcome } from './pages/home/onboarding/welcome';
 export { Approve } from './pages/notification/confirm-transaction/approve';
 export { ConfirmTransaction } from './pages/notification/confirm-transaction';
 export { SignatureRequest } from './pages/notification/confirm-transaction/signature-request';
+export { SignInRequest } from './pages/notification/sign-in-request';
 export { SignMessage } from './pages/notification/sign-message';
 export { Connect } from './pages/notification/connect';
 export { ConfirmAddSuggestedToken } from './pages/notification/confirm-add-suggested-token';

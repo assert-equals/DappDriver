@@ -3,4 +3,5 @@ export { Approve } from './pages/approve';
 export { ConfirmTransaction } from './pages/confirm-transaction';
 export { Connect } from './pages/connect';
 export { SignatureRequest } from './pages/signature-request';
+export { SignInRequest } from './pages/sign-in-request';
 export { SignMessage } from './pages/sign-message';
