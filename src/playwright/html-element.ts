@@ -39,7 +39,7 @@ export class PlaywrightHTMLElement implements IHTMLElement {
 
   async clickAndWait(duration: number): Promise<void> {
     await this.click();
-    await this.page.waitForTimeout(duration);
+    await DappDriver.sleep(duration);
   }
 
   async clickAndOpensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {

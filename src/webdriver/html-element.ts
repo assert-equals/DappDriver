@@ -55,7 +55,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
 
   async clickAndWait(duration: number): Promise<void> {
     await this.click();
-    return this.driver.actions({ async: true }).pause(duration).perform();
+    return DappDriver.sleep(duration);
   }
 
   async clickAndOpensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
