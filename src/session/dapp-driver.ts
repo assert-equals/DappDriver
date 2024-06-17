@@ -265,6 +265,21 @@ export class DappDriver {
   }
   /**
    *
+   * Schedules a command to make the driver sleep for the given amount of time
+   * @static
+   * @param {number} duration
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
+  static async sleep(duration: number): Promise<void> {
+    if (DappDriver.Instance.Framework === PLAYWRIGHT) {
+      await DappDriver.Instance.Page.waitForTimeout(duration);
+    } else if (DappDriver.Instance.Framework === WEBDRIVER) {
+      await (DappDriver.Instance.Driver as WebDriver).sleep(duration);
+    }
+  }
+  /**
+   *
    * Schedule a command to take a screenshot
    * @static
    * @return {*}  {Promise<string>}
