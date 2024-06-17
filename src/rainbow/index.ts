@@ -12,6 +12,7 @@ export { Ready } from './pages/onboarding/ready';
 export { RevealSeed } from './pages/onboarding/reveal-seed';
 export { SeedBackup } from './pages/onboarding/seed-backup';
 export { SeedVerify } from './pages/onboarding/seed-verify';
+export { SignInRequest } from './pages/sign-in-request';
 export { SignMessage } from './pages/sign-message';
 export { SignatureRequest } from './pages/signature-request';
 export { Welcome } from './pages/onboarding/welcome';

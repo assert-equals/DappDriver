@@ -12,5 +12,6 @@ export { Connect } from './pages/connect';
 export { AddNetwork } from './pages/add-network';
 export { Approve } from './pages/approve';
 export { SignatureRequest } from './pages/signature-request';
+export { SignInRequest } from './pages/sign-in-request';
 export { SignMessage } from './pages/sign-message';
 export { SendTransaction } from './pages/send-transaction';
