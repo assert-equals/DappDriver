@@ -10,6 +10,6 @@
     "skipLibCheck": true,
     "target": "ES2022"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts"]
 }
