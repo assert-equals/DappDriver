@@ -9,6 +9,7 @@ export { ReviewRecoveryPhrase } from './pages/home/onboarding/review-recovery-ph
 export { SecureYourWallet } from './pages/home/onboarding/secure-your-wallet';
 export { Welcome } from './pages/home/onboarding/welcome';
 export { Approve } from './pages/notification/confirm-transaction/approve';
+export { ApproveAll } from './pages/notification/approve-all';
 export { ConfirmTransaction } from './pages/notification/confirm-transaction';
 export { SignatureRequest } from './pages/notification/confirm-transaction/signature-request';
 export { SignInRequest } from './pages/notification/sign-in-request';
