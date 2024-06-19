@@ -18,7 +18,7 @@ export class SelectWallets extends PageObject {
    * @memberof SelectWallets
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/import/mnemonic?view=select-wallets', 'Zerion');
+    super('onboarding#/onboarding/import/mnemonic?view=select-wallets', 'Zerion');
   }
   /**
    *

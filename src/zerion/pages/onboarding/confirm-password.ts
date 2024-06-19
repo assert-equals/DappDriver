@@ -16,7 +16,7 @@ export class ConfirmPassword extends PageObject {
    * @memberof ConfirmPassword
    */
   constructor() {
-    super(new RegExp(/html\?templateType=tab&context=onboarding#\/onboarding\/.*view=password&step=confirm/), 'Zerion');
+    super(new RegExp(/onboarding#\/onboarding\/.*view=password&step=confirm/), 'Zerion');
   }
   /**
    *

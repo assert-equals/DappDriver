@@ -18,7 +18,7 @@ export class Connect extends PageObject implements IConfirmation {
    * @memberof Connect
    */
   constructor() {
-    super('html?templateType=dialog#/requestAccounts', 'Zerion · Connect Wallet');
+    super('#/requestAccounts', 'Zerion · Connect Wallet');
   }
   /**
    *

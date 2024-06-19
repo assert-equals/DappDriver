@@ -13,6 +13,6 @@ export class Success extends PageObject {
    * @memberof Success
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/success', 'Zerion');
+    super('onboarding#/onboarding/success', 'Zerion');
   }
 }

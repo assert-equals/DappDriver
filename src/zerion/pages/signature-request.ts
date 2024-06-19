@@ -19,7 +19,7 @@ export class SignatureRequest extends PageObject implements IConfirmation {
    * @memberof SignatureRequest
    */
   constructor() {
-    super('html?templateType=dialog#/signTypedData', 'Zerion · Sign Typed Data');
+    super('#/signTypedData', 'Zerion · Sign Typed Data');
   }
   /**
    *

@@ -18,7 +18,7 @@ export class SendTransaction extends PageObject implements IConfirmation {
    * @memberof SendTransaction
    */
   constructor() {
-    super('html?templateType=dialog#/sendTransaction', 'Zerion · Send Transaction');
+    super('#/sendTransaction', 'Zerion · Send Transaction');
   }
   /**
    *

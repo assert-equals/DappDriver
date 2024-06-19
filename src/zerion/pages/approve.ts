@@ -18,7 +18,7 @@ export class Approve extends PageObject implements IConfirmation {
    * @memberof Approve
    */
   constructor() {
-    super('html?templateType=dialog#/sendTransaction', 'Zerion · Send Transaction');
+    super('#/sendTransaction', 'Zerion · Send Transaction');
   }
   /**
    *

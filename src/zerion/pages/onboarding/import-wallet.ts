@@ -17,7 +17,7 @@ export class ImportWallet extends PageObject {
    * @memberof ImportWallet
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/import', 'Zerion');
+    super('onboarding#/onboarding/import', 'Zerion');
   }
   /**
    *

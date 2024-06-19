@@ -19,7 +19,7 @@ export class AddNetwork extends PageObject implements IConfirmation {
    * @memberof AddNetwork
    */
   constructor() {
-    super('html?templateType=dialog#/addEthereumChain', 'Zerion · Add network');
+    super('#/addEthereumChain', 'Zerion · Add network');
   }
   /**
    *

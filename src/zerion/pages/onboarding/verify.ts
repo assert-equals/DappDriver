@@ -17,7 +17,7 @@ export class Verify extends PageObject {
    * @memberof Verify
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/create/verify', 'Zerion');
+    super('onboarding#/onboarding/create/verify', 'Zerion');
   }
   /**
    *
