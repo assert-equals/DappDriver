@@ -18,7 +18,7 @@ export class SignInRequest extends PageObject implements IConfirmation {
    * @memberof SignInRequest
    */
   constructor() {
-    super('html?templateType=dialog#/siwe', 'Zerion · Sign In with Ethereum');
+    super('#/siwe', 'Zerion · Sign In with Ethereum');
   }
   /**
    *

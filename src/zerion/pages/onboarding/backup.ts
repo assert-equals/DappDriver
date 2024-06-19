@@ -19,7 +19,7 @@ export class BackUp extends PageObject {
    * @memberof BackUp
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/create/backup', 'Zerion');
+    super('onboarding#/onboarding/create/backup', 'Zerion');
   }
   /**
    *

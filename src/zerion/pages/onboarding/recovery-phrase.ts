@@ -17,7 +17,7 @@ export class RecoveryPhrase extends PageObject {
    * @memberof RecoveryPhrase
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/import/mnemonic', 'Zerion');
+    super('onboarding#/onboarding/import/mnemonic', 'Zerion');
   }
   /**
    *

@@ -18,7 +18,7 @@ export class SignMessage extends PageObject implements IConfirmation {
    * @memberof SignMessage
    */
   constructor() {
-    super('html?templateType=dialog#/signMessage', 'Zerion · Sign Message');
+    super('#/signMessage', 'Zerion · Sign Message');
   }
   /**
    *

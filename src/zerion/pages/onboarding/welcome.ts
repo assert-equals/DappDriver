@@ -17,7 +17,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding', 'Zerion');
+    super('onboarding#/onboarding', 'Zerion');
   }
   /**
    *

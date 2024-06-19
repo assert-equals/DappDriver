@@ -17,7 +17,7 @@ export class Information extends PageObject {
    * @memberof Information
    */
   constructor() {
-    super('html?templateType=tab&context=onboarding#/onboarding/create/info', 'Zerion');
+    super('onboarding#/onboarding/create/info', 'Zerion');
   }
   /**
    *
