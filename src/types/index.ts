@@ -1,49 +1,35 @@
 import { BrowserContext, FrameLocator, Page as PlaywrightPage } from 'playwright-core';
 import { WebDriver } from 'selenium-webdriver';
 
-type Page = PlaywrightPage | null;
-type Frame = FrameLocator | null;
-type Driver = WebDriver | BrowserContext;
-type Framework = 'playwright' | 'webdriver';
-type Browser = 'chrome';
-type Wallet = 'metamask' | 'metamask-flask' | 'rainbow' | 'zerion';
+export type Page = PlaywrightPage | null;
+export type Frame = FrameLocator | null;
+export type Driver = WebDriver | BrowserContext;
+export type Framework = 'playwright' | 'webdriver';
+export type Browser = 'chrome';
+export type Wallet = 'metamask' | 'metamask-flask' | 'rainbow' | 'zerion';
 
-type Artifact = {
+export type Artifact = {
   archive_download_url: string;
   name: string;
 };
 
-type Asset = {
+export type Asset = {
   browser_download_url: string;
   name: string;
 };
 
-type JsonRpcRequest = {
+export type JsonRpcRequest = {
   method: string;
   params?: Array<object>;
 };
 
-type WalletOptions = {
+export type WalletOptions = {
   wallet: Wallet;
   path?: string;
   seed?: string;
 };
 
-type BrowserOptions = {
+export type BrowserOptions = {
   proxy?: boolean;
   extension?: WalletOptions;
-};
-
-export {
-  Artifact,
-  Asset,
-  Browser,
-  BrowserOptions,
-  Driver,
-  Frame,
-  Framework,
-  JsonRpcRequest,
-  Page,
-  Wallet,
-  WalletOptions
 };

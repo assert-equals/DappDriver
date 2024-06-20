@@ -1,9 +1,7 @@
-import { CheckBox } from './check-box';
-import { DropDown } from './drop-down';
-import { HTMLElement } from './html-element';
-import { HTMLElementCollection } from './html-element-collection';
-import { InputText } from './input-text';
-import { Link } from './link';
-import { Radio } from './radio';
-
-export { CheckBox, DropDown, HTMLElement, HTMLElementCollection, InputText, Link, Radio };
+export { CheckBox } from './check-box';
+export { DropDown } from './drop-down';
+export { HTMLElement } from './html-element';
+export { HTMLElementCollection } from './html-element-collection';
+export { InputText } from './input-text';
+export { Link } from './link';
+export { Radio } from './radio';
