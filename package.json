@@ -80,7 +80,7 @@
     "ganache": "^7.9.2",
     "mockttp": "^3.11.0",
     "playwright-core": "^1.44.1",
-    "selenium-webdriver": "^4.21.0",
+    "selenium-webdriver": "^4.22.0",
     "semver": "^7.6.0"
   },
   "devDependencies": {
