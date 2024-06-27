@@ -5,6 +5,27 @@
   <b>Automated tests for dApps</b>
 </p>
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@assert-equals/dappdriver">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/v/@assert-equals/dappdriver?colorA=21262d&colorB=21262d&style=flat">
+      <img src="https://img.shields.io/npm/v/@assert-equals/dappdriver?colorA=f6f8fa&colorB=f6f8fa&style=flat" alt="Version">
+    </picture>
+  </a>
+  <a href="https://github.com/assert-equals/dappdriver/blob/main/LICENSE">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/l/@assert-equals/dappdriver?colorA=21262d&colorB=21262d&style=flat">
+      <img src="https://img.shields.io/npm/l/@assert-equals/dappdriver?colorA=f6f8fa&colorB=f6f8fa&style=flat" alt="MIT License">
+    </picture>
+  </a>
+  <a href="https://www.npmjs.com/package/@assert-equals/dappdriver">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dm/@assert-equals/dappdriver?colorA=21262d&colorB=21262d&style=flat">
+      <img src="https://img.shields.io/npm/dm/@assert-equals/dappdriver?colorA=f6f8fa&colorB=f6f8fa&style=flat" alt="Downloads per month">
+    </picture>
+  </a>
+</p>
+
 [DappDriver](https://github.com/assert-equals/dappdriver) is a web testing framework designed for testing decentralized applications (dApps).
 
 It's all about being flexible and user-friendly, DappDriver seamlessly integrates both [Playwright](https://playwright.dev/) and [Selenium WebDriver](https://www.selenium.dev/).
@@ -12,6 +33,9 @@ It's all about being flexible and user-friendly, DappDriver seamlessly integrate
 DappDriver loads [MetaMask](https://metamask.io/), [Rainbow](https://rainbow.me/) or [Zerion](https://zerion.io/) into the browser session, empowering you to efficiently confirm blockchain transactions.
 
 Read on to get started locally in a couple of minutes.
+
+> [!NOTE]
+> DappDriver is in active development, so all APIs are subject to change.
 
 ## Install
 
@@ -69,7 +93,7 @@ export class Dapp extends PageObject {
 Next, write your test in `test/spec/dapp.spec.ts`:
 
 ```ts
-import { CHROME, DappDriver, METAMASK, WEBDRIVER, BrowserOptions } from '@assert-equals/dappdriver';
+import { CHROME, DappDriver, METAMASK, PLAYWRIGHT, BrowserOptions } from '@assert-equals/dappdriver';
 import { Connect } from '@assert-equals/dappdriver/wallet';
 import { expect } from 'chai';
 import { Dapp } from '../page/dapp';
@@ -86,7 +110,7 @@ describe('E2E Test Dapp', () => {
   beforeEach(async () => {
     dapp = await DappDriver.create<Dapp>(
       'https://metamask.github.io/test-dapp/',
-      WEBDRIVER,
+      PLAYWRIGHT,
       CHROME,
       Dapp,
       browserOptions
