@@ -1,5 +1,5 @@
-import { HTMLElement, InputText } from '../../../../controls';
-import { PageObject } from '../../../../page';
+import { HTMLElement, InputText } from '../../../controls';
+import { PageObject } from '../../../page';
 import { Completion } from './completion';
 
 /**

@@ -1,6 +1,6 @@
-import { HTMLElement } from '../../../../controls/html-element';
-import { IConfirmation } from '../../../../interface/wallet/confirmation';
-import { PageObject } from '../../../../page';
+import { HTMLElement } from '../../controls/html-element';
+import { IConfirmation } from '../../interface/wallet/confirmation';
+import { PageObject } from '../../page';
 
 /**
  *

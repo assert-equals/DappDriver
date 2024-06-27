@@ -1,5 +1,5 @@
-import { HTMLElement } from '../../../../controls/html-element';
-import { PageObject } from '../../../../page';
+import { HTMLElement } from '../../../controls/html-element';
+import { PageObject } from '../../../page';
 import { ConfirmRecoveryPhrase } from './confirm-recovery-phrase';
 
 /**

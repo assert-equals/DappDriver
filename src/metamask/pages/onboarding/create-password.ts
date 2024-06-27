@@ -1,6 +1,6 @@
-import { HTMLElement } from '../../../../controls/html-element';
-import { PageObject } from '../../../../page';
-import { Completion, SecureYourWallet } from '../../../index';
+import { HTMLElement } from '../../../controls/html-element';
+import { PageObject } from '../../../page';
+import { Completion, SecureYourWallet } from '../../index';
 
 /**
  *

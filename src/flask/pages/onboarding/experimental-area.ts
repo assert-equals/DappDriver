@@ -1,6 +1,6 @@
-import { HTMLElement } from '../../../../controls/html-element';
-import { Welcome } from '../../../../metamask';
-import { PageObject } from '../../../../page';
+import { HTMLElement } from '../../../controls/html-element';
+import { Welcome } from '../../../metamask';
+import { PageObject } from '../../../page';
 
 /**
  *

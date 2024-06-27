@@ -1,1 +1,1 @@
-export { ExperimentalArea } from './pages/home/onboarding/experimental-area';
+export { ExperimentalArea } from './pages/onboarding/experimental-area';

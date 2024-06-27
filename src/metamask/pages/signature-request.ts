@@ -1,6 +1,6 @@
-import { ConfirmTransaction } from '.';
-import { HTMLElement } from '../../../../controls/html-element';
-import { IConfirmation } from '../../../../interface/wallet/confirmation';
+import { HTMLElement } from '../../controls/html-element';
+import { IConfirmation } from '../../interface/wallet/confirmation';
+import { ConfirmTransaction } from './confirm-transaction';
 
 /**
  *
