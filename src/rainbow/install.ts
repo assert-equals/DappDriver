@@ -7,7 +7,7 @@ import {
   createDirectory,
   downloadArtifactZipFile,
   extractZipContents,
-  fetchGithubRelease,
+  fetchGithubTags,
   fetchGithubWorkflow,
   fetchGithubRun,
   fetchGithubArtifact
@@ -18,7 +18,7 @@ export async function rainbow(directory: string, version: string = DEFAULT_RAINB
     const workflowName = 'Publish to Chrome WebStore (Production)';
     checkEnvVariable('GITHUB_TOKEN');
     compareVersion(RAINBOW, version, RECOMMENDED_RAINBOW_VERSIONS);
-    await fetchGithubRelease(RAINBOW, version, RAINBOW_GITHUB_API);
+    await fetchGithubTags(RAINBOW, version, RAINBOW_GITHUB_API);
     const workflow = await fetchGithubWorkflow(workflowName, RAINBOW_GITHUB_API);
     const run = await fetchGithubRun(version, workflowName, workflow, RAINBOW_GITHUB_API);
     const artifact: Artifact = await fetchGithubArtifact(version, run, RAINBOW_GITHUB_API);

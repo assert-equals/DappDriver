@@ -97,6 +97,16 @@ export async function fetchGithubRun(
   return run;
 }
 
+export async function fetchGithubTags(wallet: Wallet, version: string, githubApiUrl: string): Promise<void> {
+  const tagsUrl = `${githubApiUrl}/tags`;
+  const response = await axios.get(tagsUrl);
+  const tags = response.data;
+  const tag = tags.find((item: any) => item.name === `v${version}`);
+  if (!tag) {
+    throw new Error(`Could not find version (${version}) of ${wallet}, try updating the '${PACKAGE_NAME}' package.`);
+  }
+}
+
 export async function fetchGithubWorkflow(workflowName: string, githubApiUrl: string): Promise<any> {
   const workflowsResponse = await axios.get(`${githubApiUrl}/actions/workflows`);
   const workflows = workflowsResponse.data.workflows;
