@@ -24,8 +24,8 @@ export async function rainbow(directory: string, version: string = DEFAULT_RAINB
     const artifact: Artifact = await fetchGithubArtifact(version, run, RAINBOW_GITHUB_API);
     createDirectory(directory);
     const fileName: string = await downloadArtifactZipFile(artifact, directory);
-    extractZipContents(fileName);
-    logSuccess('Installed Rainbow.');
+    const destDir: string = extractZipContents(fileName);
+    logSuccess(`Installed Rainbow version <v${version}>\n${destDir}`);
   } catch (error: any) {
     logError(error.message);
   }

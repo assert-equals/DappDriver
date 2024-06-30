@@ -27,8 +27,8 @@ export async function metamaskFlask(
     const asset: Asset = findGithubAsset(assetName, release);
     createDirectory(directory);
     const fileName: string = await downloadAssetZipFile(asset, directory);
-    extractZipContents(fileName);
-    logSuccess('Installed MetaMask Flask.');
+    const destDir: string = extractZipContents(fileName);
+    logSuccess(`Installed MetaMask Flask version <v${version}>\n${destDir}`);
   } catch (error: any) {
     logError(error.message);
   }

@@ -25,9 +25,9 @@ export async function zerion(directory: string, version: string = DEFAULT_ZERION
     const asset: Asset = findGithubAsset(assetName, release);
     createDirectory(directory);
     const fileName: string = await downloadAssetZipFile(asset, directory);
-    const destDir = extractZipContents(fileName);
+    const destDir: string = extractZipContents(fileName);
     moveFiles(destDir);
-    logSuccess('Installed Zerion.');
+    logSuccess(`Installed Zerion version <v${version}>\n${destDir}`);
   } catch (error: any) {
     logError(error.message);
   }
