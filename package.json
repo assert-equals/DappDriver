@@ -1,6 +1,6 @@
 {
   "name": "@assert-equals/dappdriver",
-  "version": "0.18.1",
+  "version": "0.19.0",
   "description": "DappDriver is an e2e testing framework designed for testing decentralized applications (dApps) using MetaMask, Rainbow or Zerion",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
