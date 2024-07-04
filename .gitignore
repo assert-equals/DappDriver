@@ -2,6 +2,7 @@ node_modules
 metamask-*
 rainbowbx-*
 zerion-*
-.DS_Store
 dist
+docs
+.DS_Store
 .vscode
