@@ -147,15 +147,13 @@ export class PlaywrightPageObject implements IPageObject {
     const handles = this.driver.pages();
     for (const handle of handles) {
       if (handle === nameOrHandle) {
-        if (page) {
-          this.initialize(nameOrHandle);
-          return DappDriver.getPage<TPage>(page);
-        } else {
-          return this.initialize(nameOrHandle);
-        }
+        this.initialize(nameOrHandle);
+        break;
       }
     }
-    throw new Error('window not found');
+    if (page) {
+      return DappDriver.getPage<TPage>(page);
+    }
   }
 
   async waitForElement(cssLocator: string): Promise<void> {
