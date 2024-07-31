@@ -144,7 +144,7 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async switchToWindow<TPage>(nameOrHandle: Page, page?: new () => TPage): Promise<any> {
-    const handles = this.driver.pages();
+    const handles: Array<Page> = this.driver.pages();
     const handle: Page = handles.find((page: Page) => page['_guid'] === nameOrHandle['_guid']);
     this.initialize(handle);
     if (page) {
@@ -174,7 +174,8 @@ export class PlaywrightPageObject implements IPageObject {
   async waitForURL(url: RegExp): Promise<void> {
     await this.pageObject.waitForFunction(
       async () => RegExp(url).exec(await this.getCurrentUrl()) !== null,
-      `Waiting for url to match ${url}`
+      `Waiting for url to match ${url}`,
+      20000
     );
   }
 
