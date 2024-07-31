@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.21.2](https://github.com/assert-equals/DappDriver/compare/v0.21.1...v0.21.2) (2024-07-31)
+
+### Bug Fixes
+
+- increase waitForURL timeout ([bc24a06](https://github.com/assert-equals/DappDriver/commit/bc24a06ac956d2ae9a704bf7d1fd3fde1f476966))
+- pre-commit hook ([ef4b828](https://github.com/assert-equals/DappDriver/commit/ef4b8284362134f9385a1cd33efa104d6b598863))
+
 ## [0.21.1](https://github.com/assert-equals/DappDriver/compare/v0.21.0...v0.21.1) (2024-07-08)
 
 ## [0.21.0](https://github.com/assert-equals/DappDriver/compare/v0.20.0...v0.21.0) (2024-07-04)
