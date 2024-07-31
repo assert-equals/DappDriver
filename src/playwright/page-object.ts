@@ -143,14 +143,10 @@ export class PlaywrightPageObject implements IPageObject {
     }
   }
 
-  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+  async switchToWindow<TPage>(nameOrHandle: Page, page?: new () => TPage): Promise<any> {
     const handles = this.driver.pages();
-    for (const handle of handles) {
-      if (handle === nameOrHandle) {
-        this.initialize(nameOrHandle);
-        break;
-      }
-    }
+    const handle: Page = handles.find((page: Page) => page['_guid'] === nameOrHandle['_guid']);
+    this.initialize(handle);
     if (page) {
       return DappDriver.getPage<TPage>(page);
     }

@@ -133,7 +133,7 @@ export class WebDriverPageObject implements IPageObject {
     }
   }
 
-  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+  async switchToWindow<TPage>(nameOrHandle: string, page?: new () => TPage): Promise<any> {
     await this.driver.switchTo().window(nameOrHandle);
     if (page) {
       return DappDriver.getPage<TPage>(page);
