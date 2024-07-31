@@ -75,25 +75,11 @@ export class WebDriverHTMLElement implements IHTMLElement {
   }
 
   async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    const handle: string = await new PageObject().getWindowHandle();
     await this.click();
-    const timeout: number = 10_000;
-    const delay: number = 100;
-    let timeElapsed: number = 0;
-    let windowHandles: Array<string> = [];
-    while (timeElapsed <= timeout) {
-      windowHandles = await new PageObject().getAllWindowHandles();
-      if (!windowHandles.includes(handle)) {
-        await new PageObject().switchToMainWindow();
-        if (page) {
-          return DappDriver.getPage<TPage>(page);
-        }
-        return;
-      }
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      timeElapsed += delay;
+    await new PageObject().switchToMainWindow();
+    if (page) {
+      return DappDriver.getPage<TPage>(page);
     }
-    throw new Error('clickAndSwitchToMainWindow timed out waiting for the current window to close');
   }
 
   async getAttribute(attribute: string): Promise<string | null> {
