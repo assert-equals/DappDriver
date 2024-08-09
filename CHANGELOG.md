@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.22.1](https://github.com/assert-equals/DappDriver/compare/v0.22.0...v0.22.1) (2024-08-09)
+
 ## [0.22.0](https://github.com/assert-equals/DappDriver/compare/v0.21.2...v0.22.0) (2024-08-07)
 
 ### Features
