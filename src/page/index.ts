@@ -4,6 +4,7 @@ import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightPageObject } from '../playwright/page-object';
 import { DappDriver } from '../session/dapp-driver';
 import { Page } from '../types';
+import { toRegExp } from '../utils';
 import { WebDriverPageObject } from '../webdriver/page-object';
 
 /**
@@ -71,37 +72,6 @@ export class PageObject implements IPageObject {
     } else {
       return DappDriver.Instance.Domain + url;
     }
-  }
-  /**
-   *
-   *
-   * @private
-   * @param {string} str
-   * @return {*}  {string}
-   * @memberof PageObject
-   */
-  private escapeSpecialChars(str: string): string {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-  /**
-   *
-   *
-   * @private
-   * @return {*}  {RegExp}
-   * @memberof PageObject
-   */
-  private getTitleRegex(): RegExp {
-    return this.title instanceof RegExp ? this.title : new RegExp(this.escapeSpecialChars(this.title), 'iu');
-  }
-  /**
-   *
-   *
-   * @private
-   * @return {*}  {RegExp}
-   * @memberof PageObject
-   */
-  private getURLRegex(): RegExp {
-    return this.url instanceof RegExp ? this.url : new RegExp(this.escapeSpecialChars(this.url), 'iu');
   }
   /**
    *
@@ -442,7 +412,7 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   waitForTitle(title?: RegExp): Promise<void> {
-    title = title || this.getTitleRegex();
+    title = title || toRegExp(this.title);
     return this.callIfMethodExists('waitForTitle', [title]);
   }
   /**
@@ -453,7 +423,7 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   waitForURL(url?: RegExp): Promise<void> {
-    url = url || this.getURLRegex();
+    url = url || toRegExp(this.url);
     return this.callIfMethodExists('waitForURL', [url]);
   }
   /**
