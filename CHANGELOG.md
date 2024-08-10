@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.23.0](https://github.com/assert-equals/DappDriver/compare/v0.22.1...v0.23.0) (2024-08-10)
+
+### Features
+
+- enhance opensInExtension method ([ddef932](https://github.com/assert-equals/DappDriver/commit/ddef932fb527b46cab1b2bc4f8aa4aa1bba7545e))
+- expose page url and title ([2e188ee](https://github.com/assert-equals/DappDriver/commit/2e188ee03939bed5106b22a53a526c3b9c321458))
+- scroll if needed on signature requests ([3e778d5](https://github.com/assert-equals/DappDriver/commit/3e778d5ba68dd72d337b571fcacab9e2f8818950))
+
 ## [0.22.1](https://github.com/assert-equals/DappDriver/compare/v0.22.0...v0.22.1) (2024-08-09)
 
 ## [0.22.0](https://github.com/assert-equals/DappDriver/compare/v0.21.2...v0.22.0) (2024-08-07)
