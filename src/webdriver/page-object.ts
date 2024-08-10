@@ -91,11 +91,28 @@ export class WebDriverPageObject implements IPageObject {
     }
   }
 
-  async opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
-    const extension: string = await this.waitForExtension();
-    await this.switchToWindow(extension);
-    if (page) {
-      return DappDriver.getPage<TPage>(page);
+  async opensInExtension<TPage extends IConfirmation>(
+    page?: new () => TPage,
+    url?: RegExp,
+    title?: RegExp
+  ): Promise<any> {
+    const delay: number = 1000;
+    const retries: number = 10;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      const windowHandles = await this.getAllWindowHandles();
+      await this.switchToWindow(windowHandles[0]);
+      const extension: string = await this.waitForExtension();
+      await this.switchToWindow(extension);
+      if (!page) {
+        return;
+      } else {
+        const actualTitle: string = await this.getTitle();
+        const actualUrl: string = await this.getCurrentUrl();
+        if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
+          return DappDriver.getPage<TPage>(page);
+        }
+      }
+      await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
 

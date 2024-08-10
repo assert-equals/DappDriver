@@ -29,8 +29,8 @@ export interface IPageObject {
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any>;
   opensInExtension(): Promise<void>;
-  opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage>;
-  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any>;
+  opensInExtension<TPage extends IConfirmation>(page: new () => TPage, url?: RegExp, title?: RegExp): Promise<TPage>;
+  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage, url?: RegExp, title?: RegExp): Promise<any>;
   opensInNewWindow(): Promise<void>;
   opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
   opensInNewWindow<TPage>(page?: new () => TPage): Promise<any>;
@@ -48,7 +48,7 @@ export interface IPageObject {
   switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any>;
   waitForElement(cssLocator: string): Promise<void>;
   waitForExtension(): Promise<any>;
-  waitForTitle(title: RegExp): Promise<void>;
+  waitForTitle(title?: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
   waitForWindows(total: number): Promise<Array<any>>;
 }

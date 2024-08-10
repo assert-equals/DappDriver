@@ -253,10 +253,13 @@ export class PageObject implements IPageObject {
    * @memberof PageObject
    */
   opensInExtension(): Promise<void>;
-  opensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage>;
-  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
+  opensInExtension<TPage extends IConfirmation>(page: new () => TPage, url?: RegExp, title?: RegExp): Promise<TPage>;
+  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage, url?: RegExp, title?: RegExp): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('opensInExtension', [page]);
+      const newPage: TPage = new page();
+      title = title || toRegExp(newPage.title);
+      url = url || toRegExp(newPage.url);
+      return this.callIfMethodExists('opensInExtension', [page, url, title]);
     } else {
       return this.callIfMethodExists('opensInExtension');
     }
