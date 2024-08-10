@@ -1,4 +1,6 @@
 export interface IConfirmation {
+  url: string | RegExp;
+  title: string;
   accept(): Promise<void>;
   accept<TPage>(page: new () => TPage): Promise<TPage>;
   accept<TPage>(page?: new () => TPage): Promise<any>;

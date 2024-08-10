@@ -16,8 +16,8 @@ import { WebDriverPageObject } from '../webdriver/page-object';
  */
 export class PageObject implements IPageObject {
   private page: Page;
-  private url: string | RegExp;
-  private title: string | RegExp;
+  public url: string | RegExp;
+  public title: string;
   /**
    * Creates an instance of PageObject.
    * @param {(string | RegExp)} [url='']

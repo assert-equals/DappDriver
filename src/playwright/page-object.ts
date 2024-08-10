@@ -9,6 +9,8 @@ export class PlaywrightPageObject implements IPageObject {
   private page: Page;
   private driver: BrowserContext;
   private pageObject: PageObject;
+  public url: string | RegExp;
+  public title: string;
 
   constructor(page: Page) {
     this.initialize(page);

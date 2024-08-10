@@ -6,6 +6,8 @@ import { DappDriver } from '../session/dapp-driver';
 
 export class WebDriverPageObject implements IPageObject {
   private driver: WebDriver;
+  public url: string | RegExp;
+  public title: string;
 
   constructor() {
     this.driver = DappDriver.Instance.Driver as WebDriver;

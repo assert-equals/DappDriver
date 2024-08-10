@@ -6,21 +6,29 @@ import { DappDriver } from '../../session/dapp-driver';
 import { Approve as ZerionApprove } from '../../zerion';
 
 export class Approve implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let approve: MetaMaskApprove | RainbowApprove | ZerionApprove;
+  public url: string | RegExp;
+  public title: string;
+  private approve: MetaMaskApprove | RainbowApprove | ZerionApprove;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        approve = new MetaMaskApprove();
+        this.approve = new MetaMaskApprove();
         break;
       case RAINBOW:
-        approve = new RainbowApprove();
+        this.approve = new RainbowApprove();
         break;
       case ZERION:
-        approve = new ZerionApprove();
+        this.approve = new ZerionApprove();
         break;
     }
-    return await (approve[methodName] as Function)(...args);
+    this.url = this.approve.url;
+    this.title = this.approve.title;
+  }
+
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.approve[methodName] as Function)(...args);
   }
   /**
    *

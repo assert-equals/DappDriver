@@ -13,21 +13,29 @@ import { SendTransaction as ZerionConfirmTransaction } from '../../zerion';
  * @implements {IConfirmation}
  */
 export class ConfirmTransaction implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let confirmTx: MetaMaskConfirmTransaction | RainbowConfirmTransaction | ZerionConfirmTransaction;
+  public url: string | RegExp;
+  public title: string;
+  private confirmTx: MetaMaskConfirmTransaction | RainbowConfirmTransaction | ZerionConfirmTransaction;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        confirmTx = new MetaMaskConfirmTransaction();
+        this.confirmTx = new MetaMaskConfirmTransaction();
         break;
       case RAINBOW:
-        confirmTx = new RainbowConfirmTransaction();
+        this.confirmTx = new RainbowConfirmTransaction();
         break;
       case ZERION:
-        confirmTx = new ZerionConfirmTransaction();
+        this.confirmTx = new ZerionConfirmTransaction();
         break;
     }
-    return await (confirmTx[methodName] as Function)(...args);
+    this.url = this.confirmTx.url;
+    this.title = this.confirmTx.title;
+  }
+
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.confirmTx[methodName] as Function)(...args);
   }
   /**
    *

@@ -13,21 +13,28 @@ import { ApproveAll as ZerionApproveAll } from '../../zerion';
  * @implements {IConfirmation}
  */
 export class ApproveAll implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let approveAll: MetaMaskApproveAll | RainbowApproveAll | ZerionApproveAll;
+  public url: string | RegExp;
+  public title: string;
+  private approveAll: MetaMaskApproveAll | RainbowApproveAll | ZerionApproveAll;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        approveAll = new MetaMaskApproveAll();
+        this.approveAll = new MetaMaskApproveAll();
         break;
       case RAINBOW:
-        approveAll = new RainbowApproveAll();
+        this.approveAll = new RainbowApproveAll();
         break;
       case ZERION:
-        approveAll = new ZerionApproveAll();
+        this.approveAll = new ZerionApproveAll();
         break;
     }
-    return await (approveAll[methodName] as Function)(...args);
+    this.url = this.approveAll.url;
+    this.title = this.approveAll.title;
+  }
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.approveAll[methodName] as Function)(...args);
   }
   /**
    *

@@ -13,21 +13,29 @@ import { Connect as ZerionConnect } from '../../zerion';
  * @implements {IConfirmation}
  */
 export class Connect implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let connect: MetaMaskConnect | RainbowConnect | ZerionConnect;
+  public url: string | RegExp;
+  public title: string;
+  private connect: MetaMaskConnect | RainbowConnect | ZerionConnect;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        connect = new MetaMaskConnect();
+        this.connect = new MetaMaskConnect();
         break;
       case RAINBOW:
-        connect = new RainbowConnect();
+        this.connect = new RainbowConnect();
         break;
       case ZERION:
-        connect = new ZerionConnect();
+        this.connect = new ZerionConnect();
         break;
     }
-    return await (connect[methodName] as Function)(...args);
+    this.url = this.connect.url;
+    this.title = this.connect.title;
+  }
+
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.connect[methodName] as Function)(...args);
   }
   /**
    *

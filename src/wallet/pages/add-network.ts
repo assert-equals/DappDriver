@@ -13,21 +13,29 @@ import { AddNetwork as ZerionAddNetwork } from '../../zerion';
  * @implements {IConfirmation}
  */
 export class AddNetwork implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let addNetwork: MetaMaskAddNetwork | RainbowAddNetwork | ZerionAddNetwork;
+  public url: string | RegExp;
+  public title: string;
+  private addNetwork: MetaMaskAddNetwork | RainbowAddNetwork | ZerionAddNetwork;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        addNetwork = new MetaMaskAddNetwork();
+        this.addNetwork = new MetaMaskAddNetwork();
         break;
       case RAINBOW:
-        addNetwork = new RainbowAddNetwork();
+        this.addNetwork = new RainbowAddNetwork();
         break;
       case ZERION:
-        addNetwork = new ZerionAddNetwork();
+        this.addNetwork = new ZerionAddNetwork();
         break;
     }
-    return await (addNetwork[methodName] as Function)(...args);
+    this.url = this.addNetwork.url;
+    this.title = this.addNetwork.title;
+  }
+
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.addNetwork[methodName] as Function)(...args);
   }
   /**
    *

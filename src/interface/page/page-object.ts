@@ -1,6 +1,8 @@
 import { IConfirmation } from '../wallet/confirmation';
 
 export interface IPageObject {
+  url: string | RegExp;
+  title: string;
   back(): Promise<void>;
   back<TPage>(page: new () => TPage): Promise<TPage>;
   back<TPage>(page?: new () => TPage): Promise<any>;

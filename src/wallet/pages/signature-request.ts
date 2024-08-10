@@ -13,21 +13,28 @@ import { SignatureRequest as ZerionSignatureRequest } from '../../zerion';
  * @implements {IConfirmation}
  */
 export class SignatureRequest implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let signatureRequest: MetaMaskSignatureRequest | RainbowSignatureRequest | ZerionSignatureRequest;
+  public url: string | RegExp;
+  public title: string;
+  private signatureRequest: MetaMaskSignatureRequest | RainbowSignatureRequest | ZerionSignatureRequest;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        signatureRequest = new MetaMaskSignatureRequest();
+        this.signatureRequest = new MetaMaskSignatureRequest();
         break;
       case RAINBOW:
-        signatureRequest = new RainbowSignatureRequest();
+        this.signatureRequest = new RainbowSignatureRequest();
         break;
       case ZERION:
-        signatureRequest = new ZerionSignatureRequest();
+        this.signatureRequest = new ZerionSignatureRequest();
         break;
     }
-    return await (signatureRequest[methodName] as Function)(...args);
+    this.url = this.signatureRequest.url;
+    this.title = this.signatureRequest.title;
+  }
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.signatureRequest[methodName] as Function)(...args);
   }
   /**
    *

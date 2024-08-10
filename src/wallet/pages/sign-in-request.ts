@@ -13,21 +13,29 @@ import { SignInRequest as ZerionSignInRequest } from '../../zerion';
  * @implements {IConfirmation}
  */
 export class SignInRequest implements IConfirmation {
-  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    let signInRequest: MetaMaskSignInRequest | RainbowSignInRequest | ZerionSignInRequest;
+  public url: string | RegExp;
+  public title: string;
+  private signInRequest: MetaMaskSignInRequest | RainbowSignInRequest | ZerionSignInRequest;
+
+  constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        signInRequest = new MetaMaskSignInRequest();
+        this.signInRequest = new MetaMaskSignInRequest();
         break;
       case RAINBOW:
-        signInRequest = new RainbowSignInRequest();
+        this.signInRequest = new RainbowSignInRequest();
         break;
       case ZERION:
-        signInRequest = new ZerionSignInRequest();
+        this.signInRequest = new ZerionSignInRequest();
         break;
     }
-    return await (signInRequest[methodName] as Function)(...args);
+    this.url = this.signInRequest.url;
+    this.title = this.signInRequest.title;
+  }
+
+  private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
+    return await (this.signInRequest[methodName] as Function)(...args);
   }
   /**
    *
