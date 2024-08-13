@@ -18,7 +18,7 @@ export class AddNetwork extends PageObject implements IConfirmation {
    * @memberof AddNetwork
    */
   constructor() {
-    super('/notification.html#connect', 'MetaMask');
+    super('/notification.html#confirmation', 'MetaMask');
   }
   /**
    *
