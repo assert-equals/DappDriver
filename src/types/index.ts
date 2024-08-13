@@ -33,3 +33,5 @@ export type BrowserOptions = {
   proxy?: boolean;
   extension?: WalletOptions;
 };
+
+export type Comparator = (a: number, b: number) => boolean;
