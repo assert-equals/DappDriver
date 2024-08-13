@@ -85,7 +85,7 @@
     "mockttp": "^3.11.0",
     "playwright-core": "^1.46.0",
     "selenium-webdriver": "^4.23.0",
-    "semver": "^7.6.0"
+    "semver": "^7.6.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.0",
