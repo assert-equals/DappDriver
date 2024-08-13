@@ -3,8 +3,8 @@ import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightPageObject } from '../playwright/page-object';
 import { DappDriver } from '../session/dapp-driver';
-import { Page } from '../types';
-import { toRegExp } from '../utils';
+import { Comparator, Page } from '../types';
+import { strictEqual, toRegExp } from '../utils';
 import { WebDriverPageObject } from '../webdriver/page-object';
 
 /**
@@ -145,21 +145,18 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to the extension
+   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to the window
    * @template TPage
    * @param {string} script
-   * @param {new () => TPage} [page]
+   * @param {new () => TPage} page
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  executeScriptAndOpensInExtension(script: string): Promise<void>;
-  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page: new () => TPage): Promise<TPage>;
-  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page?: new () => TPage): Promise<any> {
-    if (page) {
-      return this.callIfMethodExists('executeScriptAndOpensInExtension', [script, page]);
-    } else {
-      return this.callIfMethodExists('executeScriptAndOpensInExtension', [script]);
-    }
+  executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
+    script: string,
+    page: new () => TPage
+  ): Promise<any> {
+    return this.callIfMethodExists('executeScriptAndOpensInWindow', [script, page]);
   }
   /**
    *
@@ -246,26 +243,6 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to switch the focus of all future commands to the extension
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof PageObject
-   */
-  opensInExtension(): Promise<void>;
-  opensInExtension<TPage extends IConfirmation>(page: new () => TPage, url?: RegExp, title?: RegExp): Promise<TPage>;
-  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage, url?: RegExp, title?: RegExp): Promise<any> {
-    if (page) {
-      const newPage: TPage = new page();
-      title = title || toRegExp(newPage.title);
-      url = url || toRegExp(newPage.url);
-      return this.callIfMethodExists('opensInExtension', [page, url, title]);
-    } else {
-      return this.callIfMethodExists('opensInExtension');
-    }
-  }
-  /**
-   *
    * Schedules a command to switch the focus of all future commands to another window
    * @template TPage
    * @param {new () => TPage} [page]
@@ -280,6 +257,17 @@ export class PageObject implements IPageObject {
     } else {
       return this.callIfMethodExists('opensInNewWindow');
     }
+  }
+  /**
+   *
+   * Schedules a command to switch the focus of all future commands to the window
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof PageObject
+   */
+  opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return this.callIfMethodExists('opensInWindow', [page]);
   }
   /**
    *
@@ -375,15 +363,6 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to wait for the extension window
-   * @return {*}  {Promise<any>}
-   * @memberof PageObject
-   */
-  waitForExtension(): Promise<any> {
-    return this.callIfMethodExists('waitForExtension');
-  }
-  /**
-   *
    * Schedules a command to wait for a function to return a truthy value
    * @param {Function} func
    * @param {string} errMsg
@@ -431,12 +410,24 @@ export class PageObject implements IPageObject {
   }
   /**
    *
+   * Schedules a command to wait for a window
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
+   * @memberof PageObject
+   */
+  waitForWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any> {
+    return this.callIfMethodExists('waitForWindow', [page]);
+  }
+  /**
+   *
    * Schedules a command to wait for the required count of windows
    * @param {number} total
+   * @param {Comparator} comparator
    * @return {*}  {Promise<Array<any>>}
    * @memberof PageObject
    */
-  waitForWindows(total: number): Promise<Array<any>> {
-    return this.callIfMethodExists('waitForWindows', [total]);
+  waitForWindows(total: number, comparator: Comparator = strictEqual): Promise<Array<any>> {
+    return this.callIfMethodExists('waitForWindows', [total, comparator]);
   }
 }

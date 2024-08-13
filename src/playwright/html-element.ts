@@ -1,5 +1,6 @@
 import { Locator } from 'playwright-core';
 import { IHTMLElement } from '../interface/controls/html-element';
+import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PageObject } from '../page';
 import { DappDriver } from '../session/dapp-driver';
@@ -42,20 +43,17 @@ export class PlaywrightHTMLElement implements IHTMLElement {
     await DappDriver.sleep(duration);
   }
 
-  async clickAndOpensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
-    await this.click();
-    await new PageObject().opensInExtension();
-    if (page) {
-      return DappDriver.getPage<TPage>(page);
-    }
-  }
-
   async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     await this.click();
     await new PageObject().opensInNewWindow();
     if (page) {
       return DappDriver.getPage<TPage>(page);
     }
+  }
+
+  async clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any> {
+    await this.click();
+    return await new PageObject().opensInWindow(page);
   }
 
   async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {

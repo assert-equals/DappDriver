@@ -6,8 +6,7 @@ let createPasswordPage: CreatePassword;
 let readyPage: Ready;
 export async function setupRainbowWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const extension: any = await page.waitForExtension();
-  const welcomePage: Welcome = await page.switchToWindow<Welcome>(extension, Welcome);
+  const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
   if (seed) {
     const importOrConnectPage = await welcomePage.importOrConnectAWallet();
     const importPage = await importOrConnectPage.importWithASecretRecoveryPhraseOrPrivateKey();

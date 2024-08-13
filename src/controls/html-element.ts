@@ -1,5 +1,6 @@
 import { PLAYWRIGHT, WEBDRIVER } from '../constants';
 import { IHTMLElement } from '../interface/controls/html-element';
+import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightHTMLElement } from '../playwright/html-element';
 import { DappDriver } from '../session/dapp-driver';
@@ -75,23 +76,6 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   * Schedules a command to click on this element and switch the focus of all future commands to the extension
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof HTMLElement
-   */
-  clickAndOpensInExtension(): Promise<void>;
-  clickAndOpensInExtension<TPage extends IConfirmation>(page: new () => TPage): Promise<TPage>;
-  clickAndOpensInExtension<TPage extends IConfirmation>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return this.callIfMethodExists('clickAndOpensInExtension', [page]);
-    } else {
-      return this.callIfMethodExists('clickAndOpensInExtension');
-    }
-  }
-  /**
-   *
    * Schedules a command to click on this element and switch the focus of all future commands to another window
    * @template TPage
    * @param {new () => TPage} [page]
@@ -106,6 +90,17 @@ export class HTMLElement implements IHTMLElement {
     } else {
       return this.callIfMethodExists('clickAndOpensInNewWindow');
     }
+  }
+  /**
+   *
+   * Schedules a command to click on this element and switch the focus of all future commands to the window
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof HTMLElement
+   */
+  clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return this.callIfMethodExists('clickAndOpensInWindow', [page]);
   }
   /**
    *

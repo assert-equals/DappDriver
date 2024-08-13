@@ -10,8 +10,7 @@ let passwordPage: Password;
 let informationPage: Information;
 export async function setupZerionWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const extension: any = await page.waitForExtension();
-  const welcomePage: Welcome = await page.switchToWindow<Welcome>(extension, Welcome);
+  const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
   if (seed) {
     const importWalletPage = await welcomePage.importExistingWallet();
     const recoveryPhrasePage = await importWalletPage.importRecoveryPhrase();

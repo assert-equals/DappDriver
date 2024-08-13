@@ -1,3 +1,4 @@
+import { Comparator } from '../../types';
 import { IConfirmation } from '../wallet/confirmation';
 
 export interface IPageObject {
@@ -14,9 +15,10 @@ export interface IPageObject {
   closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any>;
   createNewWindow(): Promise<void>;
   executeScript(script: string): Promise<any>;
-  executeScriptAndOpensInExtension(script: string): Promise<void>;
-  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page: new () => TPage): Promise<TPage>;
-  executeScriptAndOpensInExtension<TPage extends IConfirmation>(script: string, page: new () => TPage): Promise<any>;
+  executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
+    script: string,
+    page: new () => TPage
+  ): Promise<TPage>;
   getAllWindowHandles(): Promise<Array<any>>;
   getCurrentUrl(): Promise<string>;
   getTitle(): Promise<string>;
@@ -28,12 +30,10 @@ export interface IPageObject {
   navigateToPageInNewWindow(url: string): Promise<void>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any>;
-  opensInExtension(): Promise<void>;
-  opensInExtension<TPage extends IConfirmation>(page: new () => TPage, url?: RegExp, title?: RegExp): Promise<TPage>;
-  opensInExtension<TPage extends IConfirmation>(page?: new () => TPage, url?: RegExp, title?: RegExp): Promise<any>;
   opensInNewWindow(): Promise<void>;
   opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
   opensInNewWindow<TPage>(page?: new () => TPage): Promise<any>;
+  opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   refresh(): Promise<void>;
   refresh<TPage>(page: new () => TPage): Promise<TPage>;
   refresh<TPage>(page?: new () => TPage): Promise<any>;
@@ -47,8 +47,8 @@ export interface IPageObject {
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
   switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any>;
   waitForElement(cssLocator: string): Promise<void>;
-  waitForExtension(): Promise<any>;
   waitForTitle(title?: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
-  waitForWindows(total: number): Promise<Array<any>>;
+  waitForWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any>;
+  waitForWindows(total: number, comparator: Comparator): Promise<Array<any>>;
 }

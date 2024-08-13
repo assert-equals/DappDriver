@@ -8,9 +8,7 @@ let completionPage: Completion;
 
 export async function setupMetaMaskFlaskWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const handles: Array<string> = await page.waitForWindows(2);
-  await page.switchToWindow(handles[1]);
-  const experimentalArea = new ExperimentalArea();
+  const experimentalArea: ExperimentalArea = await page.opensInWindow<ExperimentalArea>(ExperimentalArea);
   const welcomePage = await experimentalArea.iAccept();
   await welcomePage.agreeTermsOfUse();
   if (seed) {
