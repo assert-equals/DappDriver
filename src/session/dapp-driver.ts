@@ -312,11 +312,7 @@ export class DappDriver {
    * @memberof DappDriver
    */
   static async sleep(duration: number): Promise<void> {
-    if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-      await DappDriver.Instance.Page.waitForTimeout(duration);
-    } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-      await (DappDriver.Instance.Driver as WebDriver).sleep(duration);
-    }
+    await new Promise((resolve) => setTimeout(resolve, duration));
   }
   /**
    *
