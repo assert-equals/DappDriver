@@ -322,6 +322,9 @@ export class DappDriver {
    * @memberof DappDriver
    */
   static async takeScreenshot(): Promise<string> {
+    if (DappDriver.Instance === null) {
+      return;
+    }
     let screenShot: string;
     if (DappDriver.Instance.Framework === PLAYWRIGHT) {
       screenShot = (await DappDriver.Instance.Page.screenshot()).toString('base64');
