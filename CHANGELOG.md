@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.24.0](https://github.com/assert-equals/DappDriver/compare/v0.23.1...v0.24.0) (2024-08-13)
+
+### Features
+
+- add comparators isAtLeast and strictEqual ([5070328](https://github.com/assert-equals/DappDriver/commit/50703289bfd4c04e5dd41c74b37f64dc6992ca3b))
+- enhance window management ([d2b3264](https://github.com/assert-equals/DappDriver/commit/d2b326423e208757a816539cddbe5d8b2e994891))
+
+### Bug Fixes
+
+- update AddNetwork page object url ([869381a](https://github.com/assert-equals/DappDriver/commit/869381a76a88238f195c608285e713d218edb2d2))
+
 ## [0.23.1](https://github.com/assert-equals/DappDriver/compare/v0.23.0...v0.23.1) (2024-08-13)
 
 ### Bug Fixes
