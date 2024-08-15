@@ -151,11 +151,11 @@ export class WebDriverPageObject implements IPageObject {
   }
 
   async waitForTitle(title: RegExp): Promise<void> {
-    await this.driver.wait(until.titleMatches(title), 10000);
+    await this.driver.wait(until.titleMatches(title), 20000);
   }
 
   async waitForURL(url: RegExp): Promise<void> {
-    await this.driver.wait(until.urlMatches(url), 10000);
+    await this.driver.wait(until.urlMatches(url), 20000);
   }
 
   async waitForWindows(total: number, comparator: Comparator = strictEqual): Promise<Array<string>> {

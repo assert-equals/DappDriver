@@ -166,7 +166,8 @@ export class PlaywrightPageObject implements IPageObject {
   async waitForTitle(title: RegExp): Promise<void> {
     await this.pageObject.waitForFunction(
       async () => RegExp(title).exec(await this.getTitle()) !== null,
-      `Waiting for title to match ${title}`
+      `Waiting for title to match ${title}`,
+      20000
     );
   }
 
@@ -174,7 +175,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.pageObject.waitForFunction(
       async () => RegExp(url).exec(await this.getCurrentUrl()) !== null,
       `Waiting for url to match ${url}`,
-      10000
+      20000
     );
   }
 

@@ -12,7 +12,7 @@ import { ConfirmTransaction } from './confirm-transaction';
  */
 export class SignMessage extends ConfirmTransaction implements IConfirmation {
   protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-button"]');
-  private scrollButton: () => HTMLElement = () => new HTMLElement('[aria-label="Scroll down"]', 3000);
+  private scrollButton: () => HTMLElement = () => new HTMLElement('[aria-label="Scroll down"]', 8000);
   /**
    * Creates an instance of SignMessage.
    * @memberof SignMessage
