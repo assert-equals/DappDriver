@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.24.1](https://github.com/assert-equals/DappDriver/compare/v0.24.0...v0.24.1) (2024-08-15)
+
+### Bug Fixes
+
+- increase timeouts ([e7c94d0](https://github.com/assert-equals/DappDriver/commit/e7c94d0058608b10296ed5a93c41329220c2a552))
+- opensInWindow return type ([1635357](https://github.com/assert-equals/DappDriver/commit/1635357fe47825808db0e15af988bf30f75c5949))
+
 ## [0.24.0](https://github.com/assert-equals/DappDriver/compare/v0.23.1...v0.24.0) (2024-08-13)
 
 ### Features
