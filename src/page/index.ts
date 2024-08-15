@@ -410,17 +410,6 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to wait for a window
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof PageObject
-   */
-  waitForWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any> {
-    return this.callIfMethodExists('waitForWindow', [page]);
-  }
-  /**
-   *
    * Schedules a command to wait for the required count of windows
    * @param {number} total
    * @param {Comparator} comparator

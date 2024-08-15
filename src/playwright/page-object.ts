@@ -101,9 +101,27 @@ export class PlaywrightPageObject implements IPageObject {
     return await this.switchToWindow(handles[1], page);
   }
 
-  async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any> {
-    const extension: Page = await this.waitForWindow<TPage>(page);
-    return await this.switchToWindow(extension, page);
+  async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    const delay: number = 1000;
+    const retries: number = 10;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      const handles: Array<Page> = await this.waitForWindows(2, isAtLeast);
+      for (const handle of handles) {
+        try {
+          await this.switchToWindow(handle);
+          const actualTitle: string = await this.getTitle();
+          const actualUrl: string = await this.getCurrentUrl();
+          const newPage: TPage = new page();
+          const title: RegExp = toRegExp(newPage.title);
+          const url: RegExp = toRegExp(newPage.url);
+          if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
+            return DappDriver.getPage<TPage>(page);
+          }
+        } catch (e) {}
+      }
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+    throw new Error('waitForWindow timed out polling window handles');
   }
 
   async refresh<TPage>(page?: new () => TPage): Promise<any> {
@@ -132,9 +150,7 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async switchToWindow<TPage>(nameOrHandle: Page, page?: new () => TPage): Promise<any> {
-    const handles: Array<Page> = this.driver.pages();
-    const handle: Page = handles.find((page: Page) => page['_guid'] === nameOrHandle['_guid']);
-    this.initialize(handle);
+    this.initialize(nameOrHandle);
     if (page) {
       return DappDriver.getPage<TPage>(page);
     }
@@ -160,27 +176,6 @@ export class PlaywrightPageObject implements IPageObject {
       `Waiting for url to match ${url}`,
       10000
     );
-  }
-
-  async waitForWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<Page> {
-    const delay: number = 1000;
-    const retries: number = 10;
-    for (let attempt = 1; attempt <= retries; attempt++) {
-      const handles: Array<Page> = await this.waitForWindows(2, isAtLeast);
-      for (const handle of handles) {
-        await this.switchToWindow(handle);
-        const actualTitle: string = await this.getTitle();
-        const actualUrl: string = await this.getCurrentUrl();
-        const newPage: TPage = new page();
-        const title: RegExp = toRegExp(newPage.title);
-        const url: RegExp = toRegExp(newPage.url);
-        if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
-          return handle;
-        }
-      }
-      await new Promise((resolve) => setTimeout(resolve, delay));
-    }
-    throw new Error('waitForWindow timed out polling window handles');
   }
 
   async waitForWindows(total: number, comparator: Comparator = strictEqual): Promise<Array<Page>> {

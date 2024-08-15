@@ -49,6 +49,5 @@ export interface IPageObject {
   waitForElement(cssLocator: string): Promise<void>;
   waitForTitle(title?: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
-  waitForWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any>;
   waitForWindows(total: number, comparator: Comparator): Promise<Array<any>>;
 }
