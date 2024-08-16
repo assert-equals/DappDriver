@@ -17,14 +17,14 @@ export class WebDriverPageObject implements IPageObject {
   async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.navigate().back();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
   async close<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.close();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -74,7 +74,7 @@ export class WebDriverPageObject implements IPageObject {
   async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.driver.navigate().to(url);
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -82,7 +82,7 @@ export class WebDriverPageObject implements IPageObject {
     await this.createNewWindow();
     await this.navigateTo(url);
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -105,11 +105,11 @@ export class WebDriverPageObject implements IPageObject {
           const title: RegExp = toRegExp(newPage.title);
           const url: RegExp = toRegExp(newPage.url);
           if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
-            return DappDriver.getPage<TPage>(page);
+            return await DappDriver.getPage<TPage>(page);
           }
         } catch (e) {}
       }
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      await DappDriver.sleep(delay);
     }
     throw new Error('waitForWindow timed out polling window handles');
   }
@@ -117,7 +117,7 @@ export class WebDriverPageObject implements IPageObject {
   async refresh<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.navigate().refresh();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -142,7 +142,7 @@ export class WebDriverPageObject implements IPageObject {
   async switchToWindow<TPage>(nameOrHandle: string, page?: new () => TPage): Promise<any> {
     await this.driver.switchTo().window(nameOrHandle);
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -168,7 +168,7 @@ export class WebDriverPageObject implements IPageObject {
       if (comparator(windowHandles.length, total)) {
         return windowHandles;
       }
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      await DappDriver.sleep(delay);
       timeElapsed += delay;
     }
     throw new Error('waitForWindows timed out polling window handles');

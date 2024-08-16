@@ -27,14 +27,14 @@ export class PlaywrightPageObject implements IPageObject {
   async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.goBack();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
   async close<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.close();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -49,7 +49,7 @@ export class PlaywrightPageObject implements IPageObject {
   }
 
   async executeScript(script: string): Promise<any> {
-    return this.page.evaluate(script);
+    return await this.page.evaluate(script);
   }
 
   async executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
@@ -84,7 +84,7 @@ export class PlaywrightPageObject implements IPageObject {
   async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
     await this.page.goto(url);
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -92,7 +92,7 @@ export class PlaywrightPageObject implements IPageObject {
     await this.createNewWindow();
     await this.navigateTo(url);
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -115,11 +115,11 @@ export class PlaywrightPageObject implements IPageObject {
           const title: RegExp = toRegExp(newPage.title);
           const url: RegExp = toRegExp(newPage.url);
           if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
-            return DappDriver.getPage<TPage>(page);
+            return await DappDriver.getPage<TPage>(page);
           }
         } catch (e) {}
       }
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      await DappDriver.sleep(delay);
     }
     throw new Error('waitForWindow timed out polling window handles');
   }
@@ -127,7 +127,7 @@ export class PlaywrightPageObject implements IPageObject {
   async refresh<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.reload();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -152,7 +152,7 @@ export class PlaywrightPageObject implements IPageObject {
   async switchToWindow<TPage>(nameOrHandle: Page, page?: new () => TPage): Promise<any> {
     this.initialize(nameOrHandle);
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -189,7 +189,7 @@ export class PlaywrightPageObject implements IPageObject {
       if (comparator(windowHandles.length, total)) {
         return windowHandles;
       }
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      await DappDriver.sleep(delay);
       timeElapsed += delay;
     }
     throw new Error('waitForWindows timed out polling window handles');

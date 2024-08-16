@@ -16,7 +16,7 @@ import { Browser, BrowserOptions } from '../types';
 export class PlaywrightFactory {
   async build(browser: Browser, options: BrowserOptions): Promise<BrowserContext> {
     if (browser.toLowerCase() === CHROME) {
-      return this.buildChrome(options);
+      return await this.buildChrome(options);
     }
     throw new Error('Unsupported browser: ' + browser);
   }

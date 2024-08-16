@@ -381,7 +381,7 @@ export class PageObject implements IPageObject {
       if (result) {
         return;
       }
-      await new Promise((resolve) => setTimeout(resolve, delay));
+      await DappDriver.sleep(delay);
       timeElapsed += delay;
     }
     throw new Error(`${errMsg}\nWait timed out after ${timeout}ms`);

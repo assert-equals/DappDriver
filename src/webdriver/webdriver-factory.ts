@@ -15,9 +15,9 @@ import {
 import { Browser, BrowserOptions } from '../types';
 
 export class WebDriverFactory {
-  build(browser: Browser, options: BrowserOptions): Promise<WebDriver> {
+  async build(browser: Browser, options: BrowserOptions): Promise<WebDriver> {
     if (browser.toLowerCase() === CHROME) {
-      return this.buildChrome(options);
+      return await this.buildChrome(options);
     }
     throw new Error('Unsupported browser: ' + browser);
   }

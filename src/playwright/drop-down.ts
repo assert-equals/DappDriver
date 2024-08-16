@@ -7,11 +7,11 @@ export class PlaywrightDropDown extends PlaywrightHTMLElement implements IDropDo
   }
 
   async getSelectedOption(): Promise<string> {
-    return this.webElement.locator('option:checked').textContent({ timeout: this.timeout });
+    return await this.webElement.locator('option:checked').textContent({ timeout: this.timeout });
   }
 
   async getText(): Promise<string> {
-    return this.getSelectedOption();
+    return await this.getSelectedOption();
   }
 
   async selectByIndex(index: number): Promise<void> {

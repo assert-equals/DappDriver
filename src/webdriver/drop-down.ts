@@ -14,7 +14,7 @@ export class WebDriverDropDown extends WebDriverHTMLElement implements IDropDown
   }
 
   async getText(): Promise<string> {
-    return this.getSelectedOption();
+    return await this.getSelectedOption();
   }
 
   async selectByIndex(index: number): Promise<void> {

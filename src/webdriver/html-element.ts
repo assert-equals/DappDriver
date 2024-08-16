@@ -24,11 +24,13 @@ export class WebDriverHTMLElement implements IHTMLElement {
   async search(): Promise<void> {
     await this.driver.manage().setTimeouts({ implicit: this.timeout });
     if (this.cssLocator.startsWith('xpath=')) {
-      this.webElement = !this.element
+      this.webElement = !(await this.element)
         ? await this.driver.findElement({ xpath: this.cssLocator.substring(6, this.cssLocator.length) })
         : await this.element;
     } else {
-      this.webElement = !this.element ? await this.driver.findElement({ css: this.cssLocator }) : await this.element;
+      this.webElement = !(await this.element)
+        ? await this.driver.findElement({ css: this.cssLocator })
+        : await this.element;
     }
     await this.driver.manage().setTimeouts({ implicit: 20000 });
   }
@@ -50,20 +52,20 @@ export class WebDriverHTMLElement implements IHTMLElement {
       }
     }
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
   async clickAndWait(duration: number): Promise<void> {
     await this.click();
-    return DappDriver.sleep(duration);
+    return await DappDriver.sleep(duration);
   }
 
   async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     await this.click();
     await new PageObject().opensInNewWindow();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -76,7 +78,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
     await this.click();
     await new PageObject().switchToMainWindow();
     if (page) {
-      return DappDriver.getPage<TPage>(page);
+      return await DappDriver.getPage<TPage>(page);
     }
   }
 
@@ -97,7 +99,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
 
   async hover(): Promise<void> {
     await this.search();
-    return this.driver.actions({ async: true }).move({ origin: this.webElement }).perform();
+    return await this.driver.actions({ async: true }).move({ origin: this.webElement }).perform();
   }
 
   async isDisplayed(): Promise<boolean> {
