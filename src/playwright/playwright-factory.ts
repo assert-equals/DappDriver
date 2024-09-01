@@ -25,8 +25,7 @@ export class PlaywrightFactory {
     const chromeOptions: object = {
       headless: false,
       channel: 'chrome',
-      args: [],
-      viewport: null
+      args: []
     };
     if (options.proxy) {
       chromeOptions['ignoreHTTPSErrors'] = true;
@@ -48,6 +47,7 @@ export class PlaywrightFactory {
       chromeOptions['args'].push(`--disable-extensions-except=${extensionPath}`);
       chromeOptions['args'].push(`--load-extension=${extensionPath}`);
     }
+    chromeOptions['args'].push(`--window-size=1920,1080`);
     const browserContext: BrowserContext = await playwright.chromium.launchPersistentContext('', chromeOptions);
     return browserContext;
   }

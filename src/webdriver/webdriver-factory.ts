@@ -42,6 +42,7 @@ export class WebDriverFactory {
       }
       args.push(`--load-extension=${extensionPath}`);
     }
+    args.push(`--window-size=1920,1080`);
     chromeOptions.addArguments(...args);
     const driver: WebDriver = await new Builder().forBrowser(CHROME).setChromeOptions(chromeOptions).build();
     await driver.manage().setTimeouts({ implicit: 20000 });
