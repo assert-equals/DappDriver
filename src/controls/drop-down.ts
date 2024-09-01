@@ -51,7 +51,7 @@ export class DropDown extends HTMLElement implements IDropDown {
    * @memberof DropDown
    */
   async getSelectedOption(): Promise<string> {
-    return this.callIfMethodExists('getSelectedOption');
+    return await this.callIfMethodExists('getSelectedOption');
   }
   /**
    *
@@ -61,7 +61,7 @@ export class DropDown extends HTMLElement implements IDropDown {
    * @memberof DropDown
    */
   async selectByIndex(index: number): Promise<void> {
-    return this.callIfMethodExists('selectByIndex', [index]);
+    return await this.callIfMethodExists('selectByIndex', [index]);
   }
   /**
    *
@@ -71,7 +71,7 @@ export class DropDown extends HTMLElement implements IDropDown {
    * @memberof DropDown
    */
   async selectByText(text: string): Promise<void> {
-    return this.callIfMethodExists('selectByText', [text]);
+    return await this.callIfMethodExists('selectByText', [text]);
   }
   /**
    *
@@ -81,6 +81,6 @@ export class DropDown extends HTMLElement implements IDropDown {
    * @memberof DropDown
    */
   async selectByValue(value: string): Promise<void> {
-    return this.callIfMethodExists('selectByValue', [value]);
+    return await this.callIfMethodExists('selectByValue', [value]);
   }
 }

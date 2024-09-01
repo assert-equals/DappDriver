@@ -57,11 +57,11 @@ export class HTMLElement implements IHTMLElement {
    */
   click(): Promise<void>;
   click<TPage>(page: new () => TPage): Promise<TPage>;
-  click<TPage>(page?: new () => TPage): Promise<any> {
+  async click<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('click', [page]);
+      return await this.callIfMethodExists('click', [page]);
     } else {
-      return this.callIfMethodExists('click');
+      return await this.callIfMethodExists('click');
     }
   }
   /**
@@ -71,8 +71,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement
    */
-  clickAndWait(duration: number = 1000): Promise<void> {
-    return this.callIfMethodExists('clickAndWait', [duration]);
+  async clickAndWait(duration: number = 1000): Promise<void> {
+    return await this.callIfMethodExists('clickAndWait', [duration]);
   }
   /**
    *
@@ -84,11 +84,11 @@ export class HTMLElement implements IHTMLElement {
    */
   clickAndOpensInNewWindow(): Promise<void>;
   clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
+  async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
+      return await this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
     } else {
-      return this.callIfMethodExists('clickAndOpensInNewWindow');
+      return await this.callIfMethodExists('clickAndOpensInNewWindow');
     }
   }
   /**
@@ -99,8 +99,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<TPage>}
    * @memberof HTMLElement
    */
-  clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return this.callIfMethodExists('clickAndOpensInWindow', [page]);
+  async clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('clickAndOpensInWindow', [page]);
   }
   /**
    *
@@ -112,11 +112,11 @@ export class HTMLElement implements IHTMLElement {
    */
   clickAndSwitchToMainWindow(): Promise<void>;
   clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+  async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
+      return await this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
     } else {
-      return this.callIfMethodExists('clickAndSwitchToMainWindow');
+      return await this.callIfMethodExists('clickAndSwitchToMainWindow');
     }
   }
   /**
@@ -126,8 +126,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {(Promise<string | null>)}
    * @memberof HTMLElement
    */
-  getAttribute(attribute: string): Promise<string | null> {
-    return this.callIfMethodExists('getAttribute', [attribute]);
+  async getAttribute(attribute: string): Promise<string | null> {
+    return await this.callIfMethodExists('getAttribute', [attribute]);
   }
   /**
    *
@@ -136,8 +136,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {(Promise<string | null>)}
    * @memberof HTMLElement
    */
-  getCssValue(property: string): Promise<string | null> {
-    return this.callIfMethodExists('getCssValue', [property]);
+  async getCssValue(property: string): Promise<string | null> {
+    return await this.callIfMethodExists('getCssValue', [property]);
   }
   /**
    *
@@ -145,8 +145,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<string>}
    * @memberof HTMLElement
    */
-  getText(): Promise<string> {
-    return this.callIfMethodExists('getText');
+  async getText(): Promise<string> {
+    return await this.callIfMethodExists('getText');
   }
   /**
    *
@@ -154,8 +154,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement
    */
-  hover(): Promise<void> {
-    return this.callIfMethodExists('hover');
+  async hover(): Promise<void> {
+    return await this.callIfMethodExists('hover');
   }
   /**
    *
@@ -163,8 +163,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<boolean>}
    * @memberof HTMLElement
    */
-  isDisplayed(): Promise<boolean> {
-    return this.callIfMethodExists('isDisplayed');
+  async isDisplayed(): Promise<boolean> {
+    return await this.callIfMethodExists('isDisplayed');
   }
   /**
    *
@@ -172,8 +172,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<boolean>}
    * @memberof HTMLElement
    */
-  isEnabled(): Promise<boolean> {
-    return this.callIfMethodExists('isEnabled');
+  async isEnabled(): Promise<boolean> {
+    return await this.callIfMethodExists('isEnabled');
   }
   /**
    *
@@ -181,8 +181,8 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<boolean>}
    * @memberof HTMLElement
    */
-  isVisible(): Promise<boolean> {
-    return this.callIfMethodExists('isVisible');
+  async isVisible(): Promise<boolean> {
+    return await this.callIfMethodExists('isVisible');
   }
   /**
    *
@@ -191,7 +191,7 @@ export class HTMLElement implements IHTMLElement {
    * @return {*}  {Promise<void>}
    * @memberof HTMLElement
    */
-  type(keys: string): Promise<void> {
-    return this.callIfMethodExists('type', [keys]);
+  async type(keys: string): Promise<void> {
+    return await this.callIfMethodExists('type', [keys]);
   }
 }

@@ -60,6 +60,6 @@ export class Radio extends HTMLElement implements IRadio {
    * @memberof Radio
    */
   async select(): Promise<void> {
-    return this.callIfMethodExists('select');
+    return await this.callIfMethodExists('select');
   }
 }

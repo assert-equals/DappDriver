@@ -51,7 +51,7 @@ export class InputText extends HTMLElement implements IInputText {
    * @memberof InputText
    */
   async clear(): Promise<void> {
-    return this.callIfMethodExists('clear');
+    return await this.callIfMethodExists('clear');
   }
   /**
    *
@@ -88,7 +88,7 @@ export class InputText extends HTMLElement implements IInputText {
    * @memberof InputText
    */
   async type(keys: string): Promise<void> {
-    return this.callIfMethodExists('type', [keys]);
+    return await this.callIfMethodExists('type', [keys]);
   }
   /**
    *
@@ -98,7 +98,7 @@ export class InputText extends HTMLElement implements IInputText {
    * @memberof InputText
    */
   async typeAndEnter(keys: string): Promise<void> {
-    return this.callIfMethodExists('typeAndEnter', [keys]);
+    return await this.callIfMethodExists('typeAndEnter', [keys]);
   }
   /**
    *
@@ -108,6 +108,6 @@ export class InputText extends HTMLElement implements IInputText {
    * @memberof InputText
    */
   async typeAndTab(keys: string): Promise<void> {
-    return this.callIfMethodExists('typeAndTab', [keys]);
+    return await this.callIfMethodExists('typeAndTab', [keys]);
   }
 }

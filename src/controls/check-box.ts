@@ -52,7 +52,7 @@ export class CheckBox extends HTMLElement implements ICheckBox {
    * @memberof CheckBox
    */
   async setValue(value: boolean): Promise<void> {
-    return this.callIfMethodExists('setValue', [value]);
+    return await this.callIfMethodExists('setValue', [value]);
   }
   /**
    *
