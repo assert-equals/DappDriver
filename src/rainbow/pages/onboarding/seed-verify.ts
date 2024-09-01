@@ -31,6 +31,6 @@ export class SeedVerify extends PageObject {
     for (const word of requiredWords) {
       await this.seedWordLabel(word).click();
     }
-    return DappDriver.getPage(CreatePassword);
+    return await DappDriver.getPage(CreatePassword);
   }
 }

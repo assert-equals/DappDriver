@@ -18,9 +18,9 @@ export class Provider {
    * @return {*}  {Promise<any>}
    * @memberof Provider
    */
-  request(jsonRpcRequest: JsonRpcRequest): Promise<any> {
+  async request(jsonRpcRequest: JsonRpcRequest): Promise<any> {
     const request: string = JSON.stringify(jsonRpcRequest);
-    return this.page.executeScript(`window.ethereum.request(${request})`);
+    return await this.page.executeScript(`window.ethereum.request(${request})`);
   }
   /**
    *
@@ -31,11 +31,11 @@ export class Provider {
    * @return {*}  {Promise<TPage>}
    * @memberof Provider
    */
-  requestOpensInWindow<TPage extends IConfirmation | IPageObject>(
+  async requestOpensInWindow<TPage extends IConfirmation | IPageObject>(
     jsonRpcRequest: JsonRpcRequest,
     page: new () => TPage
   ): Promise<TPage> {
-    const request = JSON.stringify(jsonRpcRequest);
-    return this.page.executeScriptAndOpensInWindow<TPage>(`window.ethereum.request(${request})`, page);
+    const request: string = JSON.stringify(jsonRpcRequest);
+    return await this.page.executeScriptAndOpensInWindow<TPage>(`window.ethereum.request(${request})`, page);
   }
 }

@@ -40,11 +40,11 @@ export class Approve implements IConfirmation {
    */
   accept(): Promise<void>;
   accept<TPage>(page: new () => TPage): Promise<TPage>;
-  accept<TPage>(page?: new () => TPage): Promise<any> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('accept', [page]);
+      return await this.callIfMethodExists('accept', [page]);
     } else {
-      return this.callIfMethodExists('accept');
+      return await this.callIfMethodExists('accept');
     }
   }
   /**
@@ -53,8 +53,8 @@ export class Approve implements IConfirmation {
    * @return {*}  {Promise<any[]>}
    * @memberof Approve
    */
-  getAllWindowHandles(): Promise<any[]> {
-    return this.callIfMethodExists('getAllWindowHandles');
+  async getAllWindowHandles(): Promise<any[]> {
+    return await this.callIfMethodExists('getAllWindowHandles');
   }
   /**
    *
@@ -66,11 +66,11 @@ export class Approve implements IConfirmation {
    */
   reject(): Promise<void>;
   reject<TPage>(page: new () => TPage): Promise<TPage>;
-  reject<TPage>(page?: new () => TPage): Promise<any> {
+  async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('reject', [page]);
+      return await this.callIfMethodExists('reject', [page]);
     } else {
-      return this.callIfMethodExists('reject');
+      return await this.callIfMethodExists('reject');
     }
   }
   /**
@@ -83,11 +83,11 @@ export class Approve implements IConfirmation {
    */
   switchToMainWindow(): Promise<void>;
   switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('switchToMainWindow', [page]);
+      return await this.callIfMethodExists('switchToMainWindow', [page]);
     } else {
-      return this.callIfMethodExists('switchToMainWindow');
+      return await this.callIfMethodExists('switchToMainWindow');
     }
   }
   /**
@@ -101,11 +101,11 @@ export class Approve implements IConfirmation {
    */
   switchToWindow(nameOrHandle: any): Promise<void>;
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
-  switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
+  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
+      return await this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
     } else {
-      return this.callIfMethodExists('switchToWindow', [nameOrHandle]);
+      return await this.callIfMethodExists('switchToWindow', [nameOrHandle]);
     }
   }
 }

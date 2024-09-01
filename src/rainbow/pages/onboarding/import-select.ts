@@ -24,7 +24,7 @@ export class ImportSelect extends PageObject {
    * @return {*}  {Promise<CreatePassword>}
    * @memberof ImportSelect
    */
-  importWalletGroup(): Promise<CreatePassword> {
-    return this.addWalletsButton().click<CreatePassword>(CreatePassword);
+  async importWalletGroup(): Promise<CreatePassword> {
+    return await this.addWalletsButton().click<CreatePassword>(CreatePassword);
   }
 }

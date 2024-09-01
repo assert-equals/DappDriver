@@ -26,11 +26,11 @@ export class ApproveRequest extends PageObject {
    * @return {*}  {Promise<any>}
    * @memberof ApproveRequest
    */
-  accept<TPage>(page?: new () => TPage): Promise<any> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.acceptButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.acceptButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.acceptButton().click();
+      return await this.acceptButton().click();
     }
   }
   /**
@@ -41,11 +41,11 @@ export class ApproveRequest extends PageObject {
    * @return {*}  {Promise<any>}
    * @memberof ApproveRequest
    */
-  reject<TPage>(page?: new () => TPage): Promise<any> {
+  async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.rejectButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.rejectButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.rejectButton().click();
+      return await this.rejectButton().click();
     }
   }
 }

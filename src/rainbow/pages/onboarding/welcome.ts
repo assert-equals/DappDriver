@@ -26,8 +26,8 @@ export class Welcome extends PageObject {
    * @return {*}  {Promise<SeedBackup>}
    * @memberof Welcome
    */
-  createANewWallet(): Promise<SeedBackup> {
-    return this.createANewWalletButton().click<SeedBackup>(SeedBackup);
+  async createANewWallet(): Promise<SeedBackup> {
+    return await this.createANewWalletButton().click<SeedBackup>(SeedBackup);
   }
   /**
    *
@@ -35,7 +35,7 @@ export class Welcome extends PageObject {
    * @return {*}  {Promise<ImportOrConnect>}
    * @memberof Welcome
    */
-  importOrConnectAWallet(): Promise<ImportOrConnect> {
-    return this.importOrConnectAWalletButton().click<ImportOrConnect>(ImportOrConnect);
+  async importOrConnectAWallet(): Promise<ImportOrConnect> {
+    return await this.importOrConnectAWalletButton().click<ImportOrConnect>(ImportOrConnect);
   }
 }

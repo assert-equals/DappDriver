@@ -24,7 +24,7 @@ export class ImportOrConnect extends PageObject {
    * @return {*}  {Promise<Import>}
    * @memberof ImportOrConnect
    */
-  importWithASecretRecoveryPhraseOrPrivateKey(): Promise<Import> {
-    return this.importWithASRPOrPKButton().click<Import>(Import);
+  async importWithASecretRecoveryPhraseOrPrivateKey(): Promise<Import> {
+    return await this.importWithASRPOrPKButton().click<Import>(Import);
   }
 }
