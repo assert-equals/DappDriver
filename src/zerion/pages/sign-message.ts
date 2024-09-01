@@ -28,11 +28,11 @@ export class SignMessage extends PageObject implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof SignMessage
    */
-  accept<TPage>(page?: new () => TPage): Promise<any> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.signButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.signButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.signButton().click();
+      return await this.signButton().click();
     }
   }
   /**
@@ -43,11 +43,11 @@ export class SignMessage extends PageObject implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof SignMessage
    */
-  reject<TPage>(page?: new () => TPage): Promise<any> {
+  async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.cancelButton().click();
+      return await this.cancelButton().click();
     }
   }
 }

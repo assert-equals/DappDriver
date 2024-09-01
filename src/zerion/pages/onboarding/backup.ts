@@ -27,8 +27,8 @@ export class BackUp extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof BackUp
    */
-  reveal(): Promise<void> {
-    return this.revealButton().clickAndWait();
+  async reveal(): Promise<void> {
+    return await this.revealButton().clickAndWait();
   }
   /**
    *
@@ -46,7 +46,7 @@ export class BackUp extends PageObject {
    * @return {*}  {Promise<Verify>}
    * @memberof BackUp
    */
-  verifyBackup(): Promise<Verify> {
-    return this.verifyBackUpButton().click<Verify>(Verify);
+  async verifyBackup(): Promise<Verify> {
+    return await this.verifyBackUpButton().click<Verify>(Verify);
   }
 }

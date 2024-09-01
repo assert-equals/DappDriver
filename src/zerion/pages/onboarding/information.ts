@@ -25,8 +25,8 @@ export class Information extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof Information
    */
-  stepOne(): Promise<void> {
-    return this.continueButton().clickAndWait();
+  async stepOne(): Promise<void> {
+    return await this.continueButton().clickAndWait();
   }
   /**
    *
@@ -34,8 +34,8 @@ export class Information extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof Information
    */
-  stepTwo(): Promise<void> {
-    return this.continueButton().clickAndWait();
+  async stepTwo(): Promise<void> {
+    return await this.continueButton().clickAndWait();
   }
   /**
    *
@@ -43,7 +43,7 @@ export class Information extends PageObject {
    * @return {*}  {Promise<BackUp>}
    * @memberof Information
    */
-  backUpNow(): Promise<BackUp> {
-    return this.backUpNowButton().click<BackUp>(BackUp);
+  async backUpNow(): Promise<BackUp> {
+    return await this.backUpNowButton().click<BackUp>(BackUp);
   }
 }

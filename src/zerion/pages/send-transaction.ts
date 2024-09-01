@@ -28,11 +28,11 @@ export class SendTransaction extends PageObject implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof SendTransaction
    */
-  accept<TPage>(page?: new () => TPage): Promise<any> {
+  async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.confirmButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.confirmButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.confirmButton().click();
+      return await this.confirmButton().click();
     }
   }
   /**
@@ -43,11 +43,11 @@ export class SendTransaction extends PageObject implements IConfirmation {
    * @return {*}  {Promise<any>}
    * @memberof SendTransaction
    */
-  reject<TPage>(page?: new () => TPage): Promise<any> {
+  async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.cancelButton().click();
+      return await this.cancelButton().click();
     }
   }
 }

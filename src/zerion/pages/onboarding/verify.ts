@@ -27,8 +27,8 @@ export class Verify extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof Verify
    */
-  enterWord(index: number, word: string): Promise<void> {
-    return this.wordInput(index).type(word);
+  async enterWord(index: number, word: string): Promise<void> {
+    return await this.wordInput(index).type(word);
   }
   /**
    *
@@ -48,7 +48,7 @@ export class Verify extends PageObject {
    * @return {*}  {Promise<Success>}
    * @memberof Verify
    */
-  verify(): Promise<Success> {
-    return this.verifyButton().click<Success>(Success);
+  async verify(): Promise<Success> {
+    return await this.verifyButton().click<Success>(Success);
   }
 }

@@ -25,7 +25,7 @@ export class ImportWallet extends PageObject {
    * @return {*}  {Promise<RecoveryPhrase>}
    * @memberof ImportWallet
    */
-  importRecoveryPhrase(): Promise<RecoveryPhrase> {
-    return this.importRecoveryPhraseButton().click<RecoveryPhrase>(RecoveryPhrase);
+  async importRecoveryPhrase(): Promise<RecoveryPhrase> {
+    return await this.importRecoveryPhraseButton().click<RecoveryPhrase>(RecoveryPhrase);
   }
 }

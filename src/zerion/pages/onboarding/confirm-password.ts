@@ -25,8 +25,8 @@ export class ConfirmPassword extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof ConfirmPassword
    */
-  confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return this.confirmPasswordField().type(password);
+  async confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
+    return await this.confirmPasswordField().type(password);
   }
   /**
    *
@@ -36,7 +36,7 @@ export class ConfirmPassword extends PageObject {
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmPassword
    */
-  setPassword<TPage>(page: new () => TPage): Promise<TPage> {
-    return this.setPasswordButton().click<TPage>(page);
+  async setPassword<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.setPasswordButton().click<TPage>(page);
   }
 }

@@ -27,8 +27,8 @@ export class SelectWallets extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof SelectWallets
    */
-  selectWallet(index: number): Promise<void> {
-    return this.activeWalletButton(index).click();
+  async selectWallet(index: number): Promise<void> {
+    return await this.activeWalletButton(index).click();
   }
   /**
    *
@@ -36,7 +36,7 @@ export class SelectWallets extends PageObject {
    * @return {*}  {Promise<Password>}
    * @memberof SelectWallets
    */
-  continue(): Promise<Password> {
-    return this.continueButton().click<Password>(Password);
+  async continue(): Promise<Password> {
+    return await this.continueButton().click<Password>(Password);
   }
 }
