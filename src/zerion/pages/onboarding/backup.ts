@@ -33,11 +33,12 @@ export class BackUp extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<string>}
+   * @return {*}  {Promise<Array<string>>}
    * @memberof BackUp
    */
-  getSeed(): Promise<string> {
-    return this.seedLabel().getText();
+  async getSeed(): Promise<Array<string>> {
+    const seedPhrase: string = await this.seedLabel().getText();
+    return seedPhrase.split(' ');
   }
   /**
    *

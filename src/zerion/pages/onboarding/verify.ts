@@ -33,6 +33,18 @@ export class Verify extends PageObject {
   /**
    *
    *
+   * @param {Array<string>} words
+   * @return {*}  {Promise<void>}
+   * @memberof Verify
+   */
+  async enterSeed(words: Array<string>): Promise<void> {
+    for (const word of words) {
+      await this.enterWord(words.indexOf(word), word);
+    }
+  }
+  /**
+   *
+   *
    * @return {*}  {Promise<Success>}
    * @memberof Verify
    */

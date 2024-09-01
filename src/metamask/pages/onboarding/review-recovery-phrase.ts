@@ -32,11 +32,13 @@ export class ReviewRecoveryPhrase extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<string>}
+   * @return {*}  {Promise<Array<string>>}
    * @memberof ReviewRecoveryPhrase
    */
-  async getSRP(): Promise<string> {
-    return await this.srpChips().getText();
+  async getSRP(): Promise<Array<string>> {
+    const recoveryPhrase: string = await this.srpChips().getText();
+    const words: Array<string> = recoveryPhrase.split(/\s*(?:[0-9)]+|\n|\.|^$|$)\s*/u);
+    return words.filter((str) => str !== '');
   }
   /**
    *

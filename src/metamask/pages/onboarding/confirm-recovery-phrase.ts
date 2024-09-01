@@ -24,12 +24,24 @@ export class ConfirmRecoveryPhrase extends PageObject {
    *
    *
    * @param {number} index
-   * @param {string} word
+   * @param {Array<string>} words
    * @return {*}  {Promise<void>}
    * @memberof ConfirmRecoveryPhrase
    */
-  async enterWord(index: number, word: string): Promise<void> {
-    return await this.chipInput(index).type(word);
+  async enterWord(index: number, words: Array<string>): Promise<void> {
+    return await this.chipInput(index).type(words[index]);
+  }
+  /**
+   *
+   *
+   * @param {Array<string>} words
+   * @return {*}  {Promise<void>}
+   * @memberof ConfirmRecoveryPhrase
+   */
+  async enterRequiredWords(words: Array<string>): Promise<void> {
+    await this.enterWord(2, words);
+    await this.enterWord(3, words);
+    await this.enterWord(7, words);
   }
   /**
    *

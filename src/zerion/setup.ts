@@ -1,13 +1,11 @@
+import { ConfirmPassword, Information, Password, Success, Welcome } from '.';
 import { PageObject } from '../page';
 import { DappDriver } from '../session/dapp-driver';
-import { Information } from './pages/onboarding/information';
-import { Password } from './pages/onboarding/password';
-import { Success } from './pages/onboarding/success';
-import { Welcome } from './pages/onboarding/welcome';
 
 let successPage: Success;
 let passwordPage: Password;
-let informationPage: Information;
+let confirmPasswordPage: ConfirmPassword;
+
 export async function setupZerionWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
   const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
@@ -19,25 +17,22 @@ export async function setupZerionWallet(seed: string): Promise<void> {
     await selectWalletPage.selectWallet(0);
     passwordPage = await selectWalletPage.continue();
     await passwordPage.password();
-    const confirmPasswordPage = await passwordPage.confirmPassword();
+    confirmPasswordPage = await passwordPage.confirmPassword();
     await confirmPasswordPage.confirmPassword();
     successPage = await confirmPasswordPage.setPassword<Success>(Success);
   } else {
     passwordPage = await welcomePage.createNewWallet();
     await passwordPage.password();
-    const confirmPasswordPage = await passwordPage.confirmPassword();
+    confirmPasswordPage = await passwordPage.confirmPassword();
     await confirmPasswordPage.confirmPassword();
-    informationPage = await confirmPasswordPage.setPassword<Information>(Information);
+    const informationPage = await confirmPasswordPage.setPassword<Information>(Information);
     await informationPage.stepOne();
     await informationPage.stepTwo();
     const backupPage = await informationPage.backUpNow();
     await backupPage.reveal();
-    const seedPhrase = await backupPage.getSeed();
+    const seedPhrase: Array<string> = await backupPage.getSeed();
     const verifyPage = await backupPage.verifyBackup();
-    const words = seedPhrase.split(' ');
-    for (const word of words) {
-      await verifyPage.enterWord(words.indexOf(word), word);
-    }
+    await verifyPage.enterSeed(seedPhrase);
     successPage = await verifyPage.verify();
   }
   const extensionString: string = await successPage.getCurrentUrl();

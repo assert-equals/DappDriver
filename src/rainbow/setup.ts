@@ -4,6 +4,7 @@ import { DappDriver } from '../session/dapp-driver';
 
 let createPasswordPage: CreatePassword;
 let readyPage: Ready;
+
 export async function setupRainbowWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
   const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
@@ -20,7 +21,7 @@ export async function setupRainbowWallet(seed: string): Promise<void> {
   } else {
     const seedBackupPromptPage = await welcomePage.createANewWallet();
     const revealSeedPage = await seedBackupPromptPage.revealYourRecoveryPhrase();
-    const requiredWords = await revealSeedPage.getRequiredWords();
+    const requiredWords: Array<string> = await revealSeedPage.getRequiredWords();
     const seedVerifyPage = await revealSeedPage.iveSavedTheseWords();
     createPasswordPage = await seedVerifyPage.verify(requiredWords);
     await createPasswordPage.enterPassword();

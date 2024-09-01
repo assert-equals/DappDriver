@@ -1,18 +1,19 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase, Welcome } from '.';
+import { Completion, CreatePassword, Home, ImportWithRecoveryPhrase, Metametrics, Welcome } from '.';
 import { PageObject } from '../page';
 import { DappDriver } from '../session/dapp-driver';
 
 let createPasswordPage: CreatePassword;
 let completionPage: Completion;
+let metametricsPage: Metametrics;
 
 export async function setupMetaMaskWallet(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
   const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
   await welcomePage.agreeTermsOfUse();
   if (seed) {
-    const metametricsPage = await welcomePage.importAnExistingWallet();
+    metametricsPage = await welcomePage.importAnExistingWallet();
     const importWithRecoveryPhrasePage =
       await metametricsPage.noThanks<ImportWithRecoveryPhrase>(ImportWithRecoveryPhrase);
     await importWithRecoveryPhrasePage.enterSRP(seed);
@@ -22,7 +23,7 @@ export async function setupMetaMaskWallet(seed: string): Promise<void> {
     await createPasswordPage.agreePasswordTerms();
     completionPage = await createPasswordPage.importWallet();
   } else {
-    const metametricsPage = await welcomePage.createANewWallet();
+    metametricsPage = await welcomePage.createANewWallet();
     createPasswordPage = await metametricsPage.noThanks<CreatePassword>(CreatePassword);
     await createPasswordPage.enterPassword();
     await createPasswordPage.confirmPassword();
@@ -30,13 +31,9 @@ export async function setupMetaMaskWallet(seed: string): Promise<void> {
     const secureYourWalletPage = await createPasswordPage.createWallet();
     const reviewRecoveryPage = await secureYourWalletPage.secureMyWallet();
     await reviewRecoveryPage.revealSecretRecoveryPhrase();
-    const recoveryPhrase = await reviewRecoveryPage.getSRP();
-    const words = recoveryPhrase.split(/\s*(?:[0-9)]+|\n|\.|^$|$)\s*/u);
-    const finalWords = words.filter((str) => str !== '');
+    const recoveryPhrase: Array<string> = await reviewRecoveryPage.getSRP();
     const confirmRecoveryPhrase = await reviewRecoveryPage.next();
-    await confirmRecoveryPhrase.enterWord(2, finalWords[2]);
-    await confirmRecoveryPhrase.enterWord(3, finalWords[3]);
-    await confirmRecoveryPhrase.enterWord(7, finalWords[7]);
+    await confirmRecoveryPhrase.enterRequiredWords(recoveryPhrase);
     completionPage = await confirmRecoveryPhrase.confirm();
   }
   const pinExtensionPage = await completionPage.completeOnboarding();
