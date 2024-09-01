@@ -30,9 +30,9 @@ export class ApproveAll extends ConfirmTransaction implements IConfirmation {
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     await this.nextButton().click();
     if (page) {
-      return this.approveButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.approveButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.approveButton().click();
+      return await this.approveButton().click();
     }
   }
 }

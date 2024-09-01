@@ -26,8 +26,8 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof ReviewRecoveryPhrase
    */
-  revealSecretRecoveryPhrase(): Promise<void> {
-    return this.revealButton().click();
+  async revealSecretRecoveryPhrase(): Promise<void> {
+    return await this.revealButton().click();
   }
   /**
    *
@@ -35,8 +35,8 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @return {*}  {Promise<string>}
    * @memberof ReviewRecoveryPhrase
    */
-  getSRP(): Promise<string> {
-    return this.srpChips().getText();
+  async getSRP(): Promise<string> {
+    return await this.srpChips().getText();
   }
   /**
    *
@@ -44,7 +44,7 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @return {*}  {Promise<ConfirmRecoveryPhrase>}
    * @memberof ReviewRecoveryPhrase
    */
-  next(): Promise<ConfirmRecoveryPhrase> {
-    return this.nextButton().click<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
+  async next(): Promise<ConfirmRecoveryPhrase> {
+    return await this.nextButton().click<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
   }
 }

@@ -25,8 +25,8 @@ export class PinExtension extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof PinExtension
    */
-  next(): Promise<void> {
-    return this.nextButton().click();
+  async next(): Promise<void> {
+    return await this.nextButton().click();
   }
   /**
    *
@@ -34,7 +34,7 @@ export class PinExtension extends PageObject {
    * @return {*}  {Promise<Home>}
    * @memberof PinExtension
    */
-  done(): Promise<Home> {
-    return this.doneButton().click<Home>(Home);
+  async done(): Promise<Home> {
+    return await this.doneButton().click<Home>(Home);
   }
 }

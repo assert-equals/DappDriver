@@ -39,7 +39,7 @@ export class ImportWithRecoveryPhrase extends PageObject {
    * @return {*}  {Promise<CreatePassword>}
    * @memberof ImportWithRecoveryPhrase
    */
-  confirmSecretRecoveryPhrase(): Promise<CreatePassword> {
-    return this.confirmButton().click<CreatePassword>(CreatePassword);
+  async confirmSecretRecoveryPhrase(): Promise<CreatePassword> {
+    return await this.confirmButton().click<CreatePassword>(CreatePassword);
   }
 }

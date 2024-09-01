@@ -33,9 +33,9 @@ export class SignMessage extends ConfirmTransaction implements IConfirmation {
       await this.scrollButton().clickAndWait();
     }
     if (page) {
-      return this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return this.nextButton().click();
+      return await this.nextButton().click();
     }
   }
 }

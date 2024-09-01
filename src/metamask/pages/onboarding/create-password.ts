@@ -29,8 +29,8 @@ export class CreatePassword extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof CreatePassword
    */
-  confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return this.confirmPasswordInput().type(password);
+  async confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
+    return await this.confirmPasswordInput().type(password);
   }
   /**
    *
@@ -39,8 +39,8 @@ export class CreatePassword extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof CreatePassword
    */
-  enterPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return this.newPasswordInput().type(password);
+  async enterPassword(password: string = 'P@ssword01!'): Promise<void> {
+    return await this.newPasswordInput().type(password);
   }
   /**
    *
@@ -48,8 +48,8 @@ export class CreatePassword extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof CreatePassword
    */
-  agreePasswordTerms(): Promise<void> {
-    return this.passwordTermsCheckbox().click();
+  async agreePasswordTerms(): Promise<void> {
+    return await this.passwordTermsCheckbox().click();
   }
   /**
    *
@@ -57,8 +57,8 @@ export class CreatePassword extends PageObject {
    * @return {*}  {Promise<Completion>}
    * @memberof CreatePassword
    */
-  importWallet(): Promise<Completion> {
-    return this.importButton().click<Completion>(Completion);
+  async importWallet(): Promise<Completion> {
+    return await this.importButton().click<Completion>(Completion);
   }
   /**
    *
@@ -66,7 +66,7 @@ export class CreatePassword extends PageObject {
    * @return {*}  {Promise<SecureYourWallet>}
    * @memberof CreatePassword
    */
-  createWallet(): Promise<SecureYourWallet> {
-    return this.createButton().click<SecureYourWallet>(SecureYourWallet);
+  async createWallet(): Promise<SecureYourWallet> {
+    return await this.createButton().click<SecureYourWallet>(SecureYourWallet);
   }
 }

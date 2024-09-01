@@ -27,8 +27,8 @@ export class Welcome extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof Welcome
    */
-  agreeTermsOfUse(): Promise<void> {
-    return this.termsOfUseCheckBox().click();
+  async agreeTermsOfUse(): Promise<void> {
+    return await this.termsOfUseCheckBox().click();
   }
   /**
    *
@@ -36,8 +36,8 @@ export class Welcome extends PageObject {
    * @return {*}  {Promise<Metametrics>}
    * @memberof Welcome
    */
-  createANewWallet(): Promise<Metametrics> {
-    return this.createANewWalletButton().click<Metametrics>(Metametrics);
+  async createANewWallet(): Promise<Metametrics> {
+    return await this.createANewWalletButton().click<Metametrics>(Metametrics);
   }
   /**
    *
@@ -45,7 +45,7 @@ export class Welcome extends PageObject {
    * @return {*}  {Promise<Metametrics>}
    * @memberof Welcome
    */
-  importAnExistingWallet(): Promise<Metametrics> {
-    return this.importAnExistingWalletButton().click<Metametrics>(Metametrics);
+  async importAnExistingWallet(): Promise<Metametrics> {
+    return await this.importAnExistingWalletButton().click<Metametrics>(Metametrics);
   }
 }

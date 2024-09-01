@@ -28,8 +28,8 @@ export class ConfirmRecoveryPhrase extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof ConfirmRecoveryPhrase
    */
-  enterWord(index: number, word: string): Promise<void> {
-    return this.chipInput(index).type(word);
+  async enterWord(index: number, word: string): Promise<void> {
+    return await this.chipInput(index).type(word);
   }
   /**
    *
@@ -37,7 +37,7 @@ export class ConfirmRecoveryPhrase extends PageObject {
    * @return {*}  {Promise<Completion>}
    * @memberof ConfirmRecoveryPhrase
    */
-  confirm(): Promise<Completion> {
-    return this.confirmButton().click<Completion>(Completion);
+  async confirm(): Promise<Completion> {
+    return await this.confirmButton().click<Completion>(Completion);
   }
 }

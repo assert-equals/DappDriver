@@ -24,7 +24,7 @@ export class SecureYourWallet extends PageObject {
    * @return {*}  {Promise<ReviewRecoveryPhrase>}
    * @memberof SecureYourWallet
    */
-  secureMyWallet(): Promise<ReviewRecoveryPhrase> {
-    return this.secureButton().click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
+  async secureMyWallet(): Promise<ReviewRecoveryPhrase> {
+    return await this.secureButton().click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
   }
 }

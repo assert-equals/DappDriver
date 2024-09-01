@@ -24,7 +24,7 @@ export class Completion extends PageObject {
    * @return {*}  {Promise<PinExtension>}
    * @memberof Completion
    */
-  completeOnboarding(): Promise<PinExtension> {
-    return this.completeButton().click<PinExtension>(PinExtension);
+  async completeOnboarding(): Promise<PinExtension> {
+    return await this.completeButton().click<PinExtension>(PinExtension);
   }
 }
