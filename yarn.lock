@@ -3975,15 +3975,15 @@ secp256k1@4.0.3:
     node-addon-api "^2.0.0"
     node-gyp-build "^4.2.0"
 
-selenium-webdriver@^4.23.0:
-  version "4.23.0"
-  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.23.0.tgz#6d9d219a560dffff1fbbc0f2c8a115d81d279a21"
-  integrity sha512-DdvtInpnMt95Td8VApvmAw7oSydBD9twIRXqoMyRoGMvL1dAnMFxdrwnW6L0d/pF/uoNTjbVUarwGZ9wIGNStA==
+selenium-webdriver@^4.24.0:
+  version "4.24.0"
+  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.24.0.tgz#bf7563f9e0b1ef29d55f215a8fb187b21e4de26e"
+  integrity sha512-qrqoHhHPZuKLiz5VAQUxrn3ILs7/cYqn2/x96r35g5JjkLUjOS1lX+F+tEJKhRMlQ/MGJ+N1016JF5g2xZUFzw==
   dependencies:
     "@bazel/runfiles" "^5.8.1"
     jszip "^3.10.1"
     tmp "^0.2.3"
-    ws "^8.17.1"
+    ws "^8.18.0"
 
 "semver@2 || 3 || 4 || 5":
   version "5.7.2"
@@ -4688,7 +4688,7 @@ ws@^8.16.0:
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.17.1.tgz#9293da530bb548febc95371d90f9c878727d919b"
   integrity sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==
 
-ws@^8.17.1:
+ws@^8.18.0:
   version "8.18.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.0.tgz#0d7505a6eafe2b0e712d232b42279f53bc289bbc"
   integrity sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==
