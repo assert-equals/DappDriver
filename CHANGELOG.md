@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.25.1](https://github.com/assert-equals/DappDriver/compare/v0.25.0...v0.25.1) (2024-09-03)
+
+### Bug Fixes
+
+- disable set window size for webdriver ([fe11003](https://github.com/assert-equals/DappDriver/commit/fe11003b5c87835e75d9203d8c34e4967525fe66))
+
 ## [0.25.0](https://github.com/assert-equals/DappDriver/compare/v0.24.2...v0.25.0) (2024-09-03)
 
 ### Features
