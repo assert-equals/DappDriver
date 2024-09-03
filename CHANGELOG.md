@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.25.0](https://github.com/assert-equals/DappDriver/compare/v0.24.2...v0.25.0) (2024-09-03)
+
+### Features
+
+- onboarding enter srp ([43c429a](https://github.com/assert-equals/DappDriver/commit/43c429a5fa9d75b5ce020e3779630959fb38ead7))
+- set window size ([f4c06fa](https://github.com/assert-equals/DappDriver/commit/f4c06faaddfbcd04c00cb75d68e7e73b5d6759b0))
+- update metamask signature page objects ([dbcf643](https://github.com/assert-equals/DappDriver/commit/dbcf643c19c425a811ada483b08c832acf291ac9))
+- update zerion signature page objects ([cd93ee6](https://github.com/assert-equals/DappDriver/commit/cd93ee6c47d9ddb14c1eb10e03e9332d3f04fd20))
+
 ## [0.24.2](https://github.com/assert-equals/DappDriver/compare/v0.24.1...v0.24.2) (2024-08-16)
 
 ## [0.24.1](https://github.com/assert-equals/DappDriver/compare/v0.24.0...v0.24.1) (2024-08-15)
