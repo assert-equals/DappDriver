@@ -30,7 +30,9 @@ export class SignatureRequest extends PageObject implements IConfirmation {
    * @memberof SignatureRequest
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
-    await this.scrollButton().clickAndWait();
+    if (await this.scrollButton().isDisplayed()) {
+      await this.scrollButton().clickAndWait();
+    }
     if (page) {
       return await this.signButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
