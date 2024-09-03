@@ -18,7 +18,7 @@ export class SignatureRequest extends ConfirmTransaction implements IConfirmatio
    * @memberof SignatureRequest
    */
   constructor() {
-    super(new RegExp(/#confirm-transaction\/.*\/signature-request/), 'MetaMask');
+    super(new RegExp(/#confirm-transaction/), 'MetaMask');
   }
   /**
    *
