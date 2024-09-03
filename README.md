@@ -78,12 +78,12 @@ export class Dapp extends PageObject {
     super('https://metamask.github.io/', 'E2E Test Dapp');
   }
 
-  getAccounts(): Promise<string> {
-    return this.accountsLabel().getText();
+  async getAccounts(): Promise<string> {
+    return await this.accountsLabel().getText();
   }
 
-  connect(): Promise<Connect> {
-    return this.connectButton().clickAndOpensInWindow<Connect>(Connect);
+  async connect(): Promise<Connect> {
+    return await this.connectButton().clickAndOpensInWindow<Connect>(Connect);
   }
 }
 ```
