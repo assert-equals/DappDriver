@@ -47,7 +47,7 @@ export class PlaywrightFactory {
       chromeOptions['args'].push(`--disable-extensions-except=${extensionPath}`);
       chromeOptions['args'].push(`--load-extension=${extensionPath}`);
     }
-    chromeOptions['args'].push(`--window-size=1920,1080`);
+    chromeOptions['args'].push(`--window-size=1024,768`);
     const browserContext: BrowserContext = await playwright.chromium.launchPersistentContext('', chromeOptions);
     return browserContext;
   }
