@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.26.0](https://github.com/assert-equals/DappDriver/compare/v0.25.1...v0.26.0) (2024-09-11)
+
+### Features
+
+- update metamask siwe page object ([2de683b](https://github.com/assert-equals/DappDriver/commit/2de683b196ef12d337583ad639405fe140cd81e4))
+
+### Bug Fixes
+
+- set window size ([107501d](https://github.com/assert-equals/DappDriver/commit/107501dfea6f84dd8ef9151768aa398afce25787))
+
 ## [0.25.1](https://github.com/assert-equals/DappDriver/compare/v0.25.0...v0.25.1) (2024-09-03)
 
 ### Bug Fixes
