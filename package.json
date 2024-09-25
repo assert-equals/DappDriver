@@ -77,7 +77,7 @@
   "author": "Assert Equals Ltd",
   "license": "MIT",
   "dependencies": {
-    "adm-zip": "^0.5.15",
+    "adm-zip": "^0.5.16",
     "axios": "^1.7.7",
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
