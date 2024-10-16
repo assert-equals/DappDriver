@@ -15,4 +15,5 @@ export { ApproveAll } from './pages/approve-all';
 export { SignatureRequest } from './pages/signature-request';
 export { SignInRequest } from './pages/sign-in-request';
 export { SignMessage } from './pages/sign-message';
-export { SendTransaction } from './pages/send-transaction';
+export { ConfirmTransaction } from './pages/confirm-transaction';
+export { Send } from './pages/send';

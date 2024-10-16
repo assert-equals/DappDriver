@@ -6,16 +6,16 @@ import { PageObject } from '../../page';
  *
  *
  * @export
- * @class SendTransaction
+ * @class ConfirmTransaction
  * @extends {PageObject}
  * @implements {IConfirmation}
  */
-export class SendTransaction extends PageObject implements IConfirmation {
+export class ConfirmTransaction extends PageObject implements IConfirmation {
   private confirmButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Confirm")]');
   private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
   /**
-   * Creates an instance of SendTransaction.
-   * @memberof SendTransaction
+   * Creates an instance of ConfirmTransaction.
+   * @memberof ConfirmTransaction
    */
   constructor() {
     super('#/sendTransaction', 'Zerion · Send Transaction');
@@ -26,7 +26,7 @@ export class SendTransaction extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof SendTransaction
+   * @memberof ConfirmTransaction
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
@@ -41,7 +41,7 @@ export class SendTransaction extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof SendTransaction
+   * @memberof ConfirmTransaction
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {

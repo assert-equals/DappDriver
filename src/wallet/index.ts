@@ -3,6 +3,7 @@ export { Approve } from './pages/approve';
 export { ApproveAll } from './pages/approve-all';
 export { ConfirmTransaction } from './pages/confirm-transaction';
 export { Connect } from './pages/connect';
+export { Send } from './pages/send';
 export { SignatureRequest } from './pages/signature-request';
 export { SignInRequest } from './pages/sign-in-request';
 export { SignMessage } from './pages/sign-message';

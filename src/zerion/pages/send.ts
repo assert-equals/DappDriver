@@ -6,21 +6,19 @@ import { PageObject } from '../../page';
  *
  *
  * @export
- * @class ConfirmTransaction
+ * @class Send
  * @extends {PageObject}
  * @implements {IConfirmation}
  */
-export class ConfirmTransaction extends PageObject implements IConfirmation {
-  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-button"]');
-  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+export class Send extends PageObject implements IConfirmation {
+  private confirmButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Confirm")]');
+  private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
   /**
-   * Creates an instance of ConfirmTransaction.
-   * @param {(string | RegExp)} [url='#confirm-transaction']
-   * @param {string} [title='MetaMask']
-   * @memberof ConfirmTransaction
+   * Creates an instance of Send.
+   * @memberof Send
    */
-  constructor(url: string | RegExp = '#confirm-transaction', title: string = 'MetaMask') {
-    super(url, title);
+  constructor() {
+    super('#/sendTransaction', 'Zerion · Send Transaction');
   }
   /**
    *
@@ -28,13 +26,13 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.confirmButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.nextButton().click();
+      return await this.confirmButton().click();
     }
   }
   /**
@@ -43,7 +41,7 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {

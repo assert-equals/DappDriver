@@ -17,3 +17,4 @@ export { SignMessage } from './pages/sign-message';
 export { Connect } from './pages/connect';
 export { ConfirmAddSuggestedToken } from './pages/notification/confirm-add-suggested-token';
 export { AddNetwork } from './pages/add-network';
+export { Send } from './pages/send';

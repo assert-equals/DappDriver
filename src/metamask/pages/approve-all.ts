@@ -11,6 +11,8 @@ import { ConfirmTransaction } from './confirm-transaction';
  * @implements {IConfirmation}
  */
 export class ApproveAll extends ConfirmTransaction implements IConfirmation {
+  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
+  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
   private approveButton: () => HTMLElement = () => new HTMLElement('#popover-content button:nth-child(1)');
   /**
    * Creates an instance of ApproveAll.

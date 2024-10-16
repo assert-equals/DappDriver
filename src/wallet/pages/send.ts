@@ -1,41 +1,41 @@
 import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { ConfirmTransaction as MetaMaskConfirmTransaction } from '../../metamask';
-import { ConfirmTransaction as RainbowConfirmTransaction } from '../../rainbow';
+import { Send as MetaMaskSend } from '../../metamask';
+import { Send as RainbowSend } from '../../rainbow';
 import { DappDriver } from '../../session/dapp-driver';
-import { ConfirmTransaction as ZerionConfirmTransaction } from '../../zerion';
+import { Send as ZerionSend } from '../../zerion';
 
 /**
  *
  *
  * @export
- * @class ConfirmTransaction
+ * @class Send
  * @implements {IConfirmation}
  */
-export class ConfirmTransaction implements IConfirmation {
+export class Send implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private confirmTx: MetaMaskConfirmTransaction | RainbowConfirmTransaction | ZerionConfirmTransaction;
+  private send: MetaMaskSend | RainbowSend | ZerionSend;
 
   constructor() {
     switch (DappDriver.Instance.Wallet) {
       case METAMASK:
       case METAMASK_FLASK:
-        this.confirmTx = new MetaMaskConfirmTransaction();
+        this.send = new MetaMaskSend();
         break;
       case RAINBOW:
-        this.confirmTx = new RainbowConfirmTransaction();
+        this.send = new RainbowSend();
         break;
       case ZERION:
-        this.confirmTx = new ZerionConfirmTransaction();
+        this.send = new ZerionSend();
         break;
     }
-    this.url = this.confirmTx.url;
-    this.title = this.confirmTx.title;
+    this.url = this.send.url;
+    this.title = this.send.title;
   }
 
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    return await (this.confirmTx[methodName] as Function)(...args);
+    return await (this.send[methodName] as Function)(...args);
   }
   /**
    *
@@ -43,7 +43,7 @@ export class ConfirmTransaction implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   accept(): Promise<void>;
   accept<TPage>(page: new () => TPage): Promise<TPage>;
@@ -58,7 +58,7 @@ export class ConfirmTransaction implements IConfirmation {
    *
    *
    * @return {*}  {Promise<any[]>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   async getAllWindowHandles(): Promise<any[]> {
     return await this.callIfMethodExists('getAllWindowHandles');
@@ -69,7 +69,7 @@ export class ConfirmTransaction implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   reject(): Promise<void>;
   reject<TPage>(page: new () => TPage): Promise<TPage>;
@@ -86,7 +86,7 @@ export class ConfirmTransaction implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   switchToMainWindow(): Promise<void>;
   switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
@@ -104,7 +104,7 @@ export class ConfirmTransaction implements IConfirmation {
    * @param {*} nameOrHandle
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
+   * @memberof Send
    */
   switchToWindow(nameOrHandle: any): Promise<void>;
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
