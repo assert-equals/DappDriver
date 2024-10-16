@@ -83,7 +83,7 @@
     "commander": "^12.1.0",
     "ganache": "^7.9.2",
     "mockttp": "^3.11.0",
-    "playwright-core": "^1.48.0",
+    "playwright-core": "^1.48.1",
     "selenium-webdriver": "^4.25.0",
     "semver": "^7.6.3"
   },
