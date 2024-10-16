@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.27.0](https://github.com/assert-equals/DappDriver/compare/v0.26.1...v0.27.0) (2024-10-16)
+
+### Features
+
+- add send page object ([d90ae51](https://github.com/assert-equals/DappDriver/commit/d90ae513f5f398e4e912baa8d9db0bbdd23dcd65))
+
 ## [0.26.1](https://github.com/assert-equals/DappDriver/compare/v0.26.0...v0.26.1) (2024-09-25)
 
 ## [0.26.0](https://github.com/assert-equals/DappDriver/compare/v0.25.1...v0.26.0) (2024-09-11)
