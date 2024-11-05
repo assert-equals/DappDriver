@@ -1,6 +1,6 @@
 import { HTMLElement } from '../../controls/html-element';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { PageObject } from '../../page';
+import { ConfirmTransaction } from './confirm-transaction';
 
 /**
  *
@@ -10,45 +10,14 @@ import { PageObject } from '../../page';
  * @extends {PageObject}
  * @implements {IConfirmation}
  */
-export class Connect extends PageObject implements IConfirmation {
-  private nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
+export class Connect extends ConfirmTransaction implements IConfirmation {
+  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-btn"]');
+  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="cancel-btn"]');
   /**
    * Creates an instance of Connect.
    * @memberof Connect
    */
   constructor() {
     super('/notification.html#connect', 'MetaMask');
-  }
-  /**
-   *
-   *
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof Connect
-   */
-  async accept<TPage>(page?: new () => TPage): Promise<any> {
-    await this.nextButton().clickAndWait();
-    if (page) {
-      return await this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.nextButton().click();
-    }
-  }
-  /**
-   *
-   *
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof Connect
-   */
-  async reject<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.cancelButton().click();
-    }
   }
 }

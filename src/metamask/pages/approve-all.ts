@@ -11,30 +11,13 @@ import { ConfirmTransaction } from './confirm-transaction';
  * @implements {IConfirmation}
  */
 export class ApproveAll extends ConfirmTransaction implements IConfirmation {
-  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
-  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
-  private approveButton: () => HTMLElement = () => new HTMLElement('#popover-content button:nth-child(1)');
+  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-button"]');
+  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
   /**
    * Creates an instance of ApproveAll.
    * @memberof ApproveAll
    */
   constructor() {
-    super(new RegExp(/#confirm-transaction\/.*\/set-approval-for-all/), 'MetaMask');
-  }
-  /**
-   *
-   *
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof ApproveAll
-   */
-  async accept<TPage>(page?: new () => TPage): Promise<any> {
-    await this.nextButton().click();
-    if (page) {
-      return await this.approveButton().clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.approveButton().click();
-    }
+    super(new RegExp(/#confirm-transaction/), 'MetaMask');
   }
 }
