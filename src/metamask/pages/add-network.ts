@@ -29,7 +29,6 @@ export class AddNetwork extends PageObject implements IConfirmation {
    * @memberof AddNetwork
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
-    await this.submitButton().clickAndWait();
     if (page) {
       return await this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
     } else {
