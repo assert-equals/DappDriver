@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.28.0](https://github.com/assert-equals/DappDriver/compare/v0.27.0...v0.28.0) (2024-11-06)
+
+### Features
+
+- update metamask page objects ([35c944b](https://github.com/assert-equals/DappDriver/commit/35c944b61075cb2042fb31bcd563aba98076ba5d))
+
 ## [0.27.0](https://github.com/assert-equals/DappDriver/compare/v0.26.1...v0.27.0) (2024-10-16)
 
 ### Features
