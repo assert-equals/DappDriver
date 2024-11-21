@@ -30,7 +30,7 @@
 
 It's all about being flexible and user-friendly, DappDriver seamlessly integrates both [Playwright](https://playwright.dev/) and [Selenium WebDriver](https://www.selenium.dev/).
 
-DappDriver loads [MetaMask](https://metamask.io/), [Rainbow](https://rainbow.me/) or [Zerion](https://zerion.io/) into the browser session, empowering you to efficiently confirm blockchain transactions.
+DappDriver loads [MetaMask](https://metamask.io/), [MetaMask Flask](https://metamask.io/flask/), [Rainbow](https://rainbow.me/) or [Zerion](https://zerion.io/) into the browser session, empowering you to efficiently confirm blockchain transactions.
 
 Read on to get started locally in a couple of minutes.
 
@@ -138,6 +138,10 @@ Finally, run your tests:
 ```shell
 yarn test
 ```
+
+## Examples
+
+If you learn best by example, check out our [example project](https://github.com/assert-equals/DappDriver-examples) to help you get going.
 
 ## Documentation
 

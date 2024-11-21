@@ -122,5 +122,6 @@
   "bugs": {
     "url": "https://github.com/assert-equals/DappDriver/issues"
   },
-  "homepage": "https://github.com/assert-equals/DappDriver#readme"
+  "homepage": "https://github.com/assert-equals/DappDriver#readme",
+  "packageManager": "yarn@1.22.22"
 }
