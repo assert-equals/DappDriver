@@ -49,19 +49,37 @@ yarn add @assert-equals/dappdriver
 
 **Download a Wallet**
 
-First, install MetaMask, Rainbow or Zerion:
+First, install MetaMask, MetaMask Flask, Rainbow or Zerion:
 
 ```shell
 npx dappdriver -w metamask
 ```
 
-Installing Rainbow:
+<details><summary>MetaMask Flask</summary>
+
+```shell
+npx dappdriver -w metamask-flask
+```
+
+</details>
+
+<details><summary>Rainbow</summary>
 
 DappDriver requires a personal access token to call Github’s API over HTTPS to download Rainbow from GitHub's artifact repository. You can configure the token through the `GITHUB_TOKEN` environment variable:
 
 ```shell
 GITHUB_TOKEN=token npx dappdriver -w rainbow
 ```
+
+</details>
+
+<details><summary>Zerion</summary>
+
+```shell
+npx dappdriver -w zerion
+```
+
+</details>
 
 **Add a Page Object**
 
@@ -103,7 +121,7 @@ describe('E2E Test Dapp', () => {
   const browserOptions: BrowserOptions = {
     extension: {
       wallet: METAMASK,
-      seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent'
+      seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent' // MetaMask test seed https://github.com/MetaMask/metamask-extension/blob/v12.7.1/test/e2e/seeder/ganache.ts
     }
   };
 
