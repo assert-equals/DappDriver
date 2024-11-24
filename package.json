@@ -83,8 +83,8 @@
     "commander": "^12.1.0",
     "ganache": "^7.9.2",
     "mockttp": "^3.11.0",
-    "playwright-core": "^1.48.1",
-    "selenium-webdriver": "^4.25.0",
+    "playwright-core": "^1.49.0",
+    "selenium-webdriver": "^4.26.0",
     "semver": "^7.6.3"
   },
   "devDependencies": {
@@ -93,7 +93,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/adm-zip": "^0.5.5",
     "@types/node": "^20.14.2",
-    "@types/selenium-webdriver": "^4.1.26",
+    "@types/selenium-webdriver": "^4.1.27",
     "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
