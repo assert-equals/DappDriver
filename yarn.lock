@@ -1048,10 +1048,10 @@ brorand@^1.1.0:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==
 
-brotli-wasm@^1.1.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/brotli-wasm/-/brotli-wasm-1.3.1.tgz#51deb0a17a146b36fe10cbc99cd4f92d9ce166d7"
-  integrity sha512-Vp+v3QXddvy39Ycbmvd3/Y1kUvKhwtnprzeABcKWN4jmyg6W3W5MhGPCfXBMHeSQnizgpV59iWmkSRp7ykOnDQ==
+brotli-wasm@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/brotli-wasm/-/brotli-wasm-3.0.1.tgz#eefe20f7368fef20d53314cffeaa44733dc2b259"
+  integrity sha512-U3K72/JAi3jITpdhZBqzSUq+DUY697tLxOuFXB+FpAE/Ug+5C3VZrv4uA674EUZHxNAuQ9wETXNqQkxZD6oL4A==
 
 buffer-from@^1.0.0:
   version "1.1.2"
@@ -2026,6 +2026,11 @@ fast-glob@^3.2.9:
     merge2 "^1.3.0"
     micromatch "^4.0.4"
 
+fast-json-patch@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/fast-json-patch/-/fast-json-patch-3.1.1.tgz#85064ea1b1ebf97a3f7ad01e23f9337e72c66947"
+  integrity sha512-vf6IHUX2SBcA+5/+4883dsIjpBTqmfBjmYiWK1savxQmFk4JfBMLa7ynTYOs1Rolp/T1betJxHiGD3g1Mn8lUQ==
+
 fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz#874bf69c6f404c2b5d99c481341399fd55892633"
@@ -2513,14 +2518,14 @@ html-encoding-sniffer@^4.0.0:
   dependencies:
     whatwg-encoding "^3.1.1"
 
-http-encoding@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/http-encoding/-/http-encoding-1.5.1.tgz#ae0b48fbe97b5a2e0a211fdb3e5412bead8d9865"
-  integrity sha512-2m4JnG1Z5RX5pRMdccyp6rX1jVo4LO+ussQzWdwR4AmrWhtX0KP1NyslVAFAspQwMxt2P00CCWXIBKj7ILZLpQ==
+http-encoding@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/http-encoding/-/http-encoding-2.0.1.tgz#79549062c4caa4e1598442744f2e88e5a4aac921"
+  integrity sha512-vqe8NzlqqvDgcrwI2JTPAiB/6Zs1zTEVZNnTZBJeBhaejLGSpXQtNf87ifumq/P4X82G9E4WWfJMNmwb6vsuGw==
   dependencies:
-    brotli-wasm "^1.1.0"
+    brotli-wasm "^3.0.0"
     pify "^5.0.0"
-    zstd-codec "^0.1.4"
+    zstd-codec "^0.1.5"
 
 http-errors@2.0.0:
   version "2.0.0"
@@ -3256,10 +3261,10 @@ mkdirp@^0.5.6:
   dependencies:
     minimist "^1.2.6"
 
-mockttp@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/mockttp/-/mockttp-3.11.0.tgz#599e0e6d28d289a0eb28d73b9ad4ea5927571c3b"
-  integrity sha512-zR5GjGAiOEYcZURmNipugCTR9Y4e9vnK0yeVz0se6M/lTfx05b5d2gXzuduquqJt/yWTRVOBMNuuS0026yfudw==
+mockttp@^3.15.4:
+  version "3.15.4"
+  resolved "https://registry.yarnpkg.com/mockttp/-/mockttp-3.15.4.tgz#1ded24c9ec4246cbbb42c71bb61cdff2f563386a"
+  integrity sha512-38Q5oZUBY4CNMCl2FHMcW2igVZM0IjgnmLcmNzQDc+hn5Hbdrsd7fz4tzXP64cw53T8PERPMM8s6TH4xlakUZw==
   dependencies:
     "@graphql-tools/schema" "^8.5.0"
     "@graphql-tools/utils" "^8.8.0"
@@ -3279,11 +3284,12 @@ mockttp@^3.11.0:
     cross-fetch "^3.1.5"
     destroyable-server "^1.0.2"
     express "^4.14.0"
+    fast-json-patch "^3.1.1"
     graphql "^14.0.2 || ^15.5"
     graphql-http "^1.22.0"
     graphql-subscriptions "^1.1.0"
     graphql-tag "^2.12.6"
-    http-encoding "^1.5.1"
+    http-encoding "^2.0.1"
     http2-wrapper "^2.2.1"
     https-proxy-agent "^5.0.1"
     isomorphic-ws "^4.0.1"
@@ -3299,6 +3305,7 @@ mockttp@^3.11.0:
     semver "^7.5.3"
     socks-proxy-agent "^7.0.0"
     typed-error "^3.0.2"
+    urlpattern-polyfill "^8.0.0"
     uuid "^8.3.2"
     ws "^8.8.0"
 
@@ -4548,6 +4555,11 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
+urlpattern-polyfill@^8.0.0:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/urlpattern-polyfill/-/urlpattern-polyfill-8.0.2.tgz#99f096e35eff8bf4b5a2aa7d58a1523d6ebc7ce5"
+  integrity sha512-Qp95D4TPJl1kC9SKigDcqgyM2VDVO4RiJc2d4qe5GrYm+zbIQCWWKAFaJNQ4BhdFeDGwBmAxqJBwWSJDb9T3BQ==
+
 utf-8-validate@5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/utf-8-validate/-/utf-8-validate-5.0.7.tgz#c15a19a6af1f7ad9ec7ddc425747ca28c3644922"
@@ -4800,7 +4812,7 @@ yocto-queue@^1.0.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.0.0.tgz#7f816433fb2cbc511ec8bf7d263c3b58a1a3c251"
   integrity sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==
 
-zstd-codec@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/zstd-codec/-/zstd-codec-0.1.4.tgz#6abb311b63cfacbd06e72797ee6c6e1c7c65248c"
-  integrity sha512-KYnWoFWgGtWyQEKNnUcb3u8ZtKO8dn5d8u+oGpxPlopqsPyv60U8suDyfk7Z7UtAO6Sk5i1aVcAs9RbaB1n36A==
+zstd-codec@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/zstd-codec/-/zstd-codec-0.1.5.tgz#c180193e4603ef74ddf704bcc835397d30a60e42"
+  integrity sha512-v3fyjpK8S/dpY/X5WxqTK3IoCnp/ZOLxn144GZVlNUjtwAchzrVo03h+oMATFhCIiJ5KTr4V3vDQQYz4RU684g==
