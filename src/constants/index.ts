@@ -24,6 +24,7 @@ export const DEFAULT_METAMASK_BINARY_PATH: string = `${process.cwd()}/${NODE_MOD
 export const DEFAULT_METAMASK_FLASK_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_METAMASK_FLASK_ASSET}-${DEFAULT_METAMASK_FLASK_VERSION}-flask.0`;
 export const DEFAULT_RAINBOW_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_RAINBOW_ASSET}-v${DEFAULT_RAINBOW_VERSION}`;
 export const DEFAULT_ZERION_BINARY_PATH: string = `${process.cwd()}/${NODE_MODULE_DIR}/${DEFAULT_ZERION_ASSET}-v${DEFAULT_ZERION_VERSION}`;
+export const HEADLESS: Wallet = 'headless';
 export const METAMASK: Wallet = 'metamask';
 export const METAMASK_FLASK: Wallet = 'metamask-flask';
 export const RAINBOW: Wallet = 'rainbow';

@@ -1,8 +1,10 @@
+import { installHeadlessWallet } from '@assert-equals/headless-wallet';
 import { BrowserContext } from 'playwright-core';
 import { WebDriver } from 'selenium-webdriver';
 import {
   DEFAULT_METAMASK_BINARY_PATH,
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
+  HEADLESS,
   METAMASK,
   METAMASK_FLASK,
   PLAYWRIGHT,
@@ -261,6 +263,16 @@ export class DappDriver {
         case RAINBOW:
           DappDriver.Instance.Wallet = RAINBOW;
           await setupRainbowWallet(options.extension.seed);
+          break;
+        case HEADLESS:
+          DappDriver.Instance.Wallet = HEADLESS;
+          if (DappDriver.Instance.Framework === PLAYWRIGHT) {
+            const page = DappDriver.Instance.Page as Page;
+            await installHeadlessWallet({ page });
+          } else if (DappDriver.Instance.Framework === WEBDRIVER) {
+            const driver = DappDriver.Instance.Driver as WebDriver;
+            await installHeadlessWallet({ driver });
+          }
           break;
       }
     } catch (error) {

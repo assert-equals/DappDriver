@@ -6,6 +6,7 @@ import {
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
   DEFAULT_RAINBOW_BINARY_PATH,
   DEFAULT_ZERION_BINARY_PATH,
+  HEADLESS,
   HTTPS_PROXY_HOST,
   METAMASK,
   METAMASK_FLASK,
@@ -29,7 +30,7 @@ export class WebDriverFactory {
       args.push(`--proxy-server=${HTTPS_PROXY_HOST}`);
       chromeOptions.setAcceptInsecureCerts(true);
     }
-    if (options.extension.wallet !== null) {
+    if (options.extension.wallet !== null && options.extension.wallet !== HEADLESS) {
       let extensionPath: string = options.extension.path;
       if (options.extension.wallet === METAMASK) {
         extensionPath = extensionPath || DEFAULT_METAMASK_BINARY_PATH;
@@ -44,6 +45,7 @@ export class WebDriverFactory {
     }
     args.push(`--window-size=1024,768`);
     chromeOptions.addArguments(...args);
+    chromeOptions.enableBidi();
     const driver: WebDriver = await new Builder().forBrowser(CHROME).setChromeOptions(chromeOptions).build();
     await driver.manage().setTimeouts({ implicit: 20000 });
     return driver;

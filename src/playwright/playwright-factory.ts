@@ -5,6 +5,7 @@ import {
   DEFAULT_METAMASK_FLASK_BINARY_PATH,
   DEFAULT_RAINBOW_BINARY_PATH,
   DEFAULT_ZERION_BINARY_PATH,
+  HEADLESS,
   HTTPS_PROXY_HOST,
   METAMASK,
   METAMASK_FLASK,
@@ -33,7 +34,7 @@ export class PlaywrightFactory {
         server: HTTPS_PROXY_HOST
       };
     }
-    if (options.extension.wallet !== null) {
+    if (options.extension.wallet !== null && options.extension.wallet !== HEADLESS) {
       let extensionPath: string = options.extension.path;
       if (options.extension.wallet === METAMASK) {
         extensionPath = extensionPath || DEFAULT_METAMASK_BINARY_PATH;
