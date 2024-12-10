@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.30.0](https://github.com/assert-equals/DappDriver/compare/v0.29.0...v0.30.0) (2024-12-10)
+
+### Features
+
+- headless wallet - eip6963 ([314e5dd](https://github.com/assert-equals/DappDriver/commit/314e5ddd5422738971503dfe8acb9e0d966c16d1))
+
 ## [0.29.0](https://github.com/assert-equals/DappDriver/compare/v0.28.1...v0.29.0) (2024-11-24)
 
 ### Features
