@@ -268,7 +268,7 @@ export class DappDriver {
           DappDriver.Instance.Wallet = HEADLESS;
           if (DappDriver.Instance.Framework === PLAYWRIGHT) {
             const page = DappDriver.Instance.Page as Page;
-            await installHeadlessWallet({ page });
+            await installHeadlessWallet({ page, port: options.extension.port });
           } else if (DappDriver.Instance.Framework === WEBDRIVER) {
             const driver = DappDriver.Instance.Driver as WebDriver;
             await installHeadlessWallet({ driver });
