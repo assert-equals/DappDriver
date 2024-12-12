@@ -16,10 +16,10 @@
     css-tree "^2.3.1"
     is-potential-custom-element-name "^1.0.1"
 
-"@assert-equals/headless-wallet@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@assert-equals/headless-wallet/-/headless-wallet-0.0.11.tgz#97504f566ddba6a9b596d6938a0c2d5bd172b67d"
-  integrity sha512-L2ZpBdQqzyjnkaoKGNN2KBVLCuvyPEchVU7sCnjUxGOmiCAV9NFk/eIJ+vnlBhpkAXLW7e6HxM2U5OudCAMlrw==
+"@assert-equals/headless-wallet@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@assert-equals/headless-wallet/-/headless-wallet-0.0.12.tgz#4c0b8dbedbfa4621bb4b31ebe524df9ed526e026"
+  integrity sha512-CG8GXzdXf/fWYKNmNnOzVV79V8XiMtHiLpF52wudBVmCnk15c9VhzuZTBJlnO7aiPQyNGVaHvetev7BkffSFSg==
 
 "@babel/code-frame@^7.0.0":
   version "7.24.2"
@@ -3398,10 +3398,10 @@ pify@^5.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
-playwright-core@^1.49.0:
-  version "1.49.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.49.0.tgz#8e69ffed3f41855b854982f3632f2922c890afcb"
-  integrity sha512-R+3KKTQF3npy5GTiKH/T+kdhoJfJojjHESR1YEWhYuEKRVfVaxH3+4+GvXE5xyCngCxhxnykk0Vlah9v8fs3jA==
+playwright-core@^1.49.1:
+  version "1.49.1"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.49.1.tgz#32c62f046e950f586ff9e35ed490a424f2248015"
+  integrity sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg==
 
 portfinder@^1.0.32:
   version "1.0.32"
@@ -3667,10 +3667,10 @@ saxes@^6.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-selenium-webdriver@^4.26.0:
-  version "4.26.0"
-  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.26.0.tgz#23163cdad20388214a4ad17c1f38262a0857c902"
-  integrity sha512-nA7jMRIPV17mJmAiTDBWN96Sy0Uxrz5CCLb7bLVV6PpL417SyBMPc2Zo/uoREc2EOHlzHwHwAlFtgmSngSY4WQ==
+selenium-webdriver@^4.27.0:
+  version "4.27.0"
+  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-4.27.0.tgz#f0f26ce453805e7dc77151040442c67e441dbe7a"
+  integrity sha512-LkTJrNz5socxpPnWPODQ2bQ65eYx9JK+DQMYNihpTjMCqHwgWGYQnQTCAAche2W3ZP87alA+1zYPvgS8tHNzMQ==
   dependencies:
     "@bazel/runfiles" "^6.3.1"
     jszip "^3.10.1"
