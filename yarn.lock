@@ -16,10 +16,10 @@
     css-tree "^2.3.1"
     is-potential-custom-element-name "^1.0.1"
 
-"@assert-equals/headless-wallet@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@assert-equals/headless-wallet/-/headless-wallet-0.0.12.tgz#4c0b8dbedbfa4621bb4b31ebe524df9ed526e026"
-  integrity sha512-CG8GXzdXf/fWYKNmNnOzVV79V8XiMtHiLpF52wudBVmCnk15c9VhzuZTBJlnO7aiPQyNGVaHvetev7BkffSFSg==
+"@assert-equals/headless-wallet@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@assert-equals/headless-wallet/-/headless-wallet-0.0.15.tgz#79c6666e456a1c486dc2f33029af5a9f78362cce"
+  integrity sha512-Ql0a+0hidWyw90x8nrFn3JOF5VYj78kFxuTBhrEVP1FdQkajWk5sGg0O2u6ZWnQEDxNV0Cin8C8G7FZ0c7VRpg==
 
 "@babel/code-frame@^7.0.0":
   version "7.24.2"
