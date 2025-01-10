@@ -15,7 +15,7 @@ import {
 
 export async function rainbow(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<void> {
   try {
-    const workflowName = 'Publish to Chrome WebStore (Production)';
+    const workflowName = 'Publish to Chrome (Prod)';
     checkEnvVariable('GITHUB_TOKEN');
     compareVersion(RAINBOW, version, RECOMMENDED_RAINBOW_VERSIONS);
     await fetchGithubTags(RAINBOW, version, RAINBOW_GITHUB_API);
