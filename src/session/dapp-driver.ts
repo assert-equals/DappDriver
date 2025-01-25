@@ -1,4 +1,4 @@
-import { installHeadlessWallet } from '@assert-equals/headless-wallet';
+import { setupHeadlessWallet } from '@assert-equals/headless-wallet';
 import { BrowserContext } from 'playwright-core';
 import { WebDriver } from 'selenium-webdriver';
 import {
@@ -268,10 +268,10 @@ export class DappDriver {
           DappDriver.Instance.Wallet = HEADLESS;
           if (DappDriver.Instance.Framework === PLAYWRIGHT) {
             const page = DappDriver.Instance.Page as Page;
-            await installHeadlessWallet({ page, port: options.extension.port });
+            await setupHeadlessWallet({ page, port: options.extension.port });
           } else if (DappDriver.Instance.Framework === WEBDRIVER) {
             const driver = DappDriver.Instance.Driver as WebDriver;
-            await installHeadlessWallet({ driver });
+            await setupHeadlessWallet({ driver });
           }
           break;
       }
