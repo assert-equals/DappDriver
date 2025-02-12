@@ -2,7 +2,7 @@ import { WebDriver, until } from 'selenium-webdriver';
 import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { DappDriver } from '../session/dapp-driver';
-import { Comparator } from '../types';
+import { Comparator, Cookie } from '../types';
 import { isAtLeast, strictEqual, toRegExp } from '../utils';
 
 export class WebDriverPageObject implements IPageObject {
@@ -14,11 +14,23 @@ export class WebDriverPageObject implements IPageObject {
     this.driver = DappDriver.Instance.Driver as WebDriver;
   }
 
+  async addCookie(cookie: Cookie): Promise<void> {
+    return await this.driver.manage().addCookie(cookie);
+  }
+
   async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.driver.navigate().back();
     if (page) {
       return await DappDriver.getPage<TPage>(page);
     }
+  }
+
+  async clearCookie(name: string): Promise<void> {
+    return await this.driver.manage().deleteCookie(name);
+  }
+
+  async clearCookies(): Promise<void> {
+    return await this.driver.manage().deleteAllCookies();
   }
 
   async close<TPage>(page?: new () => TPage): Promise<any> {
@@ -53,6 +65,18 @@ export class WebDriverPageObject implements IPageObject {
 
   async getAllWindowHandles(): Promise<Array<string>> {
     return await this.driver.getAllWindowHandles();
+  }
+
+  async getCookie(name: string): Promise<any> {
+    let cookie = null;
+    try {
+      cookie = await this.driver.manage().getCookie(name);
+    } catch (e) {}
+    return cookie;
+  }
+
+  async getCookies(): Promise<Array<any>> {
+    return await this.driver.manage().getCookies();
   }
 
   async getCurrentUrl(): Promise<string> {

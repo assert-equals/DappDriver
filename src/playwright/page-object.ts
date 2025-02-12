@@ -3,7 +3,7 @@ import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PageObject } from '../page';
 import { DappDriver } from '../session/dapp-driver';
-import { Comparator, Frame, Page } from '../types';
+import { Comparator, Cookie, Frame, Page } from '../types';
 import { isAtLeast, strictEqual, toRegExp } from '../utils';
 
 export class PlaywrightPageObject implements IPageObject {
@@ -24,11 +24,23 @@ export class PlaywrightPageObject implements IPageObject {
     DappDriver.Instance.Page = this.page;
   }
 
+  async addCookie(cookie: Cookie): Promise<void> {
+    return await this.driver.addCookies([cookie]);
+  }
+
   async back<TPage>(page?: new () => TPage): Promise<any> {
     await this.page.goBack();
     if (page) {
       return await DappDriver.getPage<TPage>(page);
     }
+  }
+
+  async clearCookie(name: string): Promise<void> {
+    return await this.driver.clearCookies({ name });
+  }
+
+  async clearCookies(): Promise<void> {
+    return await this.driver.clearCookies();
   }
 
   async close<TPage>(page?: new () => TPage): Promise<any> {
@@ -62,6 +74,20 @@ export class PlaywrightPageObject implements IPageObject {
 
   async getAllWindowHandles(): Promise<Array<Page>> {
     return await Promise.resolve(this.driver.pages());
+  }
+
+  async getCookie(name: string): Promise<any> {
+    const url: string = await this.getCurrentUrl();
+    const origin: string = new URL(url).origin;
+    const cookies = await this.driver.cookies(origin);
+    const [cookie] = cookies.filter((cookie) => cookie.name === name);
+    return cookie || null;
+  }
+
+  async getCookies(): Promise<any> {
+    const url: string = await this.getCurrentUrl();
+    const origin: string = new URL(url).origin;
+    return await this.driver.cookies(origin);
   }
 
   async getCurrentUrl(): Promise<string> {

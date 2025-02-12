@@ -35,4 +35,13 @@ export type BrowserOptions = {
   extension?: WalletOptions;
 };
 
+export type Cookie = {
+  name: string;
+  value: string;
+  path: string;
+  domain: string;
+  secure?: boolean;
+  httpOnly?: boolean;
+};
+
 export type Comparator = (a: number, b: number) => boolean;

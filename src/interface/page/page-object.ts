@@ -1,12 +1,15 @@
-import { Comparator } from '../../types';
+import { Comparator, Cookie } from '../../types';
 import { IConfirmation } from '../wallet/confirmation';
 
 export interface IPageObject {
   url: string | RegExp;
   title: string;
+  addCookie(cookie: Cookie): Promise<void>;
   back(): Promise<void>;
   back<TPage>(page: new () => TPage): Promise<TPage>;
   back<TPage>(page?: new () => TPage): Promise<any>;
+  clearCookie(name: string): Promise<void>;
+  clearCookies(): Promise<void>;
   close(): Promise<void>;
   close<TPage>(page: new () => TPage): Promise<TPage>;
   close<TPage>(page?: new () => TPage): Promise<any>;
@@ -20,6 +23,8 @@ export interface IPageObject {
     page: new () => TPage
   ): Promise<TPage>;
   getAllWindowHandles(): Promise<Array<any>>;
+  getCookie(name: string): Promise<any>;
+  getCookies(): Promise<Array<any>>;
   getCurrentUrl(): Promise<string>;
   getTitle(): Promise<string>;
   getWindowHandle(): Promise<any>;

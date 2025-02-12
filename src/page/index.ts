@@ -3,7 +3,7 @@ import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightPageObject } from '../playwright/page-object';
 import { DappDriver } from '../session/dapp-driver';
-import { Comparator, Page } from '../types';
+import { Comparator, Cookie, Page } from '../types';
 import { strictEqual, toRegExp } from '../utils';
 import { WebDriverPageObject } from '../webdriver/page-object';
 
@@ -75,6 +75,16 @@ export class PageObject implements IPageObject {
   }
   /**
    *
+   *
+   * @param {Cookie} cookie
+   * @return {*}  {Promise<void>}
+   * @memberof PageObject
+   */
+  async addCookie(cookie: Cookie): Promise<void> {
+    return await this.callIfMethodExists('addCookie', [cookie]);
+  }
+  /**
+   *
    * Schedules a command to navigate to the previous URL
    * @template TPage
    * @param {new () => TPage} [page]
@@ -89,6 +99,25 @@ export class PageObject implements IPageObject {
     } else {
       return await this.callIfMethodExists('back');
     }
+  }
+  /**
+   *
+   *
+   * @param {string} name
+   * @return {*}  {Promise<void>}
+   * @memberof PageObject
+   */
+  async clearCookie(name: string): Promise<void> {
+    return await this.callIfMethodExists('clearCookie', [name]);
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<void>}
+   * @memberof PageObject
+   */
+  async clearCookies(): Promise<void> {
+    return await this.callIfMethodExists('clearCookies');
   }
   /**
    *
@@ -166,6 +195,25 @@ export class PageObject implements IPageObject {
    */
   async getAllWindowHandles(): Promise<Array<any>> {
     return await this.callIfMethodExists('getAllWindowHandles');
+  }
+  /**
+   *
+   *
+   * @param {string} name
+   * @return {*}  {Promise<any>}
+   * @memberof PageObject
+   */
+  async getCookie(name: string): Promise<any> {
+    return await this.callIfMethodExists('getCookie', [name]);
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<Array<any>>}
+   * @memberof PageObject
+   */
+  async getCookies(): Promise<Array<any>> {
+    return await this.callIfMethodExists('getCookies');
   }
   /**
    *
