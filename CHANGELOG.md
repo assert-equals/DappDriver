@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.32.4](https://github.com/assert-equals/DappDriver/compare/v0.32.3...v0.32.4) (2025-03-25)
+
+### Features
+
+- cookie support ([e90e944](https://github.com/assert-equals/DappDriver/commit/e90e944989f418f384dad2b003ac1e9a1b264871))
+
 ## [0.32.3](https://github.com/assert-equals/DappDriver/compare/v0.32.2...v0.32.3) (2025-01-10)
 
 ### Bug Fixes
