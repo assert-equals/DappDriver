@@ -7,7 +7,7 @@ import {
   METAMASK_GITHUB_API,
   RECOMMENDED_METAMASK_FLASK_VERSIONS
 } from '../constants';
-import { logError, logSuccess } from '../log';
+import { logError, logInfo, logSuccess } from '../log';
 import { Asset } from '../types';
 import {
   compareVersion,
@@ -15,12 +15,18 @@ import {
   downloadAssetZipFile,
   extractZipContents,
   fetchGithubRelease,
+  fileExists,
   findGithubAsset
 } from '../wallet/install';
 
 export async function install(directory: string, version: string = DEFAULT_METAMASK_FLASK_VERSION): Promise<void> {
   try {
     const assetName = `${DEFAULT_METAMASK_FLASK_ASSET}-${version}-flask.0.zip`;
+    const exists = fileExists(directory, assetName);
+    if (exists) {
+      logInfo(`MetaMask Flask version <v${version}> already exists in ${directory}/${assetName}`);
+      return;
+    }
     compareVersion(METAMASK_FLASK, version, RECOMMENDED_METAMASK_FLASK_VERSIONS);
     const release: any = await fetchGithubRelease(METAMASK_FLASK, version, METAMASK_GITHUB_API);
     const asset: Asset = findGithubAsset(assetName, release);

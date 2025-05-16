@@ -61,8 +61,7 @@ export function extractZipContents(from: string): string {
   return to;
 }
 
-export async function fetchGithubArtifact(version: string, run: any, githubApiUrl: string): Promise<Artifact> {
-  const artifactName = `rainbowbx-chrome-v${version}`;
+export async function fetchGithubArtifact(artifactName: string, run: any, githubApiUrl: string): Promise<Artifact> {
   const artifactsResponse = await axios.get(`${githubApiUrl}/actions/runs/${run.id}/artifacts`);
   const artifacts = artifactsResponse.data.artifacts;
   const artifact: Artifact = artifacts.find((item: any) => item.name === artifactName);
@@ -117,6 +116,11 @@ export async function fetchGithubWorkflow(workflowName: string, githubApiUrl: st
     throw new Error(`Workflow with name ${workflowName} not found.`);
   }
   return workflow;
+}
+
+export function fileExists(directory: string, file: string): boolean {
+  const filePath = path.join(directory, file);
+  return fs.existsSync(filePath);
 }
 
 export function findGithubAsset(assetName: string, release: any): Asset {

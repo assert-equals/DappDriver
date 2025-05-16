@@ -5,7 +5,7 @@ import {
   ZERION_GITHUB_API,
   RECOMMENDED_ZERION_VERSIONS
 } from '../constants';
-import { logSuccess, logError } from '../log';
+import { logSuccess, logError, logInfo } from '../log';
 import { Asset } from '../types';
 import {
   compareVersion,
@@ -13,6 +13,7 @@ import {
   downloadAssetZipFile,
   extractZipContents,
   fetchGithubRelease,
+  fileExists,
   findGithubAsset,
   moveFiles
 } from '../wallet/install';
@@ -20,6 +21,11 @@ import {
 export async function install(directory: string, version: string = DEFAULT_ZERION_VERSION): Promise<void> {
   try {
     const assetName = `${DEFAULT_ZERION_ASSET}-v${version}.zip`;
+    const exists = fileExists(directory, assetName);
+    if (exists) {
+      logInfo(`Zerion version <v${version}> already exists in ${directory}/${assetName}`);
+      return;
+    }
     compareVersion(ZERION, version, RECOMMENDED_ZERION_VERSIONS);
     const release: any = await fetchGithubRelease(ZERION, version, ZERION_GITHUB_API);
     const asset: Asset = findGithubAsset(assetName, release);
