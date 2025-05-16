@@ -47,52 +47,6 @@ yarn add @assert-equals/dappdriver
 
 ## Get Started
 
-**Download a Wallet**
-
-First, install MetaMask, MetaMask Flask, Rainbow or Zerion:
-
-```shell
-npx dappdriver -w metamask
-```
-
-<details><summary>MetaMask Flask</summary>
-
-Install MetaMask Flask:
-
-```shell
-npx dappdriver -w metamask-flask
-```
-
-</details>
-
-<details><summary>Rainbow</summary>
-
-DappDriver requires a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) to call Github’s API over HTTPS to download Rainbow from GitHub's artifact repository. You can configure the personal access token through the `GITHUB_TOKEN` environment variable by adding it to your profile (`~/.bash_profile`, `~/.zshrc`).
-
-Configure the environment variable (`~/.bash_profile`, `~/.zshrc`):
-
-```shell
-export GITHUB_TOKEN='*****'
-```
-
-Install Rainbow:
-
-```shell
-npx dappdriver -w rainbow
-```
-
-</details>
-
-<details><summary>Zerion</summary>
-
-Install Zerion:
-
-```shell
-npx dappdriver -w zerion
-```
-
-</details>
-
 **Add a Page Object**
 
 Then, write your page object in `test/page/dapp.ts`:

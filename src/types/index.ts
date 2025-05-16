@@ -6,7 +6,7 @@ export type Frame = FrameLocator | null;
 export type Driver = WebDriver | BrowserContext;
 export type Framework = 'playwright' | 'webdriver';
 export type Browser = 'chrome';
-export type Wallet = 'metamask' | 'metamask-flask' | 'rainbow' | 'zerion' | 'headless';
+export type Wallet = 'metamask' | 'flask' | 'rainbow' | 'zerion' | 'headless';
 
 export type Artifact = {
   archive_download_url: string;
