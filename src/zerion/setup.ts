@@ -1,12 +1,11 @@
 import { ConfirmPassword, Information, Password, Success, Welcome } from '.';
 import { PageObject } from '../page';
-import { DappDriver } from '../session/dapp-driver';
 
 let successPage: Success;
 let passwordPage: Password;
 let confirmPasswordPage: ConfirmPassword;
 
-export async function setupZerionWallet(seed: string): Promise<void> {
+export async function setup(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
   const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
   if (seed) {
@@ -35,8 +34,5 @@ export async function setupZerionWallet(seed: string): Promise<void> {
     await verifyPage.enterSeed(seedPhrase);
     successPage = await verifyPage.verify();
   }
-  const extensionString: string = await successPage.getCurrentUrl();
-  const extensionURL: URL = new URL(extensionString);
-  DappDriver.Instance.Extension = `${extensionURL.protocol}//${extensionURL.host}`;
   await successPage.closeAndSwitchToMainWindow<PageObject>(PageObject);
 }

@@ -2,24 +2,20 @@ import { setupHeadlessWallet } from '@assert-equals/headless-wallet';
 import { BrowserContext } from 'playwright-core';
 import { WebDriver } from 'selenium-webdriver';
 import {
-  DEFAULT_METAMASK_BINARY_PATH,
-  DEFAULT_METAMASK_FLASK_BINARY_PATH,
   HEADLESS,
   METAMASK,
   METAMASK_FLASK,
+  NODE_MODULE_DIR,
   PLAYWRIGHT,
   RAINBOW,
   WEBDRIVER,
   ZERION
 } from '../constants';
-import { setupMetaMaskFlaskWallet } from '../flask/setup';
-import { enableMetaMaskAutomation, setupMetaMaskWallet } from '../metamask/setup';
+import { IWallet } from '../interface/extension/wallet';
 import { PageObject } from '../page';
 import { PlaywrightFactory } from '../playwright/playwright-factory';
-import { setupRainbowWallet } from '../rainbow/setup';
 import { Browser, BrowserOptions, Driver, Frame, Framework, Page, Wallet } from '../types';
 import { WebDriverFactory } from '../webdriver/webdriver-factory';
-import { setupZerionWallet } from '../zerion/setup';
 
 /**
  *
@@ -30,7 +26,7 @@ import { setupZerionWallet } from '../zerion/setup';
 export class DappDriver {
   private static instance: DappDriver | null = null;
   private domain: string;
-  private extension: string;
+  private extension: IWallet;
   private isDisposed: boolean;
   private driver: Driver;
   private page: Page;
@@ -74,15 +70,19 @@ export class DappDriver {
     return this.driver;
   }
 
+  set Driver(value: Driver) {
+    this.driver = value;
+  }
+
   get Domain(): string {
     return this.domain;
   }
 
-  get Extension(): string {
+  get Extension(): IWallet {
     return this.extension;
   }
 
-  set Extension(value: string) {
+  set Extension(value: IWallet) {
     this.extension = value;
   }
 
@@ -154,12 +154,13 @@ export class DappDriver {
     } else if (typeof arg4 === 'object') {
       options = arg4 as BrowserOptions;
     }
-    await DappDriver.enableAutomation(options);
-    const driver: Driver = await DappDriver.build(framework, browser, options);
+    let driver: Driver = null;
     const session = new DappDriver(domain, framework, driver);
-    if (DappDriver.instance === null) {
-      DappDriver.instance = session;
-    }
+    DappDriver.instance ??= session;
+    await DappDriver.loadExtensionModule(options);
+    await DappDriver.install(options);
+    driver = await DappDriver.build(framework, browser, options);
+    DappDriver.Instance.Driver = driver;
     let page: Page = null;
     if (framework === PLAYWRIGHT) {
       page = (driver as BrowserContext).pages()[0];
@@ -202,21 +203,27 @@ export class DappDriver {
    * @return {*}  {Promise<void>}
    * @memberof DappDriver
    */
-  private static async enableAutomation(options: BrowserOptions): Promise<void> {
-    if (options.extension.wallet === METAMASK || options.extension.wallet === METAMASK_FLASK) {
-      try {
-        let metamaskPath: string;
-        if (options.extension.wallet === METAMASK) {
-          metamaskPath = options.extension.path || DEFAULT_METAMASK_BINARY_PATH;
-        } else if (options.extension.wallet === METAMASK_FLASK) {
-          metamaskPath = options.extension.path || DEFAULT_METAMASK_FLASK_BINARY_PATH;
-        }
-        await enableMetaMaskAutomation(metamaskPath);
-      } catch (error) {
-        throw new Error(
-          'Could not enable automation in MetaMask, try running `npx dappdriver -w metamask` to install MetaMask.'
-        );
-      }
+  private static async install(options: BrowserOptions): Promise<void> {
+    const initCwd: string = process.env.INIT_CWD;
+    const cwd: string = process.cwd();
+    const downloadDir: string = `${initCwd || cwd}/${NODE_MODULE_DIR}`;
+    await DappDriver.Instance.Extension.install(downloadDir, options.extension.version);
+  }
+  /**
+   *
+   *
+   * @private
+   * @static
+   * @param {BrowserOptions} options
+   * @return {*}  {Promise<void>}
+   * @memberof DappDriver
+   */
+  private static async loadExtensionModule(options: BrowserOptions): Promise<void> {
+    try {
+      const extensionModule = await import(`../${options.extension.wallet}`);
+      DappDriver.Instance.Extension = extensionModule.default as IWallet;
+    } catch (error) {
+      throw new Error('Failed to load extension module: ' + error);
     }
   }
   /**
@@ -249,20 +256,11 @@ export class DappDriver {
     try {
       switch (options.extension.wallet) {
         case METAMASK:
-          DappDriver.Instance.Wallet = METAMASK;
-          await setupMetaMaskWallet(options.extension.seed);
-          break;
         case METAMASK_FLASK:
-          DappDriver.Instance.Wallet = METAMASK_FLASK;
-          await setupMetaMaskFlaskWallet(options.extension.seed);
-          break;
-        case ZERION:
-          DappDriver.Instance.Wallet = ZERION;
-          await setupZerionWallet(options.extension.seed);
-          break;
         case RAINBOW:
-          DappDriver.Instance.Wallet = RAINBOW;
-          await setupRainbowWallet(options.extension.seed);
+        case ZERION:
+          DappDriver.Instance.Wallet = options.extension.wallet;
+          await DappDriver.Instance.Extension.setup(options.extension.seed);
           break;
         case HEADLESS:
           DappDriver.Instance.Wallet = HEADLESS;

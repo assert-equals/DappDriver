@@ -1,9 +1,5 @@
-import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { AddNetwork as MetaMaskAddNetwork } from '../../metamask';
-import { AddNetwork as RainbowAddNetwork } from '../../rainbow';
 import { DappDriver } from '../../session/dapp-driver';
-import { AddNetwork as ZerionAddNetwork } from '../../zerion';
 
 /**
  *
@@ -15,21 +11,10 @@ import { AddNetwork as ZerionAddNetwork } from '../../zerion';
 export class AddNetwork implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private addNetwork: MetaMaskAddNetwork | RainbowAddNetwork | ZerionAddNetwork;
+  private readonly addNetwork: InstanceType<typeof DappDriver.Instance.Extension.pages.AddNetwork>;
 
   constructor() {
-    switch (DappDriver.Instance.Wallet) {
-      case METAMASK:
-      case METAMASK_FLASK:
-        this.addNetwork = new MetaMaskAddNetwork();
-        break;
-      case RAINBOW:
-        this.addNetwork = new RainbowAddNetwork();
-        break;
-      case ZERION:
-        this.addNetwork = new ZerionAddNetwork();
-        break;
-    }
+    this.addNetwork = new DappDriver.Instance.Extension.pages.AddNetwork();
     this.url = this.addNetwork.url;
     this.title = this.addNetwork.title;
   }

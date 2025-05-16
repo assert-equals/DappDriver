@@ -1,3 +1,5 @@
+import { readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 import {
   DEFAULT_METAMASK_ASSET,
   DEFAULT_METAMASK_VERSION,
@@ -16,7 +18,7 @@ import {
   findGithubAsset
 } from '../wallet/install';
 
-export async function metamask(directory: string, version: string = DEFAULT_METAMASK_VERSION): Promise<void> {
+export async function install(directory: string, version: string = DEFAULT_METAMASK_VERSION): Promise<void> {
   try {
     const assetName = `${DEFAULT_METAMASK_ASSET}-${version}.zip`;
     compareVersion(METAMASK, version, RECOMMENDED_METAMASK_VERSIONS);
@@ -25,8 +27,19 @@ export async function metamask(directory: string, version: string = DEFAULT_META
     createDirectory(directory);
     const fileName: string = await downloadAssetZipFile(asset, directory);
     const destDir: string = extractZipContents(fileName);
+    await enableMetaMaskAutomation(destDir);
     logSuccess(`Installed MetaMask version <v${version}>\n${destDir}`);
   } catch (error: any) {
     logError(error.message);
   }
+}
+
+export async function enableMetaMaskAutomation(metaMaskPath: string): Promise<void> {
+  const runtimeLavaMoatPath = path.resolve(metaMaskPath, 'scripts', 'runtime-lavamoat.js');
+  const file = readFileSync(runtimeLavaMoatPath, 'utf8');
+  const updatedRuntimeLavaMoatData = file.replace(
+    `"scuttleGlobalThis":{"enabled":true`,
+    `"scuttleGlobalThis":{"enabled":false`
+  );
+  writeFileSync(runtimeLavaMoatPath, updatedRuntimeLavaMoatData);
 }

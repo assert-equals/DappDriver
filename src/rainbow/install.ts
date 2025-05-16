@@ -13,7 +13,7 @@ import {
   fetchGithubArtifact
 } from '../wallet/install';
 
-export async function rainbow(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<void> {
+export async function install(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<void> {
   try {
     const workflowName = 'Publish to Chrome (Prod)';
     checkEnvVariable('GITHUB_TOKEN');

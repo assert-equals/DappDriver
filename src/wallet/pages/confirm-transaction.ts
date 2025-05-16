@@ -1,9 +1,5 @@
-import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { ConfirmTransaction as MetaMaskConfirmTransaction } from '../../metamask';
-import { ConfirmTransaction as RainbowConfirmTransaction } from '../../rainbow';
 import { DappDriver } from '../../session/dapp-driver';
-import { ConfirmTransaction as ZerionConfirmTransaction } from '../../zerion';
 
 /**
  *
@@ -15,21 +11,10 @@ import { ConfirmTransaction as ZerionConfirmTransaction } from '../../zerion';
 export class ConfirmTransaction implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private confirmTx: MetaMaskConfirmTransaction | RainbowConfirmTransaction | ZerionConfirmTransaction;
+  private readonly confirmTx: InstanceType<typeof DappDriver.Instance.Extension.pages.ConfirmTransaction>;
 
   constructor() {
-    switch (DappDriver.Instance.Wallet) {
-      case METAMASK:
-      case METAMASK_FLASK:
-        this.confirmTx = new MetaMaskConfirmTransaction();
-        break;
-      case RAINBOW:
-        this.confirmTx = new RainbowConfirmTransaction();
-        break;
-      case ZERION:
-        this.confirmTx = new ZerionConfirmTransaction();
-        break;
-    }
+    this.confirmTx = new DappDriver.Instance.Extension.pages.ConfirmTransaction();
     this.url = this.confirmTx.url;
     this.title = this.confirmTx.title;
   }

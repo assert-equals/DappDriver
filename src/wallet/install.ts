@@ -9,7 +9,9 @@ import { Artifact, Asset, Wallet } from '../types';
 export function checkEnvVariable(variable: string): void {
   const envVariable = process.env[variable];
   if (!envVariable) {
-    throw new Error(`The environment variable ${variable} is not set.`);
+    throw new Error(
+      `The environment variable ${variable} is not set. Please set it to your personal access token.\r\nYou can set it in your profile (e.g., ~/.bash_profile, ~/.zshrc): export ${variable}=your_personal_access_token`
+    );
   }
 }
 

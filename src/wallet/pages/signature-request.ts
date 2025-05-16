@@ -1,9 +1,5 @@
-import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { SignatureRequest as MetaMaskSignatureRequest } from '../../metamask';
-import { SignatureRequest as RainbowSignatureRequest } from '../../rainbow';
 import { DappDriver } from '../../session/dapp-driver';
-import { SignatureRequest as ZerionSignatureRequest } from '../../zerion';
 
 /**
  *
@@ -15,21 +11,10 @@ import { SignatureRequest as ZerionSignatureRequest } from '../../zerion';
 export class SignatureRequest implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private signatureRequest: MetaMaskSignatureRequest | RainbowSignatureRequest | ZerionSignatureRequest;
+  private readonly signatureRequest: InstanceType<typeof DappDriver.Instance.Extension.pages.SignatureRequest>;
 
   constructor() {
-    switch (DappDriver.Instance.Wallet) {
-      case METAMASK:
-      case METAMASK_FLASK:
-        this.signatureRequest = new MetaMaskSignatureRequest();
-        break;
-      case RAINBOW:
-        this.signatureRequest = new RainbowSignatureRequest();
-        break;
-      case ZERION:
-        this.signatureRequest = new ZerionSignatureRequest();
-        break;
-    }
+    this.signatureRequest = new DappDriver.Instance.Extension.pages.SignatureRequest();
     this.url = this.signatureRequest.url;
     this.title = this.signatureRequest.title;
   }

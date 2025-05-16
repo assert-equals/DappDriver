@@ -17,7 +17,7 @@ import {
   moveFiles
 } from '../wallet/install';
 
-export async function zerion(directory: string, version: string = DEFAULT_ZERION_VERSION): Promise<void> {
+export async function install(directory: string, version: string = DEFAULT_ZERION_VERSION): Promise<void> {
   try {
     const assetName = `${DEFAULT_ZERION_ASSET}-v${version}.zip`;
     compareVersion(ZERION, version, RECOMMENDED_ZERION_VERSIONS);

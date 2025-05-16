@@ -1,11 +1,10 @@
 import { CreatePassword, Ready, Welcome } from '.';
 import { PageObject } from '../page';
-import { DappDriver } from '../session/dapp-driver';
 
 let createPasswordPage: CreatePassword;
 let readyPage: Ready;
 
-export async function setupRainbowWallet(seed: string): Promise<void> {
+export async function setup(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
   const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
   if (seed) {
@@ -28,8 +27,5 @@ export async function setupRainbowWallet(seed: string): Promise<void> {
     await createPasswordPage.confirmPassword();
     readyPage = await createPasswordPage.setPassword();
   }
-  const extensionString: string = await readyPage.getCurrentUrl();
-  const extensionURL: URL = new URL(extensionString);
-  DappDriver.Instance.Extension = `${extensionURL.protocol}//${extensionURL.host}`;
   await readyPage.closeAndSwitchToMainWindow<PageObject>(PageObject);
 }

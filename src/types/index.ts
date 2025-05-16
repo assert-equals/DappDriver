@@ -28,6 +28,7 @@ export type WalletOptions = {
   path?: string;
   seed?: string;
   port?: number;
+  version?: string;
 };
 
 export type BrowserOptions = {

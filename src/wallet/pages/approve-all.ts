@@ -1,9 +1,5 @@
-import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { ApproveAll as MetaMaskApproveAll } from '../../metamask';
-import { ApproveAll as RainbowApproveAll } from '../../rainbow';
 import { DappDriver } from '../../session/dapp-driver';
-import { ApproveAll as ZerionApproveAll } from '../../zerion';
 
 /**
  *
@@ -15,21 +11,10 @@ import { ApproveAll as ZerionApproveAll } from '../../zerion';
 export class ApproveAll implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private approveAll: MetaMaskApproveAll | RainbowApproveAll | ZerionApproveAll;
+  private readonly approveAll: InstanceType<typeof DappDriver.Instance.Extension.pages.ApproveAll>;
 
   constructor() {
-    switch (DappDriver.Instance.Wallet) {
-      case METAMASK:
-      case METAMASK_FLASK:
-        this.approveAll = new MetaMaskApproveAll();
-        break;
-      case RAINBOW:
-        this.approveAll = new RainbowApproveAll();
-        break;
-      case ZERION:
-        this.approveAll = new ZerionApproveAll();
-        break;
-    }
+    this.approveAll = new DappDriver.Instance.Extension.pages.ApproveAll();
     this.url = this.approveAll.url;
     this.title = this.approveAll.title;
   }

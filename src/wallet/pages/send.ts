@@ -1,9 +1,5 @@
-import { METAMASK, METAMASK_FLASK, RAINBOW, ZERION } from '../../constants';
 import { IConfirmation } from '../../interface/wallet/confirmation';
-import { Send as MetaMaskSend } from '../../metamask';
-import { Send as RainbowSend } from '../../rainbow';
 import { DappDriver } from '../../session/dapp-driver';
-import { Send as ZerionSend } from '../../zerion';
 
 /**
  *
@@ -15,21 +11,10 @@ import { Send as ZerionSend } from '../../zerion';
 export class Send implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private send: MetaMaskSend | RainbowSend | ZerionSend;
+  private readonly send: InstanceType<typeof DappDriver.Instance.Extension.pages.Send>;
 
   constructor() {
-    switch (DappDriver.Instance.Wallet) {
-      case METAMASK:
-      case METAMASK_FLASK:
-        this.send = new MetaMaskSend();
-        break;
-      case RAINBOW:
-        this.send = new RainbowSend();
-        break;
-      case ZERION:
-        this.send = new ZerionSend();
-        break;
-    }
+    this.send = new DappDriver.Instance.Extension.pages.Send();
     this.url = this.send.url;
     this.title = this.send.title;
   }
