@@ -85,7 +85,7 @@
     "mockttp": "^3.15.4",
     "playwright-core": "^1.52.0",
     "selenium-webdriver": "^4.32.0",
-    "semver": "^7.6.3"
+    "semver": "^7.7.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
@@ -94,7 +94,7 @@
     "@types/adm-zip": "^0.5.5",
     "@types/node": "^20.14.2",
     "@types/selenium-webdriver": "^4.1.28",
-    "@types/semver": "^7.5.8",
+    "@types/semver": "^7.7.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "commit-and-tag-version": "^12.4.1",
