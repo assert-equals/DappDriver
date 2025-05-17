@@ -1,1 +1,1 @@
-yarn format && yarn lint && git add .
+npx lint-staged
