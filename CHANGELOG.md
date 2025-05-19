@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.34.1](https://github.com/assert-equals/DappDriver/compare/v0.34.0...v0.34.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* restrict installation to defined extensions only ([2080d8a](https://github.com/assert-equals/DappDriver/commit/2080d8ac996ef501441e450073de320c3294910e))
+
 ## [0.34.0](https://github.com/assert-equals/DappDriver/compare/v0.33.1...v0.34.0) (2025-05-19)
 
 
