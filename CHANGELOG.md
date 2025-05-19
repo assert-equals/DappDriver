@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.34.0](https://github.com/assert-equals/DappDriver/compare/v0.33.1...v0.34.0) (2025-05-19)
+
+
+### Features
+
+* check if extension exists before downloading ([f437f33](https://github.com/assert-equals/DappDriver/commit/f437f33fe986dfd57e492b9bdf3152ceaca345ed))
+* install and configure lint-staged ([5c067a6](https://github.com/assert-equals/DappDriver/commit/5c067a68e785dd7474dfc6da133a93ce95015807))
+* integrate plugin architecture for extension loading ([3e1eceb](https://github.com/assert-equals/DappDriver/commit/3e1ecebefbef3588843a997726fa563b1e6aae3b))
+
 ## [0.33.1](https://github.com/assert-equals/DappDriver/compare/v0.33.0...v0.33.1) (2025-05-05)
 
 ## [0.33.0](https://github.com/assert-equals/DappDriver/compare/v0.32.4...v0.33.0) (2025-03-25)
