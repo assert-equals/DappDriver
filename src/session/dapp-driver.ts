@@ -204,10 +204,22 @@ export class DappDriver {
    * @memberof DappDriver
    */
   private static async install(options: BrowserOptions): Promise<void> {
-    const initCwd: string = process.env.INIT_CWD;
-    const cwd: string = process.cwd();
-    const downloadDir: string = `${initCwd || cwd}/${NODE_MODULE_DIR}`;
-    await DappDriver.Instance.Extension.install(downloadDir, options.extension.version);
+    try {
+      switch (options.extension.wallet) {
+        case METAMASK:
+        case METAMASK_FLASK:
+        case RAINBOW:
+        case ZERION: {
+          const initCwd: string = process.env.INIT_CWD;
+          const cwd: string = process.cwd();
+          const downloadDir: string = `${initCwd || cwd}/${NODE_MODULE_DIR}`;
+          await DappDriver.Instance.Extension.install(downloadDir, options.extension.version);
+          break;
+        }
+      }
+    } catch (error) {
+      throw new Error('Failed to install extension: ' + error);
+    }
   }
   /**
    *
@@ -220,8 +232,16 @@ export class DappDriver {
    */
   private static async loadExtensionModule(options: BrowserOptions): Promise<void> {
     try {
-      const extensionModule = await import(`../${options.extension.wallet}`);
-      DappDriver.Instance.Extension = extensionModule.default as IWallet;
+      switch (options.extension.wallet) {
+        case METAMASK:
+        case METAMASK_FLASK:
+        case RAINBOW:
+        case ZERION: {
+          const extensionModule = await import(`../${options.extension.wallet}`);
+          DappDriver.Instance.Extension = extensionModule.default as IWallet;
+          break;
+        }
+      }
     } catch (error) {
       throw new Error('Failed to load extension module: ' + error);
     }
