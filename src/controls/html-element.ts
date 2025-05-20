@@ -4,6 +4,7 @@ import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightHTMLElement } from '../playwright/html-element';
 import { DappDriver } from '../session/dapp-driver';
+import { toRegExp } from '../utils';
 import { WebDriverHTMLElement } from '../webdriver/html-element';
 
 /**
@@ -193,5 +194,16 @@ export class HTMLElement implements IHTMLElement {
    */
   async type(keys: string): Promise<void> {
     return await this.callIfMethodExists('type', [keys]);
+  }
+  /**
+   *
+   * Schedules a command to wait for the visible innerText of the element
+   * @param {(string | RegExp)} [text]
+   * @return {*}  {Promise<void>}
+   * @memberof HTMLElement
+   */
+  async waitForText(text?: string | RegExp): Promise<void> {
+    text = text ? toRegExp(text) : new RegExp(/.+/);
+    return await this.callIfMethodExists('waitForText', [text]);
   }
 }

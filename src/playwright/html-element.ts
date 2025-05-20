@@ -98,4 +98,8 @@ export class PlaywrightHTMLElement implements IHTMLElement {
   async type(keys: string): Promise<void> {
     await this.webElement.pressSequentially(keys, { timeout: this.timeout });
   }
+
+  async waitForText(text: RegExp): Promise<void> {
+    await this.webElement.filter({ hasText: text }).waitFor({ timeout: this.timeout });
+  }
 }

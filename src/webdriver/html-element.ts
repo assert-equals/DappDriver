@@ -125,4 +125,9 @@ export class WebDriverHTMLElement implements IHTMLElement {
     await this.search();
     await this.webElement.sendKeys(keys);
   }
+
+  async waitForText(text: RegExp): Promise<void> {
+    await this.search();
+    await this.driver.wait(until.elementTextMatches(this.webElement, text), this.timeout);
+  }
 }

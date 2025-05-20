@@ -21,4 +21,5 @@ export interface IHTMLElement {
   isEnabled(): Promise<boolean>;
   isVisible(): Promise<boolean>;
   type(keys: string): Promise<void>;
+  waitForText(text?: string | RegExp): Promise<void>;
 }
