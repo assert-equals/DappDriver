@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.35.0](https://github.com/assert-equals/DappDriver/compare/v0.34.1...v0.35.0) (2025-05-21)
+
+
+### Features
+
+* set browser version for selenium-webdriver ([697381f](https://github.com/assert-equals/DappDriver/commit/697381f847210cf54eb8f93621591c92e85aef0b))
+* wait for text ([2ae3b35](https://github.com/assert-equals/DappDriver/commit/2ae3b35a87754bef691205e8aa11f7bb902018ac))
+
 ## [0.34.1](https://github.com/assert-equals/DappDriver/compare/v0.34.0...v0.34.1) (2025-05-19)
 
 
