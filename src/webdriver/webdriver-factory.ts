@@ -43,9 +43,12 @@ export class WebDriverFactory {
       }
       args.push(`--load-extension=${extensionPath}`);
     }
+    if (options.extension.wallet === HEADLESS) {
+      chromeOptions.enableBidi();
+    }
     args.push(`--window-size=1024,768`);
     chromeOptions.addArguments(...args);
-    chromeOptions.enableBidi();
+    chromeOptions.setBrowserVersion('135.0.7049.114');
     const driver: WebDriver = await new Builder().forBrowser(CHROME).setChromeOptions(chromeOptions).build();
     await driver.manage().setTimeouts({ implicit: 20000 });
     return driver;
