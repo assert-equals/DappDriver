@@ -213,7 +213,8 @@ export class DappDriver {
           const initCwd: string = process.env.INIT_CWD;
           const cwd: string = process.cwd();
           const downloadDir: string = `${initCwd || cwd}/${NODE_MODULE_DIR}`;
-          await DappDriver.Instance.Extension.install(downloadDir, options.extension.version);
+          const path: string = await DappDriver.Instance.Extension.install(downloadDir, options.extension.version);
+          options.extension.path ??= path;
           break;
         }
       }

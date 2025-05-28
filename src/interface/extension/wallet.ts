@@ -13,5 +13,5 @@ export interface IWallet {
     SignatureRequest: new () => IConfirmation;
   };
   setup(seed: string): Promise<void>;
-  install(directory: string, version: string): Promise<void>;
+  install(directory: string, version: string): Promise<string>;
 }

@@ -14,13 +14,14 @@ import {
   fileExists
 } from '../wallet/install';
 
-export async function install(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<void> {
+export async function install(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<string> {
   try {
     const artifactName = `rainbowbx-chrome-v${version}`;
-    const exists = fileExists(directory, artifactName);
+    let destDir: string = `${directory}/${artifactName}`;
+    const exists = fileExists(destDir);
     if (exists) {
-      logInfo(`Rainbow version <v${version}> already exists in ${directory}/${artifactName}`);
-      return;
+      logInfo(`Rainbow version <v${version}> already exists in ${destDir}`);
+      return destDir;
     }
     const workflowName = 'Publish to Chrome (Prod)';
     checkEnvVariable('GITHUB_TOKEN');
@@ -31,8 +32,9 @@ export async function install(directory: string, version: string = DEFAULT_RAINB
     const artifact: Artifact = await fetchGithubArtifact(artifactName, run, RAINBOW_GITHUB_API);
     createDirectory(directory);
     const fileName: string = await downloadArtifactZipFile(artifact, directory);
-    const destDir: string = extractZipContents(fileName);
+    destDir = extractZipContents(fileName);
     logSuccess(`Installed Rainbow version <v${version}>\n${destDir}`);
+    return destDir;
   } catch (error: any) {
     logError(error.message);
   }

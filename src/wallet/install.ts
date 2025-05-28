@@ -118,13 +118,13 @@ export async function fetchGithubWorkflow(workflowName: string, githubApiUrl: st
   return workflow;
 }
 
-export function fileExists(directory: string, file: string): boolean {
-  const filePath = path.join(directory, file);
-  return fs.existsSync(filePath);
+export function fileExists(path: string): boolean {
+  return fs.existsSync(path);
 }
 
 export function findGithubAsset(assetName: string, release: any): Asset {
-  const asset: Asset = release.assets.find((item: any) => item.name === assetName);
+  const file = assetName.endsWith('.zip') ? assetName : `${assetName}.zip`;
+  const asset: Asset = release.assets.find((item: any) => item.name === file);
   return asset;
 }
 

@@ -1,17 +1,6 @@
 import playwright, { BrowserContext } from 'playwright-core';
-import {
-  CHROME,
-  DEFAULT_METAMASK_BINARY_PATH,
-  DEFAULT_METAMASK_FLASK_BINARY_PATH,
-  DEFAULT_RAINBOW_BINARY_PATH,
-  DEFAULT_ZERION_BINARY_PATH,
-  HEADLESS,
-  HTTPS_PROXY_HOST,
-  METAMASK,
-  METAMASK_FLASK,
-  RAINBOW,
-  ZERION
-} from '../constants';
+import { CHROME, HEADLESS, HTTPS_PROXY_HOST } from '../constants';
+import { logInfo } from '../log';
 import { Browser, BrowserOptions } from '../types';
 
 export class PlaywrightFactory {
@@ -35,16 +24,8 @@ export class PlaywrightFactory {
       };
     }
     if (options.extension.wallet !== null && options.extension.wallet !== HEADLESS) {
-      let extensionPath: string = options.extension.path;
-      if (options.extension.wallet === METAMASK) {
-        extensionPath = extensionPath || DEFAULT_METAMASK_BINARY_PATH;
-      } else if (options.extension.wallet === METAMASK_FLASK) {
-        extensionPath = extensionPath || DEFAULT_METAMASK_FLASK_BINARY_PATH;
-      } else if (options.extension.wallet === ZERION) {
-        extensionPath = extensionPath || DEFAULT_ZERION_BINARY_PATH;
-      } else if (options.extension.wallet === RAINBOW) {
-        extensionPath = extensionPath || DEFAULT_RAINBOW_BINARY_PATH;
-      }
+      const extensionPath: string = options.extension.path;
+      logInfo(`Loading extension from path: ${extensionPath}`);
       chromeOptions['args'].push(`--disable-extensions-except=${extensionPath}`);
       chromeOptions['args'].push(`--load-extension=${extensionPath}`);
     }
