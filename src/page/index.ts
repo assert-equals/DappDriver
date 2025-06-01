@@ -85,7 +85,7 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to navigate to the previous URL
+   * Schedules a command to navigate backwards in the browser history
    * @template TPage
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}
@@ -186,6 +186,23 @@ export class PageObject implements IPageObject {
     page: new () => TPage
   ): Promise<any> {
     return await this.callIfMethodExists('executeScriptAndOpensInWindow', [script, page]);
+  }
+  /**
+   *
+   * Schedules a command to navigate forwards in the browser history
+   * @template TPage
+   * @param {new () => TPage} [page]
+   * @return {*}  {Promise<any>}
+   * @memberof PageObject
+   */
+  forward(): Promise<void>;
+  forward<TPage>(page: new () => TPage): Promise<TPage>;
+  async forward<TPage>(page?: new () => TPage): Promise<any> {
+    if (page) {
+      return await this.callIfMethodExists('forward', [page]);
+    } else {
+      return await this.callIfMethodExists('forward');
+    }
   }
   /**
    *

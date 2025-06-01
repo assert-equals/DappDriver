@@ -22,6 +22,9 @@ export interface IPageObject {
     script: string,
     page: new () => TPage
   ): Promise<TPage>;
+  forward(): Promise<void>;
+  forward<TPage>(page: new () => TPage): Promise<TPage>;
+  forward<TPage>(page?: new () => TPage): Promise<any>;
   getAllWindowHandles(): Promise<Array<any>>;
   getCookie(name: string): Promise<any>;
   getCookies(): Promise<Array<any>>;

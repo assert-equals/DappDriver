@@ -63,6 +63,13 @@ export class WebDriverPageObject implements IPageObject {
     return await this.opensInWindow(page);
   }
 
+  async forward<TPage>(page?: new () => TPage): Promise<any> {
+    await this.driver.navigate().forward();
+    if (page) {
+      return await DappDriver.getPage<TPage>(page);
+    }
+  }
+
   async getAllWindowHandles(): Promise<Array<string>> {
     return await this.driver.getAllWindowHandles();
   }
