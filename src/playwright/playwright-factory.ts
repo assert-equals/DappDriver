@@ -14,7 +14,7 @@ export class PlaywrightFactory {
   private async buildChrome(options: BrowserOptions): Promise<BrowserContext> {
     const chromeOptions: object = {
       headless: false,
-      channel: 'chrome',
+      channel: 'chromium',
       args: []
     };
     if (options.proxy) {
