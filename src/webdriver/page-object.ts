@@ -90,6 +90,10 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.getCurrentUrl();
   }
 
+  async getPageSource(): Promise<string> {
+    return await this.driver.getPageSource();
+  }
+
   async getTitle(): Promise<string> {
     return await this.driver.getTitle();
   }

@@ -29,6 +29,7 @@ export interface IPageObject {
   getCookie(name: string): Promise<any>;
   getCookies(): Promise<Array<any>>;
   getCurrentUrl(): Promise<string>;
+  getPageSource(): Promise<string>;
   getTitle(): Promise<string>;
   getWindowHandle(): Promise<any>;
   maximize(): Promise<void>;

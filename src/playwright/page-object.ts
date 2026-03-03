@@ -101,6 +101,10 @@ export class PlaywrightPageObject implements IPageObject {
     return await Promise.resolve(this.page.url());
   }
 
+  async getPageSource(): Promise<string> {
+    return await this.page.content();
+  }
+
   async getTitle(): Promise<string> {
     return await this.page.title();
   }

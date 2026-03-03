@@ -243,6 +243,15 @@ export class PageObject implements IPageObject {
   }
   /**
    *
+   * Schedules a command to retrieve the HTML source of the current page
+   * @return {*}  {Promise<string>}
+   * @memberof PageObject
+   */
+  async getPageSource(): Promise<string> {
+    return await this.callIfMethodExists('getPageSource');
+  }
+  /**
+   *
    * Schedules a command to retrieve the current page title
    * @return {*}  {Promise<string>}
    * @memberof PageObject
