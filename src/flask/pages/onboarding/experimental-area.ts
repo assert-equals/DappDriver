@@ -10,7 +10,9 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class ExperimentalArea extends PageObject {
-  private iAcceptButton: () => HTMLElement = () => new HTMLElement('[data-testid="experimental-area"] button');
+  private get iAcceptButton(): HTMLElement {
+    return new HTMLElement('[data-testid="experimental-area"] button');
+  }
   /**
    * Creates an instance of ExperimentalArea.
    * @memberof ExperimentalArea
@@ -25,6 +27,6 @@ export class ExperimentalArea extends PageObject {
    * @memberof ExperimentalArea
    */
   async iAccept(): Promise<Welcome> {
-    return await this.iAcceptButton().click<Welcome>(Welcome);
+    return await this.iAcceptButton.click<Welcome>(Welcome);
   }
 }
