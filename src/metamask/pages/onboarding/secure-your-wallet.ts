@@ -10,7 +10,9 @@ import { ReviewRecoveryPhrase } from './review-recovery-phrase';
  * @extends {PageObject}
  */
 export class SecureYourWallet extends PageObject {
-  private secureButton: () => HTMLElement = () => new HTMLElement('[data-testid="secure-wallet-recommended"]');
+  private get secureButton(): HTMLElement {
+    return new HTMLElement('[data-testid="secure-wallet-recommended"]');
+  }
   /**
    * Creates an instance of SecureYourWallet.
    * @memberof SecureYourWallet
@@ -25,6 +27,6 @@ export class SecureYourWallet extends PageObject {
    * @memberof SecureYourWallet
    */
   async secureMyWallet(): Promise<ReviewRecoveryPhrase> {
-    return await this.secureButton().click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
+    return await this.secureButton.click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
   }
 }

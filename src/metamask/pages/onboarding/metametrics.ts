@@ -9,8 +9,12 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class Metametrics extends PageObject {
-  private iAgreeButton: () => HTMLElement = () => new HTMLElement('[data-testid="metametrics-i-agree"]');
-  private noThanksButton: () => HTMLElement = () => new HTMLElement('[data-testid="metametrics-no-thanks"]');
+  private get iAgreeButton(): HTMLElement {
+    return new HTMLElement('[data-testid="metametrics-i-agree"]');
+  }
+  private get noThanksButton(): HTMLElement {
+    return new HTMLElement('[data-testid="metametrics-no-thanks"]');
+  }
   /**
    * Creates an instance of Metametrics.
    * @memberof Metametrics
@@ -27,7 +31,7 @@ export class Metametrics extends PageObject {
    * @memberof Metametrics
    */
   async iAgree<TPage>(page: new () => TPage): Promise<TPage> {
-    return await this.iAgreeButton().click<TPage>(page);
+    return await this.iAgreeButton.click<TPage>(page);
   }
   /**
    *
@@ -38,6 +42,6 @@ export class Metametrics extends PageObject {
    * @memberof Metametrics
    */
   async noThanks<TPage>(page: new () => TPage): Promise<TPage> {
-    return await this.noThanksButton().click<TPage>(page);
+    return await this.noThanksButton.click<TPage>(page);
   }
 }

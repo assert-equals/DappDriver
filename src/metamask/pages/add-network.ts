@@ -11,8 +11,12 @@ import { PageObject } from '../../page';
  * @implements {IConfirmation}
  */
 export class AddNetwork extends PageObject implements IConfirmation {
-  private submitButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirmation-submit-button"]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirmation-cancel-button"]');
+  private get submitButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirmation-submit-button"]');
+  }
+  private get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirmation-cancel-button"]');
+  }
   /**
    * Creates an instance of AddNetwork.
    * @memberof AddNetwork
@@ -30,9 +34,9 @@ export class AddNetwork extends PageObject implements IConfirmation {
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.submitButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.submitButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.submitButton().click();
+      return await this.submitButton.click();
     }
   }
   /**
@@ -45,9 +49,9 @@ export class AddNetwork extends PageObject implements IConfirmation {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

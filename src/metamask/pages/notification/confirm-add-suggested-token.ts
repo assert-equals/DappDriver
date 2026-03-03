@@ -11,8 +11,12 @@ import { PageObject } from '../../../page';
  * @implements {IConfirmation}
  */
 export class ConfirmAddSuggestedToken extends PageObject implements IConfirmation {
-  private nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-next"]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="page-container-footer-cancel"]');
+  private get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="page-container-footer-next"]');
+  }
+  private get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="page-container-footer-cancel"]');
+  }
   /**
    * Creates an instance of ConfirmAddSuggestedToken.
    * @memberof ConfirmAddSuggestedToken
@@ -30,9 +34,9 @@ export class ConfirmAddSuggestedToken extends PageObject implements IConfirmatio
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.nextButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.nextButton().click();
+      return await this.nextButton.click();
     }
   }
   /**
@@ -45,9 +49,9 @@ export class ConfirmAddSuggestedToken extends PageObject implements IConfirmatio
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

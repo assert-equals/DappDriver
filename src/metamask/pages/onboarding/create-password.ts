@@ -10,11 +10,21 @@ import { Completion, SecureYourWallet } from '../../index';
  * @extends {PageObject}
  */
 export class CreatePassword extends PageObject {
-  private newPasswordInput: () => HTMLElement = () => new HTMLElement('[data-testid="create-password-new"]');
-  private confirmPasswordInput: () => HTMLElement = () => new HTMLElement('[data-testid="create-password-confirm"]');
-  private passwordTermsCheckbox: () => HTMLElement = () => new HTMLElement('[data-testid="create-password-terms"]');
-  private importButton: () => HTMLElement = () => new HTMLElement('[data-testid="create-password-import"]');
-  private createButton: () => HTMLElement = () => new HTMLElement('[data-testid="create-password-wallet"]');
+  private get newPasswordInput(): HTMLElement {
+    return new HTMLElement('[data-testid="create-password-new"]');
+  }
+  private get confirmPasswordInput(): HTMLElement {
+    return new HTMLElement('[data-testid="create-password-confirm"]');
+  }
+  private get passwordTermsCheckbox(): HTMLElement {
+    return new HTMLElement('[data-testid="create-password-terms"]');
+  }
+  private get importButton(): HTMLElement {
+    return new HTMLElement('[data-testid="create-password-import"]');
+  }
+  private get createButton(): HTMLElement {
+    return new HTMLElement('[data-testid="create-password-wallet"]');
+  }
   /**
    * Creates an instance of CreatePassword.
    * @memberof CreatePassword
@@ -30,7 +40,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return await this.confirmPasswordInput().type(password);
+    return await this.confirmPasswordInput.type(password);
   }
   /**
    *
@@ -40,7 +50,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async enterPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return await this.newPasswordInput().type(password);
+    return await this.newPasswordInput.type(password);
   }
   /**
    *
@@ -49,7 +59,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async agreePasswordTerms(): Promise<void> {
-    return await this.passwordTermsCheckbox().click();
+    return await this.passwordTermsCheckbox.click();
   }
   /**
    *
@@ -58,7 +68,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async importWallet(): Promise<Completion> {
-    return await this.importButton().click<Completion>(Completion);
+    return await this.importButton.click<Completion>(Completion);
   }
   /**
    *
@@ -67,6 +77,6 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async createWallet(): Promise<SecureYourWallet> {
-    return await this.createButton().click<SecureYourWallet>(SecureYourWallet);
+    return await this.createButton.click<SecureYourWallet>(SecureYourWallet);
   }
 }

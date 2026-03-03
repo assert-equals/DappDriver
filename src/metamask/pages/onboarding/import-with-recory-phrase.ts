@@ -10,9 +10,11 @@ import { CreatePassword } from './create-password';
  * @extends {PageObject}
  */
 export class ImportWithRecoveryPhrase extends PageObject {
-  private srpInput: (index: number) => HTMLElement = (index: number) =>
+  private readonly srpInput: (index: number) => HTMLElement = (index: number) =>
     new HTMLElement(`[data-testid="import-srp__srp-word-${index}"]`);
-  private confirmButton: () => HTMLElement = () => new HTMLElement('[data-testid="import-srp-confirm"]');
+  private get confirmButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-srp-confirm"]');
+  }
   /**
    * Creates an instance of ImportWithRecoveryPhrase.
    * @memberof ImportWithRecoveryPhrase
@@ -40,6 +42,6 @@ export class ImportWithRecoveryPhrase extends PageObject {
    * @memberof ImportWithRecoveryPhrase
    */
   async confirmSecretRecoveryPhrase(): Promise<CreatePassword> {
-    return await this.confirmButton().click<CreatePassword>(CreatePassword);
+    return await this.confirmButton.click<CreatePassword>(CreatePassword);
   }
 }

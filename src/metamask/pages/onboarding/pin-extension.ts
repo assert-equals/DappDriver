@@ -10,8 +10,12 @@ import { Home } from '../home';
  * @extends {PageObject}
  */
 export class PinExtension extends PageObject {
-  private nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="pin-extension-next"]');
-  private doneButton: () => HTMLElement = () => new HTMLElement('[data-testid="pin-extension-done"]');
+  private get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="pin-extension-next"]');
+  }
+  private get doneButton(): HTMLElement {
+    return new HTMLElement('[data-testid="pin-extension-done"]');
+  }
   /**
    * Creates an instance of PinExtension.
    * @memberof PinExtension
@@ -26,7 +30,7 @@ export class PinExtension extends PageObject {
    * @memberof PinExtension
    */
   async next(): Promise<void> {
-    return await this.nextButton().click();
+    return await this.nextButton.click();
   }
   /**
    *
@@ -35,6 +39,6 @@ export class PinExtension extends PageObject {
    * @memberof PinExtension
    */
   async done(): Promise<Home> {
-    return await this.doneButton().click<Home>(Home);
+    return await this.doneButton.click<Home>(Home);
   }
 }

@@ -11,9 +11,15 @@ import { ConfirmTransaction } from './confirm-transaction';
  * @implements {IConfirmation}
  */
 export class SignMessage extends ConfirmTransaction implements IConfirmation {
-  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-button"]');
-  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
-  private scrollButton: () => HTMLElement = () => new HTMLElement('[aria-label="Scroll down"]', 8000);
+  protected get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-button"]');
+  }
+  protected get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+  }
+  private get scrollButton(): HTMLElement {
+    return new HTMLElement('[aria-label="Scroll down"]', 8000);
+  }
   /**
    * Creates an instance of SignMessage.
    * @memberof SignMessage
@@ -30,13 +36,13 @@ export class SignMessage extends ConfirmTransaction implements IConfirmation {
    * @memberof SignMessage
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
-    if (await this.scrollButton().isDisplayed()) {
-      await this.scrollButton().clickAndWait();
+    if (await this.scrollButton.isDisplayed()) {
+      await this.scrollButton.clickAndWait();
     }
     if (page) {
-      return await this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.nextButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.nextButton().click();
+      return await this.nextButton.click();
     }
   }
 }

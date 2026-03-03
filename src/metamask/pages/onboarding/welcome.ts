@@ -10,10 +10,15 @@ import { Metametrics } from './metametrics';
  * @extends {PageObject}
  */
 export class Welcome extends PageObject {
-  private termsOfUseCheckBox: () => HTMLElement = () => new HTMLElement('[data-testid="onboarding-terms-checkbox"]');
-  private createANewWalletButton: () => HTMLElement = () => new HTMLElement('[data-testid="onboarding-create-wallet"]');
-  private importAnExistingWalletButton: () => HTMLElement = () =>
-    new HTMLElement('[data-testid="onboarding-import-wallet"]');
+  private get termsOfUseCheckBox(): HTMLElement {
+    return new HTMLElement('[data-testid="onboarding-terms-checkbox"]');
+  }
+  private get createANewWalletButton(): HTMLElement {
+    return new HTMLElement('[data-testid="onboarding-create-wallet"]');
+  }
+  private get importAnExistingWalletButton(): HTMLElement {
+    return new HTMLElement('[data-testid="onboarding-import-wallet"]');
+  }
   /**
    * Creates an instance of Welcome.
    * @memberof Welcome
@@ -28,7 +33,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async agreeTermsOfUse(): Promise<void> {
-    return await this.termsOfUseCheckBox().click();
+    return await this.termsOfUseCheckBox.click();
   }
   /**
    *
@@ -37,7 +42,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async createANewWallet(): Promise<Metametrics> {
-    return await this.createANewWalletButton().click<Metametrics>(Metametrics);
+    return await this.createANewWalletButton.click<Metametrics>(Metametrics);
   }
   /**
    *
@@ -46,6 +51,6 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async importAnExistingWallet(): Promise<Metametrics> {
-    return await this.importAnExistingWalletButton().click<Metametrics>(Metametrics);
+    return await this.importAnExistingWalletButton.click<Metametrics>(Metametrics);
   }
 }

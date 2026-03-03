@@ -11,8 +11,12 @@ import { PageObject } from '../../page';
  * @implements {IConfirmation}
  */
 export class ConfirmTransaction extends PageObject implements IConfirmation {
-  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-button"]');
-  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+  protected get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-button"]');
+  }
+  protected get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+  }
   /**
    * Creates an instance of ConfirmTransaction.
    * @param {(string | RegExp)} [url='#confirm-transaction']
@@ -32,9 +36,9 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.nextButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.nextButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.nextButton().click();
+      return await this.nextButton.click();
     }
   }
   /**
@@ -47,9 +51,9 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

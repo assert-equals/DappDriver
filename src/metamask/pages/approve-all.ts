@@ -11,8 +11,12 @@ import { ConfirmTransaction } from './confirm-transaction';
  * @implements {IConfirmation}
  */
 export class ApproveAll extends ConfirmTransaction implements IConfirmation {
-  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-button"]');
-  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+  protected get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-button"]');
+  }
+  protected get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+  }
   /**
    * Creates an instance of ApproveAll.
    * @memberof ApproveAll

@@ -11,8 +11,12 @@ import { ConfirmTransaction } from './confirm-transaction';
  * @implements {IConfirmation}
  */
 export class Connect extends ConfirmTransaction implements IConfirmation {
-  protected nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="confirm-btn"]');
-  protected cancelButton: () => HTMLElement = () => new HTMLElement('[data-testid="cancel-btn"]');
+  protected get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-btn"]');
+  }
+  protected get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="cancel-btn"]');
+  }
   /**
    * Creates an instance of Connect.
    * @memberof Connect

@@ -10,7 +10,9 @@ import { PinExtension } from './pin-extension';
  * @extends {PageObject}
  */
 export class Completion extends PageObject {
-  private completeButton: () => HTMLElement = () => new HTMLElement('[data-testid="onboarding-complete-done"]');
+  private get completeButton(): HTMLElement {
+    return new HTMLElement('[data-testid="onboarding-complete-done"]');
+  }
   /**
    * Creates an instance of Completion.
    * @memberof Completion
@@ -25,6 +27,6 @@ export class Completion extends PageObject {
    * @memberof Completion
    */
   async completeOnboarding(): Promise<PinExtension> {
-    return await this.completeButton().click<PinExtension>(PinExtension);
+    return await this.completeButton.click<PinExtension>(PinExtension);
   }
 }

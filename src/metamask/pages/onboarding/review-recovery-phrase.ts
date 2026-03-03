@@ -10,9 +10,15 @@ import { ConfirmRecoveryPhrase } from './confirm-recovery-phrase';
  * @extends {PageObject}
  */
 export class ReviewRecoveryPhrase extends PageObject {
-  private revealButton: () => HTMLElement = () => new HTMLElement('[data-testid="recovery-phrase-reveal"]');
-  private srpChips: () => HTMLElement = () => new HTMLElement('[data-testid="recovery-phrase-chips"]');
-  private nextButton: () => HTMLElement = () => new HTMLElement('[data-testid="recovery-phrase-next"]');
+  private get revealButton(): HTMLElement {
+    return new HTMLElement('[data-testid="recovery-phrase-reveal"]');
+  }
+  private get srpChips(): HTMLElement {
+    return new HTMLElement('[data-testid="recovery-phrase-chips"]');
+  }
+  private get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="recovery-phrase-next"]');
+  }
   /**
    * Creates an instance of ReviewRecoveryPhrase.
    * @memberof ReviewRecoveryPhrase
@@ -27,7 +33,7 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @memberof ReviewRecoveryPhrase
    */
   async revealSecretRecoveryPhrase(): Promise<void> {
-    return await this.revealButton().click();
+    return await this.revealButton.click();
   }
   /**
    *
@@ -36,7 +42,7 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @memberof ReviewRecoveryPhrase
    */
   async getSRP(): Promise<Array<string>> {
-    const recoveryPhrase: string = await this.srpChips().getText();
+    const recoveryPhrase: string = await this.srpChips.getText();
     const words: Array<string> = recoveryPhrase.split(/\s*(?:[0-9)]+|\n|\.|^$|$)\s*/u);
     return words.filter((str) => str !== '');
   }
@@ -47,6 +53,6 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @memberof ReviewRecoveryPhrase
    */
   async next(): Promise<ConfirmRecoveryPhrase> {
-    return await this.nextButton().click<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
+    return await this.nextButton.click<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
   }
 }

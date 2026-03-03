@@ -10,9 +10,11 @@ import { Completion } from './completion';
  * @extends {PageObject}
  */
 export class ConfirmRecoveryPhrase extends PageObject {
-  private chipInput: (index: number) => InputText = (index) =>
+  private readonly chipInput: (index: number) => InputText = (index) =>
     new InputText(`[data-testid="recovery-phrase-input-${index}"]`);
-  private confirmButton: () => HTMLElement = () => new HTMLElement('[data-testid="recovery-phrase-confirm"]');
+  private get confirmButton(): HTMLElement {
+    return new HTMLElement('[data-testid="recovery-phrase-confirm"]');
+  }
   /**
    * Creates an instance of ConfirmRecoveryPhrase.
    * @memberof ConfirmRecoveryPhrase
@@ -50,6 +52,6 @@ export class ConfirmRecoveryPhrase extends PageObject {
    * @memberof ConfirmRecoveryPhrase
    */
   async confirm(): Promise<Completion> {
-    return await this.confirmButton().click<Completion>(Completion);
+    return await this.confirmButton.click<Completion>(Completion);
   }
 }
