@@ -10,9 +10,11 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class ImportSeed extends PageObject {
-  private secretInput: (position: number) => InputText = (position: number) =>
+  private readonly secretInput: (position: number) => InputText = (position: number) =>
     new InputText(`[data-testid="secret-input-${position}"]`);
-  private importWalletsButton: () => HTMLElement = () => new HTMLElement('[data-testid="import-wallets-button"]');
+  private get importWalletsButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-wallets-button"]');
+  }
   /**
    * Creates an instance of ImportSeed.
    * @memberof ImportSeed
@@ -41,6 +43,6 @@ export class ImportSeed extends PageObject {
    * @memberof ImportSeed
    */
   async importWalletGroup(): Promise<ImportSelect> {
-    return await this.importWalletsButton().click<ImportSelect>(ImportSelect);
+    return await this.importWalletsButton.click<ImportSelect>(ImportSelect);
   }
 }

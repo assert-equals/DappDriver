@@ -10,9 +10,15 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class CreatePassword extends PageObject {
-  private passwordInput: () => InputText = () => new InputText('[data-testid="password-input"]');
-  private confirmPasswordInput: () => InputText = () => new InputText('[data-testid="confirm-password-input"]');
-  private setPasswordButton: () => HTMLElement = () => new HTMLElement('[data-testid="set-password-button"]');
+  private get passwordInput(): InputText {
+    return new InputText('[data-testid="password-input"]');
+  }
+  private get confirmPasswordInput(): InputText {
+    return new InputText('[data-testid="confirm-password-input"]');
+  }
+  private get setPasswordButton(): HTMLElement {
+    return new HTMLElement('[data-testid="set-password-button"]');
+  }
   /**
    * Creates an instance of CreatePassword.
    * @memberof CreatePassword
@@ -28,7 +34,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return await this.confirmPasswordInput().type(password);
+    return await this.confirmPasswordInput.type(password);
   }
   /**
    *
@@ -38,7 +44,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async enterPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return await this.passwordInput().type(password);
+    return await this.passwordInput.type(password);
   }
   /**
    *
@@ -47,6 +53,6 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async setPassword(): Promise<Ready> {
-    return await this.setPasswordButton().click<Ready>(Ready);
+    return await this.setPasswordButton.click<Ready>(Ready);
   }
 }

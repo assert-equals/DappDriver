@@ -11,7 +11,7 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class SeedVerify extends PageObject {
-  private seedWordLabel: (word: string) => HTMLElement = (word: string) =>
+  private readonly seedWordLabel: (word: string) => HTMLElement = (word: string) =>
     new HTMLElement(`[data-testid="word_${word}"]`);
   /**
    * Creates an instance of SeedVerify.

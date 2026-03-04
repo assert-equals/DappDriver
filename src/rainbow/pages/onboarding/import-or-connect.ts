@@ -10,7 +10,9 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class ImportOrConnect extends PageObject {
-  private importWithASRPOrPKButton: () => HTMLElement = () => new HTMLElement('[data-testid="import-wallet-option"]');
+  private get importWithASRPOrPKButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-wallet-option"]');
+  }
   /**
    * Creates an instance of ImportOrConnect.
    * @memberof ImportOrConnect
@@ -25,6 +27,6 @@ export class ImportOrConnect extends PageObject {
    * @memberof ImportOrConnect
    */
   async importWithASecretRecoveryPhraseOrPrivateKey(): Promise<Import> {
-    return await this.importWithASRPOrPKButton().click<Import>(Import);
+    return await this.importWithASRPOrPKButton.click<Import>(Import);
   }
 }

@@ -10,7 +10,9 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class Import extends PageObject {
-  private importFromASRPButton: () => HTMLElement = () => new HTMLElement('[data-testid="import-via-seed-option"]');
+  private get importFromASRPButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-via-seed-option"]');
+  }
   /**
    * Creates an instance of Import.
    * @memberof Import
@@ -25,6 +27,6 @@ export class Import extends PageObject {
    * @memberof Import
    */
   async importFromASecretRecoveryPhrase(): Promise<ImportSeed> {
-    return await this.importFromASRPButton().click<ImportSeed>(ImportSeed);
+    return await this.importFromASRPButton.click<ImportSeed>(ImportSeed);
   }
 }

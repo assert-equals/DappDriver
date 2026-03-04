@@ -10,10 +10,11 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class RevealSeed extends PageObject {
-  private seedWordLabel: (position: number) => HTMLElement = (position: number) =>
+  private readonly seedWordLabel: (position: number) => HTMLElement = (position: number) =>
     new HTMLElement(`[data-testid="seed_word_${position}"]`);
-  private iveSavedTheseWordsButton: () => HTMLElement = () =>
-    new HTMLElement('[data-testid="saved-these-words-button"]');
+  private get iveSavedTheseWordsButton(): HTMLElement {
+    return new HTMLElement('[data-testid="saved-these-words-button"]');
+  }
   /**
    * Creates an instance of RevealSeed.
    * @memberof RevealSeed
@@ -42,6 +43,6 @@ export class RevealSeed extends PageObject {
    * @memberof RevealSeed
    */
   async iveSavedTheseWords(): Promise<SeedVerify> {
-    return await this.iveSavedTheseWordsButton().click<SeedVerify>(SeedVerify);
+    return await this.iveSavedTheseWordsButton.click<SeedVerify>(SeedVerify);
   }
 }

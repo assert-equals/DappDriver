@@ -10,8 +10,9 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class SeedBackup extends PageObject {
-  private revealYourRecoveryPhraseButton: () => HTMLElement = () =>
-    new HTMLElement('[data-testid="show-recovery-phrase-button"]');
+  private get revealYourRecoveryPhraseButton(): HTMLElement {
+    return new HTMLElement('[data-testid="show-recovery-phrase-button"]');
+  }
   /**
    * Creates an instance of SeedBackup.
    * @memberof SeedBackup
@@ -26,6 +27,6 @@ export class SeedBackup extends PageObject {
    * @memberof SeedBackup
    */
   async revealYourRecoveryPhrase(): Promise<RevealSeed> {
-    return await this.revealYourRecoveryPhraseButton().click<RevealSeed>(RevealSeed);
+    return await this.revealYourRecoveryPhraseButton.click<RevealSeed>(RevealSeed);
   }
 }

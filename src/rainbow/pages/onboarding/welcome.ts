@@ -10,9 +10,12 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class Welcome extends PageObject {
-  private createANewWalletButton: () => HTMLElement = () => new HTMLElement('[data-testid="create-wallet-button"]');
-  private importOrConnectAWalletButton: () => HTMLElement = () =>
-    new HTMLElement('[data-testid="import-wallet-button"]');
+  private get createANewWalletButton(): HTMLElement {
+    return new HTMLElement('[data-testid="create-wallet-button"]');
+  }
+  private get importOrConnectAWalletButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-wallet-button"]');
+  }
   /**
    * Creates an instance of Welcome.
    * @memberof Welcome
@@ -27,7 +30,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async createANewWallet(): Promise<SeedBackup> {
-    return await this.createANewWalletButton().click<SeedBackup>(SeedBackup);
+    return await this.createANewWalletButton.click<SeedBackup>(SeedBackup);
   }
   /**
    *
@@ -36,6 +39,6 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async importOrConnectAWallet(): Promise<ImportOrConnect> {
-    return await this.importOrConnectAWalletButton().click<ImportOrConnect>(ImportOrConnect);
+    return await this.importOrConnectAWalletButton.click<ImportOrConnect>(ImportOrConnect);
   }
 }

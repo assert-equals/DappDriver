@@ -9,8 +9,12 @@ import { PageObject } from '../../page';
  * @extends {PageObject}
  */
 export class ApproveRequest extends PageObject {
-  private acceptButton: () => HTMLElement = () => new HTMLElement('[data-testid="accept-request-button"]');
-  private rejectButton: () => HTMLElement = () => new HTMLElement('[data-testid="reject-request-button"]');
+  private get acceptButton(): HTMLElement {
+    return new HTMLElement('[data-testid="accept-request-button"]');
+  }
+  private get rejectButton(): HTMLElement {
+    return new HTMLElement('[data-testid="reject-request-button"]');
+  }
   /**
    * Creates an instance of ApproveRequest.
    * @memberof ApproveRequest
@@ -28,9 +32,9 @@ export class ApproveRequest extends PageObject {
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.acceptButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.acceptButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.acceptButton().click();
+      return await this.acceptButton.click();
     }
   }
   /**
@@ -43,9 +47,9 @@ export class ApproveRequest extends PageObject {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.rejectButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.rejectButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.rejectButton().click();
+      return await this.rejectButton.click();
     }
   }
 }
