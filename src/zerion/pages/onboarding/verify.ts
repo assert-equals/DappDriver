@@ -10,8 +10,10 @@ import { Success } from './success';
  * @extends {PageObject}
  */
 export class Verify extends PageObject {
-  private wordInput: (index: number) => HTMLElement = (index) => new HTMLElement(`#word-${index}`);
-  private verifyButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Verify")]');
+  private readonly wordInput: (index: number) => HTMLElement = (index) => new HTMLElement(`#word-${index}`);
+  private get verifyButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Verify")]');
+  }
   /**
    * Creates an instance of Verify.
    * @memberof Verify
@@ -49,6 +51,6 @@ export class Verify extends PageObject {
    * @memberof Verify
    */
   async verify(): Promise<Success> {
-    return await this.verifyButton().click<Success>(Success);
+    return await this.verifyButton.click<Success>(Success);
   }
 }

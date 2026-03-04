@@ -10,9 +10,11 @@ import { Password } from './password';
  * @extends {PageObject}
  */
 export class SelectWallets extends PageObject {
-  private activeWalletButton: (index: number) => HTMLElement = (index: number) =>
+  private readonly activeWalletButton: (index: number) => HTMLElement = (index: number) =>
     new HTMLElement(`div[title="Derivation path: m/44'/60'/0'/0/${index}"]`);
-  private continueButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Continue")]');
+  private get continueButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Continue")]');
+  }
   /**
    * Creates an instance of SelectWallets.
    * @memberof SelectWallets
@@ -37,6 +39,6 @@ export class SelectWallets extends PageObject {
    * @memberof SelectWallets
    */
   async continue(): Promise<Password> {
-    return await this.continueButton().click<Password>(Password);
+    return await this.continueButton.click<Password>(Password);
   }
 }

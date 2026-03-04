@@ -10,8 +10,12 @@ import { BackUp } from './backup';
  * @extends {PageObject}
  */
 export class Information extends PageObject {
-  private continueButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Continue")]');
-  private backUpNowButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Back up now")]');
+  private get continueButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Continue")]');
+  }
+  private get backUpNowButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Back up now")]');
+  }
   /**
    * Creates an instance of Information.
    * @memberof Information
@@ -26,7 +30,7 @@ export class Information extends PageObject {
    * @memberof Information
    */
   async stepOne(): Promise<void> {
-    return await this.continueButton().clickAndWait();
+    return await this.continueButton.clickAndWait();
   }
   /**
    *
@@ -35,7 +39,7 @@ export class Information extends PageObject {
    * @memberof Information
    */
   async stepTwo(): Promise<void> {
-    return await this.continueButton().clickAndWait();
+    return await this.continueButton.clickAndWait();
   }
   /**
    *
@@ -44,6 +48,6 @@ export class Information extends PageObject {
    * @memberof Information
    */
   async backUpNow(): Promise<BackUp> {
-    return await this.backUpNowButton().click<BackUp>(BackUp);
+    return await this.backUpNowButton.click<BackUp>(BackUp);
   }
 }

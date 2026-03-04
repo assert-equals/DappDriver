@@ -11,8 +11,12 @@ import { PageObject } from '../../page';
  * @implements {IConfirmation}
  */
 export class Send extends PageObject implements IConfirmation {
-  private confirmButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Confirm")]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  private get confirmButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Confirm")]');
+  }
+  private get cancelButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  }
   /**
    * Creates an instance of Send.
    * @memberof Send
@@ -30,9 +34,9 @@ export class Send extends PageObject implements IConfirmation {
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.confirmButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.confirmButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.confirmButton().click();
+      return await this.confirmButton.click();
     }
   }
   /**
@@ -45,9 +49,9 @@ export class Send extends PageObject implements IConfirmation {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

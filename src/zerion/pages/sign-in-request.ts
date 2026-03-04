@@ -11,8 +11,12 @@ import { PageObject } from '../../page';
  * @implements {IConfirmation}
  */
 export class SignInRequest extends PageObject implements IConfirmation {
-  private signInButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Sign In")]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  private get signInButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Sign In")]');
+  }
+  private get cancelButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  }
   /**
    * Creates an instance of SignInRequest.
    * @memberof SignInRequest
@@ -30,9 +34,9 @@ export class SignInRequest extends PageObject implements IConfirmation {
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.signInButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.signInButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.signInButton().click();
+      return await this.signInButton.click();
     }
   }
   /**
@@ -45,9 +49,9 @@ export class SignInRequest extends PageObject implements IConfirmation {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

@@ -11,8 +11,12 @@ import { PageObject } from '../../page';
  * @implements {IConfirmation}
  */
 export class Connect extends PageObject implements IConfirmation {
-  private connectButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Connect")]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  private get connectButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Connect")]');
+  }
+  private get cancelButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  }
   /**
    * Creates an instance of Connect.
    * @memberof Connect
@@ -30,9 +34,9 @@ export class Connect extends PageObject implements IConfirmation {
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.connectButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.connectButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.connectButton().click();
+      return await this.connectButton.click();
     }
   }
   /**
@@ -45,9 +49,9 @@ export class Connect extends PageObject implements IConfirmation {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

@@ -10,8 +10,12 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class Welcome extends PageObject {
-  private createNewWalletButton: () => HTMLElement = () => new HTMLElement('a[href="#/onboarding/create"]');
-  private importExistingWalletButton: () => HTMLElement = () => new HTMLElement('a[href="#/onboarding/import"]');
+  private get createNewWalletButton(): HTMLElement {
+    return new HTMLElement('a[href="#/onboarding/create"]');
+  }
+  private get importExistingWalletButton(): HTMLElement {
+    return new HTMLElement('a[href="#/onboarding/import"]');
+  }
   /**
    * Creates an instance of Welcome.
    * @memberof Welcome
@@ -26,7 +30,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async createNewWallet(): Promise<Password> {
-    return await this.createNewWalletButton().click<Password>(Password);
+    return await this.createNewWalletButton.click<Password>(Password);
   }
   /**
    *
@@ -35,6 +39,6 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async importExistingWallet(): Promise<ImportWallet> {
-    return await this.importExistingWalletButton().click<ImportWallet>(ImportWallet);
+    return await this.importExistingWalletButton.click<ImportWallet>(ImportWallet);
   }
 }

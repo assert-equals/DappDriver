@@ -11,9 +11,15 @@ import { PageObject } from '../../page';
  * @implements {IConfirmation}
  */
 export class AddNetwork extends PageObject implements IConfirmation {
-  private addButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Add")]');
-  private closeButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Close")]');
-  private cancelButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  private get addButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Add")]');
+  }
+  private get closeButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Close")]');
+  }
+  private get cancelButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Cancel")]');
+  }
   /**
    * Creates an instance of AddNetwork.
    * @memberof AddNetwork
@@ -30,11 +36,11 @@ export class AddNetwork extends PageObject implements IConfirmation {
    * @memberof AddNetwork
    */
   async accept<TPage>(page?: new () => TPage): Promise<any> {
-    await this.addButton().click();
+    await this.addButton.click();
     if (page) {
-      return await this.closeButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.closeButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.closeButton().click();
+      return await this.closeButton.click();
     }
   }
   /**
@@ -47,9 +53,9 @@ export class AddNetwork extends PageObject implements IConfirmation {
    */
   async reject<TPage>(page?: new () => TPage): Promise<any> {
     if (page) {
-      return await this.cancelButton().clickAndSwitchToMainWindow<TPage>(page);
+      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
     } else {
-      return await this.cancelButton().click();
+      return await this.cancelButton.click();
     }
   }
 }

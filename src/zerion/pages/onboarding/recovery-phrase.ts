@@ -10,8 +10,10 @@ import { SelectWallets } from './select-wallets';
  * @extends {PageObject}
  */
 export class RecoveryPhrase extends PageObject {
-  private srpInput: (index: number) => InputText = (index: number) => new InputText(`#word-${index}`);
-  private importWalletButton: () => HTMLElement = () => new HTMLElement('form button:nth-of-type(2)');
+  private readonly srpInput: (index: number) => InputText = (index: number) => new InputText(`#word-${index}`);
+  private get importWalletButton(): HTMLElement {
+    return new HTMLElement('form button:nth-of-type(2)');
+  }
   /**
    * Creates an instance of RecoveryPhrase.
    * @memberof RecoveryPhrase
@@ -39,6 +41,6 @@ export class RecoveryPhrase extends PageObject {
    * @memberof RecoveryPhrase
    */
   async confirmSecretRecoveryPhrase(): Promise<SelectWallets> {
-    return await this.importWalletButton().click<SelectWallets>(SelectWallets);
+    return await this.importWalletButton.click<SelectWallets>(SelectWallets);
   }
 }

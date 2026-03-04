@@ -9,8 +9,12 @@ import { PageObject } from '../../../page';
  * @extends {PageObject}
  */
 export class ConfirmPassword extends PageObject {
-  private confirmPasswordField: () => InputText = () => new InputText('input[name="confirmPassword"]');
-  private setPasswordButton: () => HTMLElement = () => new HTMLElement('xpath=//button[contains(., "Set Password")]');
+  private get confirmPasswordField(): InputText {
+    return new InputText('input[name="confirmPassword"]');
+  }
+  private get setPasswordButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Set Password")]');
+  }
   /**
    * Creates an instance of ConfirmPassword.
    * @memberof ConfirmPassword
@@ -26,7 +30,7 @@ export class ConfirmPassword extends PageObject {
    * @memberof ConfirmPassword
    */
   async confirmPassword(password: string = 'P@ssword01!'): Promise<void> {
-    return await this.confirmPasswordField().type(password);
+    return await this.confirmPasswordField.type(password);
   }
   /**
    *
@@ -37,6 +41,6 @@ export class ConfirmPassword extends PageObject {
    * @memberof ConfirmPassword
    */
   async setPassword<TPage>(page: new () => TPage): Promise<TPage> {
-    return await this.setPasswordButton().click<TPage>(page);
+    return await this.setPasswordButton.click<TPage>(page);
   }
 }

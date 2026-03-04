@@ -10,8 +10,9 @@ import { RecoveryPhrase } from './recovery-phrase';
  * @extends {PageObject}
  */
 export class ImportWallet extends PageObject {
-  private importRecoveryPhraseButton: () => HTMLElement = () =>
-    new HTMLElement('a[href="#/onboarding/import/mnemonic"]');
+  private get importRecoveryPhraseButton(): HTMLElement {
+    return new HTMLElement('a[href="#/onboarding/import/mnemonic"]');
+  }
   /**
    * Creates an instance of ImportWallet.
    * @memberof ImportWallet
@@ -26,6 +27,6 @@ export class ImportWallet extends PageObject {
    * @memberof ImportWallet
    */
   async importRecoveryPhrase(): Promise<RecoveryPhrase> {
-    return await this.importRecoveryPhraseButton().click<RecoveryPhrase>(RecoveryPhrase);
+    return await this.importRecoveryPhraseButton.click<RecoveryPhrase>(RecoveryPhrase);
   }
 }
