@@ -21,7 +21,7 @@ export class Password extends PageObject {
    * @memberof Password
    */
   constructor() {
-    super(new RegExp(/onboarding#\/onboarding\/.*password/), 'Zerion');
+    super(new RegExp(/onboarding#\/onboarding/), 'Zerion');
   }
   /**
    *

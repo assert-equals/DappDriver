@@ -1,4 +1,4 @@
-import { ConfirmPassword, Information, Password, Success, Welcome } from '.';
+import { BackUp, ConfirmPassword, Create, Password, Success, Welcome } from '.';
 import { PageObject } from '../page';
 
 let successPage: Success;
@@ -13,7 +13,6 @@ export async function setup(seed: string): Promise<void> {
     const recoveryPhrasePage = await importWalletPage.importRecoveryPhrase();
     await recoveryPhrasePage.enterSRP(seed);
     const selectWalletPage = await recoveryPhrasePage.confirmSecretRecoveryPhrase();
-    await selectWalletPage.selectWallet(0);
     passwordPage = await selectWalletPage.continue();
     await passwordPage.password();
     confirmPasswordPage = await passwordPage.confirmPassword();
@@ -24,13 +23,14 @@ export async function setup(seed: string): Promise<void> {
     await passwordPage.password();
     confirmPasswordPage = await passwordPage.confirmPassword();
     await confirmPasswordPage.confirmPassword();
-    const informationPage = await confirmPasswordPage.setPassword<Information>(Information);
-    await informationPage.stepOne();
-    await informationPage.stepTwo();
-    const backupPage = await informationPage.backUpNow();
-    await backupPage.reveal();
-    const seedPhrase: Array<string> = await backupPage.getSeed();
-    const verifyPage = await backupPage.verifyBackup();
+    const createPage: Create = await confirmPasswordPage.setPassword<Create>(Create);
+    const backupPage: BackUp = await createPage.create();
+    await backupPage.continue();
+    await backupPage.continue();
+    const backupRecoveryPhrasePage = await backupPage.backUpNow();
+    await backupRecoveryPhrasePage.reveal();
+    const seedPhrase: Array<string> = await backupRecoveryPhrasePage.getSeed();
+    const verifyPage = await backupRecoveryPhrasePage.verify();
     await verifyPage.enterSeed(seedPhrase);
     successPage = await verifyPage.verify();
   }

@@ -12,9 +12,10 @@ import { SignatureRequest } from './pages/signature-request';
 import { setup } from './setup';
 
 export { BackUp } from './pages/onboarding/backup';
+export { Create } from './pages/onboarding/create';
+export { BackUpRecoveryPhrase } from './pages/onboarding/backup-recovery-phrase';
 export { ConfirmPassword } from './pages/onboarding/confirm-password';
 export { ImportWallet } from './pages/onboarding/import-wallet';
-export { Information } from './pages/onboarding/information';
 export { Password } from './pages/onboarding/password';
 export { RecoveryPhrase } from './pages/onboarding/recovery-phrase';
 export { SelectWallets } from './pages/onboarding/select-wallets';

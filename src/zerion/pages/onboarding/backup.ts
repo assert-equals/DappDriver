@@ -1,6 +1,6 @@
 import { HTMLElement } from '../../../controls/html-element';
 import { PageObject } from '../../../page';
-import { Verify } from './verify';
+import { BackUpRecoveryPhrase } from './backup-recovery-phrase';
 
 /**
  *
@@ -10,21 +10,18 @@ import { Verify } from './verify';
  * @extends {PageObject}
  */
 export class BackUp extends PageObject {
-  private get revealButton(): HTMLElement {
-    return new HTMLElement('button[type="button"]');
+  private get continueButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Continue")]');
   }
-  private get seedLabel(): HTMLElement {
-    return new HTMLElement('xpath=//div[contains(@class, "CaYX_a_zstack")]//div[contains(@class, "_uitext_tij8c_1")]');
-  }
-  private get verifyBackUpButton(): HTMLElement {
-    return new HTMLElement('xpath=//button[contains(., "Verify Backup")]');
+  private get backUpNowButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Back up now")]');
   }
   /**
    * Creates an instance of BackUp.
    * @memberof BackUp
    */
   constructor() {
-    super('onboarding#/onboarding/create/backup', 'Zerion');
+    super('onboarding#/onboarding/backup', 'Zerion');
   }
   /**
    *
@@ -32,26 +29,16 @@ export class BackUp extends PageObject {
    * @return {*}  {Promise<void>}
    * @memberof BackUp
    */
-  async reveal(): Promise<void> {
-    return await this.revealButton.clickAndWait();
+  async continue(): Promise<void> {
+    return await this.continueButton.clickAndWait();
   }
   /**
    *
    *
-   * @return {*}  {Promise<Array<string>>}
+   * @return {*}  {Promise<BackUpRecoveryPhrase>}
    * @memberof BackUp
    */
-  async getSeed(): Promise<Array<string>> {
-    const seedPhrase: string = await this.seedLabel.getText();
-    return seedPhrase.split(' ');
-  }
-  /**
-   *
-   *
-   * @return {*}  {Promise<Verify>}
-   * @memberof BackUp
-   */
-  async verifyBackup(): Promise<Verify> {
-    return await this.verifyBackUpButton.click<Verify>(Verify);
+  async backUpNow(): Promise<BackUpRecoveryPhrase> {
+    return await this.backUpNowButton.click<BackUpRecoveryPhrase>(BackUpRecoveryPhrase);
   }
 }

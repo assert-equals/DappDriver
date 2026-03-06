@@ -25,16 +25,6 @@ export class SelectWallets extends PageObject {
   /**
    *
    *
-   * @param {number} index
-   * @return {*}  {Promise<void>}
-   * @memberof SelectWallets
-   */
-  async selectWallet(index: number): Promise<void> {
-    return await this.activeWalletButton(index).click();
-  }
-  /**
-   *
-   *
    * @return {*}  {Promise<Password>}
    * @memberof SelectWallets
    */

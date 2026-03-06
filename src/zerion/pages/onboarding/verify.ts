@@ -19,7 +19,7 @@ export class Verify extends PageObject {
    * @memberof Verify
    */
   constructor() {
-    super('onboarding#/onboarding/create/verify', 'Zerion');
+    super('onboarding#/onboarding/backup/verify-backup', 'Zerion');
   }
   /**
    *

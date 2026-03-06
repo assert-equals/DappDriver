@@ -12,7 +12,7 @@ import { PageObject } from '../../page';
  */
 export class SignInRequest extends PageObject implements IConfirmation {
   private get signInButton(): HTMLElement {
-    return new HTMLElement('xpath=//button[contains(., "Sign In")]');
+    return new HTMLElement('xpath=//button[contains(., "Sign")]');
   }
   private get cancelButton(): HTMLElement {
     return new HTMLElement('xpath=//button[contains(., "Cancel")]');
@@ -22,7 +22,7 @@ export class SignInRequest extends PageObject implements IConfirmation {
    * @memberof SignInRequest
    */
   constructor() {
-    super('#/siwe', 'Zerion · Sign In with Ethereum');
+    super('#/signMessage', 'Zerion · Sign Message');
   }
   /**
    *
