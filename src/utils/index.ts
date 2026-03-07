@@ -23,4 +23,6 @@ export function toRegExp(arg: string | RegExp): RegExp {
 
 export const isAtLeast: Comparator = (a: number, b: number) => a >= b;
 
+export const isAtMost: Comparator = (a: number, b: number) => a <= b;
+
 export const strictEqual: Comparator = (a: number, b: number) => a === b;
