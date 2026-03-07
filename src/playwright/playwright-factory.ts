@@ -24,6 +24,7 @@ export class PlaywrightFactory {
       };
     }
     if (options.extension.wallet !== null && options.extension.wallet !== HEADLESS) {
+      process.env.PW_CHROMIUM_ATTACH_TO_OTHER = '1';
       const extensionPath: string = options.extension.path;
       logInfo(`Loading extension from path: ${extensionPath}`);
       chromeOptions['args'].push(`--disable-extensions-except=${extensionPath}`);
