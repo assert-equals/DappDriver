@@ -3,7 +3,7 @@ import { IPageObject } from '../interface/page/page-object';
 import { IConfirmation } from '../interface/wallet/confirmation';
 import { DappDriver } from '../session/dapp-driver';
 import { Comparator, Cookie } from '../types';
-import { isAtLeast, strictEqual, toRegExp } from '../utils';
+import { isAtLeast, isAtMost, toRegExp } from '../utils';
 
 export class WebDriverPageObject implements IPageObject {
   private driver: WebDriver;
@@ -40,14 +40,10 @@ export class WebDriverPageObject implements IPageObject {
     }
   }
 
-  async closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
+  async closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    const windowHandles: Array<string> = await this.getAllWindowHandles();
     await this.close();
-    return await this.switchToMainWindow(page);
-  }
-
-  async createNewWindow(): Promise<void> {
-    await this.driver.switchTo().newWindow('tab');
-    await this.opensInNewWindow();
+    return await this.waitForWindows(windowHandles.length - 1, isAtMost, page);
   }
 
   async executeScript(script: string): Promise<any> {
@@ -114,39 +110,17 @@ export class WebDriverPageObject implements IPageObject {
   }
 
   async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
-    await this.createNewWindow();
+    await this.driver.switchTo().newWindow('tab');
+    const windowHandles: Array<string> = await this.getAllWindowHandles();
+    await this.switchToWindow(windowHandles.at(-1), page);
     await this.navigateTo(url);
     if (page) {
       return await DappDriver.getPage<TPage>(page);
     }
   }
 
-  async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
-    const handles: Array<string> = await this.waitForWindows(2);
-    return await this.switchToWindow(handles[1], page);
-  }
-
   async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    const delay: number = 1000;
-    const retries: number = 10;
-    for (let attempt = 1; attempt <= retries; attempt++) {
-      const handles: Array<string> = await this.waitForWindows(2, isAtLeast);
-      for (const handle of handles) {
-        try {
-          await this.switchToWindow(handle);
-          const actualTitle: string = await this.getTitle();
-          const actualUrl: string = await this.getCurrentUrl();
-          const newPage: TPage = new page();
-          const title: RegExp = toRegExp(newPage.title);
-          const url: RegExp = toRegExp(newPage.url);
-          if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
-            return await DappDriver.getPage<TPage>(page);
-          }
-        } catch (e) {}
-      }
-      await DappDriver.sleep(delay);
-    }
-    throw new Error('waitForWindow timed out polling window handles');
+    return await this.waitForWindows(2, isAtLeast, page);
   }
 
   async refresh<TPage>(page?: new () => TPage): Promise<any> {
@@ -169,11 +143,6 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.switchTo().frame(frameElement);
   }
 
-  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    const handles: Array<string> = await this.getAllWindowHandles();
-    return await this.switchToWindow(handles[0], page);
-  }
-
   async switchToWindow<TPage>(nameOrHandle: string, page?: new () => TPage): Promise<any> {
     await this.driver.switchTo().window(nameOrHandle);
     if (page) {
@@ -193,18 +162,32 @@ export class WebDriverPageObject implements IPageObject {
     await this.driver.wait(until.urlMatches(url), 20000);
   }
 
-  async waitForWindows(total: number, comparator: Comparator = strictEqual): Promise<Array<string>> {
-    const timeout: number = 10_000;
-    const delay: number = 100;
-    let timeElapsed: number = 0;
+  async waitForWindows<TPage extends IConfirmation | IPageObject>(
+    total: number,
+    comparator: Comparator,
+    page: new () => TPage
+  ): Promise<TPage> {
+    const delay: number = 1000;
+    const retries: number = 60;
     let windowHandles: Array<string> = [];
-    while (timeElapsed <= timeout) {
+    for (let attempt = 1; attempt <= retries; attempt++) {
       windowHandles = await this.getAllWindowHandles();
       if (comparator(windowHandles.length, total)) {
-        return windowHandles;
+        for (const handle of windowHandles) {
+          try {
+            await this.switchToWindow(handle);
+            const actualTitle: string = await this.getTitle();
+            const actualUrl: string = await this.getCurrentUrl();
+            const newPage: TPage = new page();
+            const title: RegExp = toRegExp(newPage.title);
+            const url: RegExp = toRegExp(newPage.url);
+            if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
+              return await DappDriver.getPage<TPage>(page);
+            }
+          } catch (e) {}
+        }
       }
       await DappDriver.sleep(delay);
-      timeElapsed += delay;
     }
     throw new Error('waitForWindows timed out polling window handles');
   }

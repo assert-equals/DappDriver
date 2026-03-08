@@ -1,16 +1,11 @@
+import { IPageObject } from '../page/page-object';
+
 export interface IConfirmation {
   url: string | RegExp;
   title: string;
-  accept(): Promise<void>;
-  accept<TPage>(page: new () => TPage): Promise<TPage>;
-  accept<TPage>(page?: new () => TPage): Promise<any>;
+  accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   getAllWindowHandles(): Promise<Array<any>>;
-  reject(): Promise<void>;
-  reject<TPage>(page: new () => TPage): Promise<TPage>;
-  reject<TPage>(page?: new () => TPage): Promise<any>;
-  switchToMainWindow(): Promise<void>;
-  switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  switchToMainWindow<TPage>(page?: new () => TPage): Promise<any>;
+  reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   switchToWindow(nameOrHandle: any): Promise<void>;
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
   switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any>;

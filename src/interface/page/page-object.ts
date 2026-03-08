@@ -13,10 +13,7 @@ export interface IPageObject {
   close(): Promise<void>;
   close<TPage>(page: new () => TPage): Promise<TPage>;
   close<TPage>(page?: new () => TPage): Promise<any>;
-  closeAndSwitchToMainWindow(): Promise<void>;
-  closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any>;
-  createNewWindow(): Promise<void>;
+  closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   executeScript(script: string): Promise<any>;
   executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
     script: string,
@@ -39,9 +36,6 @@ export interface IPageObject {
   navigateToPageInNewWindow(url: string): Promise<void>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any>;
-  opensInNewWindow(): Promise<void>;
-  opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  opensInNewWindow<TPage>(page?: new () => TPage): Promise<any>;
   opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   refresh(): Promise<void>;
   refresh<TPage>(page: new () => TPage): Promise<TPage>;
@@ -49,14 +43,15 @@ export interface IPageObject {
   setSize(width: number, height: number): Promise<void>;
   switchBack(): Promise<void>;
   switchToFrame(cssLocator: string): Promise<void>;
-  switchToMainWindow(): Promise<void>;
-  switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  switchToMainWindow<TPage>(page?: new () => TPage): Promise<any>;
   switchToWindow(nameOrHandle: any): Promise<void>;
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
   switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any>;
   waitForElement(cssLocator: string): Promise<void>;
   waitForTitle(title?: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
-  waitForWindows(total: number, comparator: Comparator): Promise<Array<any>>;
+  waitForWindows<TPage extends IConfirmation | IPageObject>(
+    total: number,
+    comparator: Comparator,
+    page: new () => TPage
+  ): Promise<TPage>;
 }

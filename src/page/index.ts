@@ -4,7 +4,7 @@ import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightPageObject } from '../playwright/page-object';
 import { DappDriver } from '../session/dapp-driver';
 import { Comparator, Cookie, Page } from '../types';
-import { strictEqual, toRegExp } from '../utils';
+import { toRegExp } from '../utils';
 import { WebDriverPageObject } from '../webdriver/page-object';
 
 /**
@@ -138,29 +138,14 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to close the current window and switch the focus of all future commands to the main window
+   * Schedules a command to close the current window and switch the focus of all future commands to a given window
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  closeAndSwitchToMainWindow(): Promise<void>;
-  closeAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  async closeAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('closeAndSwitchToMainWindow', [page]);
-    } else {
-      return await this.callIfMethodExists('closeAndSwitchToMainWindow');
-    }
-  }
-  /**
-   *
-   * Schedules a command to open a new window
-   * @return {*}  {Promise<void>}
-   * @memberof PageObject
-   */
-  async createNewWindow(): Promise<void> {
-    return await this.callIfMethodExists('createNewWindow');
+  async closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('closeAndSwitchToWindow', [page]);
   }
   /**
    *
@@ -317,23 +302,6 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to switch the focus of all future commands to another window
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof PageObject
-   */
-  opensInNewWindow(): Promise<void>;
-  opensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  async opensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('opensInNewWindow', [page]);
-    } else {
-      return await this.callIfMethodExists('opensInNewWindow');
-    }
-  }
-  /**
-   *
    * Schedules a command to switch the focus of all future commands to the window
    * @template TPage
    * @param {new () => TPage} page
@@ -389,23 +357,6 @@ export class PageObject implements IPageObject {
    */
   async switchToFrame(cssLocator: string): Promise<void> {
     return await this.callIfMethodExists('switchToFrame', [cssLocator]);
-  }
-  /**
-   *
-   * Schedules a command to switch the focus of all future commands to the main window
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof PageObject
-   */
-  switchToMainWindow(): Promise<void>;
-  switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('switchToMainWindow', [page]);
-    } else {
-      return await this.callIfMethodExists('switchToMainWindow');
-    }
   }
   /**
    *
@@ -484,13 +435,19 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to wait for the required count of windows
+   * Schedules a command to wait for the required count of windows to be opened
+   * @template TPage
    * @param {number} total
    * @param {Comparator} comparator
-   * @return {*}  {Promise<Array<any>>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async waitForWindows(total: number, comparator: Comparator = strictEqual): Promise<Array<any>> {
-    return await this.callIfMethodExists('waitForWindows', [total, comparator]);
+  async waitForWindows<TPage extends IConfirmation | IPageObject>(
+    total: number,
+    comparator: Comparator,
+    page: new () => TPage
+  ): Promise<TPage> {
+    return await this.callIfMethodExists('waitForWindows', [total, comparator, page]);
   }
 }

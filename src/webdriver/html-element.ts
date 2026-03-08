@@ -61,25 +61,9 @@ export class WebDriverHTMLElement implements IHTMLElement {
     return await DappDriver.sleep(duration);
   }
 
-  async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
-    await this.click();
-    await new PageObject().opensInNewWindow();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
-  }
-
   async clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<any> {
     await this.click();
     return await new PageObject().opensInWindow(page);
-  }
-
-  async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    await this.click();
-    await new PageObject().switchToMainWindow();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
   }
 
   async getAttribute(attribute: string): Promise<string | null> {

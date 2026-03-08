@@ -69,23 +69,6 @@ export class ConfirmTransaction implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof ConfirmTransaction
-   */
-  switchToMainWindow(): Promise<void>;
-  switchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  async switchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('switchToMainWindow', [page]);
-    } else {
-      return await this.callIfMethodExists('switchToMainWindow');
-    }
-  }
-  /**
-   *
-   *
-   * @template TPage
    * @param {*} nameOrHandle
    * @param {new () => TPage} [page]
    * @return {*}  {Promise<any>}

@@ -77,24 +77,7 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
-   * Schedules a command to click on this element and switch the focus of all future commands to another window
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof HTMLElement
-   */
-  clickAndOpensInNewWindow(): Promise<void>;
-  clickAndOpensInNewWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  async clickAndOpensInNewWindow<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('clickAndOpensInNewWindow', [page]);
-    } else {
-      return await this.callIfMethodExists('clickAndOpensInNewWindow');
-    }
-  }
-  /**
-   *
-   * Schedules a command to click on this element and switch the focus of all future commands to the window
+   * Schedules a command to click on this element and switch the focus of all future commands to a given window
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
@@ -102,23 +85,6 @@ export class HTMLElement implements IHTMLElement {
    */
   async clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('clickAndOpensInWindow', [page]);
-  }
-  /**
-   *
-   * Schedules a command to click on this element and switch the focus of all future commands to the main window
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
-   * @memberof HTMLElement
-   */
-  clickAndSwitchToMainWindow(): Promise<void>;
-  clickAndSwitchToMainWindow<TPage>(page: new () => TPage): Promise<TPage>;
-  async clickAndSwitchToMainWindow<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('clickAndSwitchToMainWindow', [page]);
-    } else {
-      return await this.callIfMethodExists('clickAndSwitchToMainWindow');
-    }
   }
   /**
    *
