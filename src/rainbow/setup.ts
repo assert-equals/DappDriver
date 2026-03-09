@@ -1,8 +1,7 @@
-import { CreatePassword, Ready, Welcome } from '.';
+import { CreatePassword, Welcome } from '.';
 import { PageObject } from '../page';
 
 let createPasswordPage: CreatePassword;
-let readyPage: Ready;
 
 export async function setup(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
@@ -16,7 +15,7 @@ export async function setup(seed: string): Promise<void> {
     createPasswordPage = await importSelectPage.importWalletGroup();
     await createPasswordPage.enterPassword();
     await createPasswordPage.confirmPassword();
-    readyPage = await createPasswordPage.setPassword();
+    await createPasswordPage.setPassword();
   } else {
     const seedBackupPromptPage = await welcomePage.createANewWallet();
     const revealSeedPage = await seedBackupPromptPage.revealYourRecoveryPhrase();
@@ -25,7 +24,6 @@ export async function setup(seed: string): Promise<void> {
     createPasswordPage = await seedVerifyPage.verify(requiredWords);
     await createPasswordPage.enterPassword();
     await createPasswordPage.confirmPassword();
-    readyPage = await createPasswordPage.setPassword();
+    await createPasswordPage.setPassword();
   }
-  await readyPage.closeAndSwitchToMainWindow<PageObject>(PageObject);
 }
