@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.36.1](https://github.com/assert-equals/DappDriver/compare/v0.36.0...v0.36.1) (2026-03-09)
+
+
+### Features
+
+* add permissions for OIDC ([5a92fab](https://github.com/assert-equals/DappDriver/commit/5a92fab495d2568b80736e09e9cd4d5f8fec4291))
+
 ## [0.36.0](https://github.com/assert-equals/DappDriver/compare/v0.35.0...v0.36.0) (2026-03-09)
 
 
