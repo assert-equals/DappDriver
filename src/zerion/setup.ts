@@ -1,7 +1,6 @@
 import { BackUp, ConfirmPassword, Create, Password, Success, Welcome } from '.';
 import { PageObject } from '../page';
 
-let successPage: Success;
 let passwordPage: Password;
 let confirmPasswordPage: ConfirmPassword;
 
@@ -17,7 +16,7 @@ export async function setup(seed: string): Promise<void> {
     await passwordPage.password();
     confirmPasswordPage = await passwordPage.confirmPassword();
     await confirmPasswordPage.confirmPassword();
-    successPage = await confirmPasswordPage.setPassword<Success>(Success);
+    await confirmPasswordPage.setPassword<Success>(Success);
   } else {
     passwordPage = await welcomePage.createNewWallet();
     await passwordPage.password();
@@ -32,7 +31,6 @@ export async function setup(seed: string): Promise<void> {
     const seedPhrase: Array<string> = await backupRecoveryPhrasePage.getSeed();
     const verifyPage = await backupRecoveryPhrasePage.verify();
     await verifyPage.enterSeed(seedPhrase);
-    successPage = await verifyPage.verify();
+    await verifyPage.verify();
   }
-  await successPage.closeAndSwitchToMainWindow<PageObject>(PageObject);
 }

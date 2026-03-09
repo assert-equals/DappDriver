@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { IPageObject } from '../../interface/page/page-object';
 import { IConfirmation } from '../../interface/wallet/confirmation';
 import { PageObject } from '../../page';
 
@@ -28,30 +29,22 @@ export class Approve extends PageObject implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Approve
    */
-  async accept<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.confirmButton.clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.confirmButton.click();
-    }
+  async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.confirmButton.clickAndOpensInWindow<TPage>(page);
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Approve
    */
-  async reject<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.cancelButton.click();
-    }
+  async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
   }
 }

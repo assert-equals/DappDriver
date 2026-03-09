@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { IPageObject } from '../../interface/page/page-object';
 import { IConfirmation } from '../../interface/wallet/confirmation';
 import { PageObject } from '../../page';
 
@@ -31,33 +32,25 @@ export class SignatureRequest extends PageObject implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  async accept<TPage>(page?: new () => TPage): Promise<any> {
+  async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     if (await this.scrollButton.isDisplayed()) {
       await this.scrollButton.clickAndWait();
     }
-    if (page) {
-      return await this.signButton.clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.signButton.click();
-    }
+    return await this.signButton.clickAndOpensInWindow<TPage>(page);
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  async reject<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.cancelButton.clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.cancelButton.click();
-    }
+  async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
   }
 }
