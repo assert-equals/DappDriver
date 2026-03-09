@@ -1,6 +1,6 @@
-import { HTMLElement, InputText } from '../../../controls';
+import { Metametrics } from '../..';
+import { HTMLElement } from '../../../controls';
 import { PageObject } from '../../../page';
-import { Completion } from './completion';
 
 /**
  *
@@ -10,48 +10,56 @@ import { Completion } from './completion';
  * @extends {PageObject}
  */
 export class ConfirmRecoveryPhrase extends PageObject {
-  private readonly chipInput: (index: number) => InputText = (index) =>
-    new InputText(`[data-testid="recovery-phrase-input-${index}"]`);
+  private readonly unansweredChip: (index: number) => HTMLElement = (index) =>
+    new HTMLElement(`[data-testid="recovery-phrase-quiz-unanswered-${index}"]`);
+  private get srpChips(): HTMLElement {
+    return new HTMLElement('[data-testid="recovery-phrase-chips"]');
+  }
   private get confirmButton(): HTMLElement {
     return new HTMLElement('[data-testid="recovery-phrase-confirm"]');
+  }
+  private get modalButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-srp-modal-button"]');
   }
   /**
    * Creates an instance of ConfirmRecoveryPhrase.
    * @memberof ConfirmRecoveryPhrase
    */
   constructor() {
-    super('/home.html#onboarding/confirm-recovery-phrase', 'MetaMask');
+    super('/home.html#/onboarding/confirm-recovery-phrase', 'MetaMask');
   }
   /**
    *
    *
    * @param {number} index
-   * @param {Array<string>} words
    * @return {*}  {Promise<void>}
    * @memberof ConfirmRecoveryPhrase
    */
-  async enterWord(index: number, words: Array<string>): Promise<void> {
-    return await this.chipInput(index).type(words[index]);
+  async confirmWord(index: number): Promise<void> {
+    return await this.unansweredChip(index).click();
   }
   /**
    *
    *
-   * @param {Array<string>} words
    * @return {*}  {Promise<void>}
    * @memberof ConfirmRecoveryPhrase
    */
-  async enterRequiredWords(words: Array<string>): Promise<void> {
-    await this.enterWord(2, words);
-    await this.enterWord(3, words);
-    await this.enterWord(7, words);
+  async confirmRequiredWords(): Promise<void> {
+    const quizJson = await this.srpChips.getAttribute('data-quiz-words');
+    const quizWords: Array<{ index: number; word: string }> = JSON.parse(quizJson);
+    const sortedIndices = quizWords.map((w) => w.index).sort((a, b) => a - b);
+    for (const index of sortedIndices) {
+      await this.confirmWord(index);
+    }
   }
   /**
    *
    *
-   * @return {*}  {Promise<Completion>}
+   * @return {*}  {Promise<Metametrics>}
    * @memberof ConfirmRecoveryPhrase
    */
-  async confirm(): Promise<Completion> {
-    return await this.confirmButton.click<Completion>(Completion);
+  async confirm(): Promise<Metametrics> {
+    await this.confirmButton.click();
+    return await this.modalButton.click<Metametrics>(Metametrics);
   }
 }

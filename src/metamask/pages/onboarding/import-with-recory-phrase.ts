@@ -10,6 +10,9 @@ import { CreatePassword } from './create-password';
  * @extends {PageObject}
  */
 export class ImportWithRecoveryPhrase extends PageObject {
+  private get srpTextarea(): HTMLElement {
+    return new HTMLElement('[data-testid="srp-input-import__srp-note"]');
+  }
   private readonly srpInput: (index: number) => HTMLElement = (index: number) =>
     new HTMLElement(`[data-testid="import-srp__srp-word-${index}"]`);
   private get confirmButton(): HTMLElement {
@@ -20,7 +23,7 @@ export class ImportWithRecoveryPhrase extends PageObject {
    * @memberof ImportWithRecoveryPhrase
    */
   constructor() {
-    super('/home.html#onboarding/import-with-recovery-phrase', 'MetaMask');
+    super('/home.html#/onboarding/import-with-recovery-phrase', 'MetaMask');
   }
   /**
    *
@@ -31,8 +34,9 @@ export class ImportWithRecoveryPhrase extends PageObject {
    */
   async enterSRP(srp: string): Promise<void> {
     const words: Array<string> = srp.split(' ');
-    for (const word of words) {
-      await this.srpInput(words.indexOf(word)).type(word);
+    await this.srpTextarea.type(words[0] + ' ');
+    for (let i = 1; i < words.length; i++) {
+      await this.srpInput(i).type(words[i] + ' ');
     }
   }
   /**

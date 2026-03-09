@@ -1,4 +1,5 @@
 import { HTMLElement } from '../../controls/html-element';
+import { IPageObject } from '../../interface/page/page-object';
 import { IConfirmation } from '../../interface/wallet/confirmation';
 import { ConfirmTransaction } from './confirm-transaction';
 
@@ -25,24 +26,20 @@ export class SignatureRequest extends ConfirmTransaction implements IConfirmatio
    * @memberof SignatureRequest
    */
   constructor() {
-    super(new RegExp(/#confirm-transaction/), 'MetaMask');
+    super('#/confirm-transaction', 'MetaMask');
   }
   /**
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest
    */
-  async accept<TPage>(page?: new () => TPage): Promise<any> {
+  async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     if (await this.scrollButton.isDisplayed()) {
       await this.scrollButton.clickAndWait();
     }
-    if (page) {
-      return await this.nextButton.clickAndSwitchToMainWindow<TPage>(page);
-    } else {
-      return await this.nextButton.click();
-    }
+    return await this.nextButton.clickAndOpensInWindow<TPage>(page);
   }
 }

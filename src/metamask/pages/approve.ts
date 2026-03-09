@@ -22,6 +22,6 @@ export class Approve extends ConfirmTransaction implements IConfirmation {
    * @memberof Approve
    */
   constructor() {
-    super(new RegExp(/#confirm-transaction/), 'MetaMask');
+    super('#/confirm-transaction', 'MetaMask');
   }
 }

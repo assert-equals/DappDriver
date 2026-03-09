@@ -13,18 +13,15 @@ export class ReviewRecoveryPhrase extends PageObject {
   private get revealButton(): HTMLElement {
     return new HTMLElement('[data-testid="recovery-phrase-reveal"]');
   }
-  private get srpChips(): HTMLElement {
-    return new HTMLElement('[data-testid="recovery-phrase-chips"]');
-  }
   private get nextButton(): HTMLElement {
-    return new HTMLElement('[data-testid="recovery-phrase-next"]');
+    return new HTMLElement('[data-testid="recovery-phrase-next-continue"]');
   }
   /**
    * Creates an instance of ReviewRecoveryPhrase.
    * @memberof ReviewRecoveryPhrase
    */
   constructor() {
-    super('/home.html#onboarding/review-recovery-phrase', 'MetaMask');
+    super('/home.html#/onboarding/review-recovery-phrase', 'MetaMask');
   }
   /**
    *
@@ -34,17 +31,6 @@ export class ReviewRecoveryPhrase extends PageObject {
    */
   async revealSecretRecoveryPhrase(): Promise<void> {
     return await this.revealButton.click();
-  }
-  /**
-   *
-   *
-   * @return {*}  {Promise<Array<string>>}
-   * @memberof ReviewRecoveryPhrase
-   */
-  async getSRP(): Promise<Array<string>> {
-    const recoveryPhrase: string = await this.srpChips.getText();
-    const words: Array<string> = recoveryPhrase.split(/\s*(?:[0-9)]+|\n|\.|^$|$)\s*/u);
-    return words.filter((str) => str !== '');
   }
   /**
    *

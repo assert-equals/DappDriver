@@ -22,6 +22,6 @@ export class Send extends ConfirmTransaction implements IConfirmation {
    * @memberof Send
    */
   constructor() {
-    super(new RegExp(/#confirm-transaction/), 'MetaMask');
+    super('#/confirm-transaction', 'MetaMask');
   }
 }

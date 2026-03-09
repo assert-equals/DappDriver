@@ -22,6 +22,6 @@ export class Connect extends ConfirmTransaction implements IConfirmation {
    * @memberof Connect
    */
   constructor() {
-    super('/notification.html#connect', 'MetaMask');
+    super('#/connect', 'MetaMask');
   }
 }

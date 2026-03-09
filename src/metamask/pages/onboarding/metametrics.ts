@@ -1,3 +1,4 @@
+import { Completion } from '../..';
 import { HTMLElement } from '../../../controls/html-element';
 import { PageObject } from '../../../page';
 
@@ -12,36 +13,20 @@ export class Metametrics extends PageObject {
   private get iAgreeButton(): HTMLElement {
     return new HTMLElement('[data-testid="metametrics-i-agree"]');
   }
-  private get noThanksButton(): HTMLElement {
-    return new HTMLElement('[data-testid="metametrics-no-thanks"]');
-  }
   /**
    * Creates an instance of Metametrics.
    * @memberof Metametrics
    */
   constructor() {
-    super('/home.html#onboarding/metametrics', 'MetaMask');
+    super('/home.html#/onboarding/metametrics', 'MetaMask');
   }
   /**
    *
    *
-   * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @return {*}  {Promise<Completion>}
    * @memberof Metametrics
    */
-  async iAgree<TPage>(page: new () => TPage): Promise<TPage> {
-    return await this.iAgreeButton.click<TPage>(page);
-  }
-  /**
-   *
-   *
-   * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
-   * @memberof Metametrics
-   */
-  async noThanks<TPage>(page: new () => TPage): Promise<TPage> {
-    return await this.noThanksButton.click<TPage>(page);
+  async continue(): Promise<Completion> {
+    return await this.iAgreeButton.click<Completion>(Completion);
   }
 }

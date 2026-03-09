@@ -1,6 +1,6 @@
+import { Metametrics, ReviewRecoveryPhrase } from '../..';
 import { HTMLElement } from '../../../controls/html-element';
 import { PageObject } from '../../../page';
-import { Completion, SecureYourWallet } from '../../index';
 
 /**
  *
@@ -11,26 +11,23 @@ import { Completion, SecureYourWallet } from '../../index';
  */
 export class CreatePassword extends PageObject {
   private get newPasswordInput(): HTMLElement {
-    return new HTMLElement('[data-testid="create-password-new"]');
+    return new HTMLElement('[data-testid="create-password-new-input"]');
   }
   private get confirmPasswordInput(): HTMLElement {
-    return new HTMLElement('[data-testid="create-password-confirm"]');
+    return new HTMLElement('[data-testid="create-password-confirm-input"]');
   }
   private get passwordTermsCheckbox(): HTMLElement {
     return new HTMLElement('[data-testid="create-password-terms"]');
   }
-  private get importButton(): HTMLElement {
-    return new HTMLElement('[data-testid="create-password-import"]');
-  }
-  private get createButton(): HTMLElement {
-    return new HTMLElement('[data-testid="create-password-wallet"]');
+  private get submitButton(): HTMLElement {
+    return new HTMLElement('[data-testid="create-password-submit"]');
   }
   /**
    * Creates an instance of CreatePassword.
    * @memberof CreatePassword
    */
   constructor() {
-    super('/home.html#onboarding/create-password', 'MetaMask');
+    super('/home.html#/onboarding/create-password', 'MetaMask');
   }
   /**
    *
@@ -64,19 +61,19 @@ export class CreatePassword extends PageObject {
   /**
    *
    *
-   * @return {*}  {Promise<Completion>}
+   * @return {*}  {Promise<Metametrics>}
    * @memberof CreatePassword
    */
-  async importWallet(): Promise<Completion> {
-    return await this.importButton.click<Completion>(Completion);
+  async importWallet(): Promise<Metametrics> {
+    return await this.submitButton.click<Metametrics>(Metametrics);
   }
   /**
    *
    *
-   * @return {*}  {Promise<SecureYourWallet>}
+   * @return {*}  {Promise<ReviewRecoveryPhrase>}
    * @memberof CreatePassword
    */
-  async createWallet(): Promise<SecureYourWallet> {
-    return await this.createButton.click<SecureYourWallet>(SecureYourWallet);
+  async createWallet(): Promise<ReviewRecoveryPhrase> {
+    return await this.submitButton.click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
   }
 }

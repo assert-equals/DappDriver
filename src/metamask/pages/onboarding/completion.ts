@@ -1,6 +1,6 @@
+import { SidePanel } from '../..';
 import { HTMLElement } from '../../../controls/html-element';
 import { PageObject } from '../../../page';
-import { PinExtension } from './pin-extension';
 
 /**
  *
@@ -18,15 +18,15 @@ export class Completion extends PageObject {
    * @memberof Completion
    */
   constructor() {
-    super('/home.html#onboarding/completion', 'MetaMask');
+    super('/home.html#/onboarding/completion', 'MetaMask');
   }
   /**
    *
    *
-   * @return {*}  {Promise<PinExtension>}
+   * @return {*}  {Promise<SidePanel>}
    * @memberof Completion
    */
-  async completeOnboarding(): Promise<PinExtension> {
-    return await this.completeButton.click<PinExtension>(PinExtension);
+  async completeOnboarding(): Promise<SidePanel> {
+    return await this.completeButton.clickAndOpensInWindow<SidePanel>(SidePanel);
   }
 }

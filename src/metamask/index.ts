@@ -12,14 +12,13 @@ import { SignatureRequest } from './pages/signature-request';
 import { setup } from './setup';
 
 export { Home } from './pages/home';
+export { SidePanel } from './pages/home/SidePanel';
 export { Completion } from './pages/onboarding/completion';
 export { ConfirmRecoveryPhrase } from './pages/onboarding/confirm-recovery-phrase';
 export { CreatePassword } from './pages/onboarding/create-password';
 export { ImportWithRecoveryPhrase } from './pages/onboarding/import-with-recory-phrase';
 export { Metametrics } from './pages/onboarding/metametrics';
-export { PinExtension } from './pages/onboarding/pin-extension';
 export { ReviewRecoveryPhrase } from './pages/onboarding/review-recovery-phrase';
-export { SecureYourWallet } from './pages/onboarding/secure-your-wallet';
 export { Welcome } from './pages/onboarding/welcome';
 export { ConfirmAddSuggestedToken } from './pages/notification/confirm-add-suggested-token';
 export const metamask: IWallet = {
