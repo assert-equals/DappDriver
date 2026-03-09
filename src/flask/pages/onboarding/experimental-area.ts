@@ -18,7 +18,7 @@ export class ExperimentalArea extends PageObject {
    * @memberof ExperimentalArea
    */
   constructor() {
-    super('/home.html#onboarding/experimental-area', 'MetaMask');
+    super('/home.html#/onboarding/experimental-area', 'MetaMask');
   }
   /**
    *
