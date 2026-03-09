@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.36.0](https://github.com/assert-equals/DappDriver/compare/v0.35.0...v0.36.0) (2026-03-09)
+
+
+### Features
+
+* add comparators isAtMost ([1df755d](https://github.com/assert-equals/DappDriver/commit/1df755d329f1b7bf9f7d9c4dd824af138184de06))
+* get page HTML source ([83bd871](https://github.com/assert-equals/DappDriver/commit/83bd8710606d467f1e74b0cd132da090bb1a5725))
+* navigate forwards in the browser history ([98f4ad3](https://github.com/assert-equals/DappDriver/commit/98f4ad3abf7659a5f24934aecd0b9164a52ef89d))
+* support chrome extension side panel ([e740873](https://github.com/assert-equals/DappDriver/commit/e740873830228ec63ee2089acb12741ec0063109))
+* update metamask flask page objects ([f5a1ed3](https://github.com/assert-equals/DappDriver/commit/f5a1ed3c4e6d44cdd008680251089946c8cf4ad6))
+* update metamask page objects ([335aee4](https://github.com/assert-equals/DappDriver/commit/335aee44e0d0c5d36c04fd5cb448ac796a3d04cc))
+* update window management ([4ac606d](https://github.com/assert-equals/DappDriver/commit/4ac606d050652fe35d4337678d74a96138173c64))
+* update zerion page objects ([3ee3f41](https://github.com/assert-equals/DappDriver/commit/3ee3f41596b6bfafa3572c1b71ff3cda343eee64))
+
+
+### Bug Fixes
+
+* load installed extension ([b880cc4](https://github.com/assert-equals/DappDriver/commit/b880cc49e6b9043f9633643f08c1723560a1cbdf))
+* use Chrome for Testing ([ca10e8f](https://github.com/assert-equals/DappDriver/commit/ca10e8fe86c3e6eb7b808d9f8be7755573099265))
+
 ## [0.35.0](https://github.com/assert-equals/DappDriver/compare/v0.34.1...v0.35.0) (2025-05-21)
 
 
