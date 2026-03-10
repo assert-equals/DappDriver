@@ -26,18 +26,12 @@ export class ConfirmTransaction implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  accept(): Promise<void>;
-  accept<TPage>(page: new () => TPage): Promise<TPage>;
-  async accept<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('accept', [page]);
-    } else {
-      return await this.callIfMethodExists('accept');
-    }
+  async accept<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('accept', [page]);
   }
   /**
    *
@@ -52,18 +46,12 @@ export class ConfirmTransaction implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  reject(): Promise<void>;
-  reject<TPage>(page: new () => TPage): Promise<TPage>;
-  async reject<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('reject', [page]);
-    } else {
-      return await this.callIfMethodExists('reject');
-    }
+  async reject<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('reject', [page]);
   }
   /**
    *
