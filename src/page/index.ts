@@ -164,18 +164,12 @@ export class PageObject implements IPageObject {
    *
    * Schedules a command to navigate forwards in the browser history
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  forward(): Promise<void>;
-  forward<TPage>(page: new () => TPage): Promise<TPage>;
-  async forward<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('forward', [page]);
-    } else {
-      return await this.callIfMethodExists('forward');
-    }
+  async forward<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('forward', [page]);
   }
   /**
    *

@@ -64,11 +64,9 @@ export class PlaywrightPageObject implements IPageObject {
     return await this.opensInWindow(page);
   }
 
-  async forward<TPage>(page?: new () => TPage): Promise<any> {
+  async forward<TPage>(page: new () => TPage): Promise<TPage> {
     await this.page.goForward();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async getAllWindowHandles(): Promise<Array<Page>> {
