@@ -117,18 +117,12 @@ export class PageObject implements IPageObject {
    *
    * Schedules a command to close the current window
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  close(): Promise<void>;
-  close<TPage>(page: new () => TPage): Promise<TPage>;
-  async close<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('close', [page]);
-    } else {
-      return await this.callIfMethodExists('close');
-    }
+  async close<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('close', [page]);
   }
   /**
    *

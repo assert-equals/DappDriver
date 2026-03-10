@@ -8,9 +8,7 @@ export interface IPageObject {
   back<TPage>(page: new () => TPage): Promise<TPage>;
   clearCookie(name: string): Promise<void>;
   clearCookies(): Promise<void>;
-  close(): Promise<void>;
   close<TPage>(page: new () => TPage): Promise<TPage>;
-  close<TPage>(page?: new () => TPage): Promise<any>;
   closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   executeScript(script: string): Promise<any>;
   executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(

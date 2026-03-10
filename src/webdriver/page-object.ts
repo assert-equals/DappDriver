@@ -31,16 +31,14 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.manage().deleteAllCookies();
   }
 
-  async close<TPage>(page?: new () => TPage): Promise<any> {
+  async close<TPage>(page: new () => TPage): Promise<TPage> {
     await this.driver.close();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     const windowHandles: Array<string> = await this.getAllWindowHandles();
-    await this.close();
+    await this.driver.close();
     return await this.waitForWindows(windowHandles.length - 1, isAtMost, page);
   }
 
