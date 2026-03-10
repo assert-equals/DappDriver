@@ -108,21 +108,16 @@ export class PlaywrightPageObject implements IPageObject {
     await this.page.setViewportSize({ width, height });
   }
 
-  async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  async navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.page.goto(url);
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
-  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.driver.newPage();
     const windowHandles: Array<Page> = await this.getAllWindowHandles();
     await this.switchToWindow(windowHandles.at(-1), page);
-    await this.navigateTo(url);
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await this.navigateTo<TPage>(url, page);
   }
 
   async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {

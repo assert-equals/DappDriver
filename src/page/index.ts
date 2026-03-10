@@ -249,38 +249,26 @@ export class PageObject implements IPageObject {
    * Schedules a command to navigate to a new URL
    * @template TPage
    * @param {string} url
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  navigateTo(url: string): Promise<void>;
-  navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage>;
-  async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  async navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     url = this.getFullURL(url);
-    if (page) {
-      return await this.callIfMethodExists('navigateTo', [url, page]);
-    } else {
-      return await this.callIfMethodExists('navigateTo', [url]);
-    }
+    return await this.callIfMethodExists('navigateTo', [url, page]);
   }
   /**
    *
    * Schedules a command to navigate to a new page in a new window
    * @template TPage
    * @param {string} url
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  navigateToPageInNewWindow(url: string): Promise<void>;
-  navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
-  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     url = this.getFullURL(url);
-    if (page) {
-      return await this.callIfMethodExists('navigateToPageInNewWindow', [url, page]);
-    } else {
-      return await this.callIfMethodExists('navigateToPageInNewWindow', [url]);
-    }
+    return await this.callIfMethodExists('navigateToPageInNewWindow', [url, page]);
   }
   /**
    *

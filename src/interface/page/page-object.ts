@@ -24,12 +24,8 @@ export interface IPageObject {
   getTitle(): Promise<string>;
   getWindowHandle(): Promise<any>;
   maximize(): Promise<void>;
-  navigateTo(url: string): Promise<void>;
   navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage>;
-  navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any>;
-  navigateToPageInNewWindow(url: string): Promise<void>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
-  navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any>;
   opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   refresh(): Promise<void>;
   refresh<TPage>(page: new () => TPage): Promise<TPage>;

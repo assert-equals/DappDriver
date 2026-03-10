@@ -96,21 +96,16 @@ export class WebDriverPageObject implements IPageObject {
     await this.driver.manage().window().maximize();
   }
 
-  async navigateTo<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  async navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.driver.navigate().to(url);
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
-  async navigateToPageInNewWindow<TPage>(url: string, page?: new () => TPage): Promise<any> {
+  async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.driver.switchTo().newWindow('tab');
     const windowHandles: Array<string> = await this.getAllWindowHandles();
     await this.switchToWindow(windowHandles.at(-1), page);
-    await this.navigateTo(url);
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await this.navigateTo<TPage>(url, page);
   }
 
   async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
