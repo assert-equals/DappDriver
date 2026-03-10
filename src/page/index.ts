@@ -285,18 +285,12 @@ export class PageObject implements IPageObject {
    *
    * Schedules a command to refresh the current page
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  refresh(): Promise<void>;
-  refresh<TPage>(page: new () => TPage): Promise<TPage>;
-  async refresh<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('refresh', [page]);
-    } else {
-      return await this.callIfMethodExists('refresh');
-    }
+  async refresh<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('refresh', [page]);
   }
   /**
    *

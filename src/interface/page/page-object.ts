@@ -27,9 +27,7 @@ export interface IPageObject {
   navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
-  refresh(): Promise<void>;
   refresh<TPage>(page: new () => TPage): Promise<TPage>;
-  refresh<TPage>(page?: new () => TPage): Promise<any>;
   setSize(width: number, height: number): Promise<void>;
   switchBack(): Promise<void>;
   switchToFrame(cssLocator: string): Promise<void>;

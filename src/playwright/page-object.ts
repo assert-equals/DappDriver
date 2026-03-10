@@ -124,11 +124,9 @@ export class PlaywrightPageObject implements IPageObject {
     return await this.waitForWindows(2, isAtLeast, page);
   }
 
-  async refresh<TPage>(page?: new () => TPage): Promise<any> {
+  async refresh<TPage>(page: new () => TPage): Promise<TPage> {
     await this.page.reload();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async setSize(width: number, height: number): Promise<void> {
