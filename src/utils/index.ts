@@ -3,11 +3,10 @@ import { Comparator } from '../types';
 /**
  *
  *
- * @export
  * @param {string} str
  * @return {*}  {string}
  */
-export function escapeSpecialChars(str: string): string {
+function escapeRegExp(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 /**
@@ -18,7 +17,7 @@ export function escapeSpecialChars(str: string): string {
  * @return {*}  {RegExp}
  */
 export function toRegExp(arg: string | RegExp): RegExp {
-  return arg instanceof RegExp ? arg : new RegExp(escapeSpecialChars(arg), 'iu');
+  return arg instanceof RegExp ? arg : new RegExp(escapeRegExp(arg), 'iu');
 }
 
 export const isAtLeast: Comparator = (a: number, b: number) => a >= b;

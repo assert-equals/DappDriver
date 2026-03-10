@@ -6,34 +6,34 @@
   "types": "dist/src/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/src/index.d.ts",
       "require": "./dist/src/index.js",
-      "import": "./dist/src/index.js",
-      "types": "./dist/src/index.d.ts"
+      "import": "./dist/src/index.js"
     },
     "./metamask": {
+      "types": "./dist/src/metamask/index.d.ts",
       "require": "./dist/src/metamask/index.js",
-      "import": "./dist/src/metamask/index.js",
-      "types": "./dist/src/metamask/index.d.ts"
+      "import": "./dist/src/metamask/index.js"
     },
     "./flask": {
+      "types": "./dist/src/flask/index.d.ts",
       "require": "./dist/src/flask/index.js",
-      "import": "./dist/src/flask/index.js",
-      "types": "./dist/src/flask/index.d.ts"
+      "import": "./dist/src/flask/index.js"
     },
     "./rainbow": {
+      "types": "./dist/src/rainbow/index.d.ts",
       "require": "./dist/src/rainbow/index.js",
-      "import": "./dist/src/rainbow/index.js",
-      "types": "./dist/src/rainbow/index.d.ts"
+      "import": "./dist/src/rainbow/index.js"
     },
     "./wallet": {
+      "types": "./dist/src/wallet/index.d.ts",
       "require": "./dist/src/wallet/index.js",
-      "import": "./dist/src/wallet/index.js",
-      "types": "./dist/src/wallet/index.d.ts"
+      "import": "./dist/src/wallet/index.js"
     },
     "./zerion": {
+      "types": "./dist/src/zerion/index.d.ts",
       "require": "./dist/src/zerion/index.js",
-      "import": "./dist/src/zerion/index.js",
-      "types": "./dist/src/zerion/index.d.ts"
+      "import": "./dist/src/zerion/index.js"
     }
   },
   "files": [
@@ -64,7 +64,8 @@
     "release": "commit-and-tag-version",
     "release:major": "commit-and-tag-version --release-as major",
     "release:minor": "commit-and-tag-version --release-as minor",
-    "release:patch": "commit-and-tag-version --release-as patch"
+    "release:patch": "commit-and-tag-version --release-as patch",
+    "test": "vitest run"
   },
   "lint-staged": {
     "*.{js,json,ts}": [
@@ -106,7 +107,8 @@
     "rimraf": "^5.0.7",
     "ts-node": "^10.9.2",
     "typedoc": "^0.25.12",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "playwright": "^1.44.1"
