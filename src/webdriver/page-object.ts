@@ -130,11 +130,9 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.switchTo().frame(frameElement);
   }
 
-  async switchToWindow<TPage>(nameOrHandle: string, page?: new () => TPage): Promise<any> {
+  async switchToWindow<TPage>(nameOrHandle: string, page: new () => TPage): Promise<TPage> {
     await this.driver.switchTo().window(nameOrHandle);
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async waitForElement(cssLocator: string): Promise<void> {
@@ -162,7 +160,7 @@ export class WebDriverPageObject implements IPageObject {
       if (comparator(windowHandles.length, total)) {
         for (const handle of windowHandles) {
           try {
-            await this.switchToWindow(handle);
+            await this.driver.switchTo().window(handle);
             const actualTitle: string = await this.getTitle();
             const actualUrl: string = await this.getCurrentUrl();
             const newPage: TPage = new page();

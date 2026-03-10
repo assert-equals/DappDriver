@@ -63,17 +63,11 @@ export class Approve implements IConfirmation {
    *
    * @template TPage
    * @param {*} nameOrHandle
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof Approve
    */
-  switchToWindow(nameOrHandle: any): Promise<void>;
-  switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
-  async switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
-    } else {
-      return await this.callIfMethodExists('switchToWindow', [nameOrHandle]);
-    }
+  async switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
   }
 }

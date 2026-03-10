@@ -31,9 +31,7 @@ export interface IPageObject {
   setSize(width: number, height: number): Promise<void>;
   switchBack(): Promise<void>;
   switchToFrame(cssLocator: string): Promise<void>;
-  switchToWindow(nameOrHandle: any): Promise<void>;
   switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
-  switchToWindow<TPage>(nameOrHandle: any, page?: new () => TPage): Promise<any>;
   waitForElement(cssLocator: string): Promise<void>;
   waitForTitle(title?: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;

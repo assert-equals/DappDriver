@@ -142,11 +142,9 @@ export class PlaywrightPageObject implements IPageObject {
     DappDriver.Instance.Frame = frame;
   }
 
-  async switchToWindow<TPage>(nameOrHandle: Page, page?: new () => TPage): Promise<any> {
+  async switchToWindow<TPage>(nameOrHandle: Page, page: new () => TPage): Promise<TPage> {
     this.initialize(nameOrHandle);
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async waitForElement(cssLocator: string): Promise<void> {
@@ -185,7 +183,7 @@ export class PlaywrightPageObject implements IPageObject {
       if (comparator(windowHandles.length, total)) {
         for (const handle of windowHandles) {
           try {
-            await this.switchToWindow(handle);
+            this.initialize(handle);
             const actualTitle: string = await this.getTitle();
             const actualUrl: string = await this.getCurrentUrl();
             const newPage: TPage = new page();
