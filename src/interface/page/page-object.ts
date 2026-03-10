@@ -5,9 +5,7 @@ export interface IPageObject {
   url: string | RegExp;
   title: string;
   addCookie(cookie: Cookie): Promise<void>;
-  back(): Promise<void>;
   back<TPage>(page: new () => TPage): Promise<TPage>;
-  back<TPage>(page?: new () => TPage): Promise<any>;
   clearCookie(name: string): Promise<void>;
   clearCookies(): Promise<void>;
   close(): Promise<void>;

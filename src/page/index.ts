@@ -87,18 +87,12 @@ export class PageObject implements IPageObject {
    *
    * Schedules a command to navigate backwards in the browser history
    * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  back(): Promise<void>;
-  back<TPage>(page: new () => TPage): Promise<TPage>;
-  async back<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('back', [page]);
-    } else {
-      return await this.callIfMethodExists('back');
-    }
+  async back<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('back', [page]);
   }
   /**
    *

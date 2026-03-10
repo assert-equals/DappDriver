@@ -28,11 +28,9 @@ export class PlaywrightPageObject implements IPageObject {
     return await this.driver.addCookies([cookie]);
   }
 
-  async back<TPage>(page?: new () => TPage): Promise<any> {
+  async back<TPage>(page: new () => TPage): Promise<TPage> {
     await this.page.goBack();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async clearCookie(name: string): Promise<void> {

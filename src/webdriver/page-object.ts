@@ -18,11 +18,9 @@ export class WebDriverPageObject implements IPageObject {
     return await this.driver.manage().addCookie(cookie);
   }
 
-  async back<TPage>(page?: new () => TPage): Promise<any> {
+  async back<TPage>(page: new () => TPage): Promise<TPage> {
     await this.driver.navigate().back();
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async clearCookie(name: string): Promise<void> {
