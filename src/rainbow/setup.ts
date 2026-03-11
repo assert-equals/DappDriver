@@ -5,7 +5,7 @@ let createPasswordPage: CreatePassword;
 
 export async function setup(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
+  const welcomePage: Welcome = await page.waitAndSwitchToWindow<Welcome>(Welcome);
   if (seed) {
     const importOrConnectPage = await welcomePage.importOrConnectAWallet();
     const importPage = await importOrConnectPage.importWithASecretRecoveryPhraseOrPrivateKey();

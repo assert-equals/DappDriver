@@ -34,7 +34,7 @@ export class Connect extends PageObject implements IConfirmation {
    * @memberof Connect
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.connectButton.clickAndOpensInWindow<TPage>(page);
+    return await this.connectButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -45,6 +45,6 @@ export class Connect extends PageObject implements IConfirmation {
    * @memberof Connect
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }

@@ -11,7 +11,7 @@ export interface IPageObject {
   close<TPage>(page: new () => TPage): Promise<TPage>;
   closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   executeScript(script: string): Promise<any>;
-  executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
+  executeScriptAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(
     script: string,
     page: new () => TPage
   ): Promise<TPage>;
@@ -26,18 +26,18 @@ export interface IPageObject {
   maximize(): Promise<void>;
   navigateTo<TPage>(url: string, page: new () => TPage): Promise<TPage>;
   navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage>;
-  opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   refresh<TPage>(page: new () => TPage): Promise<TPage>;
   setSize(width: number, height: number): Promise<void>;
   switchBack(): Promise<void>;
   switchToFrame(cssLocator: string): Promise<void>;
-  switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
+  switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   waitForElement(cssLocator: string): Promise<void>;
   waitForTitle(title?: RegExp): Promise<void>;
   waitForURL(url?: RegExp): Promise<void>;
-  waitForWindows<TPage extends IConfirmation | IPageObject>(
-    total: number,
-    comparator: Comparator,
-    page: new () => TPage
+  waitAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(
+    page: new () => TPage,
+    total?: number,
+    comparator?: Comparator
   ): Promise<TPage>;
+  waitForWindows(total: number, comparator: Comparator): Promise<void>;
 }

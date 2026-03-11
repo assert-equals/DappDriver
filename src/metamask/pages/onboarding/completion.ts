@@ -27,6 +27,6 @@ export class Completion extends PageObject {
    * @memberof Completion
    */
   async completeOnboarding(): Promise<SidePanel> {
-    return await this.completeButton.clickAndOpensInWindow<SidePanel>(SidePanel);
+    return await this.completeButton.clickAndSwitchToWindow<SidePanel>(SidePanel);
   }
 }

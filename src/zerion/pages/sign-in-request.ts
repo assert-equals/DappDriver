@@ -34,7 +34,7 @@ export class SignInRequest extends PageObject implements IConfirmation {
    * @memberof SignInRequest
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.signInButton.clickAndOpensInWindow<TPage>(page);
+    return await this.signInButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -45,6 +45,6 @@ export class SignInRequest extends PageObject implements IConfirmation {
    * @memberof SignInRequest
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }

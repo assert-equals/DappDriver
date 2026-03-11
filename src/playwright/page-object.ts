@@ -49,19 +49,19 @@ export class PlaywrightPageObject implements IPageObject {
   async closeAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     const windowHandles: Array<Page> = await this.getAllWindowHandles();
     await this.page.close();
-    return await this.waitForWindows(windowHandles.length - 1, isAtMost, page);
+    return await this.waitAndSwitchToWindow(page, windowHandles.length - 1, isAtMost);
   }
 
   async executeScript(script: string): Promise<any> {
     return await this.page.evaluate(script);
   }
 
-  async executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
+  async executeScriptAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(
     script: string,
     page: new () => TPage
-  ): Promise<any> {
+  ): Promise<TPage> {
     this.page.evaluate(script);
-    return await this.opensInWindow(page);
+    return await this.waitAndSwitchToWindow(page);
   }
 
   async forward<TPage>(page: new () => TPage): Promise<TPage> {
@@ -116,12 +116,8 @@ export class PlaywrightPageObject implements IPageObject {
   async navigateToPageInNewWindow<TPage>(url: string, page: new () => TPage): Promise<TPage> {
     await this.driver.newPage();
     const windowHandles: Array<Page> = await this.getAllWindowHandles();
-    await this.switchToWindow(windowHandles.at(-1), page);
+    this.initialize(windowHandles.at(-1));
     return await this.navigateTo<TPage>(url, page);
-  }
-
-  async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.waitForWindows(2, isAtLeast, page);
   }
 
   async refresh<TPage>(page: new () => TPage): Promise<TPage> {
@@ -142,9 +138,36 @@ export class PlaywrightPageObject implements IPageObject {
     DappDriver.Instance.Frame = frame;
   }
 
-  async switchToWindow<TPage>(nameOrHandle: Page, page: new () => TPage): Promise<TPage> {
-    this.initialize(nameOrHandle);
-    return await DappDriver.getPage<TPage>(page);
+  async switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    const delay: number = 1000;
+    const retries: number = 60;
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      const windowHandles: Array<Page> = await this.getAllWindowHandles();
+      for (const handle of windowHandles) {
+        try {
+          this.initialize(handle);
+          const actualTitle: string = await this.getTitle();
+          const actualUrl: string = await this.getCurrentUrl();
+          const newPage: TPage = new page();
+          const title: RegExp = toRegExp(newPage.title);
+          const url: RegExp = toRegExp(newPage.url);
+          if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
+            return await DappDriver.getPage<TPage>(page);
+          }
+        } catch (e) {}
+      }
+      await DappDriver.sleep(delay);
+    }
+    throw new Error('switchToMatchingWindow timed out finding a matching window');
+  }
+
+  async waitAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(
+    page: new () => TPage,
+    total: number = 2,
+    comparator: Comparator = isAtLeast
+  ): Promise<TPage> {
+    await this.waitForWindows(total, comparator);
+    return await this.switchToWindow(page);
   }
 
   async waitForElement(cssLocator: string): Promise<void> {
@@ -170,31 +193,12 @@ export class PlaywrightPageObject implements IPageObject {
     );
   }
 
-  async waitForWindows<TPage extends IConfirmation | IPageObject>(
-    total: number,
-    comparator: Comparator,
-    page: new () => TPage
-  ): Promise<TPage> {
+  async waitForWindows(total: number, comparator: Comparator): Promise<void> {
     const delay: number = 1000;
-    const retries: number = 60;
-    let windowHandles: Array<Page> = [];
+    const retries: number = 10;
     for (let attempt = 1; attempt <= retries; attempt++) {
-      windowHandles = await this.getAllWindowHandles();
-      if (comparator(windowHandles.length, total)) {
-        for (const handle of windowHandles) {
-          try {
-            this.initialize(handle);
-            const actualTitle: string = await this.getTitle();
-            const actualUrl: string = await this.getCurrentUrl();
-            const newPage: TPage = new page();
-            const title: RegExp = toRegExp(newPage.title);
-            const url: RegExp = toRegExp(newPage.url);
-            if (RegExp(title).exec(actualTitle) !== null && RegExp(url).exec(actualUrl) !== null) {
-              return await DappDriver.getPage<TPage>(page);
-            }
-          } catch (e) {}
-        }
-      }
+      const windowHandles: Array<Page> = await this.getAllWindowHandles();
+      if (comparator(windowHandles.length, total)) return;
       await DappDriver.sleep(delay);
     }
     throw new Error('waitForWindows timed out polling window handles');

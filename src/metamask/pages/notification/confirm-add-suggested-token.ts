@@ -34,7 +34,7 @@ export class ConfirmAddSuggestedToken extends PageObject implements IConfirmatio
    * @memberof ConfirmAddSuggestedToken
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.nextButton.clickAndOpensInWindow<TPage>(page);
+    return await this.nextButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -45,6 +45,6 @@ export class ConfirmAddSuggestedToken extends PageObject implements IConfirmatio
    * @memberof ConfirmAddSuggestedToken
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }

@@ -1,3 +1,4 @@
+import { IPageObject } from '../../interface/page/page-object';
 import { IConfirmation } from '../../interface/wallet/confirmation';
 import { DappDriver } from '../../session/dapp-driver';
 
@@ -62,7 +63,7 @@ export class ConfirmTransaction implements IConfirmation {
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
    */
-  async switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage> {
-    return await this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
+  async switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('switchToWindow', [page]);
   }
 }

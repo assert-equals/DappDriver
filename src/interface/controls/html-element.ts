@@ -5,8 +5,8 @@ export interface IHTMLElement {
   click(): Promise<void>;
   click<TPage>(page: new () => TPage): Promise<TPage>;
   click<TPage>(page?: new () => TPage): Promise<any>;
+  clickAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   clickAndWait(duration: number): Promise<void>;
-  clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   getAttribute(attribute: string): Promise<string | null>;
   getCssValue(property: string): Promise<string | null>;
   getText(): Promise<string>;

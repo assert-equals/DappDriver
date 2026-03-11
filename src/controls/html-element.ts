@@ -67,6 +67,17 @@ export class HTMLElement implements IHTMLElement {
   }
   /**
    *
+   * Schedules a command to click on this element and switch the focus of all future commands to a given window
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof HTMLElement
+   */
+  async clickAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('clickAndSwitchToWindow', [page]);
+  }
+  /**
+   *
    * Schedules a command to click on this element and wait for the given amount of time
    * @param {number} [duration=1000]
    * @return {*}  {Promise<void>}
@@ -74,17 +85,6 @@ export class HTMLElement implements IHTMLElement {
    */
   async clickAndWait(duration: number = 1000): Promise<void> {
     return await this.callIfMethodExists('clickAndWait', [duration]);
-  }
-  /**
-   *
-   * Schedules a command to click on this element and switch the focus of all future commands to a given window
-   * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
-   * @memberof HTMLElement
-   */
-  async clickAndOpensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.callIfMethodExists('clickAndOpensInWindow', [page]);
   }
   /**
    *

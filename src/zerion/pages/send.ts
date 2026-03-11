@@ -34,7 +34,7 @@ export class Send extends PageObject implements IConfirmation {
    * @memberof Send
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.confirmButton.clickAndOpensInWindow<TPage>(page);
+    return await this.confirmButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -45,6 +45,6 @@ export class Send extends PageObject implements IConfirmation {
    * @memberof Send
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }

@@ -6,5 +6,5 @@ export interface IConfirmation {
   accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   getAllWindowHandles(): Promise<Array<any>>;
   reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
-  switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage>;
+  switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
 }

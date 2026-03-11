@@ -15,7 +15,7 @@ let metametricsPage: Metametrics;
 
 export async function setup(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const experimentalArea: ExperimentalArea = await page.opensInWindow<ExperimentalArea>(ExperimentalArea);
+  const experimentalArea: ExperimentalArea = await page.waitAndSwitchToWindow<ExperimentalArea>(ExperimentalArea);
   const welcomePage = await experimentalArea.iAccept();
   if (seed) {
     const importWithRecoveryPhrasePage: ImportWithRecoveryPhrase = await welcomePage.iHaveAnExistingWallet();

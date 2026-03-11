@@ -4,7 +4,7 @@ import { IConfirmation } from '../interface/wallet/confirmation';
 import { PlaywrightPageObject } from '../playwright/page-object';
 import { DappDriver } from '../session/dapp-driver';
 import { Comparator, Cookie, Page } from '../types';
-import { toRegExp } from '../utils';
+import { isAtLeast, toRegExp } from '../utils';
 import { WebDriverPageObject } from '../webdriver/page-object';
 
 /**
@@ -147,18 +147,18 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to the window
+   * Schedules a command to execute JavaScript in the context of the currently selected frame or window and switch the focus of all future commands to a given window
    * @template TPage
    * @param {string} script
    * @param {new () => TPage} page
    * @return {*}  {Promise<any>}
    * @memberof PageObject
    */
-  async executeScriptAndOpensInWindow<TPage extends IConfirmation | IPageObject>(
+  async executeScriptAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(
     script: string,
     page: new () => TPage
-  ): Promise<any> {
-    return await this.callIfMethodExists('executeScriptAndOpensInWindow', [script, page]);
+  ): Promise<TPage> {
+    return await this.callIfMethodExists('executeScriptAndSwitchToWindow', [script, page]);
   }
   /**
    *
@@ -272,17 +272,6 @@ export class PageObject implements IPageObject {
   }
   /**
    *
-   * Schedules a command to switch the focus of all future commands to the window
-   * @template TPage
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
-   * @memberof PageObject
-   */
-  async opensInWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.callIfMethodExists('opensInWindow', [page]);
-  }
-  /**
-   *
    * Schedules a command to refresh the current page
    * @template TPage
    * @param {new () => TPage} page
@@ -325,14 +314,32 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to switch the focus of all future commands to a given window
+   * whose title and url match the provided page
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof PageObject
    */
-  async switchToWindow<TPage>(nameOrHandle: any, page: new () => TPage): Promise<TPage> {
-    return await this.callIfMethodExists('switchToWindow', [nameOrHandle, page]);
+  async switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('switchToWindow', [page]);
+  }
+  /**
+   *
+   * Schedules a command to wait for the required count of windows to be opened
+   * and switch the focus of all future commands to the first matching window
+   * @template TPage
+   * @param {number} total
+   * @param {Comparator} comparator
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof PageObject
+   */
+  async waitAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(
+    page: new () => TPage,
+    total: number = 2,
+    comparator: Comparator = isAtLeast
+  ): Promise<TPage> {
+    return await this.callIfMethodExists('waitAndSwitchToWindow', [page, total, comparator]);
   }
   /**
    *
@@ -394,18 +401,12 @@ export class PageObject implements IPageObject {
   /**
    *
    * Schedules a command to wait for the required count of windows to be opened
-   * @template TPage
    * @param {number} total
    * @param {Comparator} comparator
-   * @param {new () => TPage} page
-   * @return {*}  {Promise<TPage>}
+   * @return {*}  {Promise<void>}
    * @memberof PageObject
    */
-  async waitForWindows<TPage extends IConfirmation | IPageObject>(
-    total: number,
-    comparator: Comparator,
-    page: new () => TPage
-  ): Promise<TPage> {
-    return await this.callIfMethodExists('waitForWindows', [total, comparator, page]);
+  async waitForWindows(total: number, comparator: Comparator): Promise<void> {
+    return await this.callIfMethodExists('waitForWindows', [total, comparator]);
   }
 }

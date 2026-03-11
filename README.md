@@ -67,7 +67,7 @@ export class Dapp extends PageObject {
   }
 
   async connect(): Promise<Connect> {
-    return await this.connectButton().clickAndOpensInWindow<Connect>(Connect);
+    return await this.connectButton().clickAndSwitchToWindow<Connect>(Connect);
   }
 }
 ```

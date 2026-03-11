@@ -38,7 +38,7 @@ export class AddNetwork extends PageObject implements IConfirmation {
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     await this.addButton.click();
-    return await this.closeButton.clickAndOpensInWindow<TPage>(page);
+    return await this.closeButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -49,6 +49,6 @@ export class AddNetwork extends PageObject implements IConfirmation {
    * @memberof AddNetwork
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }

@@ -34,7 +34,7 @@ export class Approve extends PageObject implements IConfirmation {
    * @memberof Approve
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.confirmButton.clickAndOpensInWindow<TPage>(page);
+    return await this.confirmButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -45,6 +45,6 @@ export class Approve extends PageObject implements IConfirmation {
    * @memberof Approve
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }

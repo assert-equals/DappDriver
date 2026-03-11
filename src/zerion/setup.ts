@@ -6,7 +6,7 @@ let confirmPasswordPage: ConfirmPassword;
 
 export async function setup(seed: string): Promise<void> {
   const page: PageObject = new PageObject();
-  const welcomePage: Welcome = await page.opensInWindow<Welcome>(Welcome);
+  const welcomePage: Welcome = await page.waitAndSwitchToWindow<Welcome>(Welcome);
   if (seed) {
     const importWalletPage = await welcomePage.importExistingWallet();
     const recoveryPhrasePage = await importWalletPage.importRecoveryPhrase();

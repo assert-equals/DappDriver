@@ -40,7 +40,7 @@ export class SignatureRequest extends PageObject implements IConfirmation {
     if (await this.scrollButton.isDisplayed()) {
       await this.scrollButton.clickAndWait();
     }
-    return await this.signButton.clickAndOpensInWindow<TPage>(page);
+    return await this.signButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -51,6 +51,6 @@ export class SignatureRequest extends PageObject implements IConfirmation {
    * @memberof SignatureRequest
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.cancelButton.clickAndOpensInWindow<TPage>(page);
+    return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);
   }
 }
