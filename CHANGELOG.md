@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.37.0](https://github.com/assert-equals/DappDriver/compare/v0.36.1...v0.37.0) (2026-03-11)
+
+
+### Features
+
+* add waitAndSwitchToWindow and overhaul window-switching API ([2771ff6](https://github.com/assert-equals/DappDriver/commit/2771ff6873a7175b6299996336a65804caf50ead))
+
 ## [0.36.1](https://github.com/assert-equals/DappDriver/compare/v0.36.0...v0.36.1) (2026-03-09)
 
 
