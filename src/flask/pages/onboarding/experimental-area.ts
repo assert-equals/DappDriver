@@ -27,6 +27,6 @@ export class ExperimentalArea extends PageObject {
    * @memberof ExperimentalArea
    */
   async iAccept(): Promise<Welcome> {
-    return await this.iAcceptButton.click<Welcome>(Welcome);
+    return await this.iAcceptButton.clickRedirectsTo<Welcome>(Welcome);
   }
 }

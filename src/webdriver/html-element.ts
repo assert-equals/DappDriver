@@ -42,7 +42,7 @@ export class WebDriverHTMLElement implements IHTMLElement {
     await this.webElement.click();
   }
 
-  async click<TPage>(page?: new () => TPage): Promise<any> {
+  async click(): Promise<void> {
     try {
       await this.hardClick();
     } catch (err) {
@@ -51,9 +51,11 @@ export class WebDriverHTMLElement implements IHTMLElement {
         await this.hardClick();
       }
     }
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+  }
+
+  async clickRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
+    await this.click();
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async clickAndWait(duration: number): Promise<void> {

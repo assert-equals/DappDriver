@@ -60,6 +60,6 @@ export class ConfirmRecoveryPhrase extends PageObject {
    */
   async confirm(): Promise<Metametrics> {
     await this.confirmButton.click();
-    return await this.modalButton.click<Metametrics>(Metametrics);
+    return await this.modalButton.clickRedirectsTo<Metametrics>(Metametrics);
   }
 }

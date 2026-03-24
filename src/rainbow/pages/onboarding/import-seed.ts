@@ -43,6 +43,6 @@ export class ImportSeed extends PageObject {
    * @memberof ImportSeed
    */
   async importWalletGroup(): Promise<ImportSelect> {
-    return await this.importWalletsButton.click<ImportSelect>(ImportSelect);
+    return await this.importWalletsButton.clickRedirectsTo<ImportSelect>(ImportSelect);
   }
 }

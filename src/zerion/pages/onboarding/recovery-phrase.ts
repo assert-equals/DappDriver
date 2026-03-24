@@ -41,6 +41,6 @@ export class RecoveryPhrase extends PageObject {
    * @memberof RecoveryPhrase
    */
   async confirmSecretRecoveryPhrase(): Promise<SelectWallets> {
-    return await this.importWalletButton.click<SelectWallets>(SelectWallets);
+    return await this.importWalletButton.clickRedirectsTo<SelectWallets>(SelectWallets);
   }
 }

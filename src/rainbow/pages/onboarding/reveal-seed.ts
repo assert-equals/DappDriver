@@ -43,6 +43,6 @@ export class RevealSeed extends PageObject {
    * @memberof RevealSeed
    */
   async iveSavedTheseWords(): Promise<SeedVerify> {
-    return await this.iveSavedTheseWordsButton.click<SeedVerify>(SeedVerify);
+    return await this.iveSavedTheseWordsButton.clickRedirectsTo<SeedVerify>(SeedVerify);
   }
 }

@@ -52,6 +52,6 @@ export class BackUpRecoveryPhrase extends PageObject {
    * @memberof BackUpRecoveryPhrase
    */
   async verify(): Promise<Verify> {
-    return await this.verifyBackUpButton.click<Verify>(Verify);
+    return await this.verifyBackUpButton.clickRedirectsTo<Verify>(Verify);
   }
 }

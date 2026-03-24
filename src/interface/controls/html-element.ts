@@ -3,8 +3,7 @@ import { IConfirmation } from '../wallet/confirmation';
 
 export interface IHTMLElement {
   click(): Promise<void>;
-  click<TPage>(page: new () => TPage): Promise<TPage>;
-  click<TPage>(page?: new () => TPage): Promise<any>;
+  clickRedirectsTo<TPage>(page: new () => TPage): Promise<TPage>;
   clickAndSwitchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage>;
   clickAndWait(duration: number): Promise<void>;
   getAttribute(attribute: string): Promise<string | null>;

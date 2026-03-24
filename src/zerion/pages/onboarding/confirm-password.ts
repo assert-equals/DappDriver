@@ -41,6 +41,6 @@ export class ConfirmPassword extends PageObject {
    * @memberof ConfirmPassword
    */
   async setPassword<TPage>(page: new () => TPage): Promise<TPage> {
-    return await this.setPasswordButton.click<TPage>(page);
+    return await this.setPasswordButton.clickRedirectsTo<TPage>(page);
   }
 }

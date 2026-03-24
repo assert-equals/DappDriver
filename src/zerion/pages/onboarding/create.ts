@@ -27,6 +27,6 @@ export class Create extends PageObject {
    * @memberof Create
    */
   async create(): Promise<BackUp> {
-    return await this.createButton.click<BackUp>(BackUp);
+    return await this.createButton.clickRedirectsTo<BackUp>(BackUp);
   }
 }

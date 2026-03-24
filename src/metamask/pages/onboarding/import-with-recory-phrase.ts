@@ -46,6 +46,6 @@ export class ImportWithRecoveryPhrase extends PageObject {
    * @memberof ImportWithRecoveryPhrase
    */
   async confirmSecretRecoveryPhrase(): Promise<CreatePassword> {
-    return await this.confirmButton.click<CreatePassword>(CreatePassword);
+    return await this.confirmButton.clickRedirectsTo<CreatePassword>(CreatePassword);
   }
 }

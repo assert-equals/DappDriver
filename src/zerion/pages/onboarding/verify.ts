@@ -51,6 +51,6 @@ export class Verify extends PageObject {
    * @memberof Verify
    */
   async verify(): Promise<Success> {
-    return await this.verifyButton.click<Success>(Success);
+    return await this.verifyButton.clickRedirectsTo<Success>(Success);
   }
 }
