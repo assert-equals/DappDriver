@@ -39,6 +39,6 @@ export class ReviewRecoveryPhrase extends PageObject {
    * @memberof ReviewRecoveryPhrase
    */
   async next(): Promise<ConfirmRecoveryPhrase> {
-    return await this.nextButton.click<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
+    return await this.nextButton.clickRedirectsTo<ConfirmRecoveryPhrase>(ConfirmRecoveryPhrase);
   }
 }

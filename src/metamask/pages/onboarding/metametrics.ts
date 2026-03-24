@@ -27,6 +27,6 @@ export class Metametrics extends PageObject {
    * @memberof Metametrics
    */
   async continue(): Promise<Completion> {
-    return await this.iAgreeButton.click<Completion>(Completion);
+    return await this.iAgreeButton.clickRedirectsTo<Completion>(Completion);
   }
 }

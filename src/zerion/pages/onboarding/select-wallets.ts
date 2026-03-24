@@ -29,6 +29,6 @@ export class SelectWallets extends PageObject {
    * @memberof SelectWallets
    */
   async continue(): Promise<Password> {
-    return await this.continueButton.click<Password>(Password);
+    return await this.continueButton.clickRedirectsTo<Password>(Password);
   }
 }

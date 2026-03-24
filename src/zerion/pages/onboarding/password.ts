@@ -40,6 +40,6 @@ export class Password extends PageObject {
    * @memberof Password
    */
   async confirmPassword(): Promise<ConfirmPassword> {
-    return await this.confirmButton.click<ConfirmPassword>(ConfirmPassword);
+    return await this.confirmButton.clickRedirectsTo<ConfirmPassword>(ConfirmPassword);
   }
 }

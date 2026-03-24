@@ -53,6 +53,6 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async setPassword(): Promise<Ready> {
-    return await this.setPasswordButton.click<Ready>(Ready);
+    return await this.setPasswordButton.clickRedirectsTo<Ready>(Ready);
   }
 }

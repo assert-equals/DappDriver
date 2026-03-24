@@ -65,7 +65,7 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async importWallet(): Promise<Metametrics> {
-    return await this.submitButton.click<Metametrics>(Metametrics);
+    return await this.submitButton.clickRedirectsTo<Metametrics>(Metametrics);
   }
   /**
    *
@@ -74,6 +74,6 @@ export class CreatePassword extends PageObject {
    * @memberof CreatePassword
    */
   async createWallet(): Promise<ReviewRecoveryPhrase> {
-    return await this.submitButton.click<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
+    return await this.submitButton.clickRedirectsTo<ReviewRecoveryPhrase>(ReviewRecoveryPhrase);
   }
 }

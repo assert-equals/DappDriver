@@ -37,7 +37,7 @@ export class Welcome extends PageObject {
    */
   async createANewWallet(): Promise<CreatePassword> {
     await this.createANewWalletButton.click();
-    return await this.createWithSRPButton.click<CreatePassword>(CreatePassword);
+    return await this.createWithSRPButton.clickRedirectsTo<CreatePassword>(CreatePassword);
   }
   /**
    *
@@ -47,6 +47,6 @@ export class Welcome extends PageObject {
    */
   async iHaveAnExistingWallet(): Promise<ImportWithRecoveryPhrase> {
     await this.importAnExistingWalletButton.click();
-    return await this.importWithSRPButton.click<ImportWithRecoveryPhrase>(ImportWithRecoveryPhrase);
+    return await this.importWithSRPButton.clickRedirectsTo<ImportWithRecoveryPhrase>(ImportWithRecoveryPhrase);
   }
 }

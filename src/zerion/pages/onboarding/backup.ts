@@ -39,6 +39,6 @@ export class BackUp extends PageObject {
    * @memberof BackUp
    */
   async backUpNow(): Promise<BackUpRecoveryPhrase> {
-    return await this.backUpNowButton.click<BackUpRecoveryPhrase>(BackUpRecoveryPhrase);
+    return await this.backUpNowButton.clickRedirectsTo<BackUpRecoveryPhrase>(BackUpRecoveryPhrase);
   }
 }

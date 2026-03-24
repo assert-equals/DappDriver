@@ -30,7 +30,7 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async createNewWallet(): Promise<Password> {
-    return await this.createNewWalletButton.click<Password>(Password);
+    return await this.createNewWalletButton.clickRedirectsTo<Password>(Password);
   }
   /**
    *
@@ -39,6 +39,6 @@ export class Welcome extends PageObject {
    * @memberof Welcome
    */
   async importExistingWallet(): Promise<ImportWallet> {
-    return await this.importExistingWalletButton.click<ImportWallet>(ImportWallet);
+    return await this.importExistingWalletButton.clickRedirectsTo<ImportWallet>(ImportWallet);
   }
 }
