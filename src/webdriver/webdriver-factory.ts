@@ -1,6 +1,6 @@
 import { Builder, WebDriver } from 'selenium-webdriver';
 import { Options as ChromeOptions } from 'selenium-webdriver/chrome';
-import { CHROME, HEADLESS, HTTPS_PROXY_HOST } from '../constants';
+import { CHROME, HTTPS_PROXY_HOST } from '../constants';
 import { logInfo } from '../log';
 import { Browser, BrowserOptions } from '../types';
 
@@ -19,13 +19,10 @@ export class WebDriverFactory {
       args.push(`--proxy-server=${HTTPS_PROXY_HOST}`);
       chromeOptions.setAcceptInsecureCerts(true);
     }
-    if (options.extension.wallet !== null && options.extension.wallet !== HEADLESS) {
+    if (options.extension.wallet !== null) {
       const extensionPath: string = options.extension.path;
       logInfo(`Loading extension from path: ${extensionPath}`);
       args.push(`--load-extension=${extensionPath}`);
-    }
-    if (options.extension.wallet === HEADLESS) {
-      chromeOptions.enableBidi();
     }
     args.push(`--window-size=1024,768`);
     chromeOptions.addArguments(...args);
