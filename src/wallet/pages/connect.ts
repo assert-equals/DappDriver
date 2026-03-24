@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class Connect implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly connect: InstanceType<typeof DappDriver.Instance.Extension.pages.Connect>;
+  private readonly connect: IConfirmation;
 
   constructor() {
     this.connect = new DappDriver.Instance.Extension.pages.Connect();

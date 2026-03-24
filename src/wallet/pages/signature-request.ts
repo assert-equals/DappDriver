@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class SignatureRequest implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly signatureRequest: InstanceType<typeof DappDriver.Instance.Extension.pages.SignatureRequest>;
+  private readonly signatureRequest: IConfirmation;
 
   constructor() {
     this.signatureRequest = new DappDriver.Instance.Extension.pages.SignatureRequest();
