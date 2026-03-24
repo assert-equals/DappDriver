@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class ApproveAll implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly approveAll: InstanceType<typeof DappDriver.Instance.Extension.pages.ApproveAll>;
+  private readonly approveAll: IConfirmation;
 
   constructor() {
     this.approveAll = new DappDriver.Instance.Extension.pages.ApproveAll();
@@ -57,7 +57,6 @@ export class ApproveAll implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof ApproveAll

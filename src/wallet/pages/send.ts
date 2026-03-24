@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class Send implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly send: InstanceType<typeof DappDriver.Instance.Extension.pages.Send>;
+  private readonly send: IConfirmation;
 
   constructor() {
     this.send = new DappDriver.Instance.Extension.pages.Send();
@@ -58,7 +58,6 @@ export class Send implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof Send

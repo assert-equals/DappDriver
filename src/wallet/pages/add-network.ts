@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class AddNetwork implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly addNetwork: InstanceType<typeof DappDriver.Instance.Extension.pages.AddNetwork>;
+  private readonly addNetwork: IConfirmation;
 
   constructor() {
     this.addNetwork = new DappDriver.Instance.Extension.pages.AddNetwork();
@@ -58,7 +58,6 @@ export class AddNetwork implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof AddNetwork

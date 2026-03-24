@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class ConfirmTransaction implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly confirmTx: InstanceType<typeof DappDriver.Instance.Extension.pages.ConfirmTransaction>;
+  private readonly confirmTx: IConfirmation;
 
   constructor() {
     this.confirmTx = new DappDriver.Instance.Extension.pages.ConfirmTransaction();
@@ -58,7 +58,6 @@ export class ConfirmTransaction implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction

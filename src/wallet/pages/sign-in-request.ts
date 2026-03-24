@@ -12,7 +12,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class SignInRequest implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly signInRequest: InstanceType<typeof DappDriver.Instance.Extension.pages.SignInRequest>;
+  private readonly signInRequest: IConfirmation;
 
   constructor() {
     this.signInRequest = new DappDriver.Instance.Extension.pages.SignInRequest();
@@ -58,7 +58,6 @@ export class SignInRequest implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof SignInRequest

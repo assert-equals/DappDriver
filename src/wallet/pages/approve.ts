@@ -5,7 +5,7 @@ import { DappDriver } from '../../session/dapp-driver';
 export class Approve implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly approve: InstanceType<typeof DappDriver.Instance.Extension.pages.Approve>;
+  private readonly approve: IConfirmation;
 
   constructor() {
     this.approve = new DappDriver.Instance.Extension.pages.Approve();
@@ -51,7 +51,6 @@ export class Approve implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof Approve
