@@ -57,7 +57,6 @@ export class SignatureRequest implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof SignatureRequest

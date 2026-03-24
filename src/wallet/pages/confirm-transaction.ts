@@ -58,7 +58,6 @@ export class ConfirmTransaction implements IConfirmation {
    *
    *
    * @template TPage
-   * @param {*} nameOrHandle
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
    * @memberof ConfirmTransaction
