@@ -31,11 +31,13 @@ export class PlaywrightHTMLElement implements IHTMLElement {
     return locator;
   }
 
-  async click<TPage>(page?: new () => TPage): Promise<any> {
+  async click(): Promise<void> {
     await this.webElement.click({ timeout: this.timeout });
-    if (page) {
-      return await DappDriver.getPage<TPage>(page);
-    }
+  }
+
+  async clickRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
+    await this.webElement.click({ timeout: this.timeout });
+    return await DappDriver.getPage<TPage>(page);
   }
 
   async clickAndWait(duration: number): Promise<void> {

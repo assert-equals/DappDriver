@@ -51,19 +51,22 @@ export class HTMLElement implements IHTMLElement {
   /**
    *
    * Schedules a command to click on this element
-   * @template TPage
-   * @param {new () => TPage} [page]
-   * @return {*}  {Promise<any>}
+   * @return {*}  {Promise<void>}
    * @memberof HTMLElement
    */
-  click(): Promise<void>;
-  click<TPage>(page: new () => TPage): Promise<TPage>;
-  async click<TPage>(page?: new () => TPage): Promise<any> {
-    if (page) {
-      return await this.callIfMethodExists('click', [page]);
-    } else {
-      return await this.callIfMethodExists('click');
-    }
+  async click(): Promise<void> {
+    return await this.callIfMethodExists('click');
+  }
+  /**
+   *
+   * Schedules a command to click on this element and return a new page object
+   * @template TPage
+   * @param {new () => TPage} page
+   * @return {*}  {Promise<TPage>}
+   * @memberof HTMLElement
+   */
+  async clickRedirectsTo<TPage>(page: new () => TPage): Promise<TPage> {
+    return await this.callIfMethodExists('clickRedirectsTo', [page]);
   }
   /**
    *
