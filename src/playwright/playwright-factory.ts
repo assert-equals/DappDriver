@@ -1,5 +1,5 @@
 import playwright, { BrowserContext } from 'playwright-core';
-import { CHROME, HEADLESS, HTTPS_PROXY_HOST } from '../constants';
+import { CHROME, HTTPS_PROXY_HOST } from '../constants';
 import { logInfo } from '../log';
 import { Browser, BrowserOptions } from '../types';
 
@@ -23,7 +23,7 @@ export class PlaywrightFactory {
         server: HTTPS_PROXY_HOST
       };
     }
-    if (options.extension.wallet !== null && options.extension.wallet !== HEADLESS) {
+    if (options.extension.wallet !== null) {
       process.env.PW_CHROMIUM_ATTACH_TO_OTHER = '1';
       const extensionPath: string = options.extension.path;
       logInfo(`Loading extension from path: ${extensionPath}`);

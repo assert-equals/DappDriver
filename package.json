@@ -79,7 +79,6 @@
   "author": "Assert Equals Ltd",
   "license": "MIT",
   "dependencies": {
-    "@assert-equals/headless-wallet": "^0.0.16",
     "adm-zip": "^0.5.16",
     "axios": "^1.9.0",
     "chalk": "^4.1.2",

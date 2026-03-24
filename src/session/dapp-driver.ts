@@ -1,16 +1,6 @@
-import { setupHeadlessWallet } from '@assert-equals/headless-wallet';
 import { BrowserContext } from 'playwright-core';
 import { WebDriver } from 'selenium-webdriver';
-import {
-  HEADLESS,
-  METAMASK,
-  METAMASK_FLASK,
-  NODE_MODULE_DIR,
-  PLAYWRIGHT,
-  RAINBOW,
-  WEBDRIVER,
-  ZERION
-} from '../constants';
+import { METAMASK, METAMASK_FLASK, NODE_MODULE_DIR, PLAYWRIGHT, RAINBOW, WEBDRIVER, ZERION } from '../constants';
 import { IWallet } from '../interface/extension/wallet';
 import { PageObject } from '../page';
 import { PlaywrightFactory } from '../playwright/playwright-factory';
@@ -282,16 +272,6 @@ export class DappDriver {
         case ZERION:
           DappDriver.Instance.Wallet = options.extension.wallet;
           await DappDriver.Instance.Extension.setup(options.extension.seed);
-          break;
-        case HEADLESS:
-          DappDriver.Instance.Wallet = HEADLESS;
-          if (DappDriver.Instance.Framework === PLAYWRIGHT) {
-            const page = DappDriver.Instance.Page as Page;
-            await setupHeadlessWallet({ page, port: options.extension.port });
-          } else if (DappDriver.Instance.Framework === WEBDRIVER) {
-            const driver = DappDriver.Instance.Driver as WebDriver;
-            await setupHeadlessWallet({ driver });
-          }
           break;
       }
     } catch (error) {
