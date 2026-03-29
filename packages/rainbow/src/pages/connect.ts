@@ -1,4 +1,4 @@
-import { IConfirmation } from '../../interface/wallet/confirmation';
+import { IConfirmation } from '@assert-equals/dappdriver';
 import { ApproveRequest } from './approve-request';
 
 /**

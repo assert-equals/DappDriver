@@ -1,6 +1,5 @@
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
 import { ImportOrConnect, SeedBackup } from '../..';
-import { HTMLElement } from '../../../controls';
-import { PageObject } from '../../../page';
 
 /**
  *

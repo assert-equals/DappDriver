@@ -1,7 +1,5 @@
+import { DappDriver, HTMLElement, PageObject } from '@assert-equals/dappdriver';
 import { CreatePassword } from '../..';
-import { DappDriver } from '../../..';
-import { HTMLElement } from '../../../controls';
-import { PageObject } from '../../../page';
 
 /**
  *

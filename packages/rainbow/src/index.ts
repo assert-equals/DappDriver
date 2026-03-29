@@ -1,4 +1,4 @@
-import { IWallet } from '../interface/extension/wallet';
+import { IWallet } from '@assert-equals/dappdriver';
 import { install } from './install';
 import { AddNetwork } from './pages/add-network';
 import { Approve } from './pages/approve';

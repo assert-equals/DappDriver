@@ -1,18 +1,25 @@
-import { DEFAULT_RAINBOW_VERSION, RAINBOW, RAINBOW_GITHUB_API, RECOMMENDED_RAINBOW_VERSIONS } from '../constants';
-import { logInfo, logSuccess } from '../log';
-import { Artifact } from '../types';
 import {
+  Artifact,
   checkEnvVariable,
   compareVersion,
   createDirectory,
   downloadArtifactZipFile,
   extractZipContents,
+  fetchGithubArtifact,
+  fetchGithubRun,
   fetchGithubTags,
   fetchGithubWorkflow,
-  fetchGithubRun,
-  fetchGithubArtifact,
-  fileExists
-} from '../wallet/install';
+  fileExists,
+  logInfo,
+  logSuccess
+} from '@assert-equals/dappdriver';
+import {
+  DEFAULT_RAINBOW_VERSION,
+  RAINBOW,
+  RAINBOW_GITHUB_API,
+  RAINBOW_PACKAGE_NAME,
+  RECOMMENDED_RAINBOW_VERSIONS
+} from './constants';
 
 export async function install(directory: string, version: string = DEFAULT_RAINBOW_VERSION): Promise<string> {
   const artifactName = `rainbowbx-chrome-v${version}`;
@@ -25,7 +32,7 @@ export async function install(directory: string, version: string = DEFAULT_RAINB
   const workflowName = 'Publish to Chrome (Prod)';
   checkEnvVariable('GITHUB_TOKEN');
   compareVersion(RAINBOW, version, RECOMMENDED_RAINBOW_VERSIONS);
-  await fetchGithubTags(RAINBOW, version, RAINBOW_GITHUB_API);
+  await fetchGithubTags(RAINBOW, version, RAINBOW_GITHUB_API, RAINBOW_PACKAGE_NAME);
   const workflow = await fetchGithubWorkflow(workflowName, RAINBOW_GITHUB_API);
   const run = await fetchGithubRun(version, workflowName, workflow, RAINBOW_GITHUB_API);
   const artifact: Artifact = await fetchGithubArtifact(artifactName, run, RAINBOW_GITHUB_API);

@@ -1,6 +1,5 @@
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
 import { RevealSeed } from '../..';
-import { HTMLElement } from '../../../controls';
-import { PageObject } from '../../../page';
 
 /**
  *

@@ -1,6 +1,5 @@
+import { HTMLElement, InputText, PageObject } from '@assert-equals/dappdriver';
 import { ImportSelect } from '../..';
-import { HTMLElement, InputText } from '../../../controls';
-import { PageObject } from '../../../page';
 
 /**
  *
