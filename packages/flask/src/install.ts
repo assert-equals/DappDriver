@@ -1,23 +1,25 @@
-import { readFileSync, writeFileSync } from 'fs';
-import path from 'path';
 import {
-  DEFAULT_METAMASK_FLASK_ASSET,
-  DEFAULT_METAMASK_FLASK_VERSION,
-  METAMASK_FLASK,
-  METAMASK_GITHUB_API,
-  RECOMMENDED_METAMASK_FLASK_VERSIONS
-} from '../constants';
-import { logInfo, logSuccess } from '../log';
-import { Asset } from '../types';
-import {
+  Asset,
   compareVersion,
   createDirectory,
   downloadAssetZipFile,
   extractZipContents,
   fetchGithubRelease,
   fileExists,
-  findGithubAsset
-} from '../wallet/install';
+  findGithubAsset,
+  logInfo,
+  logSuccess
+} from '@assert-equals/dappdriver';
+import { readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import {
+  DEFAULT_METAMASK_FLASK_ASSET,
+  DEFAULT_METAMASK_FLASK_VERSION,
+  METAMASK_FLASK,
+  METAMASK_FLASK_PACKAGE_NAME,
+  METAMASK_GITHUB_API,
+  RECOMMENDED_METAMASK_FLASK_VERSIONS
+} from './constants';
 
 export async function install(directory: string, version: string = DEFAULT_METAMASK_FLASK_VERSION): Promise<string> {
   const assetName = `${DEFAULT_METAMASK_FLASK_ASSET}-${version}-flask.0`;
@@ -28,7 +30,12 @@ export async function install(directory: string, version: string = DEFAULT_METAM
     return destDir;
   }
   compareVersion(METAMASK_FLASK, version, RECOMMENDED_METAMASK_FLASK_VERSIONS);
-  const release: any = await fetchGithubRelease(METAMASK_FLASK, version, METAMASK_GITHUB_API);
+  const release: any = await fetchGithubRelease(
+    METAMASK_FLASK,
+    version,
+    METAMASK_GITHUB_API,
+    METAMASK_FLASK_PACKAGE_NAME
+  );
   const asset: Asset = findGithubAsset(assetName, release);
   createDirectory(directory);
   const fileName: string = await downloadAssetZipFile(asset, directory);

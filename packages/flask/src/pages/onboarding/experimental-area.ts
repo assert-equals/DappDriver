@@ -1,6 +1,5 @@
-import { HTMLElement } from '../../../controls/html-element';
-import { Welcome } from '../../../metamask';
-import { PageObject } from '../../../page';
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { Welcome } from '@assert-equals/dappdriver-metamask';
 
 /**
  *

@@ -1,4 +1,4 @@
-import { ExperimentalArea } from '.';
+import { PageObject } from '@assert-equals/dappdriver';
 import {
   Completion,
   ConfirmRecoveryPhrase,
@@ -7,8 +7,8 @@ import {
   Metametrics,
   ReviewRecoveryPhrase,
   SidePanel
-} from '../metamask';
-import { PageObject } from '../page';
+} from '@assert-equals/dappdriver-metamask';
+import { ExperimentalArea } from '.';
 
 let createPasswordPage: CreatePassword;
 let metametricsPage: Metametrics;
