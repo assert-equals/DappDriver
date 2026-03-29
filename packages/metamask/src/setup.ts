@@ -1,3 +1,4 @@
+import { PageObject } from '@assert-equals/dappdriver';
 import {
   Completion,
   ConfirmRecoveryPhrase,
@@ -8,7 +9,6 @@ import {
   SidePanel,
   Welcome
 } from '.';
-import { PageObject } from '../page';
 
 let createPasswordPage: CreatePassword;
 let metametricsPage: Metametrics;

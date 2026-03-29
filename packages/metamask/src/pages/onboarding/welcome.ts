@@ -1,6 +1,6 @@
-import { CreatePassword, ImportWithRecoveryPhrase } from '../../';
-import { HTMLElement } from '../../../controls/html-element';
-import { PageObject } from '../../../page';
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { CreatePassword } from './create-password';
+import { ImportWithRecoveryPhrase } from './import-with-recory-phrase';
 
 /**
  *

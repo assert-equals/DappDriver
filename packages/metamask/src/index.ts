@@ -1,4 +1,4 @@
-import { IWallet } from '../interface/extension/wallet';
+import { IWallet } from '@assert-equals/dappdriver';
 import { install } from './install';
 import { AddNetwork } from './pages/add-network';
 import { Approve } from './pages/approve';
@@ -11,7 +11,16 @@ import { SignMessage } from './pages/sign-message';
 import { SignatureRequest } from './pages/signature-request';
 import { setup } from './setup';
 
+export { AddNetwork } from './pages/add-network';
+export { Approve } from './pages/approve';
+export { ApproveAll } from './pages/approve-all';
+export { ConfirmTransaction } from './pages/confirm-transaction';
+export { Connect } from './pages/connect';
 export { Home } from './pages/home';
+export { Send } from './pages/send';
+export { SignInRequest } from './pages/sign-in-request';
+export { SignMessage } from './pages/sign-message';
+export { SignatureRequest } from './pages/signature-request';
 export { SidePanel } from './pages/home/SidePanel';
 export { Completion } from './pages/onboarding/completion';
 export { ConfirmRecoveryPhrase } from './pages/onboarding/confirm-recovery-phrase';

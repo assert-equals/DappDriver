@@ -1,23 +1,25 @@
-import { readFileSync, writeFileSync } from 'fs';
-import path from 'path';
 import {
-  DEFAULT_METAMASK_ASSET,
-  DEFAULT_METAMASK_VERSION,
-  METAMASK,
-  METAMASK_GITHUB_API,
-  RECOMMENDED_METAMASK_VERSIONS
-} from '../constants';
-import { logInfo, logSuccess } from '../log';
-import { Asset } from '../types';
-import {
+  Asset,
   compareVersion,
   createDirectory,
   downloadAssetZipFile,
   extractZipContents,
   fetchGithubRelease,
   fileExists,
-  findGithubAsset
-} from '../wallet/install';
+  findGithubAsset,
+  logInfo,
+  logSuccess
+} from '@assert-equals/dappdriver';
+import { readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import {
+  DEFAULT_METAMASK_ASSET,
+  DEFAULT_METAMASK_VERSION,
+  METAMASK,
+  METAMASK_GITHUB_API,
+  METAMASK_PACKAGE_NAME,
+  RECOMMENDED_METAMASK_VERSIONS
+} from './constants';
 
 export async function install(directory: string, version: string = DEFAULT_METAMASK_VERSION): Promise<string> {
   const assetName = `${DEFAULT_METAMASK_ASSET}-${version}`;
@@ -28,7 +30,7 @@ export async function install(directory: string, version: string = DEFAULT_METAM
     return destDir;
   }
   compareVersion(METAMASK, version, RECOMMENDED_METAMASK_VERSIONS);
-  const release: any = await fetchGithubRelease(METAMASK, version, METAMASK_GITHUB_API);
+  const release: any = await fetchGithubRelease(METAMASK, version, METAMASK_GITHUB_API, METAMASK_PACKAGE_NAME);
   const asset: Asset = findGithubAsset(assetName, release);
   createDirectory(directory);
   const fileName: string = await downloadAssetZipFile(asset, directory);

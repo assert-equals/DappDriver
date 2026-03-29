@@ -1,6 +1,4 @@
-import { HTMLElement } from '../../controls/html-element';
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
+import { HTMLElement, IConfirmation, IPageObject } from '@assert-equals/dappdriver';
 import { ConfirmTransaction } from './confirm-transaction';
 
 /**

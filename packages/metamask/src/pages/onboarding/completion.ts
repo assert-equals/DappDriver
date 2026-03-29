@@ -1,6 +1,5 @@
-import { SidePanel } from '../..';
-import { HTMLElement } from '../../../controls/html-element';
-import { PageObject } from '../../../page';
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { SidePanel } from '../home/SidePanel';
 
 /**
  *

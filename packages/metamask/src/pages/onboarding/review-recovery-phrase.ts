@@ -1,5 +1,4 @@
-import { HTMLElement } from '../../../controls/html-element';
-import { PageObject } from '../../../page';
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
 import { ConfirmRecoveryPhrase } from './confirm-recovery-phrase';
 
 /**

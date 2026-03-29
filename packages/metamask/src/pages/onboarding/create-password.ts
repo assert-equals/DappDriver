@@ -1,6 +1,6 @@
-import { Metametrics, ReviewRecoveryPhrase } from '../..';
-import { HTMLElement } from '../../../controls/html-element';
-import { PageObject } from '../../../page';
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { Metametrics } from './metametrics';
+import { ReviewRecoveryPhrase } from './review-recovery-phrase';
 
 /**
  *

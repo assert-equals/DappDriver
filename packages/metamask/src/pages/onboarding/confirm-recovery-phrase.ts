@@ -1,6 +1,5 @@
-import { Metametrics } from '../..';
-import { HTMLElement } from '../../../controls';
-import { PageObject } from '../../../page';
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { Metametrics } from './metametrics';
 
 /**
  *
