@@ -5,7 +5,8 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "keywords": [
     "automation",
@@ -26,6 +27,8 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc --build",
+    "prepack": "cp ../../README.md ./README.md",
+    "postpack": "rm -f ./README.md",
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
