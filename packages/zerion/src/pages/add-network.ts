@@ -1,29 +1,29 @@
-import { HTMLElement } from '../../controls/html-element';
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
-import { PageObject } from '../../page';
+import { HTMLElement, IConfirmation, IPageObject, PageObject } from '@assert-equals/dappdriver';
 
 /**
  *
  *
  * @export
- * @class ConfirmTransaction
+ * @class AddNetwork
  * @extends {PageObject}
  * @implements {IConfirmation}
  */
-export class ConfirmTransaction extends PageObject implements IConfirmation {
-  private get confirmButton(): HTMLElement {
-    return new HTMLElement('xpath=//button[contains(., "Confirm")]');
+export class AddNetwork extends PageObject implements IConfirmation {
+  private get addButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Add")]');
+  }
+  private get closeButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Close")]');
   }
   private get cancelButton(): HTMLElement {
     return new HTMLElement('xpath=//button[contains(., "Cancel")]');
   }
   /**
-   * Creates an instance of ConfirmTransaction.
-   * @memberof ConfirmTransaction
+   * Creates an instance of AddNetwork.
+   * @memberof AddNetwork
    */
   constructor() {
-    super('#/sendTransaction', 'Zerion · Send Transaction');
+    super('#/addEthereumChain', 'Zerion · Add network');
   }
   /**
    *
@@ -31,10 +31,11 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof ConfirmTransaction
+   * @memberof AddNetwork
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.confirmButton.clickAndSwitchToWindow<TPage>(page);
+    await this.addButton.click();
+    return await this.closeButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -42,7 +43,7 @@ export class ConfirmTransaction extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof ConfirmTransaction
+   * @memberof AddNetwork
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);

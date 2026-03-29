@@ -1,5 +1,5 @@
+import { PageObject } from '@assert-equals/dappdriver';
 import { BackUp, ConfirmPassword, Create, Password, Success, Welcome } from '.';
-import { PageObject } from '../page';
 
 let passwordPage: Password;
 let confirmPasswordPage: ConfirmPassword;

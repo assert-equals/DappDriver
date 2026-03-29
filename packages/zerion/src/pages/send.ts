@@ -1,29 +1,26 @@
-import { HTMLElement } from '../../controls/html-element';
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
-import { PageObject } from '../../page';
+import { HTMLElement, IConfirmation, IPageObject, PageObject } from '@assert-equals/dappdriver';
 
 /**
  *
  *
  * @export
- * @class SignMessage
+ * @class Send
  * @extends {PageObject}
  * @implements {IConfirmation}
  */
-export class SignMessage extends PageObject implements IConfirmation {
-  private get signButton(): HTMLElement {
-    return new HTMLElement('xpath=//button[contains(., "Sign")]');
+export class Send extends PageObject implements IConfirmation {
+  private get confirmButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Confirm")]');
   }
   private get cancelButton(): HTMLElement {
     return new HTMLElement('xpath=//button[contains(., "Cancel")]');
   }
   /**
-   * Creates an instance of SignMessage.
-   * @memberof SignMessage
+   * Creates an instance of Send.
+   * @memberof Send
    */
   constructor() {
-    super('#/signMessage', 'Zerion · Sign Message');
+    super('#/sendTransaction', 'Zerion · Send Transaction');
   }
   /**
    *
@@ -31,10 +28,10 @@ export class SignMessage extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof SignMessage
+   * @memberof Send
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
-    return await this.signButton.clickAndSwitchToWindow<TPage>(page);
+    return await this.confirmButton.clickAndSwitchToWindow<TPage>(page);
   }
   /**
    *
@@ -42,7 +39,7 @@ export class SignMessage extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof SignMessage
+   * @memberof Send
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);

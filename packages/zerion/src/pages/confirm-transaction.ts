@@ -1,17 +1,14 @@
-import { HTMLElement } from '../../controls/html-element';
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
-import { PageObject } from '../../page';
+import { HTMLElement, IConfirmation, IPageObject, PageObject } from '@assert-equals/dappdriver';
 
 /**
  *
  *
  * @export
- * @class Approve
+ * @class ConfirmTransaction
  * @extends {PageObject}
  * @implements {IConfirmation}
  */
-export class Approve extends PageObject implements IConfirmation {
+export class ConfirmTransaction extends PageObject implements IConfirmation {
   private get confirmButton(): HTMLElement {
     return new HTMLElement('xpath=//button[contains(., "Confirm")]');
   }
@@ -19,8 +16,8 @@ export class Approve extends PageObject implements IConfirmation {
     return new HTMLElement('xpath=//button[contains(., "Cancel")]');
   }
   /**
-   * Creates an instance of Approve.
-   * @memberof Approve
+   * Creates an instance of ConfirmTransaction.
+   * @memberof ConfirmTransaction
    */
   constructor() {
     super('#/sendTransaction', 'Zerion · Send Transaction');
@@ -31,7 +28,7 @@ export class Approve extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Approve
+   * @memberof ConfirmTransaction
    */
   async accept<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.confirmButton.clickAndSwitchToWindow<TPage>(page);
@@ -42,7 +39,7 @@ export class Approve extends PageObject implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Approve
+   * @memberof ConfirmTransaction
    */
   async reject<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.cancelButton.clickAndSwitchToWindow<TPage>(page);

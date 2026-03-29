@@ -1,6 +1,5 @@
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
 import { ImportWallet, Password } from '../..';
-import { HTMLElement } from '../../../controls/html-element';
-import { PageObject } from '../../../page';
 
 /**
  *
