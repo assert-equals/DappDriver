@@ -1,9 +1,9 @@
 name: Publish docs
 
 on:
-  push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_run:
+    workflows: ['Release']
+    types: [completed]
 
 permissions:
   contents: read
@@ -17,15 +17,28 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: |
+      github.event.workflow_run.conclusion == 'success' &&
+      contains(github.event.workflow_run.head_commit.message, 'changeset-release')
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install dependencies
-        run: yarn
-      - name: Generate documentation
-        run: yarn docs
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Generate docs
+        run: pnpm run docs
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
