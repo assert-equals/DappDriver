@@ -1,27 +1,25 @@
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
-import { DappDriver } from '../../session/dapp-driver';
+import { DappDriver, IConfirmation, IPageObject } from '@assert-equals/dappdriver';
 
 /**
  *
  *
  * @export
- * @class Connect
+ * @class Send
  * @implements {IConfirmation}
  */
-export class Connect implements IConfirmation {
+export class Send implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly connect: IConfirmation;
+  private readonly send: IConfirmation;
 
   constructor() {
-    this.connect = new DappDriver.Instance.Extension.pages.Connect();
-    this.url = this.connect.url;
-    this.title = this.connect.title;
+    this.send = new DappDriver.Instance.Extension.pages.Send();
+    this.url = this.send.url;
+    this.title = this.send.title;
   }
 
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    return await (this.connect[methodName] as Function)(...args);
+    return await (this.send[methodName] as Function)(...args);
   }
   /**
    *
@@ -29,7 +27,7 @@ export class Connect implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Connect
+   * @memberof Send
    */
   async accept<TPage>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('accept', [page]);
@@ -38,7 +36,7 @@ export class Connect implements IConfirmation {
    *
    *
    * @return {*}  {Promise<any[]>}
-   * @memberof Connect
+   * @memberof Send
    */
   async getAllWindowHandles(): Promise<any[]> {
     return await this.callIfMethodExists('getAllWindowHandles');
@@ -49,7 +47,7 @@ export class Connect implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Connect
+   * @memberof Send
    */
   async reject<TPage>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('reject', [page]);
@@ -60,7 +58,7 @@ export class Connect implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof Connect
+   * @memberof Send
    */
   async switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('switchToWindow', [page]);

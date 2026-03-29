@@ -1,6 +1,4 @@
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
-import { DappDriver } from '../../session/dapp-driver';
+import { DappDriver, IConfirmation, IPageObject } from '@assert-equals/dappdriver';
 
 /**
  *

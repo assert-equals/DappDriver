@@ -1,27 +1,18 @@
-import { IPageObject } from '../../interface/page/page-object';
-import { IConfirmation } from '../../interface/wallet/confirmation';
-import { DappDriver } from '../../session/dapp-driver';
+import { DappDriver, IConfirmation, IPageObject } from '@assert-equals/dappdriver';
 
-/**
- *
- *
- * @export
- * @class SignMessage
- * @implements {IConfirmation}
- */
-export class SignMessage implements IConfirmation {
+export class Approve implements IConfirmation {
   public url: string | RegExp;
   public title: string;
-  private readonly signMessage: IConfirmation;
+  private readonly approve: IConfirmation;
 
   constructor() {
-    this.signMessage = new DappDriver.Instance.Extension.pages.SignMessage();
-    this.url = this.signMessage.url;
-    this.title = this.signMessage.title;
+    this.approve = new DappDriver.Instance.Extension.pages.Approve();
+    this.url = this.approve.url;
+    this.title = this.approve.title;
   }
 
   private async callIfMethodExists(methodName: keyof IConfirmation, args: Array<any> = []): Promise<any> {
-    return await (this.signMessage[methodName] as Function)(...args);
+    return await (this.approve[methodName] as Function)(...args);
   }
   /**
    *
@@ -29,7 +20,7 @@ export class SignMessage implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof SignMessage
+   * @memberof Approve
    */
   async accept<TPage>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('accept', [page]);
@@ -38,7 +29,7 @@ export class SignMessage implements IConfirmation {
    *
    *
    * @return {*}  {Promise<any[]>}
-   * @memberof SignMessage
+   * @memberof Approve
    */
   async getAllWindowHandles(): Promise<any[]> {
     return await this.callIfMethodExists('getAllWindowHandles');
@@ -49,7 +40,7 @@ export class SignMessage implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof SignMessage
+   * @memberof Approve
    */
   async reject<TPage>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('reject', [page]);
@@ -60,7 +51,7 @@ export class SignMessage implements IConfirmation {
    * @template TPage
    * @param {new () => TPage} page
    * @return {*}  {Promise<TPage>}
-   * @memberof SignMessage
+   * @memberof Approve
    */
   async switchToWindow<TPage extends IConfirmation | IPageObject>(page: new () => TPage): Promise<TPage> {
     return await this.callIfMethodExists('switchToWindow', [page]);
