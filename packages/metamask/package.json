@@ -1,6 +1,6 @@
 {
   "name": "@assert-equals/dappdriver-metamask",
-  "version": "0.37.0",
+  "version": "1.0.0",
   "description": "MetaMask wallet integration for DappDriver",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
