@@ -1,0 +1,31 @@
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { ImportSeed } from '../..';
+
+/**
+ *
+ *
+ * @export
+ * @class Import
+ * @extends {PageObject}
+ */
+export class Import extends PageObject {
+  private get importFromASRPButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-via-seed-option"]');
+  }
+  /**
+   * Creates an instance of Import.
+   * @memberof Import
+   */
+  constructor() {
+    super('/popup.html#/import', 'Rainbow Wallet');
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<ImportSeed>}
+   * @memberof Import
+   */
+  async importFromASecretRecoveryPhrase(): Promise<ImportSeed> {
+    return await this.importFromASRPButton.clickRedirectsTo<ImportSeed>(ImportSeed);
+  }
+}

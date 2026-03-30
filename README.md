@@ -34,15 +34,12 @@ DappDriver loads [MetaMask](https://metamask.io/), [MetaMask Flask](https://meta
 
 Read on to get started locally in a couple of minutes.
 
-> [!NOTE]
-> DappDriver is in active development, so all APIs are subject to change.
-
 ## Install
 
-DappDriver is [available on npm](https://www.npmjs.com/package/@assert-equals/dappdriver):
+DappDriver is [available on npm](https://www.npmjs.com/package/dappdriver). Install the core package alongside the wallet package you want to use:
 
 ```shell
-yarn add @assert-equals/dappdriver
+npm install @assert-equals/dappdriver @assert-equals/dappdriver-metamask @assert-equals/dappdriver-wallet
 ```
 
 ## Get Started
@@ -53,7 +50,7 @@ Then, write your page object in `test/page/dapp.ts`:
 
 ```ts
 import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
-import { Connect } from '@assert-equals/dappdriver/wallet';
+import { Connect } from '@assert-equals/dappdriver-wallet';
 
 export class Dapp extends PageObject {
   private accountsLabel: () => HTMLElement = () => new HTMLElement('#accounts');
@@ -76,9 +73,13 @@ export class Dapp extends PageObject {
 
 Next, write your test in `test/spec/dapp.spec.ts`:
 
+> [!NOTE]
+> Your tests are written once and work with any supported wallet. To switch wallets, just change the `wallet` option in your browser configuration.
+
 ```ts
-import { CHROME, DappDriver, METAMASK, PLAYWRIGHT, BrowserOptions } from '@assert-equals/dappdriver';
-import { Connect } from '@assert-equals/dappdriver/wallet';
+import { CHROME, DappDriver, PLAYWRIGHT, BrowserOptions } from '@assert-equals/dappdriver';
+import { metamask } from '@assert-equals/dappdriver-metamask';
+import { Connect } from '@assert-equals/dappdriver-wallet';
 import { expect } from 'chai';
 import { Dapp } from '../page/dapp';
 
@@ -86,7 +87,7 @@ describe('E2E Test Dapp', () => {
   let dapp: Dapp;
   const browserOptions: BrowserOptions = {
     extension: {
-      wallet: METAMASK,
+      wallet: metamask,
       seed: 'phrase upgrade clock rough situate wedding elder clever doctor stamp excess tent' // MetaMask test seed https://github.com/MetaMask/metamask-extension/blob/v12.7.1/test/e2e/seeder/ganache.ts
     }
   };
@@ -120,7 +121,7 @@ describe('E2E Test Dapp', () => {
 Finally, run your tests:
 
 ```shell
-yarn test
+npm test
 ```
 
 ## Examples

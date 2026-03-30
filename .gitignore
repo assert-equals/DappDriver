@@ -6,3 +6,4 @@ dist
 docs
 .DS_Store
 .vscode
+.turbo/

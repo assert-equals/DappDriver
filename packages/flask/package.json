@@ -1,0 +1,28 @@
+{
+  "name": "@assert-equals/dappdriver-flask",
+  "version": "0.37.0",
+  "description": "MetaMask Flask wallet integration for DappDriver",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc --build",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@assert-equals/dappdriver": "workspace:*",
+    "@assert-equals/dappdriver-metamask": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Assert Equals Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/assert-equals/DappDriver.git"
+  }
+}

@@ -1,0 +1,26 @@
+import { HTMLElement, IConfirmation } from '@assert-equals/dappdriver';
+import { ConfirmTransaction } from './confirm-transaction';
+
+/**
+ *
+ *
+ * @export
+ * @class Send
+ * @extends {ConfirmTransaction}
+ * @implements {IConfirmation}
+ */
+export class Send extends ConfirmTransaction implements IConfirmation {
+  protected get nextButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-button"]');
+  }
+  protected get cancelButton(): HTMLElement {
+    return new HTMLElement('[data-testid="confirm-footer-cancel-button"]');
+  }
+  /**
+   * Creates an instance of Send.
+   * @memberof Send
+   */
+  constructor() {
+    super('#/confirm-transaction', 'MetaMask');
+  }
+}

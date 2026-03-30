@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "paths": {
+      "@assert-equals/dappdriver": ["../dappdriver/src"],
+      "@assert-equals/dappdriver-metamask": ["../metamask/src"]
+    }
+  },
+  "exclude": ["node_modules", "src/**/*.spec.ts"],
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.ts", "package.json"],
+  "references": [{ "path": "../dappdriver" }, { "path": "../metamask" }]
+}

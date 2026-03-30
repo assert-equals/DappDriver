@@ -1,0 +1,33 @@
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { Password } from './password';
+
+/**
+ *
+ *
+ * @export
+ * @class SelectWallets
+ * @extends {PageObject}
+ */
+export class SelectWallets extends PageObject {
+  private readonly activeWalletButton: (index: number) => HTMLElement = (index: number) =>
+    new HTMLElement(`div[title="Derivation path: m/44'/60'/0'/0/${index}"]`);
+  private get continueButton(): HTMLElement {
+    return new HTMLElement('xpath=//button[contains(., "Continue")]');
+  }
+  /**
+   * Creates an instance of SelectWallets.
+   * @memberof SelectWallets
+   */
+  constructor() {
+    super('onboarding#/onboarding/import/mnemonic?view=select-wallets', 'Zerion');
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<Password>}
+   * @memberof SelectWallets
+   */
+  async continue(): Promise<Password> {
+    return await this.continueButton.clickRedirectsTo<Password>(Password);
+  }
+}

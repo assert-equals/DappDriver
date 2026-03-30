@@ -1,0 +1,47 @@
+import { HTMLElement, InputText, PageObject } from '@assert-equals/dappdriver';
+import { ImportSelect } from '../..';
+
+/**
+ *
+ *
+ * @export
+ * @class ImportSeed
+ * @extends {PageObject}
+ */
+export class ImportSeed extends PageObject {
+  private readonly secretInput: (position: number) => InputText = (position: number) =>
+    new InputText(`[data-testid="secret-input-${position}"]`);
+  private get importWalletsButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-wallets-button"]');
+  }
+  /**
+   * Creates an instance of ImportSeed.
+   * @memberof ImportSeed
+   */
+  constructor() {
+    super('/popup.html#/import/seed?onboarding=true', 'Rainbow Wallet');
+  }
+  /**
+   *
+   *
+   * @param {string} srp
+   * @return {*}  {Promise<void>}
+   * @memberof ImportSeed
+   */
+  async enterSRP(srp: string): Promise<void> {
+    const words: Array<string> = srp.split(' ');
+    for (let index = 0; index < words.length; index++) {
+      const position = index + 1;
+      await this.secretInput(position).type(words[index]);
+    }
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<ImportSelect>}
+   * @memberof ImportSeed
+   */
+  async importWalletGroup(): Promise<ImportSelect> {
+    return await this.importWalletsButton.clickRedirectsTo<ImportSelect>(ImportSelect);
+  }
+}

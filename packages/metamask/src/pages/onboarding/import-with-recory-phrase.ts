@@ -1,0 +1,50 @@
+import { HTMLElement, PageObject } from '@assert-equals/dappdriver';
+import { CreatePassword } from './create-password';
+
+/**
+ *
+ *
+ * @export
+ * @class ImportWithRecoveryPhrase
+ * @extends {PageObject}
+ */
+export class ImportWithRecoveryPhrase extends PageObject {
+  private get srpTextarea(): HTMLElement {
+    return new HTMLElement('[data-testid="srp-input-import__srp-note"]');
+  }
+  private readonly srpInput: (index: number) => HTMLElement = (index: number) =>
+    new HTMLElement(`[data-testid="import-srp__srp-word-${index}"]`);
+  private get confirmButton(): HTMLElement {
+    return new HTMLElement('[data-testid="import-srp-confirm"]');
+  }
+  /**
+   * Creates an instance of ImportWithRecoveryPhrase.
+   * @memberof ImportWithRecoveryPhrase
+   */
+  constructor() {
+    super('/home.html#/onboarding/import-with-recovery-phrase', 'MetaMask');
+  }
+  /**
+   *
+   *
+   * @param {string} srp
+   * @return {*}  {Promise<void>}
+   * @memberof ImportWithRecoveryPhrase
+   */
+  async enterSRP(srp: string): Promise<void> {
+    const words: Array<string> = srp.split(' ');
+    await this.srpTextarea.type(words[0] + ' ');
+    for (let i = 1; i < words.length; i++) {
+      await this.srpInput(i).type(words[i] + ' ');
+    }
+  }
+  /**
+   *
+   *
+   * @return {*}  {Promise<CreatePassword>}
+   * @memberof ImportWithRecoveryPhrase
+   */
+  async confirmSecretRecoveryPhrase(): Promise<CreatePassword> {
+    return await this.confirmButton.clickRedirectsTo<CreatePassword>(CreatePassword);
+  }
+}

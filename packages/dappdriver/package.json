@@ -1,0 +1,65 @@
+{
+  "name": "@assert-equals/dappdriver",
+  "version": "0.37.0",
+  "description": "DappDriver is an e2e testing framework for testing decentralized applications (dApps)",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "automation",
+    "browser",
+    "chrome",
+    "dapp",
+    "e2e",
+    "ethereum",
+    "extension",
+    "metamask",
+    "playwright",
+    "rainbow",
+    "selenium",
+    "testing",
+    "webdriver",
+    "zerion"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc --build",
+    "prepack": "cp ../../README.md ./README.md",
+    "postpack": "rm -f ./README.md",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "axios": "^1.9.0",
+    "chalk": "^4.1.2",
+    "mockttp": "^3.15.4",
+    "playwright-core": "^1.52.0",
+    "selenium-webdriver": "^4.33.0",
+    "semver": "^7.7.2"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.5",
+    "@types/selenium-webdriver": "^4.1.28",
+    "@types/semver": "^7.7.0"
+  },
+  "peerDependencies": {
+    "playwright": "^1.44.1"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Assert Equals Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/assert-equals/DappDriver.git"
+  }
+}

@@ -1,71 +1,13 @@
 {
   "name": "@assert-equals/dappdriver",
   "version": "0.37.0",
+  "private": true,
   "description": "DappDriver is an e2e testing framework designed for testing decentralized applications (dApps) using MetaMask, Rainbow or Zerion",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/src/index.d.ts",
-      "require": "./dist/src/index.js",
-      "import": "./dist/src/index.js"
-    },
-    "./metamask": {
-      "types": "./dist/src/metamask/index.d.ts",
-      "require": "./dist/src/metamask/index.js",
-      "import": "./dist/src/metamask/index.js"
-    },
-    "./flask": {
-      "types": "./dist/src/flask/index.d.ts",
-      "require": "./dist/src/flask/index.js",
-      "import": "./dist/src/flask/index.js"
-    },
-    "./rainbow": {
-      "types": "./dist/src/rainbow/index.d.ts",
-      "require": "./dist/src/rainbow/index.js",
-      "import": "./dist/src/rainbow/index.js"
-    },
-    "./wallet": {
-      "types": "./dist/src/wallet/index.d.ts",
-      "require": "./dist/src/wallet/index.js",
-      "import": "./dist/src/wallet/index.js"
-    },
-    "./zerion": {
-      "types": "./dist/src/zerion/index.d.ts",
-      "require": "./dist/src/zerion/index.js",
-      "import": "./dist/src/zerion/index.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "automation",
-    "browser",
-    "chrome",
-    "dapp",
-    "e2e",
-    "ethereum",
-    "extension",
-    "metamask",
-    "playwright",
-    "rainbow",
-    "selenium",
-    "testing",
-    "webdriver",
-    "zerion"
-  ],
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "tsc",
-    "predocs": "rimraf docs",
+    "build": "turbo run build",
     "docs": "typedoc --options typedoc.json",
-    "prepare": "husky",
-    "release": "commit-and-tag-version",
-    "release:major": "commit-and-tag-version --release-as major",
-    "release:minor": "commit-and-tag-version --release-as minor",
-    "release:patch": "commit-and-tag-version --release-as patch",
-    "test": "vitest run"
+    "test": "turbo run test",
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,json,ts}": [
@@ -73,58 +15,26 @@
       "eslint --fix"
     ]
   },
-  "engines": {
-    "node": ">=20"
-  },
   "author": "Assert Equals Ltd",
   "license": "MIT",
-  "dependencies": {
-    "adm-zip": "^0.5.16",
-    "axios": "^1.9.0",
-    "chalk": "^4.1.2",
-    "mockttp": "^3.15.4",
-    "playwright-core": "^1.52.0",
-    "selenium-webdriver": "^4.33.0",
-    "semver": "^7.7.2"
-  },
   "devDependencies": {
     "@changesets/cli": "^2.30.0",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/adm-zip": "^0.5.5",
     "@types/node": "^20.14.2",
-    "@types/selenium-webdriver": "^4.1.28",
-    "@types/semver": "^7.7.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
-    "commit-and-tag-version": "^12.4.1",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "lint-staged": "^16.0.0",
     "prettier": "^3.2.5",
     "prettier-plugin-sort-json": "4.2.0",
     "rimraf": "^5.0.7",
-    "ts-node": "^10.9.2",
+    "turbo": "^2.8.20",
     "typedoc": "^0.25.12",
     "typescript": "^5.4.2",
     "vitest": "^4.0.18"
   },
-  "peerDependencies": {
-    "playwright": "^1.44.1"
-  },
-  "peerDependenciesMeta": {
-    "playwright": {
-      "optional": true
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/assert-equals/DappDriver.git"
-  },
-  "bugs": {
-    "url": "https://github.com/assert-equals/DappDriver/issues"
-  },
-  "homepage": "https://github.com/assert-equals/DappDriver#readme",
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "pnpm@9.15.9"
 }

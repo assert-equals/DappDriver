@@ -1,5 +1,13 @@
 {
-  "entryPoints": ["src/", "src/flask", "src/metamask", "src/rainbow", "src/wallet", "src/zerion"],
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "packages/dappdriver",
+    "packages/flask",
+    "packages/metamask",
+    "packages/rainbow",
+    "packages/wallet",
+    "packages/zerion"
+  ],
   "gitRevision": "main",
   "hideGenerator": true,
   "out": "docs/",

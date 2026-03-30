@@ -1,15 +1,11 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "declaration": true,
-    "lib": ["ES2022", "DOM"],
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "outDir": "dist",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "target": "ES2022"
-  },
-  "exclude": ["node_modules", "vitest.config.ts", "src/**/*.spec.ts"],
-  "include": ["src/**/*.ts"]
+  "files": [],
+  "references": [
+    { "path": "packages/dappdriver" },
+    { "path": "packages/metamask" },
+    { "path": "packages/flask" },
+    { "path": "packages/rainbow" },
+    { "path": "packages/zerion" },
+    { "path": "packages/wallet" }
+  ]
 }
